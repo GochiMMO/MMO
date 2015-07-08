@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.mmo.CSharp.Plugins", "UnityVS.mmo.CSharp.Plugins.csproj", "{11856142-0255-2600-8FFD-10EEBAF5A676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.mmo.CSharp", "UnityVS.mmo.CSharp.csproj", "{8853F6A7-D4F2-D781-1804-9801FB70C6B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.mmo.CSharp.Editor", "UnityVS.mmo.CSharp.Editor.csproj", "{38E69FE7-8117-54FD-DB64-344E41036DF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11856142-0255-2600-8FFD-10EEBAF5A676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11856142-0255-2600-8FFD-10EEBAF5A676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11856142-0255-2600-8FFD-10EEBAF5A676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11856142-0255-2600-8FFD-10EEBAF5A676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8853F6A7-D4F2-D781-1804-9801FB70C6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8853F6A7-D4F2-D781-1804-9801FB70C6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8853F6A7-D4F2-D781-1804-9801FB70C6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8853F6A7-D4F2-D781-1804-9801FB70C6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E69FE7-8117-54FD-DB64-344E41036DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E69FE7-8117-54FD-DB64-344E41036DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E69FE7-8117-54FD-DB64-344E41036DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E69FE7-8117-54FD-DB64-344E41036DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

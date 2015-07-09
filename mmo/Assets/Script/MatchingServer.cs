@@ -12,6 +12,12 @@ public class MatchingServer : Photon.MonoBehaviour {
         PhotonNetwork.ConnectUsingSettings("0.1");  //接続設定
     }
 
+    //部屋を立てた時
+    public void OnJoinedRoom()
+    {
+        Debug.Log(PhotonNetwork.room.name + " Room Join");
+    }
+
     //ロビーに接続したかどうか
     public void OnJoinedLobby()
     {
@@ -28,6 +34,5 @@ public class MatchingServer : Photon.MonoBehaviour {
     public void OnGUI()
     {
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-
     }
 }

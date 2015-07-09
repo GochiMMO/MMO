@@ -1081,9 +1081,9 @@ public static class PhotonNetwork
         ConnectionProtocol protocol = PhotonNetwork.PhotonServerSettings.Protocol;
 #if UNITY_WEBGL
         if (protocol != ConnectionProtocol.WebSocket && protocol != ConnectionProtocol.WebSocketSecure) {
-			Debug.Log("WebGL only supports WebSocket protocol. Overriding PhotonServerSettings.");
-	        protocol = ConnectionProtocol.WebSocketSecure;
-		}
+            Debug.Log("WebGL only supports WebSocket protocol. Overriding PhotonServerSettings.");
+            protocol = ConnectionProtocol.WebSocketSecure;
+        }
 #endif
         networkingPeer = new NetworkingPeer(photonMono, string.Empty, protocol);
 
@@ -1115,9 +1115,9 @@ public static class PhotonNetwork
     {
 #if UNITY_WEBGL
         if (cp != ConnectionProtocol.WebSocket && cp != ConnectionProtocol.WebSocketSecure) {
-			Debug.Log("WebGL only supports WebSocket protocol. Overriding PhotonServerSettings.");
-	        cp = ConnectionProtocol.WebSocketSecure;
-		}
+            Debug.Log("WebGL only supports WebSocket protocol. Overriding PhotonServerSettings.");
+            cp = ConnectionProtocol.WebSocketSecure;
+        }
 #endif
 
         if (networkingPeer.UsedProtocol == cp)

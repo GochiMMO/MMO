@@ -43,6 +43,7 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     void OnJoinedRoom()
     {
         Debug.Log(roomName + " room join");
+        Application.LoadLevel("CharacterSelect");
     }
 
     // Update is called once per frame

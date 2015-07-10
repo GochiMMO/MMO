@@ -13,6 +13,7 @@ public class PushKey : MonoBehaviour {
         col = gameObject.GetComponent<BoxCollider2D>();
     }
 
+    //ポップアップウインドウの表示
     void enabledPopupWindow()
     {
         Instantiate(popupWindow, new Vector3(0, 0, 0), Quaternion.identity);

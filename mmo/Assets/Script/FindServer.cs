@@ -3,10 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class FindServer : Photon.MonoBehaviour {
-    [SerializeField]
-    Text tex;
 
-    RoomInfo[] rooms;
     // Use this for initialization
     void Start()
     {
@@ -18,8 +15,6 @@ public class FindServer : Photon.MonoBehaviour {
     {
         Debug.Log("JoinLobby");
     }
-
-    
 
     // Update is called once per frame
     void Update () {

@@ -5,7 +5,7 @@ public class PushKey : MonoBehaviour {
     [SerializeField]
     GameObject popupWindow;
     BoxCollider2D col;  //押した時の当り判定オブジェクト
-
+    
     bool windowEnabledFlag = false;
 
     // Use this for initialization

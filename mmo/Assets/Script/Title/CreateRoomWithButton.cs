@@ -8,7 +8,6 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     [SerializeField]
     Text server2;
 
-    int selectServer = 0;
     string roomName;
 
     // Use this for initialization
@@ -31,8 +30,6 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
         Debug.Log("join server1");
         roomName = server1.text;
         PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
-        //PhotonNetwork.JoinRoom(server1.text);
-        selectServer = 1;
     }
 
     public void LoadServer2()
@@ -40,8 +37,6 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
         Debug.Log("join server2");
         roomName = server2.text;
         PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
-        //PhotonNetwork.JoinRoom(server2.text);
-        selectServer = 2;
     }
 
     //ルームに入ったとき

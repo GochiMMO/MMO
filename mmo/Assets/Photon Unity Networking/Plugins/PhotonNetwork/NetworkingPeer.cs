@@ -238,10 +238,10 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         #pragma warning restore 0162
 
 #if UNITY_WEBGL
-		if (connectionProtocol == ConnectionProtocol.WebSocket || connectionProtocol == ConnectionProtocol.WebSocketSecure) {
-	        Debug.Log("Using SocketWebTcp");
-	        this.SocketImplementation = typeof(SocketWebTcp);
-		}
+        if (connectionProtocol == ConnectionProtocol.WebSocket || connectionProtocol == ConnectionProtocol.WebSocketSecure) {
+            Debug.Log("Using SocketWebTcp");
+            this.SocketImplementation = typeof(SocketWebTcp);
+        }
 #endif
 
         if (PhotonHandler.PingImplementation == null)
@@ -1543,7 +1543,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
                     Debug.Log("Skipping EstablishEncryption. Protocol is secure.");
                 }
 
-				if (this.IsAuthorizeSecretAvailable || this.IsProtocolSecure)
+                if (this.IsAuthorizeSecretAvailable || this.IsProtocolSecure)
                 {
                     // if we have a token we don't have to wait for encryption (it is encrypted anyways, so encryption is just optional later on)
                     AuthenticationValues auth = this.CustomAuthenticationValues ?? new AuthenticationValues() { UserId = this.PlayerName };

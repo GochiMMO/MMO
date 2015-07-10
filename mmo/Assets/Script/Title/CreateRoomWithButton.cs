@@ -25,25 +25,29 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
         return roomOptions;
     }
 
+    //サーバー１をロードする
     public void LoadServer1()
     {
         Debug.Log("join server1");
         roomName = server1.text;
-        PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
+        //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
+        PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }
 
+    //サーバー２をロードする
     public void LoadServer2()
     {
         Debug.Log("join server2");
         roomName = server2.text;
-        PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
+        //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
+        PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }
 
     //ルームに入ったとき
-    void OnJoinedRoom()
+    void OnJoinedLobby()
     {
-        Debug.Log(roomName + " room join");
-        Application.LoadLevel("CharacterSelect");
+        Debug.Log(roomName + " Lobby join");
+        PhotonNetwork.LoadLevel("CharacterSelect");
     }
 
     // Update is called once per frame

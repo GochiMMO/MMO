@@ -3,31 +3,36 @@ using UnityEngine;
 public class RandomMatchmaker : Photon.PunBehaviour
 {
     private PhotonView myPhotonView;
-
+    //public bool offlineMode = false;
+    
     // Use this for initialization
     void Start()
     {
-        PhotonNetwork.ConnectUsingSettings("0.1");
-    }
-
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("JoinRandom");
-        PhotonNetwork.JoinRandomRoom();
-    }
-
-    public void OnPhotonRandomJoinFailed()
-    {
-        PhotonNetwork.CreateRoom(null);
-    }
-
-    public override void OnJoinedRoom()
-    {
+        //PhotonNetwork.ConnectUsingSettings("0.1");
+        //PhotonNetwork.offlineMode = offlineMode;
         GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         monster.GetComponent<myThirdPersonController>().isControllable = true;
         myPhotonView = monster.GetComponent<PhotonView>();
     }
 
+    public override void OnJoinedLobby()
+    {
+        //Debug.Log("JoinRandom");
+        //PhotonNetwork.JoinRandomRoom();
+    }
+
+    public void OnPhotonRandomJoinFailed()
+    {
+        //PhotonNetwork.CreateRoom(null);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        //GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
+        //monster.GetComponent<myThirdPersonController>().isControllable = true;
+        //myPhotonView = monster.GetComponent<PhotonView>();
+    }
+    /*
     public void OnGUI()
     {
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
@@ -46,4 +51,5 @@ public class RandomMatchmaker : Photon.PunBehaviour
             }
         }
     }
+    */
 }

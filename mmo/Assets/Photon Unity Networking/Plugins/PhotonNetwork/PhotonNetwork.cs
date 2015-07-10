@@ -2257,15 +2257,17 @@ public static class PhotonNetwork
         }
 
         GameObject prefabGo;
+
         if (!UsePrefabCache || !PrefabCache.TryGetValue(prefabName, out prefabGo))
         {
-            prefabGo = (GameObject)Resources.Load(prefabName, typeof(GameObject));
-            if (UsePrefabCache)
+            prefabGo = (GameObject)Resources.Load(prefabName, typeof(GameObject));  //プレハブからGameObjectを呼び出す
+            if (UsePrefabCache) //プレハブのキャッシュを利用するかどうか
             {
-                PrefabCache.Add(prefabName, prefabGo);
+                PrefabCache.Add(prefabName, prefabGo);  //キャッシュに登録する
             }
         }
 
+        //プレハブを作成できなければ
         if (prefabGo == null)
         {
             Debug.LogError("Failed to Instantiate prefab: " + prefabName + ". Verify the Prefab is in a Resources folder (and not in a subfolder)");

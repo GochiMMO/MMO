@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RandomMatchmaker : Photon.PunBehaviour
 {
-    private PhotonView myPhotonView;
+    //private PhotonView myPhotonView;
     //public bool offlineMode = false;
     
     // Use this for initialization
@@ -12,7 +12,7 @@ public class RandomMatchmaker : Photon.PunBehaviour
         //PhotonNetwork.offlineMode = offlineMode;
         GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         monster.GetComponent<myThirdPersonController>().isControllable = true;
-        myPhotonView = monster.GetComponent<PhotonView>();
+        //myPhotonView = monster.GetComponent<PhotonView>();
     }
 
     public override void OnJoinedLobby()

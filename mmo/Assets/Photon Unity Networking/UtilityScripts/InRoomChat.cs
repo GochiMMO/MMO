@@ -11,6 +11,7 @@ public class InRoomChat : Photon.MonoBehaviour
     public List<string> messages = new List<string>();
     private string inputLine = "";
     private Vector2 scrollPos = Vector2.zero;
+    public Texture tex;
 
     public static readonly string ChatRPC = "Chat";
 
@@ -24,11 +25,12 @@ public class InRoomChat : Photon.MonoBehaviour
 
     public void OnGUI()
     {
+        /*
         if (!this.IsVisible || PhotonNetwork.connectionStateDetailed != PeerState.Joined)
         {
             return;
         }
-        
+        */
         if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return))
         {
             if (!string.IsNullOrEmpty(this.inputLine))
@@ -40,32 +42,40 @@ public class InRoomChat : Photon.MonoBehaviour
             }
             else
             {
-                GUI.FocusControl("ChatInput");
+                GUI.FocusControl("ChatInput");  //フォーカスをチャット入力フォームに移動
             }
         }
 
         GUI.SetNextControlName("");
-        GUILayout.BeginArea(this.GuiRect);
 
-        scrollPos = GUILayout.BeginScrollView(scrollPos);
-        GUILayout.FlexibleSpace();
-        for (int i = messages.Count - 1; i >= 0; i--)
+        GUILayout.BeginArea(this.GuiRect);  //エリアの開始
+
+        scrollPos = GUILayout.BeginScrollView(scrollPos, false, true);  //スクロールを作成する
+
+        GUILayout.FlexibleSpace();  //適当に幅を空ける
+
+        //for (int i = messages.Count - 1; i >= 0; i--) //上が最新チャットになる処理
+        for (int i = 0; i < messages.Count; i++ )   //下が最新チャットになる処理
         {
             GUILayout.Label(messages[i]);
         }
-        GUILayout.EndScrollView();
+        
+        GUILayout.EndScrollView();  //スクロールバーの設定終了
 
         GUILayout.BeginHorizontal();
+
         GUI.SetNextControlName("ChatInput");
-        inputLine = GUILayout.TextField(inputLine);
-        if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
+
+        inputLine = GUILayout.TextField(inputLine);     //ユーザーが編集できるテキストボックスを生成
+        if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))     //Sendボタンを作成し、監視する
         {
-            this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
-            this.inputLine = "";
-            GUI.FocusControl("");
+            this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);     //チャットを送信する(ルーム全員に)
+            this.inputLine = "";        //文字列を削除する
+            GUI.FocusControl("");       //フォーカス位置を変更する
+            //scrollPos.y = Mathf.Infinity;   //一番下に合わせる処理
         }
-        GUILayout.EndHorizontal();
-        GUILayout.EndArea();
+        GUILayout.EndHorizontal();  //水平処理の終了
+        GUILayout.EndArea();        //Guiを表示するエリアの処理の終了
     }
 
     [PunRPC]
@@ -85,7 +95,9 @@ public class InRoomChat : Photon.MonoBehaviour
             }
         }
 
+        //リストに追加する
         this.messages.Add(senderName +": " + newLine);
+        scrollPos.y = Mathf.Infinity;   //一番下に合わせる処理
     }
 
     public void AddLine(string newLine)

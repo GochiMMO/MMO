@@ -77,6 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
+    <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
+    <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\JumpAndRunMovement.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\DemoBoxes\DemoBoxesGui.cs" />
@@ -188,12 +191,23 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
     <Compile Include="Assets\Script\CharacterSelect\CharacterSelect.cs" />
     <Compile Include="Assets\Script\CharacterSelect\YNWindow.cs" />
+    <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+    <Compile Include="Assets\Script\Game\Magic\FireShot.cs" />
+    <Compile Include="Assets\Script\Game\Magic\LifeSpan.cs" />
+    <Compile Include="Assets\Script\Game\Magic\MagicBase.cs" />
+    <Compile Include="Assets\Script\Game\Magic\SpawnFlare.cs" />
     <Compile Include="Assets\Script\Title\CreateRoomWithButton.cs" />
     <Compile Include="Assets\Script\Title\FindServer.cs" />
     <Compile Include="Assets\Script\Title\MatchingServer.cs" />
     <Compile Include="Assets\Script\Title\PushKey.cs" />
+    <Compile Include="Assets\Tazo_fx\Script\ActiveSelf.cs" />
+    <Compile Include="Assets\Tazo_fx\Script\AnimateTiledTextureOnTrail.cs" />
+    <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
+    <Compile Include="Assets\Tazo_fx\Script\DestroySelf.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Elementals\!Readme.txt" />
+    <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />

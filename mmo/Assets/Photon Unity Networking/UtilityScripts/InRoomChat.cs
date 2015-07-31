@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(PhotonView))]
@@ -11,7 +12,6 @@ public class InRoomChat : Photon.MonoBehaviour
     public List<string> messages = new List<string>();
     private string inputLine = "";
     private Vector2 scrollPos = Vector2.zero;
-    public Texture tex;
 
     public static readonly string ChatRPC = "Chat";
 
@@ -67,6 +67,7 @@ public class InRoomChat : Photon.MonoBehaviour
         GUI.SetNextControlName("ChatInput");
 
         inputLine = GUILayout.TextField(inputLine);     //ユーザーが編集できるテキストボックスを生成
+
         if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))     //Sendボタンを作成し、監視する
         {
             this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);     //チャットを送信する(ルーム全員に)

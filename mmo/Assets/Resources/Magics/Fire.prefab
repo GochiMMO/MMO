@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11492458}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Magic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 100
+  spendSP: 0
   randomNum: .200000003
 --- !u!135 &13512646
 SphereCollider:
@@ -2316,6 +2317,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: randomNum
       value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Magic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

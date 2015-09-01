@@ -33,4 +33,7 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - TaggedPlayer
+  - TranslateMasterClient
+  - DrawDamageBillboard
+  - DrawDamage
   DisableAutoOpenWizard: 1

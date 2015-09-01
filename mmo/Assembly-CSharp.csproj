@@ -161,10 +161,14 @@
      <Compile Include="Assets\Script\CharacterSelect\CharacterSelect.cs" />
      <Compile Include="Assets\Script\CharacterSelect\YNWindow.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+     <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
      <Compile Include="Assets\Script\Game\Magic\FireShot.cs" />
      <Compile Include="Assets\Script\Game\Magic\LifeSpan.cs" />
      <Compile Include="Assets\Script\Game\Magic\MagicBase.cs" />
      <Compile Include="Assets\Script\Game\Magic\SpawnFlare.cs" />
+     <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />
+     <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
+     <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
      <Compile Include="Assets\Script\Title\CreateRoomWithButton.cs" />
      <Compile Include="Assets\Script\Title\FindServer.cs" />
      <Compile Include="Assets\Script\Title\MatchingServer.cs" />

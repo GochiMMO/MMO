@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11476356}
   m_Layer: 0
   m_Name: Flare
-  m_TagString: Untagged
+  m_TagString: Magic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014a42d2de7b93d478a1d5183080f7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpan: 8
+  lifeSpan: 7
   usePhotonNetwork: 1
 --- !u!114 &11475200
 MonoBehaviour:
@@ -9792,7 +9792,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Magic
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifeSpan
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105018}

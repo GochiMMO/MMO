@@ -18,10 +18,10 @@ public class MagicBase : MonoBehaviour {
         sphereCollider.isTrigger = true;    //当り判定のみ検出するようにする
     }
 
-    //振れ幅を考慮し、攻撃力を返す
+    //振れ幅を計算し、攻撃力を返す
     public int GetAttack()
     {
-        return attack + (attack * (int)(Random.Range(-randomNum, randomNum) * 100));
+        return attack + (int)(attack * Random.Range(-randomNum, randomNum));
     }
 
     void OnTriggerEnter(Collider col)

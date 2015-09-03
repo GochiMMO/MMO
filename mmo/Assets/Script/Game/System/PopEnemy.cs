@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PopEnemy : Photon.MonoBehaviour {
     [SerializeField, Tooltip("敵の出現間隔(秒)")]
-    int rePopSec;
+    float rePopSec;
     [SerializeField, Tooltip("敵の最大出現数")]
     int maxEnemyNum;
     [SerializeField, Tooltip("出現させる敵のプレハブ")]
@@ -12,11 +12,11 @@ public class PopEnemy : Photon.MonoBehaviour {
     Vector3[] popPoint;
 
     int nowPopEnemyNum = 0;
-    int counter = 0;
+    float time = 0f;
     // Use this for initialization
     void Start()
     {
-
+        time = Time.time;
     }
 
     //現在出現している敵の数を同期させる
@@ -42,11 +42,11 @@ public class PopEnemy : Photon.MonoBehaviour {
         {
             if (nowPopEnemyNum < maxEnemyNum)
             {
-                if (counter++ >= rePopSec * 60)
+                if (Time.time - time >= rePopSec)
                 {
                     GameObject enemy = PhotonNetwork.InstantiateSceneObject("Enemy/" + popEnemyPrefab.name, popPoint[Random.Range(0, popPoint.Length)], Quaternion.identity, 0, null);
                     nowPopEnemyNum++;
-                    counter = 0;
+                    time = Time.time;
                     enemy.GetComponent<EnemyData>().myPopScriptRefarence = this;    //自分の参照を入れておく
                 }
             }

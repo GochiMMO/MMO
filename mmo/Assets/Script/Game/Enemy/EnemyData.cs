@@ -25,6 +25,13 @@ public class EnemyData : Photon.MonoBehaviour {
     void DrawDamage(int damage, Vector3 position)
     {
         scripts.GetComponent<CreateDamageBillboard>().DrawDamageBillboard(damage, position);
+        HP -= damage;
+    }
+
+    [PunRPC]
+    void HitCliantMagic(int damage)
+    {
+        GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);
     }
 
     //何かとぶつかったとき
@@ -32,15 +39,21 @@ public class EnemyData : Photon.MonoBehaviour {
     {
         if (col.gameObject.tag == "Magic")  //当たった物体が魔法ならば
         {
-            //if (col.gameObject.GetComponent<PhotonView>().isMine)
+            //マスタークライアントならば
+            if (PhotonNetwork.isMasterClient)
             {
-                int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
-                GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);
-                HP -= damage;
+                int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();  //攻撃力をゲットする
+                GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);    //ダメージを表示する
                 if (HP <= 0)
                 {
                     enemyStates = States.DEAD;
                 }
+            }
+            //他のクライアントならば
+            else
+            {
+                int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
+                GetComponent<PhotonView>().RPC("HitCliantMagic", PhotonTargets.MasterClient, damage);
             }
         }
     }
@@ -52,15 +65,31 @@ public class EnemyData : Photon.MonoBehaviour {
 
     void Update()
     {
-        switch (enemyStates)
+        if (PhotonNetwork.isMasterClient)
         {
-            case States.DEAD:
-                //何らかのアニメーション
+            switch (enemyStates)
+            {
+                case States.DEAD:
+                    //何らかのアニメーション
 
-                //自分を削除
-                PhotonNetwork.Destroy(this.gameObject);
-                myPopScriptRefarence.DeadEnemy();   //死んだので数を減算
-                break;
+                    //自分を削除
+                    PhotonNetwork.Destroy(this.gameObject);
+                    myPopScriptRefarence.DeadEnemy();   //死んだので数を減算
+                    break;
+            }
+        }
+    }
+
+    //状態の同期
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(enemyStates);   //ステータスを送信
+        }
+        else
+        {
+            enemyStates = (States)stream.ReceiveNext(); //ステータスを受信
         }
     }
 }

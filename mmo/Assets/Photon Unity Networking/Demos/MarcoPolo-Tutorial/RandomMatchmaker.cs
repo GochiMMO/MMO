@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class RandomMatchmaker : Photon.PunBehaviour
 {
     //private PhotonView myPhotonView;
     //public bool offlineMode = false;
+    [SerializeField]
+    UnityStandardAssets.Cameras.FreeLookCam cam;
     
     // Use this for initialization
     void Start()
@@ -12,6 +15,8 @@ public class RandomMatchmaker : Photon.PunBehaviour
         //PhotonNetwork.offlineMode = offlineMode;
         GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         monster.GetComponent<myThirdPersonController>().isControllable = true;
+        cam.SetTarget(monster.transform);
+        cam.enabled = true;
         //myPhotonView = monster.GetComponent<PhotonView>();
     }
 

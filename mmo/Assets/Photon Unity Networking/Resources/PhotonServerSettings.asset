@@ -36,4 +36,5 @@ MonoBehaviour:
   - TranslateMasterClient
   - DrawDamageBillboard
   - DrawDamage
+  - HitCliantMagic
   DisableAutoOpenWizard: 1

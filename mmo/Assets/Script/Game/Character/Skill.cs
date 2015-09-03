@@ -28,6 +28,16 @@ public class Skill : Photon.MonoBehaviour {
             {
                 PhotonNetwork.Instantiate("Magics/Flare", transform.position + Vector3.up * 1, Quaternion.identity, 0);
             }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Vector3 tartget = new Vector3(-Mathf.Cos((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f, 0f, Mathf.Sin((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f);
+                PhotonNetwork.Instantiate("Magics/Meteo", tartget, Quaternion.identity, 0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                GameObject obj = PhotonNetwork.Instantiate("Magics/Shock", transform.position + Vector3.up * 1, Quaternion.identity, 0);
+                obj.GetComponent<Shock>().SetDirection(transform.rotation.eulerAngles.y + 90f);
+            }
         }
     }
 }

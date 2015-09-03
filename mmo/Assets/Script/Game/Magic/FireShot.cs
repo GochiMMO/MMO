@@ -2,12 +2,9 @@
 using System.Collections;
 
 public class FireShot : Photon.MonoBehaviour {
-    [SerializeField]
-    float speed = 0.1f;     //移動速度
-    [SerializeField]
-    int lifeSpan = 3;       //寿命(秒)
+    [SerializeField, Tooltip("１秒間に移動する距離")]
+    float speed = 12f;     //移動速度
 
-    int lifeCount = 0;      //寿命カウンター
     Vector3 moveVec;        //移動方向とその力
     Collider col;           //コライダー
     bool shotFlag = false;  //移動するかどうか
@@ -52,12 +49,6 @@ public class FireShot : Photon.MonoBehaviour {
         {
             photonTransformView.SetSynchronizedValues(speed: moveVec * 60f, turnSpeed: 0);
         }
-        this.transform.Translate(moveVec, Space.World);
-        if (lifeCount++ >= lifeSpan * 60)   //寿命が尽きたら
-        {
-            PhotonNetwork.Destroy(this.gameObject);     //自身を削除
-            return;
-        }
-        
+        this.transform.Translate(moveVec * Time.deltaTime, Space.World);
     }
 }

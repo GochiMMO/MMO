@@ -30,7 +30,7 @@ public class Skill : Photon.MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                Vector3 tartget = new Vector3(-Mathf.Cos((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f, 0f, Mathf.Sin((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f);
+                Vector3 tartget = new Vector3(-Mathf.Cos((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f, 0f, Mathf.Sin((transform.rotation.eulerAngles.y + 90f) * Mathf.PI / 180f) * 8f) + transform.position;
                 PhotonNetwork.Instantiate("Magics/Meteo", tartget, Quaternion.identity, 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))

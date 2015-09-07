@@ -25,7 +25,7 @@ public class ThirdPersonController : MonoBehaviour
     public float landAnimationSpeed = 1.0f;
 
     private Animation _animation;
-
+    private PlayerData playerData;  //プレイヤーのデータ
   
 
     public CharacterState _characterState;
@@ -92,6 +92,12 @@ public class ThirdPersonController : MonoBehaviour
     void Awake()
     {
         moveDirection = transform.TransformDirection(Vector3.forward);
+        playerData = new PlayerData();
+        playerData.HP = 1000;
+        playerData.job = 2;
+        playerData.logoutScene = Application.loadedLevel;
+        playerData.Lv = 1;
+        playerData.SP = 100;
 
         _animation = GetComponent<Animation>();
         if (!_animation)
@@ -473,5 +479,8 @@ public class ThirdPersonController : MonoBehaviour
         gameObject.tag = "Player";
     }
 
-
+    public void OnDestroy()
+    {
+        SaveManager.Save<PlayerData>(playerData, "save");
+    }
 }

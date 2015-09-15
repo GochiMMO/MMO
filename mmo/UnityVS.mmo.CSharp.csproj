@@ -189,6 +189,9 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\Script\CharacterCreate\PushCharacter.cs" />
+    <Compile Include="Assets\Script\CharacterCreate\PushYes.cs" />
+    <Compile Include="Assets\Script\CharacterCreate\RotateModel.cs" />
     <Compile Include="Assets\Script\CharacterSelect\CharacterSelect.cs" />
     <Compile Include="Assets\Script\CharacterSelect\YNWindow.cs" />
     <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
@@ -204,6 +207,7 @@
     <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
     <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
     <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
+    <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
     <Compile Include="Assets\Script\Title\CreateRoomWithButton.cs" />
     <Compile Include="Assets\Script\Title\FindServer.cs" />
     <Compile Include="Assets\Script\Title\MatchingServer.cs" />

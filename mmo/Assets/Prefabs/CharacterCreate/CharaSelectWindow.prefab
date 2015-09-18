@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3c73fa2ceacbd4b9da6dc4cb2d544e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: CharacterSelect
+  scene: SelectJob
   parentModel: {fileID: 0}
 --- !u!114 &11423116
 MonoBehaviour:
@@ -629,7 +629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scene
-      value: CharacterSelect
+      value: SelectJob
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

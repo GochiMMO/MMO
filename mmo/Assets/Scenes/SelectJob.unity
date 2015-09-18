@@ -97,6 +97,8 @@ GameObject:
   - 224: {fileID: 5794491}
   - 222: {fileID: 5794493}
   - 114: {fileID: 5794492}
+  - 61: {fileID: 5794494}
+  - 114: {fileID: 5794495}
   m_Layer: 5
   m_Name: warrior
   m_TagString: Untagged
@@ -148,6 +150,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 5794490}
+--- !u!61 &5794494
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 5794490}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .000351051887, y: .117006332}
+  serializedVersion: 2
+  m_Size: {x: 105.627502, y: 112.345589}
+--- !u!114 &5794495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 5794490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f36d4e2be083bc4096a25da84ea4091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  jobName: "\u30A6\u30A9\u30FC\u30EA\u30A2"
 --- !u!1 &110258766
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,9 +238,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2075514934}
   m_RootOrder: 0
-  m_AnchorMin: {x: .179411367, y: .859618366}
-  m_AnchorMax: {x: .179411367, y: .859618366}
-  m_AnchoredPosition: {x: 7, y: -1}
+  m_AnchorMin: {x: .139647454, y: .859618366}
+  m_AnchorMax: {x: .139647454, y: .859618366}
+  m_AnchoredPosition: {x: -1.10000038, y: -1}
   m_SizeDelta: {x: 132, y: 39}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &185232023
@@ -368,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 411341205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 18.2999992, y: 15.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -383,6 +412,8 @@ GameObject:
   - 224: {fileID: 419844760}
   - 222: {fileID: 419844762}
   - 114: {fileID: 419844761}
+  - 61: {fileID: 419844763}
+  - 114: {fileID: 419844764}
   m_Layer: 5
   m_Name: Sorcerer
   m_TagString: Untagged
@@ -434,6 +465,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419844759}
+--- !u!61 &419844763
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 419844759}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .000351051887, y: .117006332}
+  serializedVersion: 2
+  m_Size: {x: 105.627502, y: 112.345589}
+--- !u!114 &419844764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 419844759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f36d4e2be083bc4096a25da84ea4091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  jobName: "\u30BD\u30FC\u30B5\u30E9\u30FC"
 --- !u!1 &1038829525
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +502,8 @@ GameObject:
   - 224: {fileID: 1038829528}
   - 222: {fileID: 1038829527}
   - 114: {fileID: 1038829526}
+  - 61: {fileID: 1038829529}
+  - 114: {fileID: 1038829530}
   m_Layer: 5
   m_Name: archer
   m_TagString: Untagged
@@ -495,6 +555,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: .5}
   m_SizeDelta: {x: 4, y: -83}
   m_Pivot: {x: .5, y: .5}
+--- !u!61 &1038829529
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1038829525}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .000351051887, y: .117006332}
+  serializedVersion: 2
+  m_Size: {x: 105.627502, y: 112.345589}
+--- !u!114 &1038829530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1038829525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f36d4e2be083bc4096a25da84ea4091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  jobName: "\u30A2\u30FC\u30C1\u30E3\u30FC"
 --- !u!1 &1716467563
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +592,8 @@ GameObject:
   - 224: {fileID: 1716467564}
   - 222: {fileID: 1716467566}
   - 114: {fileID: 1716467565}
+  - 61: {fileID: 1716467567}
+  - 114: {fileID: 1716467568}
   m_Layer: 5
   m_Name: monk
   m_TagString: Untagged
@@ -556,6 +645,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1716467563}
+--- !u!61 &1716467567
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1716467563}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .000351051887, y: .117006332}
+  serializedVersion: 2
+  m_Size: {x: 105.627502, y: 112.345589}
+--- !u!114 &1716467568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1716467563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f36d4e2be083bc4096a25da84ea4091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
+  jobName: "\u30E2\u30F3\u30AF"
 --- !u!1 &1716843906
 GameObject:
   m_ObjectHideFlags: 0

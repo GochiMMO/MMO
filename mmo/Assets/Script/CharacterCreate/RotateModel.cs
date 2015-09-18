@@ -9,7 +9,7 @@ public class RotateModel : MonoBehaviour {
     [SerializeField, Tooltip("出現させるウインドウのプレハブ")]
     GameObject windowPrefab;
 
-    static bool nowActive = false;
+    public static bool nowActive = false;
 
     bool thisModelActive = false;
     Vector3 moveSpeed;

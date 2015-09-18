@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]  //球体当り判定オブジェクトを自動アタッチ
 public class ShowMenu : MonoBehaviour {
@@ -16,7 +15,8 @@ public class ShowMenu : MonoBehaviour {
     void Update () {
         if (boxCol.OverlapPoint(Input.mousePosition) && Input.GetMouseButtonDown(0))   //画像がクリックされたら
         {
-            GameObject menuObject = GameObject.Instantiate(menuPrefab);
+            /*GameObject menuObject = */
+            GameObject.Instantiate(menuPrefab);
             //menuObject.transform.SetParent(this.gameObject.transform.parent.parent);
         }
     }

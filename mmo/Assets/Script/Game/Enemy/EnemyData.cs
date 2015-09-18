@@ -10,6 +10,7 @@ public class EnemyData : Photon.MonoBehaviour {
         NORMAL,
         DEAD
     };
+    
 
     [SerializeField, Tooltip("HP")]
     int HP;
@@ -53,7 +54,8 @@ public class EnemyData : Photon.MonoBehaviour {
             else
             {
                 int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
-                GetComponent<PhotonView>().RPC("HitCliantMagic", PhotonTargets.MasterClient, damage);
+                //GetComponent<PhotonView>().RPC("HitCliantMagic", PhotonTargets.MasterClient, damage);
+                GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);
             }
         }
     }

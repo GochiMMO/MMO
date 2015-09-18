@@ -4,17 +4,27 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveManager{
+    /// <summary>
+    /// Save directory pass
+    /// </summary>
     static string savePass;
 
-    // Use this for initialization
+    /// <summary>
+    /// Constractor
+    /// </summary>
     static SaveManager(){
         savePass = Directory.GetCurrentDirectory();
         savePass += "\\savedata";
         Directory.CreateDirectory(savePass);
     }
 
-    //セーブを行う関数
-    //Serializeするため、Non-Nullable型であり、[Serializable]である必要がある。
+    /// <summary>
+    /// Save Method
+    /// </summary>
+    /// <typeparam name="T">Non-Nullable and has "[Serialize]"</typeparam>
+    /// <param name="obj">struct type of "T"</param>
+    /// <param name="fileName">Save File Name</param>
+    /// <returns>obj</returns>
     public static Nullable<T> Save<T>(T obj, string fileName)
         where T : struct
     {
@@ -25,8 +35,42 @@ public static class SaveManager{
         return obj;
     }
 
-    //ロードを行う関数
-    //Serializeするため、Non-Nullable型であり、[Serializable]である必要がある。
+    /// <summary>
+    /// Search config file in "savePass" directory.
+    /// </summary>
+    /// <returns>exist is true, not exist is false</returns>
+    public static bool isExistConfigFile()
+    {
+        string[] file = System.IO.Directory.GetFiles(savePass + "/", "Config.sav");
+        return file.Length == 0 ? false : true;   
+    }
+
+    /// <summary>
+    /// Check exist "fileName.sav" file in "./savedata/"
+    /// </summary>
+    /// <param name="fileName">Name of Check File</param>
+    /// <returns>True is exist, False is not exist</returns>
+    public static bool isExistSaveData(string fileName)
+    {
+        if(PlayerStates.environmentalSaveData.oneSaveDataName == fileName ||
+            PlayerStates.environmentalSaveData.twoSaveDataName == fileName ||
+            PlayerStates.environmentalSaveData.threeSaveDataName == fileName)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Load Method
+    /// </summary>
+    /// <typeparam name="T">Non-Nullable and has "[Serialize]"</typeparam>
+    /// <param name="obj">struct type of "T"</param>
+    /// <param name="fileName">Load File Name</param>
+    /// <returns>obj</returns>
     public static T Load<T>(T obj, string fileName)
         where T : struct
     {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Jobs>
+  <Job>
+    <name>アーチャー</name>
+    <hp>1000</hp>
+    <sp>100</sp>
+    <str>10</str>
+    <vit>10</vit>
+    <int>10</int>
+    <mnd>10</mnd>
+  </Job>
+  <Job>
+    <name>ウォーリア</name>
+    <hp>1000</hp>
+    <sp>100</sp>
+    <str>10</str>
+    <vit>10</vit>
+    <int>10</int>
+    <mnd>10</mnd>
+  </Job>
+  <Job>
+    <name>ソーサラー</name>
+    <hp>1000</hp>
+    <sp>100</sp>
+    <str>10</str>
+    <vit>10</vit>
+    <int>10</int>
+    <mnd>10</mnd>
+  </Job>
+  <Job>
+    <name>モンク</name>
+    <hp>1000</hp>
+    <sp>100</sp>
+    <str>10</str>
+    <vit>10</vit>
+    <int>10</int>
+    <mnd>10</mnd>
+  </Job>
+</Jobs>

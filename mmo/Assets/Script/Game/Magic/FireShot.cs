@@ -23,7 +23,10 @@ public class FireShot : Photon.MonoBehaviour {
         }
     }
 
-    //当り判定
+    /// <summary>
+    /// collision method auto run per frame.
+    /// </summary>
+    /// <param name="collider">Collider class</param>
     void OnTriggerEnter(Collider collider)
     {
         if (photonView.isMine)  //出現させたのが自分ならば処理を行う

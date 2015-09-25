@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 1000
   attack: 10
+  speed: .5
   myPopScriptRefarence: {fileID: 0}
 --- !u!114 &11479014
 MonoBehaviour:
@@ -267,6 +268,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_PositionModel.ExtrapolateOption
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

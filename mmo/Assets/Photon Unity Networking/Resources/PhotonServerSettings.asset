@@ -18,6 +18,8 @@ MonoBehaviour:
   AppID: 1d758659-3fe9-4d65-84ed-326fed2e5c02
   PreferredRegion: 3
   EnabledRegions: -1
+  JoinLobby: 0
+  EnableLobbyStatistics: 0
   RpcList:
   - Chat
   - ColorRpc
@@ -37,4 +39,6 @@ MonoBehaviour:
   - DrawDamageBillboard
   - DrawDamage
   - HitCliantMagic
+  - Move
+  - attachRotation
   DisableAutoOpenWizard: 1

@@ -28,8 +28,8 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     //サーバー１をロードする
     public void LoadServer1()
     {
-        Debug.Log("join server1");
         roomName = server1.text;
+        Debug.Log(roomName + "join server1");
         //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
         PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }
@@ -37,8 +37,8 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     //サーバー２をロードする
     public void LoadServer2()
     {
-        Debug.Log("join server2");
         roomName = server2.text;
+        Debug.Log(roomName + "join server2");
         //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
         PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }

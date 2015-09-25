@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11460556}
+  - 114: {fileID: 11479874}
   m_Layer: 0
   m_Name: monsterprefab
   m_TagString: Player
@@ -2062,7 +2063,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100106}
-  m_LocalRotation: {x: -.539719403, y: .706754386, z: .456739396, w: -.0242958404}
+  m_LocalRotation: {x: -.539719462, y: .706754446, z: .456739426, w: -.0242958423}
   m_LocalPosition: {x: .52807194, y: .573052526, z: .144851878}
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children: []
@@ -2460,7 +2461,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e45c143ce27cd4384da31b961328aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: {fileID: 107440, guid: 1c8f513b7ab8c844fb03c4e0361e7272, type: 2}
+--- !u!114 &11479874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3131a5609a986c4c8146c7583aeeb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

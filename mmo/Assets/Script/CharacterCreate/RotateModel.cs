@@ -8,6 +8,8 @@ public class RotateModel : MonoBehaviour {
     BoxCollider2D col;
     [SerializeField, Tooltip("出現させるウインドウのプレハブ")]
     GameObject windowPrefab;
+    [SerializeField, Tooltip("キャラクターの番号")]
+    int characterNumber;
 
     public static bool nowActive = false;
 
@@ -24,7 +26,9 @@ public class RotateModel : MonoBehaviour {
         firstScale = this.transform.localScale;
     }
 
-    //元の場所に戻る処理
+    /// <summary>
+    /// Move to first position and start coroutine "MoveToFirstPos".
+    /// </summary>
     public void MoveFirstPosition()
     {
         moveSpeed *= -1f;
@@ -33,7 +37,10 @@ public class RotateModel : MonoBehaviour {
         windowObject.DeleteObject();    //ウインドウ削除
     }
 
-    //元の場所に戻る処理（コルーチン）
+    /// <summary>
+    /// Select character move to own position from center position. (Coroutine)
+    /// </summary>
+    /// <returns>IEnumerator</returns>
     IEnumerator MoveToFirstPos()
     {
         while (Time.time - startTime <= 1.0f)
@@ -46,7 +53,10 @@ public class RotateModel : MonoBehaviour {
         nowActive = false;
     }
 
-    //こちらに来る処理（コルーチン
+    /// <summary>
+    /// Select character move to center position from own position. (Coroutine) 
+    /// </summary>
+    /// <returns>IEnumerator</returns>
     IEnumerator MoveToCenter()
     {
         while (Time.time - startTime <= 1.0f)
@@ -56,6 +66,7 @@ public class RotateModel : MonoBehaviour {
             yield return null;
         }
 
+        PlayerStates.playerData.characterNumber = this.characterNumber;
         GameObject obj = GameObject.Instantiate(windowPrefab);
         windowObject = obj.GetComponent<PushYes>();
         windowObject.parentModel = this;

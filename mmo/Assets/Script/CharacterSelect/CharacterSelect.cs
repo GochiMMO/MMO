@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CharacterSelect : MonoBehaviour {
-    [SerializeField]
+    [SerializeField, Tooltip("開始するかどうか聞くウインドウ")]
     GameObject ynWindow;
     [SerializeField, Tooltip("キャラクタークリエイト画面のシーンの名前")]
     string characterCreateSceneName;

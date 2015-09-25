@@ -120,8 +120,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .26850003, y: .154174611}
   m_AnchorMax: {x: .441571444, y: .734523833}
-  m_AnchoredPosition: {x: 1, y: .500023365}
-  m_SizeDelta: {x: 2, y: -83}
+  m_AnchoredPosition: {x: 1, y: -3}
+  m_SizeDelta: {x: 2, y: -161}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &5794492
 MonoBehaviour:
@@ -160,9 +160,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000351051887, y: .117006332}
+  m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 105.627502, y: 112.345589}
+  m_Size: {x: 222.248306, y: 256.906708}
 --- !u!114 &5794495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30A6\u30A9\u30FC\u30EA\u30A2"
+  jobNumber: 1
 --- !u!1 &110258766
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -240,8 +241,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .139647454, y: .859618366}
   m_AnchorMax: {x: .139647454, y: .859618366}
-  m_AnchoredPosition: {x: -1.10000038, y: -1}
-  m_SizeDelta: {x: 132, y: 39}
+  m_AnchoredPosition: {x: 173, y: 17}
+  m_SizeDelta: {x: 548, y: 76}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &185232023
 GameObject:
@@ -435,8 +436,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .514285743, y: .154174611}
   m_AnchorMax: {x: .684214354, y: .734523833}
-  m_AnchoredPosition: {x: 1, y: .500023365}
-  m_SizeDelta: {x: 4, y: -83}
+  m_AnchoredPosition: {x: 1, y: -3}
+  m_SizeDelta: {x: 4, y: -161}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &419844761
 MonoBehaviour:
@@ -475,9 +476,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000351051887, y: .117006332}
+  m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 105.627502, y: 112.345589}
+  m_Size: {x: 222.248306, y: 256.906708}
 --- !u!114 &419844764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +493,7 @@ MonoBehaviour:
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30BD\u30FC\u30B5\u30E9\u30FC"
+  jobNumber: 2
 --- !u!1 &1038829525
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,10 +552,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2075514934}
   m_RootOrder: 1
-  m_AnchorMin: {x: .0455000028, y: .154174611}
-  m_AnchorMax: {x: .215000004, y: .734523833}
-  m_AnchoredPosition: {x: 0, y: .5}
-  m_SizeDelta: {x: 4, y: -83}
+  m_AnchorMin: {x: .0455000028, y: .115314327}
+  m_AnchorMax: {x: .219687492, y: .761000037}
+  m_AnchoredPosition: {x: -3, y: 1.5}
+  m_SizeDelta: {x: -2, y: -208}
   m_Pivot: {x: .5, y: .5}
 --- !u!61 &1038829529
 BoxCollider2D:
@@ -565,9 +567,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000351051887, y: .117006332}
+  m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 105.627502, y: 112.345589}
+  m_Size: {x: 222.248306, y: 256.906708}
 --- !u!114 &1038829530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +584,7 @@ MonoBehaviour:
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30A2\u30FC\u30C1\u30E3\u30FC"
+  jobNumber: 0
 --- !u!1 &1716467563
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,8 +618,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .756857216, y: .154174611}
   m_AnchorMax: {x: .932000041, y: .734523833}
-  m_AnchoredPosition: {x: -.5, y: .500022888}
-  m_SizeDelta: {x: 1, y: -83}
+  m_AnchoredPosition: {x: -.5, y: -3}
+  m_SizeDelta: {x: 1, y: -161}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1716467565
 MonoBehaviour:
@@ -655,9 +658,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000351051887, y: .117006332}
+  m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 105.627502, y: 112.345589}
+  m_Size: {x: 222.248306, y: 256.906708}
 --- !u!114 &1716467568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +675,7 @@ MonoBehaviour:
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30E2\u30F3\u30AF"
+  jobNumber: 3
 --- !u!1 &1716843906
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,10 +803,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 800}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

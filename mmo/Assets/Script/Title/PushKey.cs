@@ -11,8 +11,6 @@ public class PushKey : MonoBehaviour {
     // Use this for initialization
     void Start () {
         col = gameObject.GetComponent<BoxCollider2D>();
-        PlayerData pd = new PlayerData();
-        SaveManager.Save<PlayerData>(pd, "test");
     }
 
     //ポップアップウインドウの表示

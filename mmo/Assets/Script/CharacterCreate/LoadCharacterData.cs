@@ -18,14 +18,17 @@ public class LoadCharacterData : MonoBehaviour {
     [SerializeField, Tooltip("キャラクター作成のボタン")]
     GameObject characterCreateButton;
 
-
+    GameObject backImage;
+    RectTransform backImageRect;
     GameObject deleteButtonCanvasInstance;
     bool buttonsInstantiateFlag = false;
     PlayerData[] playerData;    //キャラクターのデータ
     // Use this for initialization
     void Start () {
         Debug.Log(PlayerStates.environmentalSaveData.saveDataNum);
-
+        backImage = canvas.transform.GetChild(0).gameObject;
+        backImageRect = backImage.GetComponent<RectTransform>();
+        float buttonHeight = (backImageRect.anchorMax.y - backImageRect.anchorMin.y) / 3;
         //セーブデータの読み込み
         if (PlayerStates.environmentalSaveData.saveDataNum > 0)
         {
@@ -33,11 +36,21 @@ public class LoadCharacterData : MonoBehaviour {
             playerData[0] = SaveManager.Load<PlayerData>(playerData[0], PlayerStates.environmentalSaveData.oneSaveDataName);
             GameObject obj = GameObject.Instantiate(button);
             obj.transform.SetParent(canvas.transform);
+
+
+            
+
+            RectTransform rt1 = obj.GetComponent<RectTransform>();
+            rt1.localScale = new Vector3(1f, 1f, 1f);
+            rt1.sizeDelta = new Vector2(0, 0);
+            rt1.anchorMin = new Vector2(rt1.anchorMin.x, backImageRect.anchorMax.y - buttonHeight);
+            rt1.anchorMax = new Vector2(rt1.anchorMax.x, backImageRect.anchorMax.y);
+            rt1.anchoredPosition = new Vector2(0f, 0f);
+
             obj.transform.GetChild(0).GetComponent<Text>().text = playerData[0].name;
             obj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener( ()=>pushPlayerButton(0) );
 
             Debug.Log(playerData[0].name);
-
             //キャラクターの数が２人以上
             if (PlayerStates.environmentalSaveData.saveDataNum > 1)
             {
@@ -49,6 +62,13 @@ public class LoadCharacterData : MonoBehaviour {
                 obj1.transform.GetChild(0).GetComponent<Text>().text = playerData[1].name;
                 obj1.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(1));
 
+                RectTransform rt2 = obj1.GetComponent<RectTransform>();
+                rt2.localScale = new Vector3(1f, 1f, 1f);
+                rt2.sizeDelta = new Vector2(0, 0);
+                rt2.anchorMin = new Vector2(rt2.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 2);
+                rt2.anchorMax = new Vector2(rt2.anchorMax.x, backImageRect.anchorMax.y - buttonHeight);
+                rt2.anchoredPosition = new Vector2(0f, 0f);
+
                 //キャラクターの数が３人
                 if (PlayerStates.environmentalSaveData.saveDataNum > 2)
                 {
@@ -59,12 +79,27 @@ public class LoadCharacterData : MonoBehaviour {
                     obj2.transform.SetParent(canvas.transform);
                     obj2.transform.GetChild(0).GetComponent<Text>().text = playerData[2].name;
                     obj2.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(2));
+
+                    RectTransform rt3 = obj2.GetComponent<RectTransform>();
+                    rt3.localScale = new Vector3(1f, 1f, 1f);
+                    rt3.sizeDelta = new Vector2(0, 0);
+                    rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 3);
+                    rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 2);
+                    rt3.anchoredPosition = new Vector2(0f, 0f);
+
                 }
                 else
                 {
                     GameObject obj2 = GameObject.Instantiate(characterCreateButton);
                     obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * 2 * obj2.transform.localScale.y, Space.Self);
                     obj2.transform.SetParent(canvas.transform);
+
+                    RectTransform rt3 = obj2.GetComponent<RectTransform>();
+                    rt3.localScale = new Vector3(1f, 1f, 1f);
+                    rt3.sizeDelta = new Vector2(0, 0);
+                    rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 3);
+                    rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 2);
+                    rt3.anchoredPosition = new Vector2(0f, 0f);
                 }
             }
             else
@@ -72,6 +107,13 @@ public class LoadCharacterData : MonoBehaviour {
                 GameObject obj2 = GameObject.Instantiate(characterCreateButton);
                 obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
                 obj2.transform.SetParent(canvas.transform);
+
+                RectTransform rt3 = obj2.GetComponent<RectTransform>();
+                rt3.localScale = new Vector3(1f, 1f, 1f);
+                rt3.sizeDelta = new Vector2(0, 0);
+                rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 2);
+                rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 1);
+                rt3.anchoredPosition = new Vector2(0f, 0f);
             }
         }
         else
@@ -79,6 +121,13 @@ public class LoadCharacterData : MonoBehaviour {
             GameObject obj2 = GameObject.Instantiate(characterCreateButton);
             //obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
             obj2.transform.SetParent(canvas.transform);
+
+            RectTransform rt3 = obj2.GetComponent<RectTransform>();
+            rt3.localScale = new Vector3(1f, 1f, 1f);
+            rt3.sizeDelta = new Vector2(0, 0);
+            rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight);
+            rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y);
+            rt3.anchoredPosition = new Vector2(0f, 0f);
         }
     }
 

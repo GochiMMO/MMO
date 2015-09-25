@@ -481,6 +481,6 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnDestroy()
     {
-        SaveManager.Save<PlayerData>(playerData, "save");
+        //SaveManager.Save<PlayerData>(playerData, "save");
     }
 }

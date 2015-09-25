@@ -8,6 +8,8 @@ public class SelectJob : MonoBehaviour {
     GameObject model;
     [SerializeField, Tooltip("職業の名前")]
     string jobName;
+    [SerializeField, Tooltip("職業の番号")]
+    int jobNumber;
 
     public static bool windowVisibleFlag = false;
     BoxCollider2D col;
@@ -26,6 +28,7 @@ public class SelectJob : MonoBehaviour {
             //クリックされたとき
             if (Input.GetMouseButtonDown(0))
             {
+                PlayerStates.playerData.job = jobNumber;
                 GameObject.Instantiate(window);
                 windowVisibleFlag = true;
                 PlayerStates.LoadFirstStatus(jobName);

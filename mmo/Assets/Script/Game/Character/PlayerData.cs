@@ -5,6 +5,7 @@
 public struct PlayerData {
     public int Lv;  //レベル
     public int job;    //職業
+    public int characterNumber; //キャラクターの番号
     public string name; //名前
     public int HP;  //HP
     public int SP;  //SP

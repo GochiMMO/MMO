@@ -34,7 +34,6 @@ public static class PlayerStates{
         {
             SaveManager.Save<EnvironmentalSaveData>(environmentalSaveData, "Config");
         }
-        
     }
 
     /// <summary>

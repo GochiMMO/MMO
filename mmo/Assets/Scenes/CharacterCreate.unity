@@ -3607,6 +3607,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1234200242}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 4
 --- !u!1 &575701382
 GameObject:
   m_ObjectHideFlags: 0
@@ -5806,6 +5807,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1222658790}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 1
 --- !u!4 &981128466
 Transform:
   m_ObjectHideFlags: 0
@@ -6026,6 +6028,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1713845466}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 5
 --- !u!1 &1022070460
 GameObject:
   m_ObjectHideFlags: 0
@@ -8071,6 +8074,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1320971349}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 0
 --- !u!1 &1317619676
 GameObject:
   m_ObjectHideFlags: 0
@@ -9032,6 +9036,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1612452661}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 3
 --- !u!1 &1496842952
 GameObject:
   m_ObjectHideFlags: 0
@@ -12679,6 +12684,7 @@ MonoBehaviour:
   rotateSpeed: 60
   col: {fileID: 1611547760}
   windowPrefab: {fileID: 129702, guid: 97614d41505a26049a0969fefc86e3a6, type: 2}
+  characterNumber: 2
 --- !u!1 &2012008177
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,11 @@ using System.Collections;
 [RequireComponent(typeof(PhotonView))]
 public class InRoomChat : Photon.MonoBehaviour 
 {
+    [SerializeField]
+    Canvas canv;
+    [SerializeField]
+    GameObject backBlackImage;
+
     public Rect GuiRect = new Rect(0,0, 250,300);
     public bool IsVisible = true;
     public bool AlignBottom = false;
@@ -20,6 +25,8 @@ public class InRoomChat : Photon.MonoBehaviour
         {
             this.GuiRect.y = Screen.height - this.GuiRect.height;
         }
+        //GuiRect.width = 
+
     }
 
     public void OnGUI()

@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent(typeof(SphereCollider))]  //球体当り判定オブジェクトを自動アタッチ
-
 public class MagicBase : MonoBehaviour {
     [SerializeField, Tooltip("攻撃力")]
     int attack;

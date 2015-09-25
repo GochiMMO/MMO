@@ -43,8 +43,11 @@ namespace UnityStandardAssets.Cameras
 
         protected void Update()
         {
-            HandleRotationMovement();
-            if (m_LockCursor && Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButton(1))
+            {
+                HandleRotationMovement();
+            }
+            if (m_LockCursor && Input.GetMouseButtonUp(1))
             {
                 Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                 Cursor.visible = !m_LockCursor;

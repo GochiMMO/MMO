@@ -29,7 +29,7 @@ public class EndInputName : MonoBehaviour{
             {
                 PlayerStates.environmentalSaveData.threeSaveDataName = PlayerStates.playerData.name;
             }
-
+            PlayerStates.environmentalSaveData.saveDataNum++;   //セーブデータの数を増やす
             SelectJob.windowVisibleFlag = false;        //職業選択ウィンドウの表示フラグを折る
             PlayerStates.SaveEnvironmentalData();       //環境データファイルを保存する
             Application.LoadLevel("CharacterSelect");   //キャラクターセレクト画面に遷移する

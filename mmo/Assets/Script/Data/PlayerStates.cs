@@ -17,6 +17,15 @@ public static class PlayerStates{
         playerData = new PlayerData();
         jobs = new Jobs();
         environmentalSaveData = new EnvironmentalSaveData();
+        LoadFirstStatus();
+        PlayerStates.Init();
+    }
+
+    /// <summary>
+    /// Initialization method.
+    /// </summary>
+    public static void Init()
+    {
         if (SaveManager.isExistConfigFile())
         {
             environmentalSaveData = SaveManager.Load<EnvironmentalSaveData>(environmentalSaveData, "Config");
@@ -25,8 +34,7 @@ public static class PlayerStates{
         {
             SaveManager.Save<EnvironmentalSaveData>(environmentalSaveData, "Config");
         }
-
-        LoadFirstStatus();
+        
     }
 
     /// <summary>
@@ -54,7 +62,7 @@ public static class PlayerStates{
     /// </summary>
     public static void SaveEnvironmentalData()
     {
-        environmentalSaveData.saveDataNum++;
+        //environmentalSaveData.saveDataNum++;
         SaveManager.Save<EnvironmentalSaveData>(environmentalSaveData, "Config");
     }
 

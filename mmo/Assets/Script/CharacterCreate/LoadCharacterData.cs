@@ -13,10 +13,16 @@ public class LoadCharacterData : MonoBehaviour {
     Text playerNameText;
     [SerializeField, Tooltip("職業を入力するテキスト")]
     Text jobName;
+    [SerializeField, Tooltip("開始と削除ボタンがあるキャンバス")]
+    GameObject startAndDeleteButtonCanvas;
+    [SerializeField, Tooltip("キャラクター作成のボタン")]
+    GameObject characterCreateButton;
 
-    
-    PlayerData[] playerData;    //キャラクターの
-    // Use this for initialization  
+
+    GameObject deleteButtonCanvasInstance;
+    bool buttonsInstantiateFlag = false;
+    PlayerData[] playerData;    //キャラクターのデータ
+    // Use this for initialization
     void Start () {
         Debug.Log(PlayerStates.environmentalSaveData.saveDataNum);
 
@@ -42,6 +48,7 @@ public class LoadCharacterData : MonoBehaviour {
                 obj1.transform.SetParent(canvas.transform);
                 obj1.transform.GetChild(0).GetComponent<Text>().text = playerData[1].name;
                 obj1.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(1));
+
                 //キャラクターの数が３人
                 if (PlayerStates.environmentalSaveData.saveDataNum > 2)
                 {
@@ -53,10 +60,32 @@ public class LoadCharacterData : MonoBehaviour {
                     obj2.transform.GetChild(0).GetComponent<Text>().text = playerData[2].name;
                     obj2.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(2));
                 }
+                else
+                {
+                    GameObject obj2 = GameObject.Instantiate(characterCreateButton);
+                    obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * 2 * obj2.transform.localScale.y, Space.Self);
+                    obj2.transform.SetParent(canvas.transform);
+                }
             }
+            else
+            {
+                GameObject obj2 = GameObject.Instantiate(characterCreateButton);
+                obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
+                obj2.transform.SetParent(canvas.transform);
+            }
+        }
+        else
+        {
+            GameObject obj2 = GameObject.Instantiate(characterCreateButton);
+            //obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
+            obj2.transform.SetParent(canvas.transform);
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="playerNumber"></param>
     public void pushPlayerButton(int playerNumber)
     {
         //モデルの表示処理
@@ -82,6 +111,19 @@ public class LoadCharacterData : MonoBehaviour {
                 break;
         }
         jobName.text = "職業 " + job;
+
+        //ボタンキャンバスがインスタンス化していなければ
+        if (!buttonsInstantiateFlag)
+        {
+            deleteButtonCanvasInstance = GameObject.Instantiate(startAndDeleteButtonCanvas);
+            buttonsInstantiateFlag = true;
+            deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();//.GetComponentInChildren<Text>().text = playerNumber.ToString();
+        }
+        else
+        {
+            //deleteButtonCanvasInstance.transform.GetComponentInChildren<Text>().text = playerNumber.ToString();
+            deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
+        }
     }
     
     // Update is called once per frame

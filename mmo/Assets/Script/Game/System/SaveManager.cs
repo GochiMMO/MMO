@@ -28,6 +28,7 @@ public static class SaveManager{
     public static Nullable<T> Save<T>(T obj, string fileName)
         where T : struct
     {
+        File.Delete(savePass + "\\" + fileName + ".sav");
         FileStream fs = new FileStream(savePass + "\\" + fileName + ".sav", FileMode.OpenOrCreate, FileAccess.Write);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fs, obj);
@@ -41,8 +42,27 @@ public static class SaveManager{
     /// <returns>exist is true, not exist is false</returns>
     public static bool isExistConfigFile()
     {
-        string[] file = System.IO.Directory.GetFiles(savePass + "/", "Config.sav");
-        return file.Length == 0 ? false : true;   
+        string[] file = System.IO.Directory.GetFiles(savePass + "\\", "Config.sav");
+        return file.Length == 0 ? false : true;
+    }
+
+    /// <summary>
+    /// Delete playerName file in "savePass" directory.
+    /// </summary>
+    /// <param name="playerName">The name of delete player.</param>
+    public static void DeleteSaveData(string playerName)
+    {
+        FileInfo fi = new FileInfo(savePass + "\\" + playerName + ".sav");
+        fi.Delete();
+        
+        /*
+        string[] str = Directory.GetFiles(savePass + "/", playerName + ".sav");
+        foreach (string name in str)
+        {
+            Debug.Log(name);
+        }
+        System.IO.File.Delete(savePass + "/" + playerName + ".sav");
+        */
     }
 
     /// <summary>
@@ -68,7 +88,7 @@ public static class SaveManager{
     /// Load Method
     /// </summary>
     /// <typeparam name="T">Non-Nullable and has "[Serialize]"</typeparam>
-    /// <param name="obj">struct type of "T"</param>
+    /// <param name="obj">A struct type of "T"</param>
     /// <param name="fileName">Load File Name</param>
     /// <returns>obj</returns>
     public static T Load<T>(T obj, string fileName)
@@ -77,6 +97,7 @@ public static class SaveManager{
         FileStream fs = new FileStream(savePass + "\\" + fileName + ".sav", FileMode.Open, FileAccess.Read);
         BinaryFormatter bf = new BinaryFormatter();
         obj = (T)bf.Deserialize(fs);
+        fs.Close();
         return obj;
     }
 }

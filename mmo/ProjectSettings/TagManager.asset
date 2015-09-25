@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Magic
   - Scripts
+  - YesButton
   layers:
   - Default
   - TransparentFX

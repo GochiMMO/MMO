@@ -67,4 +67,22 @@ public static class StaticMethods{
         }
         PlayerStates.SaveEnvironmentalData();
     }
+
+    /// <summary>
+    /// For "PhotonNetwork.JoinOrCreateRoom()" secound parameter.
+    /// </summary>
+    /// <param name="isVisibled">Other players are able to show flag.</param>
+    /// <param name="isOpen">Ohter players are able to into this room flag.</param>
+    /// <param name="maxPlayer">This room can into players number.</param>
+    /// <returns></returns>
+    public static RoomOptions createRoomOptions(bool isVisibled = true, bool isOpen = true, byte maxPlayer = 10)
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.isVisible = isVisibled;
+        roomOptions.isOpen = isOpen;
+        roomOptions.maxPlayers = maxPlayer;
+        roomOptions.customRoomProperties = new ExitGames.Client.Photon.Hashtable() { { "CustomProperties", "カスタムプロパティ" } };
+        roomOptions.customRoomPropertiesForLobby = new string[] { "CustomProperties" };
+        return roomOptions;
+    }
 }

@@ -19,6 +19,9 @@ public struct PlayerData {
     public int mnd;
     public int intelligence;
 
+    public int skillPoint;
+    public int statusPoint;
+
     public int logoutScene;  //ログアウトしたシーン
     //座標
     public float x;

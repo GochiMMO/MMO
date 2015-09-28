@@ -84,6 +84,10 @@ public static class PlayerStates{
                 playerData.mnd = int.Parse(job.mnd);
                 playerData.Lv = 1;
                 playerData.name = job.name;
+
+                //For debug.
+                playerData.skillPoint = 5;
+                playerData.statusPoint = 5;
                 return true;
             }
         }

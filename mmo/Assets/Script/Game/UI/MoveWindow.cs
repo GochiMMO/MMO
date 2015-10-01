@@ -11,7 +11,6 @@ public class MoveWindow : MonoBehaviour {
     Vector2 mousePastPosition;
     // Use this for initialization
     void Start () {
-        
 
     }
 
@@ -20,7 +19,6 @@ public class MoveWindow : MonoBehaviour {
         if (titleBarCollider.OverlapPoint(Input.mousePosition) && Input.GetMouseButton(0))
         {
             catchFlag = true;
-            
         }
         if(catchFlag && Input.GetMouseButtonUp(0)){
             catchFlag = false;

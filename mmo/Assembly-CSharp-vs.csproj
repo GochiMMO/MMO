@@ -170,6 +170,7 @@
      <Compile Include="Assets\Script\Data\Jobs.cs" />
      <Compile Include="Assets\Script\Data\PlayerStates.cs" />
      <Compile Include="Assets\Script\Game\Character\Haight.cs" />
+     <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
      <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
@@ -181,6 +182,9 @@
      <Compile Include="Assets\Script\Game\Magic\SpawnFlare.cs" />
      <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />
      <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
+     <Compile Include="Assets\Script\Game\System\MouseRay.cs" />
+     <Compile Include="Assets\Script\Game\System\Party\PartySystem.cs" />
+     <Compile Include="Assets\Script\Game\System\Party\ShowPartyMember.cs" />
      <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />

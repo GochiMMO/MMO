@@ -85,4 +85,39 @@ public static class StaticMethods{
         roomOptions.customRoomPropertiesForLobby = new string[] { "CustomProperties" };
         return roomOptions;
     }
+
+    /// <summary>
+    /// Instantiate game object at Vector3.zero and set name of gameObject.name.
+    /// </summary>
+    /// <param name="gameObject">Prefab</param>
+    /// <param name="position">Instantiate position.</param>
+    /// <returns>Instantiate object.</returns>
+    public static GameObject GameObjectInstantiate(GameObject gameObject, Vector3 position = default(Vector3))
+    {
+        GameObject obj = GameObject.Instantiate(gameObject, position, Quaternion.identity) as GameObject;
+        obj.name = gameObject.name;
+        return obj;
+    }
+
+    /// <summary>
+    /// Find game object with id and tag.
+    /// </summary>
+    /// <param name="ID">Object id.</param>
+    /// <param name="tag">Tag name.</param>
+    /// <returns>Exist gameobject, it or not exits, null.</returns>
+    public static GameObject FindGameObjectWithPhotonNetworkIDAndObjectTag(int ID, string tag = default(string))
+    {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag))
+        {
+            PhotonView photonView = obj.GetPhotonView();
+            if (photonView)
+            {
+                if (photonView.ownerId == ID)
+                {
+                    return obj;
+                }
+            }
+        }
+        return null;
+    }
 }

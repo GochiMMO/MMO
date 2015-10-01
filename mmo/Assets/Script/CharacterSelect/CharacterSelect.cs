@@ -8,6 +8,7 @@ public class CharacterSelect : MonoBehaviour {
     string characterCreateSceneName;
     [SerializeField, Tooltip("削除するかどうか聞くウインドウ")]
     GameObject askDeleteWindow;
+
     // Use this for initialization
     void Start () {
         PlayerStates.Init();
@@ -32,11 +33,17 @@ public class CharacterSelect : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Load a level, name is "CharacterCreate".
+    /// </summary>
     public void LoadCharacterCreate()
     {
         Application.LoadLevel(characterCreateSceneName);
     }
 
+    /// <summary>
+    /// Create instance of yes no window.
+    /// </summary>
     public void EnabledYNWindow()
     {
         Instantiate(ynWindow, Vector3.zero, Quaternion.identity);

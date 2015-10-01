@@ -185,6 +185,7 @@ public class LoadCharacterData : MonoBehaviour {
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
         PlayerStates.playerData = playerData[playerNumber];
+        PhotonNetwork.playerName = PlayerStates.playerData.name;
     }
     
     // Update is called once per frame

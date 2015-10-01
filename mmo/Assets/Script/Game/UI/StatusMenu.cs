@@ -7,11 +7,17 @@ public class StatusMenu : MonoBehaviour {
     [SerializeField, Tooltip("スキル振りのウインドウ")]
     GameObject skillWindow;
 
+    /// <summary>
+    /// Create instance of status window.
+    /// </summary>
     public void InstanceStatusWindow()
     {
         GameObject.Instantiate(statusWindow);
     }
 
+    /// <summary>
+    /// Create instance of skill window.
+    /// </summary>
     public void InstanceSkillWindow()
     {
         GameObject.Instantiate(skillWindow);

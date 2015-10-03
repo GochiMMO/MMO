@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -10,12 +9,14 @@ public class PartySystem : Photon.MonoBehaviour {
     GameObject alreadyWindow;
     [SerializeField, Tooltip("あなたはリーダーではありません。")]
     GameObject notLeaderWindow;
+    [SerializeField, Tooltip("パーティーメンバーがいっぱいの時に出すウインドウ")]
+    GameObject fullOfMemberWindow;
 
     PhotonView myPhoton;
     public const int PARTY_MAX_MEMBER = 4; // １パーティー４人まで
     List<GameObject> partyMember;   // パーティーメンバー
     bool engagedFlag = false;       // (自分が)加入しているかのフラグ
-    bool isLeader = false;
+    bool isLeader = false;          // リーダーであるかどうか
 
     GameObject target;      // 送信先
     GameObject owner;       // 送信元
@@ -39,6 +40,7 @@ public class PartySystem : Photon.MonoBehaviour {
             {
                 Debug.Log(obj.GetPhotonView().owner.name);
             }
+            // パーティーメンバーを配列にして返す
             return partyMember.ToArray();
         }
         // 加入していなければ
@@ -49,27 +51,32 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// Add party member.
+    /// [RPC]Add party member.
     /// </summary>
-    /// <param name="member">Additional member.</param>
+    /// <param name="member">Additional member's ID.</param>
     [PunRPC]
     void AddMember(int memberID)
     {
+        // IDからプレイヤーを検索する
         var member = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(memberID, "Player");
-        Debug.Log("add member name of " + member.GetPhotonView().owner.name);
-        if (!partyMember.Contains(member))  // 加入済みメンバーでなければ
+
+        Debug.Log("add member, name of " + member.GetPhotonView().owner.name);
+
+        // 加入済みメンバーでなければ
+        if (!partyMember.Contains(member))
         {
             partyMember.Add(member);    // リストに加える
         }
-        engagedFlag = true;
+        engagedFlag = true;     // 加入フラグを立てる
     }
 
     /// <summary>
-    /// 
+    /// [RPC]Instantiate already engaged a party window.
     /// </summary>
     [PunRPC]
     void InstantiateAlreadyWindow()
     {
+        // 既にパーティーに加入していると画面に表示する
         GameObject.Instantiate(alreadyWindow);
     }
 
@@ -94,40 +101,68 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// Instantiate, if your party member is full.
+    /// </summary>
+    void InstantiateFullMemberWindow()
+    {
+        // メンバーがいっぱいであると表示する
+        GameObject.Instantiate(fullOfMemberWindow);
+    }
+
+    /// <summary>
     /// Push it which is "OptionMenuWindow"'s invite button.
     /// </summary>
     /// <param name="member">Me</param>
     public void PushInviteButton()
     {
         Debug.Log("PushInviteButton send to " + target.GetComponent<PhotonView>().owner.name);
-        if (isLeader || !engagedFlag)
+
+        // パーティーメンバーが規定人数に達していたとき
+        if(partyMember.Count >= PARTY_MAX_MEMBER)
         {
+            // メンバーがいっぱいであると表示する
+            InstantiateFullMemberWindow();
+        }
+
+        // リーダーであるか、パーティーに加入していない時
+        else if (isLeader || !engagedFlag)
+        {
+            // 相手を招待する
             myPhoton.RPC("InstantiateInviteWindow", target.GetComponent<PhotonView>().owner, target.GetPhotonView().ownerId, owner.GetPhotonView().ownerId);
         }
+
+        // 加入しており、リーダーではないとき
         else
         {
+            // リーダーではないウインドウを表示する
             GameObject.Instantiate(notLeaderWindow);
         }
     }
 
     /// <summary>
-    /// 
+    /// [RPC]Instantiate "InviteWindow".
     /// </summary>
     /// <param name="member"></param>
     [PunRPC]
     public void InstantiateInviteWindow(int targetID, int ownerID)
     {
-        if (this.engagedFlag)
+        if (this.engagedFlag)   // 加入フラグが立っていたら
         {
+            // 既に加入しているウィンドウを出す命令を相手に送り、その後の処理はしない
             myPhoton.RPC("InstantiateAlreadyWindow", StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(ownerID, "Player").GetPhotonView().owner);
             return;
         }
+
         Debug.Log("Recive instantiate of invite window");
+
+        // 招待された時のウィンドウを表示させる
         GameObject obj = GameObject.Instantiate(inviteWindow);
 
+        // IDから招待された相手を検索する(IDはRPCの引数で送信されてくる)
         owner = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(ownerID, "Player");
         target = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(targetID, "Player");
 
+        // ウィンドウに対し名前とボタンのメソッドを登録する
         obj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = owner.GetComponent<PhotonView>().owner.name;
         obj.transform.GetChild(0).GetChild(3).GetComponent<UnityEngine.UI.Button>().onClick.AddListener( () => AddMemberInParty() );
         obj.transform.GetChild(0).GetChild(3).GetComponent<UnityEngine.UI.Button>().onClick.AddListener( () => obj.GetComponent<Methods>().DestroyObject());
@@ -141,7 +176,9 @@ public class PartySystem : Photon.MonoBehaviour {
     [PunRPC]
     public void ClaimToSendYourPartyMember(int targetID)
     {
+        // 誰に送るかを検索する
         GameObject target = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(targetID, "Player");
+
         foreach (var member in partyMember) // メンバー全員分繰り返す
         {
             myPhoton.RPC("AddMember", target.GetComponent<PhotonView>().owner, member.GetPhotonView().ownerId); // メンバーに加入させる
@@ -149,7 +186,7 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Set role of leader.(Leader is just a person of a party.)
     /// </summary>
     [PunRPC]
     public void SetLeader()
@@ -184,17 +221,21 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Send it, that is my party member for my party member.
     /// </summary>
     [PunRPC]
     void SendAllPartyMemberForAllMember()
     {
+        // パーティーメンバー分だけ繰り返す
         for (int i = 0; i < partyMember.Count; i++)
         {
+            // パーティーメンバーだけ繰り返す
             for (int j = 0; j < partyMember.Count; j++ )
             {
+                // 自分ではない人に送信する
                 if (!partyMember[i].GetPhotonView().isMine)
                 {
+                    // 他のパーティーメンバーに自分のメンバーリストを全送信する
                     myPhoton.RPC("AddMember", partyMember[i].GetPhotonView().owner, partyMember[j].GetPhotonView().ownerId);
                 }
             }
@@ -208,9 +249,11 @@ public class PartySystem : Photon.MonoBehaviour {
     [PunRPC]
     void RemoveMember(int memberID)
     {
+        // IDからオブジェクトを検索する
         GameObject member = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(memberID, "Player");
+
+        // リストから削除する
         partyMember.Remove(member);
-        //DisbandParty();     // 解散するかどうか
     }
 
     /// <summary>
@@ -234,9 +277,9 @@ public class PartySystem : Photon.MonoBehaviour {
         }
 
         engagedFlag = false;    // 加入フラグを折る
-        isLeader = false;
+        isLeader = false;       // リーダーフラグを折る
 
-        partyMember.Clear();
+        partyMember.Clear();    // リストを空にする
     }
 
     /// <summary>
@@ -244,6 +287,7 @@ public class PartySystem : Photon.MonoBehaviour {
     /// </summary>
     void DisbandParty()
     {
+        // 加入フラグが立っており、メンバー数が２人未満（１人）のとき
         if (engagedFlag && partyMember.Count < 2)
         {
             engagedFlag = false;    // パーティー加入フラグを折る
@@ -256,6 +300,7 @@ public class PartySystem : Photon.MonoBehaviour {
     /// </summary>
     void LateUpdate()
     {
+        // 解散するかどうか
         DisbandParty();
     }
 }

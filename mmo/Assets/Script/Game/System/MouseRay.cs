@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MouseRay : MonoBehaviour {
     [SerializeField, Tooltip("名前を表示させるネームプレート")]
@@ -7,7 +6,8 @@ public class MouseRay : MonoBehaviour {
     [SerializeField, Tooltip("右クリックしたときのオプションウィンドウ")]
     GameObject optionWindow;
 
-
+    Ray ray;
+    RaycastHit hit;
     GameObject namePlateInstance = null;
     GameObject optionWindowInstance = null;
     PartySystem partySystem;
@@ -19,6 +19,8 @@ public class MouseRay : MonoBehaviour {
     // Use this for initialization
     void Start () {
         partySystem = this.gameObject.GetComponent<PartySystem>();
+        ray = new Ray();
+        hit = new RaycastHit();
     }
     
     // Update is called once per frame
@@ -30,21 +32,24 @@ public class MouseRay : MonoBehaviour {
         // クリックされたとき
         if (leftClickFlag || rightClickFlag)
         {
-            Ray ray = new Ray();
-            RaycastHit hit = new RaycastHit();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             bool rayHitFlag = Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity);  //レイを飛ばし、オブジェクトが存在するか調べる
+
+            // 右クリックオプションウインドウを削除する
+            DeleteOptionWindow();
 
             // マウスクリックした場所からレイを飛ばし、オブジェクトがあるかどうか
             if (rayHitFlag)
             {
-                deleteNamePlate();  // ネームプレートを削除する
+                // ネームプレートを削除する
+                deleteNamePlate();
 
                 // ヒットしたオブジェクトが敵ならば
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
                     // ネームプレートをインスタンス化する
                     namePlateInstance = GameObject.Instantiate(namePlate);
+
                     // ネームプレートに(Clone)を外した文字列をいれる
                     namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.name.Replace("(Clone)", "");
                 }
@@ -52,48 +57,45 @@ public class MouseRay : MonoBehaviour {
                 // プレイヤーなら
                 else if (hit.collider.gameObject.tag == "Player")
                 {
-                    // プレイヤーの検索
-                    if(!playerObject){
-                        foreach(var player in GameObject.FindGameObjectsWithTag("Player")){
-                            if(player.GetComponent<PhotonView>().owner.ID == PhotonNetwork.player.ID){
-                                playerObject = player;
-                            }
-                        }
+                    // プレイヤーが設定されていない時
+                    if (!playerObject)
+                    {
+                        // プレイヤーを検索し、設定する
+                        playerObject = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player");
                     }
 
-                    // 自分以外のプレイヤーの数だけ繰り返す
-                    foreach (var player in PhotonNetwork.otherPlayers)
-                    {
-                        //プレイヤーのIDとレイがヒットしたオブジェクトのIDが同じなら
-                        if (player.ID == hit.collider.gameObject.GetComponent<PhotonView>().ownerId)
-                        {
-                            // ネームプレートをインスタンス化する
-                            namePlateInstance = GameObject.Instantiate(namePlate);
-                            // ネームプレートの名前を変更する
-                            namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = player.name;
+                    // ネームプレートをインスタンス化する
+                    namePlateInstance = GameObject.Instantiate(namePlate);
 
-                            // 右クリックされた時の処理
-                            if (rightClickFlag)
-                            {
-                                targetPlayer = hit.collider.gameObject;     // 送り先を格納しておく
-                                optionWindowInstance = StaticMethods.GameObjectInstantiate(optionWindow, Input.mousePosition);
-                                optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetTarget(targetPlayer));
-                                optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetOwner(playerObject));
-                                optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.PushInviteButton());
-                                optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
-                            }
-                        }
+                    // ネームプレートの名前を変更する
+                    namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.GetPhotonView().owner.name;
+
+                    // 右クリックされた時の処理
+                    if (rightClickFlag)
+                    {
+                        targetPlayer = hit.collider.gameObject;     // 送り先を格納しておく
+
+                        // 右クリックオプションウインドウの作成
+                        optionWindowInstance = GameObject.Instantiate(optionWindow);
+
+                        // 右クリックされた座標に移動
+                        optionWindowInstance.transform.GetChild(0).position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
+
+                        // ボタンにメソッドを登録する
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetTarget(targetPlayer));
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetOwner(playerObject));
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.PushInviteButton());
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
                     }
                 }
             }
-            // オブジェクトが存在していなければ
+            // クリックされた場所にオブジェクトが存在していなければ
             else
             {
                 deleteNamePlate();
                 DeleteOptionWindow();
             }
         }
-        
     }
 
     /// <summary>
@@ -115,8 +117,11 @@ public class MouseRay : MonoBehaviour {
     {
         if (optionWindowInstance != null)
         {
-            GameObject.Destroy(optionWindowInstance);
-            optionWindowInstance = null;
+            if (!optionWindowInstance.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapPoint(Input.mousePosition))
+            {
+                GameObject.Destroy(optionWindowInstance);
+                optionWindowInstance = null;
+            }
         }
     }
 }

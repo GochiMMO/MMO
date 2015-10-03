@@ -188,6 +188,7 @@
      <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
+     <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />

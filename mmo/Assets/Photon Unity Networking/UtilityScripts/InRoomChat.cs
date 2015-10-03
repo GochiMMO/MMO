@@ -54,7 +54,7 @@ public class InRoomChat : Photon.MonoBehaviour
         GUI.SetNextControlName("");
         GUILayout.BeginArea(this.GuiRect);
 
-        scrollPos = GUILayout.BeginScrollView(scrollPos);
+        
         GUILayout.FlexibleSpace();
         for (int i = messages.Count - 1; i >= 0; i--)
         {
@@ -63,6 +63,7 @@ public class InRoomChat : Photon.MonoBehaviour
         GUILayout.EndScrollView();
 
         GUILayout.BeginHorizontal();
+
         GUI.SetNextControlName("ChatInput");
         inputLine = GUILayout.TextField(inputLine);
         if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))

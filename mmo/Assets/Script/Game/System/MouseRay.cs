@@ -5,6 +5,8 @@ public class MouseRay : MonoBehaviour {
     GameObject namePlate;
     [SerializeField, Tooltip("右クリックしたときのオプションウィンドウ")]
     GameObject optionWindow;
+    [SerializeField, Tooltip("チャットのためのスクリプトを登録")]
+    ChatWindow chatWindow;
 
     Ray ray;
     RaycastHit hit;
@@ -21,6 +23,7 @@ public class MouseRay : MonoBehaviour {
         partySystem = this.gameObject.GetComponent<PartySystem>();
         ray = new Ray();
         hit = new RaycastHit();
+        
     }
     
     // Update is called once per frame
@@ -81,11 +84,16 @@ public class MouseRay : MonoBehaviour {
                         // 右クリックされた座標に移動
                         optionWindowInstance.transform.GetChild(0).position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
 
-                        // ボタンにメソッドを登録する
+                        // ボタンのメソッドを削除する
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
+                        // PTに誘うボタンのメソッドを登録する
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetTarget(targetPlayer));
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetOwner(playerObject));
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.PushInviteButton());
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
+                        // チャットを送るボタンのメソッドを登録する
+                        optionWindowInstance.transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => chatWindow.SetPtoPChat(targetPlayer.GetPhotonView().owner.name));
+                        optionWindowInstance.transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
                     }
                 }
             }
@@ -97,6 +105,8 @@ public class MouseRay : MonoBehaviour {
             }
         }
     }
+
+    
 
     /// <summary>
     /// If exist name plate instance, destroy it.

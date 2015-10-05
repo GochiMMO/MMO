@@ -191,6 +191,7 @@
      <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
+     <Compile Include="Assets\Script\Game\UI\Status\UpdateShowStatus.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusPartitionSystem.cs" />
      <Compile Include="Assets\Script\Game\UI\SystemMenu.cs" />

@@ -29,6 +29,7 @@ public class PlayerChar : Photon.MonoBehaviour {
         {
             stream.SendNext(playerData.name);
             stream.SendNext(playerData.Lv);
+            stream.SendNext(playerData.job);
             stream.SendNext(playerData.str);
             stream.SendNext(playerData.vit);
             stream.SendNext(playerData.intelligence);
@@ -38,6 +39,7 @@ public class PlayerChar : Photon.MonoBehaviour {
         {
             playerData.name = (string)stream.ReceiveNext();
             playerData.Lv = (int)stream.ReceiveNext();
+            playerData.job = (int)stream.ReceiveNext();
             playerData.str = (int)stream.ReceiveNext();
             playerData.vit = (int)stream.ReceiveNext();
             playerData.intelligence = (int)stream.ReceiveNext();
@@ -48,5 +50,29 @@ public class PlayerChar : Photon.MonoBehaviour {
     // Update is called once per frame
     void Update () {
     
+    }
+
+    /// <summary>
+    /// Save player data.
+    /// </summary>
+    void SavePlayerCharData()
+    {
+        // 座標を設定
+        playerData.x = gameObject.transform.position.x;
+        playerData.y = gameObject.transform.position.y;
+        playerData.z = gameObject.transform.position.z;
+        // ログアウトしたシーンを保存
+        playerData.logoutScene = Application.loadedLevel;
+        // セーブする
+        SaveManager.Save<PlayerData>(playerData, playerData.name);
+    }
+
+    /// <summary>
+    /// If destroy this game object, call this method once.
+    /// </summary>
+    void OnDestroy()
+    {
+        // セーブする
+        SavePlayerCharData();
     }
 }

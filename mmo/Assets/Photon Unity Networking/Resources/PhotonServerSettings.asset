@@ -49,4 +49,7 @@ MonoBehaviour:
   - InstantiateAlreadyWindow
   - SendAllPartyMemberForAllMember
   - SetLeader
+  - AllChat
+  - PartyChat
+  - PtoPChat
   DisableAutoOpenWizard: 1

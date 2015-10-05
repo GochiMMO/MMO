@@ -107,7 +107,20 @@ public static class StaticMethods{
     /// <returns>Exist gameobject, it or not exits, null.</returns>
     public static GameObject FindGameObjectWithPhotonNetworkIDAndObjectTag(int ID, string tag = default(string))
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag))
+        GameObject[] objects;
+        // タグが設定されていたら
+        if (!string.IsNullOrEmpty(tag))
+        {
+            // 設定されている全てのオブジェクトを取得
+            objects = GameObject.FindGameObjectsWithTag(tag);
+        }
+        else
+        {
+            // ヒエラルキー上の全てのオブジェクトを取得
+            objects = UnityEngine.Resources.FindObjectsOfTypeAll<GameObject>();
+        }
+        // オブジェクト分だけ繰り返す
+        foreach (GameObject obj in objects)
         {
             PhotonView photonView = obj.GetPhotonView();
             if (photonView)
@@ -118,6 +131,71 @@ public static class StaticMethods{
                 }
             }
         }
+
         return null;
+    }
+
+    public static GameObject[] FindGameObjectsWithNameAndTag(string name, string tag = default(string))
+    {
+        // 名前と一致するオブジェクトを格納するリスト
+        System.Collections.Generic.List<GameObject> objects = new System.Collections.Generic.List<GameObject>();
+        // 検索して出てきたオブジェクトを入れておく一時変数
+        GameObject[] targetObjects;
+        // 検索するタグが設定されているかどうか
+        if (!string.IsNullOrEmpty(tag))
+        {
+            // 設定されている全てのオブジェクトを取得
+            targetObjects = GameObject.FindGameObjectsWithTag(tag);
+        }
+        else
+        {
+            // ヒエラルキー上の全てのオブジェクトを取得
+            targetObjects = UnityEngine.Resources.FindObjectsOfTypeAll<GameObject>();
+        }
+        // 見つかったオブジェクト分だけ繰り返す
+        for (int i = 0; i < targetObjects.Length; i++)
+        {
+            // PhotonViewを取得する
+            PhotonView photonView = targetObjects[i].GetPhotonView();
+            // もしPhotonViewが存在すれば
+            if (photonView)
+            {
+                // PhotonViewのある親の名前と検索する名前が一致し、かつ自分以外
+                if (photonView.owner.name == name && photonView.owner.ID != PhotonNetwork.player.ID)
+                {
+                    // 配列に登録する
+                    objects.Add(targetObjects[i]);
+                }
+            }
+        }
+        // オブジェクトが発見されたら
+        if (objects.Count > 0)
+        {
+            // 配列にして返す
+            return objects.ToArray();
+        }
+        // オブジェクトが存在しなければ
+        return null;
+    }
+
+    /// <summary>
+    /// Create a string of rich text from text and color class.
+    /// </summary>
+    /// <param name="caption">text caption.</param>
+    /// <param name="color">text color.</param>
+    /// <returns></returns>
+    public static string CreateRichTextFromCaptionAndColor(string caption, Color color)
+    {
+        return "<color=#" + color.ToHexStringRGBA() + ">" + caption + "</color>";
+    }
+
+    public static string CreateRichTextFromCaptionAndColorCode(string caption, string colorCode)
+    {
+        return "<color=#" + colorCode + ">" + caption + "</color>";
+    }
+
+    public static string CreateRichTextFromCaptionAndColorName(string caption, string colorName)
+    {
+        return "<color=" + colorName + ">" + caption + "</color>";
     }
 }

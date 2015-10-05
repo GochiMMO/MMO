@@ -84,6 +84,8 @@ public static class PlayerStates{
                 playerData.mnd = int.Parse(job.mnd);
                 playerData.Lv = 1;
                 playerData.name = job.name;
+                playerData.HP = playerData.MaxHP = 1000;
+                playerData.SP = playerData.MaxSP = 100;
 
                 //For debug.
                 playerData.skillPoint = 5;

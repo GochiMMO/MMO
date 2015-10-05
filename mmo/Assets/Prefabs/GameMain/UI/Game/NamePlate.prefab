@@ -119,19 +119,17 @@ MonoBehaviour:
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 35
     m_Alignment: 4
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: Enemy
 --- !u!114 &11481186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,8 +231,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -4, y: 289}
-  m_SizeDelta: {x: 366, y: 47}
+  m_AnchoredPosition: {x: 44, y: 298}
+  m_SizeDelta: {x: 304, y: 47}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22479990
 RectTransform:
@@ -250,8 +248,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -9, y: 284}
-  m_SizeDelta: {x: 427, y: 107}
+  m_AnchoredPosition: {x: 43, y: 293}
+  m_SizeDelta: {x: 323, y: 90}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:

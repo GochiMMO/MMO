@@ -169,6 +169,7 @@
      <Compile Include="Assets\Script\Data\Job.cs" />
      <Compile Include="Assets\Script\Data\Jobs.cs" />
      <Compile Include="Assets\Script\Data\PlayerStates.cs" />
+     <Compile Include="Assets\Script\Game\Character\Haight.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
      <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />

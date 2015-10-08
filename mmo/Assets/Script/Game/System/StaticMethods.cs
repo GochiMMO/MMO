@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public static class StaticMethods{
     /// <summary>
     /// Constractor.
@@ -8,9 +9,26 @@ public static class StaticMethods{
     static StaticMethods() { }
 
     /// <summary>
+    /// Destroy a game object.
+    /// </summary>
+    /// <param name="targetObject">Destroy object.</param>
+    /// <param name="usePhotonNetworkFlag">Photon network flag.</param>
+    public static void DestroyObject(GameObject targetObject, bool usePhotonNetworkFlag = false)
+    {
+        if (usePhotonNetworkFlag)
+        {
+            PhotonNetwork.Destroy(targetObject);
+        }
+        else
+        {
+            GameObject.Destroy(targetObject);
+        }
+    }
+
+    /// <summary>
     /// Delete player save data in environmental save data of player number.
     /// </summary>
-    /// <param name="playerNumber">Delete player number</param>
+    /// <param name="playerNumber">Delete player number.</param>
     public static void DeletePlayerSaveData(int playerNumber)
     {
         //番号分け

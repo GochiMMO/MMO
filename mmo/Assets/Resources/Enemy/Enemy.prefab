@@ -18,7 +18,7 @@ GameObject:
   - 114: {fileID: 11479014}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,15 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 1000
   attack: 10
-  defense: 10
-  magicAttack: 10
-  magicDefense: 10
-  moveSpeed: .5
-  trackingSpeed: 2
-  actionInterval: 2
-  angle: 80
-  angleDistance: 50
-  Distance: 5
+  speed: .5
   myPopScriptRefarence: {fileID: 0}
 --- !u!114 &11479014
 MonoBehaviour:
@@ -280,46 +272,6 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed
       value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: defense
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: magicAttack
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: magicDefense
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: moveSpeed
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: trackingSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: actionInterval
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: angle
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: angleDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: Distance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -8,10 +8,21 @@ public class YNWindow : MonoBehaviour {
     
     }
 
+    RoomOptions createRoomOptions(bool isVisibled = true, bool isOpen = true, byte maxPlayer = 10)
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.isVisible = isVisibled;
+        roomOptions.isOpen = isOpen;
+        roomOptions.maxPlayers = maxPlayer;
+        roomOptions.customRoomProperties = new ExitGames.Client.Photon.Hashtable() { { "CustomProperties", "カスタムプロパティ" } };
+        roomOptions.customRoomPropertiesForLobby = new string[] { "CustomProperties" };
+        return roomOptions;
+    }
+
     public void Yes()
     {
-        PhotonNetwork.JoinOrCreateRoom("test", StaticMethods.createRoomOptions(), null);  //ルームを作成
-        //PhotonNetwork.JoinOrCreateRoom("GameRoom", StaticMethods.createRoomOptions(), null);
+        PhotonNetwork.JoinOrCreateRoom("test", createRoomOptions(), null);  //ルームを作成
+        
     }
 
     public void No()
@@ -27,9 +38,6 @@ public class YNWindow : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //if (PhotonNetwork.connectionStateDetailed == PeerState.Joined)
-        //{
-        //    PhotonNetwork.LoadLevel("TestGame");
-        //}
+    
     }
 }

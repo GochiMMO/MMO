@@ -7,7 +7,6 @@ TagManager:
   - Magic
   - Scripts
   - YesButton
-  - Enemy
   layers:
   - Default
   - TransparentFX

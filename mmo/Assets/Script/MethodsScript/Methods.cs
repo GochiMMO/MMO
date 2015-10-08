@@ -10,4 +10,5 @@ public class Methods : MonoBehaviour{
         GameObject.Destroy(this.gameObject);
     }
 
+
 }

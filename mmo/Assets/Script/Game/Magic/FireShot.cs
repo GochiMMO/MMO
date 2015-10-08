@@ -26,7 +26,7 @@ public class FireShot : Photon.MonoBehaviour {
     /// <summary>
     /// collision method auto run per frame.
     /// </summary>
-    /// <param name="collider">Collider class.</param>
+    /// <param name="collider">Collider class</param>
     void OnTriggerEnter(Collider collider)
     {
         if (photonView.isMine)  //出現させたのが自分ならば処理を行う
@@ -50,7 +50,7 @@ public class FireShot : Photon.MonoBehaviour {
     void Update () {
         if (photonView.isMine)
         {
-            photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
+            photonTransformView.SetSynchronizedValues(speed: moveVec * 60f, turnSpeed: 0);
         }
         this.transform.Translate(moveVec * Time.deltaTime, Space.World);
     }

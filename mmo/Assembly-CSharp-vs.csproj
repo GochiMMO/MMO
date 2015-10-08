@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +169,10 @@
      <Compile Include="Assets\Script\Data\Job.cs" />
      <Compile Include="Assets\Script\Data\Jobs.cs" />
      <Compile Include="Assets\Script\Data\PlayerStates.cs" />
+     <Compile Include="Assets\Script\GUI\Skill\HelpWindow.cs" />
+     <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
+     <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
+     <Compile Include="Assets\Script\GUI\Skill\ScrollOnMouseCheck.cs" />
      <Compile Include="Assets\Script\Game\Character\Haight.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
@@ -180,6 +184,38 @@
      <Compile Include="Assets\Script\Game\Magic\Meteo.cs" />
      <Compile Include="Assets\Script\Game\Magic\Shock.cs" />
      <Compile Include="Assets\Script\Game\Magic\SpawnFlare.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\ContinuousAttacks.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\DLA.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\GaleStance.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\LSS.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\MSF.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\PoreBullet.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\ReleaseinPower.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\Renki.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\RoundhouseKick.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\SB.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\SLegs.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\SSD.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\StanceGlen.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Monk\StanceOfKongo.cs" />
+     <Compile Include="Assets\Script\Game\Skill\SkillBaseStruct.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Berserk.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\BloodRage.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Boparuslash.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Defender.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\EvilImmediatelyZan.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Fastblade.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Lampert.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\MiracleSword.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Powerslash.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Prov.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\RotationSword.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Sentinel.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\ShieldBash.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\ShockWave.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\SkillWControl.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\SpiritsWithInn.cs" />
+     <Compile Include="Assets\Script\Game\Skill\Warrior\Warcry.cs" />
      <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />
      <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
      <Compile Include="Assets\Script\Game\System\MouseRay.cs" />
@@ -221,22 +257,22 @@
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,6 @@ public class EndInputName : MonoBehaviour{
     /// </summary>
     public void EndInput()
     {
-        if (inputField.text == "")
-        {
-            return;
-        }
         if (!SaveManager.isExistSaveData(inputField.text))      //セーブデータが存在しなければ（指定した名前のキャラが存在しなければ）
         {
 

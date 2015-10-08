@@ -41,4 +41,15 @@ MonoBehaviour:
   - HitCliantMagic
   - Move
   - attachRotation
+  - AddMember
+  - RemoveMeber
+  - RemoveMember
+  - ClaimToSendYourPartyMember
+  - InstantiateInviteWindow
+  - InstantiateAlreadyWindow
+  - SendAllPartyMemberForAllMember
+  - SetLeader
+  - AllChat
+  - PartyChat
+  - PtoPChat
   DisableAutoOpenWizard: 1

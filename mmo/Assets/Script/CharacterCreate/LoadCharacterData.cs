@@ -46,9 +46,6 @@ public class LoadCharacterData : MonoBehaviour {
             GameObject obj = GameObject.Instantiate(button);
             obj.transform.SetParent(canvas.transform);
 
-
-            
-
             RectTransform rt1 = obj.GetComponent<RectTransform>();
             rt1.localScale = new Vector3(1f, 1f, 1f);
             rt1.sizeDelta = new Vector2(0, 0);
@@ -187,6 +184,8 @@ public class LoadCharacterData : MonoBehaviour {
             //deleteButtonCanvasInstance.transform.GetComponentInChildren<Text>().text = playerNumber.ToString();
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
+        PlayerStates.playerData = playerData[playerNumber];
+        PhotonNetwork.playerName = PlayerStates.playerData.name;
     }
     
     // Update is called once per frame

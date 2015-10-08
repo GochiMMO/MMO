@@ -8,6 +8,8 @@ public class CharacterSelect : MonoBehaviour {
     string characterCreateSceneName;
     [SerializeField, Tooltip("削除するかどうか聞くウインドウ")]
     GameObject askDeleteWindow;
+
+
     // Use this for initialization
     void Start () {
         PlayerStates.Init();
@@ -26,17 +28,25 @@ public class CharacterSelect : MonoBehaviour {
             {
                 var btn = childObj.GetComponent<UnityEngine.UI.Button>();
                 int playerNumber = int.Parse(gameObject.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text);
+                // セーブデータを削除する関数を登録
                 btn.onClick.AddListener(() => { StaticMethods.DeletePlayerSaveData(playerNumber); });
-                btn.onClick.AddListener(() => { Application.LoadLevel(Application.loadedLevel); });
+                // シーンを再読み込みする
+                btn.onClick.AddListener(() => { PhotonNetwork.LoadLevel(Application.loadedLevel); });
             }
         }
     }
 
+    /// <summary>
+    /// Load a level, name is "CharacterCreate".
+    /// </summary>
     public void LoadCharacterCreate()
     {
-        Application.LoadLevel(characterCreateSceneName);
+        PhotonNetwork.LoadLevel(characterCreateSceneName);
     }
 
+    /// <summary>
+    /// Create instance of yes no window.
+    /// </summary>
     public void EnabledYNWindow()
     {
         Instantiate(ynWindow, Vector3.zero, Quaternion.identity);

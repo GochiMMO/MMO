@@ -10,6 +10,8 @@ public class ChatWindow : Photon.MonoBehaviour {
     Text partyChatText;
     [SerializeField, Tooltip("個別チャットテキスト欄")]
     Text playerToPlayerChatText;
+    [SerializeField, Tooltip("ログウインドウのテキスト欄")]
+    Text logWindowText;
     [SerializeField, Tooltip("プレイヤーの名前の色")]
     Color nameColor;
     [SerializeField, Tooltip("全体チャット切り替えボタン")]
@@ -18,26 +20,29 @@ public class ChatWindow : Photon.MonoBehaviour {
     GameObject partyChatButton;
     [SerializeField, Tooltip("個別チャット切り替えボタン")]
     GameObject ptopChatButton;
+    [SerializeField, Tooltip("ログウインドウの切り替えボタン")]
+    GameObject logWindowButton;
     [SerializeField, Tooltip("送信ボタン")]
     UnityEngine.UI.Button sendButton;
     [SerializeField, Tooltip("名前入力テキスト欄")]
     InputField nameInput;
 
-    BoxCollider2D[] buttons = new BoxCollider2D[3];
+    BoxCollider2D[] buttons = new BoxCollider2D[4];
     PartySystem partySystem;
     public Color activeColor;
     public Color nonActiveColor;
     TypeOfChat nowChatNumber = TypeOfChat.ALL;
     const int MAX_CHAT_LINE_NUM = 50;
 
-    int[] chatLineNum = new int[3];
+    int[] chatLineNum = new int[4];
 
     // チャットの種類
     enum TypeOfChat
     {
         ALL = 0,
         PARTY = 1,
-        PTOP = 2
+        PTOP = 2,
+        LOG = 3
     }
     
     // Use this for initialization
@@ -46,6 +51,7 @@ public class ChatWindow : Photon.MonoBehaviour {
         buttons[0] = allChatButton.GetComponent<BoxCollider2D>();
         buttons[1] = partyChatButton.GetComponent<BoxCollider2D>();
         buttons[2] = ptopChatButton.GetComponent<BoxCollider2D>();
+        buttons[3] = logWindowButton.GetComponent<BoxCollider2D>();
         // パーティーシステムを取得
         partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
     }
@@ -71,6 +77,7 @@ public class ChatWindow : Photon.MonoBehaviour {
                             // 他のチャットを非アクティブにする
                             partyChatText.gameObject.SetActive(false);
                             playerToPlayerChatText.gameObject.SetActive(false);
+                            logWindowText.gameObject.SetActive(false);
                             // ボタンに全体送信のメソッドを登録
                             sendButton.onClick.RemoveAllListeners();
                             sendButton.onClick.AddListener(SendChatInputForAll);
@@ -107,6 +114,7 @@ public class ChatWindow : Photon.MonoBehaviour {
                             // 他のチャットを非アクティブにする
                             allRoomChat.gameObject.SetActive(false);
                             playerToPlayerChatText.gameObject.SetActive(false);
+                            logWindowText.gameObject.SetActive(false);
                             // ボタンにパーティー送信のメソッドを登録
                             sendButton.onClick.RemoveAllListeners();
                             sendButton.onClick.AddListener(SendChatInputForPartyMember);
@@ -124,12 +132,29 @@ public class ChatWindow : Photon.MonoBehaviour {
                             // 他のチャットを非アクティブにする
                             allRoomChat.gameObject.SetActive(false);
                             partyChatText.gameObject.SetActive(false);
+                            logWindowText.gameObject.SetActive(false);
                             // ボタンに全体送信のメソッドを登録
                             sendButton.onClick.RemoveAllListeners();
                             sendButton.onClick.AddListener(SendChatInputForPlayer);
                             // 切り替えボタンの色を変更する
                             setButtonsColor((int)TypeOfChat.PTOP);
                             nowChatNumber = TypeOfChat.PTOP;  // 現在チャット番号を切り替える
+                            break;
+                        case (int)TypeOfChat.LOG:
+                            // ログウインドウをオンにする
+                            logWindowText.gameObject.SetActive(true);
+                            // 名前入力テキストをオフにする
+                            nameInput.gameObject.SetActive(false);
+                            // 他のチャットを非アクティブにする
+                            partyChatText.gameObject.SetActive(false);
+                            playerToPlayerChatText.gameObject.SetActive(false);
+                            allRoomChat.gameObject.SetActive(false);
+                            // ボタンに全体送信のメソッドを登録
+                            sendButton.onClick.RemoveAllListeners();
+                            //sendButton.onClick.AddListener(SendChatInputForAll);
+                            // 切り替えボタンの色を変更する
+                            setButtonsColor((int)TypeOfChat.LOG);
+                            nowChatNumber = TypeOfChat.LOG;  // 現在チャット番号を切り替える
                             break;
                     }
                     // ２つ以上のボタンが同時に押されることが無いため、処理が完了したらループから抜ける
@@ -146,6 +171,7 @@ public class ChatWindow : Photon.MonoBehaviour {
             // 他のチャットを非アクティブにする
             partyChatText.gameObject.SetActive(false);
             playerToPlayerChatText.gameObject.SetActive(false);
+            logWindowText.gameObject.SetActive(false);
             // ボタンに全体送信のメソッドを登録
             sendButton.onClick.RemoveAllListeners();
             sendButton.onClick.AddListener(SendChatInputForAll);
@@ -168,6 +194,7 @@ public class ChatWindow : Photon.MonoBehaviour {
         // 他のチャットを非アクティブにする
         allRoomChat.gameObject.SetActive(false);
         partyChatText.gameObject.SetActive(false);
+        logWindowText.gameObject.SetActive(false);
         // ボタンに全体送信のメソッドを登録
         sendButton.onClick.RemoveAllListeners();
         sendButton.onClick.AddListener(SendChatInputForPlayer);

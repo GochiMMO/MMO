@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public static class StaticMethods{
     /// <summary>
     /// Constractor.
@@ -120,21 +119,30 @@ public static class StaticMethods{
             objects = UnityEngine.Resources.FindObjectsOfTypeAll<GameObject>();
         }
         // オブジェクト分だけ繰り返す
-        foreach (GameObject obj in objects)
+        for (int i = 0; i < objects.Length; i++ )
         {
-            PhotonView photonView = obj.GetPhotonView();
+            // PhotonViewを取得する
+            PhotonView photonView = objects[i].GetPhotonView();
+            // PhotonViewが存在する場合
             if (photonView)
             {
-                if (photonView.ownerId == ID)
+                // PhotonViewが持つIDと検索するIDが一緒ならば
+                if (photonView.owner.ID == ID)
                 {
-                    return obj;
+                    return objects[i];
                 }
             }
         }
-
+        // IDが一致するオブジェクトが無いorヒエラルキー上にオブジェクトが無いor設定したタグのオブジェクトが無いならばnullを返す
         return null;
     }
 
+    /// <summary>
+    /// Find game ovjects with PhotonNetwork.player.name and game object's tags.
+    /// </summary>
+    /// <param name="name">Photon network name.</param>
+    /// <param name="tag">Game object tag.</param>
+    /// <returns>Game objects array.</returns>
     public static GameObject[] FindGameObjectsWithNameAndTag(string name, string tag = default(string))
     {
         // 名前と一致するオブジェクトを格納するリスト

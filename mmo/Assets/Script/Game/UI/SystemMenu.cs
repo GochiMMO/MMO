@@ -14,6 +14,7 @@ public class SystemMenu : MonoBehaviour {
     {
         GameObject logoutWindowInstance = GameObject.Instantiate(logoutWindow);
         GameObject yesButton = logoutWindowInstance.transform.GetChild(2).gameObject;
+        yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Find("Scripts").GetComponent<PartySystem>().RemoveMemberInParty(PhotonNetwork.player.ID));
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PushLogoutButton);
     }
 
@@ -24,6 +25,7 @@ public class SystemMenu : MonoBehaviour {
     {
         GameObject quitWindowInstance = GameObject.Instantiate(quitWindow);
         GameObject yesButton = quitWindowInstance.transform.GetChild(2).gameObject;
+        yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Find("Scripts").GetComponent<PartySystem>().RemoveMemberInParty(PhotonNetwork.player.ID));
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PushGameQuitButton);
     }
 
@@ -33,8 +35,9 @@ public class SystemMenu : MonoBehaviour {
     public void PushLogoutButton()
     {
         Debug.Log("Push logout button.");
+        new WaitForSeconds(2f);
         PhotonNetwork.LeaveRoom();  //部屋から出る
-        PhotonNetwork.JoinOrCreateRoom("CharacterSelect", StaticMethods.createRoomOptions(), null);     //部屋を作る
+        //PhotonNetwork.JoinOrCreateRoom("CharacterSelect", StaticMethods.createRoomOptions(), null);     //部屋を作る
         PhotonNetwork.LoadLevel("CharacterSelect");
     }
 
@@ -44,7 +47,10 @@ public class SystemMenu : MonoBehaviour {
     public void PushGameQuitButton()
     {
         Debug.Log("Push quit button.");
-        PhotonNetwork.Disconnect();     //切断
+        new WaitForSeconds(2f);
+        PhotonNetwork.LeaveRoom();      // ルームから出る
+        PhotonNetwork.LeaveLobby();     // ロビーから出る
+        //PhotonNetwork.Disconnect();     //切断
         Application.Quit();
     }
 }

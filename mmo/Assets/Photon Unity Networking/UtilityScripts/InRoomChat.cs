@@ -15,7 +15,7 @@ public class InRoomChat : Photon.MonoBehaviour
     public bool AlignBottom = false;
     public List<string> messages = new List<string>();
     private string inputLine = "";
-    private Vector2 scrollPos = Vector2.zero;
+    //private Vector2 scrollPos = Vector2.zero;
 
     public static readonly string ChatRPC = "Chat";
 

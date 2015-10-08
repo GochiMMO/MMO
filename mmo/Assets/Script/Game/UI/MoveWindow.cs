@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class MoveWindow : MonoBehaviour {
-    [SerializeField, Tooltip("ウインドウを動かすためのコライダー")]
+    //[SerializeField, Tooltip("ウインドウを動かすためのコライダー")]
     BoxCollider2D titleBarCollider;
 
     bool catchFlag = false;
@@ -11,7 +11,8 @@ public class MoveWindow : MonoBehaviour {
     Vector2 mousePastPosition;
     // Use this for initialization
     void Start () {
-
+        // アタッチしているコライダーを取得する
+        titleBarCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame

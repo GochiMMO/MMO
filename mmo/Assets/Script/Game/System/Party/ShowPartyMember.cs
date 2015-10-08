@@ -85,6 +85,7 @@ public class ShowPartyMember : MonoBehaviour {
             // レベルと名前と画像を表示させる
             memberFrame[i].transform.GetChild(1).GetComponent<Text>().text = partyMember[i].GetComponent<PlayerChar>().GetPlayerData().Lv.ToString() + " Lv";
             memberFrame[i].transform.GetChild(2).GetComponent<Text>().text = partyMember[i].GetComponent<PlayerChar>().GetPlayerData().name;
+            // ジョブによって画像を分ける
             switch (partyMember[i].GetComponent<PlayerChar>().GetPlayerData().job)
             {
                 case 0:

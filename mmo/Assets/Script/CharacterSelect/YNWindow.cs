@@ -11,7 +11,7 @@ public class YNWindow : MonoBehaviour {
     public void Yes()
     {
         PhotonNetwork.JoinOrCreateRoom("test", StaticMethods.createRoomOptions(), null);  //ルームを作成
-        
+        //PhotonNetwork.JoinOrCreateRoom("GameRoom", StaticMethods.createRoomOptions(), null);
     }
 
     public void No()
@@ -27,6 +27,9 @@ public class YNWindow : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-    
+        //if (PhotonNetwork.connectionStateDetailed == PeerState.Joined)
+        //{
+        //    PhotonNetwork.LoadLevel("TestGame");
+        //}
     }
 }

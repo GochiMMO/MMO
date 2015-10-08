@@ -25,27 +25,16 @@ public class UpdateShowStatus : MonoBehaviour {
     public Sprite sorcererImage;
     [Tooltip("モンクのイメージ画像")]
     public Sprite monkImage;
-    [SerializeField, Tooltip("パーティーメンバーのHPバーイラスト")]
-    GameObject[] partyMembersHPBarImage;
-    [SerializeField, Tooltip("パーティーメンバーのHPテキスト")]
-    Text[] partyMembersHPText;
-    [SerializeField, Tooltip("パーティーメンバーのレベル表示テキスト")]
-    Text[] partyMembersLevelText;
-    [SerializeField, Tooltip("パーティーメンバーの名前表示テキスト")]
-    Text[] partyMembersNameText;
+    [SerializeField, Tooltip("パーティーのステータスを表示するウインドウ")]
+    UpdatePartyStatus[] partyStatusWindow;
 
     PartySystem partySystem;
     int prevHP;
     int prevSP;
     int prevLv;
 
-    int[] partyPlayerPrevHP = new int[3];
-
     PlayerChar playerChar;  // プレイヤーキャラクターのデータ
-    
-    PlayerChar[] partyPlayerChar = new PlayerChar[3];    // パーティープレイヤーのデータ
-
-    GameObject[] partyMembers;
+    PlayerChar[] partyPlayerChar = new PlayerChar[3];
     // Use this for initialization
     void Start () {
         partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
@@ -78,9 +67,8 @@ public class UpdateShowStatus : MonoBehaviour {
             UpdateSP();
             // レベルを更新
             UpdateLevel();
-            // PT系の処理を行う
-            UpdatePartyMemberList();
-
+            // パーティーのステータスを更新する
+            UpdatePartyStatus();
         }
     }
 
@@ -165,63 +153,69 @@ public class UpdateShowStatus : MonoBehaviour {
     }
 
     /// <summary>
-    /// Update party member list on changed.
+    /// 
     /// </summary>
-    void UpdatePartyMemberList()
+    void UpdatePartyStatus()
     {
-        // パーティーメンバーを取得
+        // パーティーメンバーのリストを取得する
         GameObject[] partyMember = partySystem.GetPartyMember();
-        // パーティーメンバーが存在する場合
+        // 自分が発見されたら１を設定する
+        int serachMeInParty = 0;
+
+        // パーティーメンバーがいる場合処理を行う
         if (partyMember != null)
         {
-            // パーティーメンバーだけ繰り返す
+            // パーティーメンバーの数だけ繰り返す
             for (int i = 0; i < partyMember.Length; i++)
             {
-                // PTメンバーには自分も含まれているため自分ならば処理を行わないようにする
-                if (partyMember[i].GetPhotonView().owner.ID != PhotonNetwork.player.ID)
+                // 自分でなければ処理を行う
+                if (partyMember[i].GetPhotonView().ownerId != PhotonNetwork.player.ID)
                 {
-                    // 登録されているパーティーメンバーと参照が異なっていたら
-                    if (partyMembers[i] != partyMember[i])
+                    // ノンアクティブだったら
+                    if (!partyStatusWindow[i - serachMeInParty].gameObject.activeInHierarchy)
                     {
-                        // プレイヤーキャラのデータを取得
-                        partyPlayerChar[i] = partyMember[i].GetComponent<PlayerChar>();
-                        // パーティーメンバーを登録
-                        partyMembers[i] = partyMember[i];
+                        partyStatusWindow[i - serachMeInParty].gameObject.SetActive(true);
+                    }
+                    // プレイヤーキャラを設定する
+                    partyPlayerChar[i - serachMeInParty] = partyMember[i].GetComponent<PlayerChar>();
+                    // パーティーウィンドウのシステムにプレイヤーキャラを設定する
+                    if (partyStatusWindow[i - serachMeInParty].playerChar != partyPlayerChar[i - serachMeInParty])
+                    {
+                        partyStatusWindow[i - serachMeInParty].SetPlayerChar(partyPlayerChar[i - serachMeInParty]);
                     }
                 }
+                // 自分が発見されたら配列の添え字をずらすためにフラグを立てる
+                else
+                {
+                    serachMeInParty = 1;
+                }
             }
-            // パーティーメンバーが埋まってないときは空いたところにnullを入れる
-            for (int i = partyMember.Length; i < partyPlayerChar.Length + 1; i++)
+            // パーティーメンバーがいない分だけ繰り返す
+            for (int i = partyMember.Length-1; i < partyStatusWindow.Length; i++)
             {
+                // アクティブなら
+                if (partyStatusWindow[i].gameObject.activeInHierarchy)
+                {
+                    // 非アクティブにする
+                    partyStatusWindow[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        // パーティーメンバーがいない場合
+        else
+        {
+            // パーティーステータスウインドウの数だけ繰り返す
+            for (int i = 0; i < partyStatusWindow.Length; i++)
+            {
+                // パーティーステータスウインドウがアクティブなら
+                if (partyStatusWindow[i].gameObject.activeInHierarchy)
+                {
+                    // ノンアクティブにする
+                    partyStatusWindow[i].gameObject.SetActive(false);
+                }
+                // 配列の要素をクリアしておく
                 partyPlayerChar[i] = null;
             }
         }
-    }
-
-    /// <summary>
-    /// Upteda party member's hp bar and hp text on changed.
-    /// </summary>
-    void PartyHPUpdate()
-    {
-        // パーティープレイヤーだけ繰り返す
-        for (int i = 0; i < partyPlayerPrevHP.Length; i++)
-        {
-            if (partyPlayerChar[i] && partyPlayerPrevHP[i] != partyPlayerChar[i].GetPlayerData().HP)
-            {
-                // HPバーのサイズを計算する
-                float size = partyPlayerChar[i].GetPlayerData().HP / partyPlayerChar[i].GetPlayerData().MaxHP;
-                // HPバーのサイズを変更する
-                partyMembersHPBarImage[i].transform.localScale.Set(size, 1f, 1f);
-                // HPのテキストを変更する
-                partyMembersHPText[i].text = partyPlayerChar[i].GetPlayerData().HP.ToString() + " / " + partyPlayerChar[i].GetPlayerData().MaxHP.ToString();
-                // HPの値を更新する
-                partyPlayerPrevHP[i] = partyPlayerChar[i].GetPlayerData().HP;
-            }
-        }
-    }
-
-    void UpdatePartyMemberNameAndLevel()
-    {
-
     }
 }

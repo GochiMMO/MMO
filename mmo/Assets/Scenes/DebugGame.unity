@@ -885,11 +885,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22459568, guid: bfea6e51ad5c77347854204b79e92704, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 570.875183
+      value: 570.471802
       objectReference: {fileID: 0}
     - target: {fileID: 22461580, guid: bfea6e51ad5c77347854204b79e92704, type: 2}
       propertyPath: m_AnchorMin.y
-      value: .570875168
+      value: .571215272
       objectReference: {fileID: 0}
     - target: {fileID: 22461580, guid: bfea6e51ad5c77347854204b79e92704, type: 2}
       propertyPath: m_AnchorMax.x

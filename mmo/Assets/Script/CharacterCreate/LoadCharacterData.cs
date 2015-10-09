@@ -13,6 +13,15 @@ public class LoadCharacterData : MonoBehaviour {
     Text playerNameText;
     [SerializeField, Tooltip("職業を入力するテキスト")]
     Text jobName;
+    [SerializeField, Tooltip("STRを入力するテキスト")]
+    Text strText;
+    [SerializeField, Tooltip("VITを入力するテキスト")]
+    Text vitText;
+    [SerializeField, Tooltip("INTを入力するテキスト")]
+    Text intText;
+    [SerializeField, Tooltip("MNDを入力するテキスト")]
+    Text mndText;
+
     [SerializeField, Tooltip("開始と削除ボタンがあるキャンバス")]
     GameObject startAndDeleteButtonCanvas;
     [SerializeField, Tooltip("キャラクター作成のボタン")]
@@ -36,9 +45,6 @@ public class LoadCharacterData : MonoBehaviour {
             playerData[0] = SaveManager.Load<PlayerData>(playerData[0], PlayerStates.environmentalSaveData.oneSaveDataName);
             GameObject obj = GameObject.Instantiate(button);
             obj.transform.SetParent(canvas.transform);
-
-
-            
 
             RectTransform rt1 = obj.GetComponent<RectTransform>();
             rt1.localScale = new Vector3(1f, 1f, 1f);
@@ -131,14 +137,15 @@ public class LoadCharacterData : MonoBehaviour {
         }
     }
 
+
     /// <summary>
-    /// 
+    /// If push name button, show name, job and level of player data and show player model.
     /// </summary>
-    /// <param name="playerNumber"></param>
+    /// <param name="playerNumber">Show player number.</param>
     public void pushPlayerButton(int playerNumber)
     {
         //モデルの表示処理
-
+        
 
         //テキストの表示処理
         lvText.text = "Lv " + playerData[playerNumber].Lv.ToString();
@@ -160,19 +167,25 @@ public class LoadCharacterData : MonoBehaviour {
                 break;
         }
         jobName.text = "職業 " + job;
+        strText.text = "STR " + playerData[playerNumber].str;
+        vitText.text = "VIT " + playerData[playerNumber].vit;
+        intText.text = "INT " + playerData[playerNumber].intelligence;
+        mndText.text = "MND " + playerData[playerNumber].mnd;
 
         //ボタンキャンバスがインスタンス化していなければ
         if (!buttonsInstantiateFlag)
         {
             deleteButtonCanvasInstance = GameObject.Instantiate(startAndDeleteButtonCanvas);
             buttonsInstantiateFlag = true;
-            deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();//.GetComponentInChildren<Text>().text = playerNumber.ToString();
+            deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
         else
         {
             //deleteButtonCanvasInstance.transform.GetComponentInChildren<Text>().text = playerNumber.ToString();
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
+        PlayerStates.playerData = playerData[playerNumber];
+        PhotonNetwork.playerName = PlayerStates.playerData.name;
     }
     
     // Update is called once per frame

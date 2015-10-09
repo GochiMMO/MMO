@@ -42,13 +42,14 @@ MonoBehaviour:
   - Move
   - attachRotation
   - AddMember
-  - AllChat
-  - ClaimToSendYourPartyMember
-  - InstantiateAlreadyWindow
-  - InstantiateInviteWindow
-  - PartyChat
-  - PtoPChat
+  - RemoveMeber
   - RemoveMember
+  - ClaimToSendYourPartyMember
+  - InstantiateInviteWindow
+  - InstantiateAlreadyWindow
   - SendAllPartyMemberForAllMember
   - SetLeader
+  - AllChat
+  - PartyChat
+  - PtoPChat
   DisableAutoOpenWizard: 1

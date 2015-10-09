@@ -21,7 +21,7 @@ public class PushYes : MonoBehaviour {
     public void PushYesButton()
     {
         RotateModel.nowActive = false;  //モデルが回転できる状態に戻す
-        Application.LoadLevel(scene);   //次のシーン（職業選択）に遷移する
+        PhotonNetwork.LoadLevel(scene);   //次のシーン（職業選択）に遷移する
     }
 
     //いいえが押された時の処理

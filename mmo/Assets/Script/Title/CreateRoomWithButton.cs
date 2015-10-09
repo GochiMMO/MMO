@@ -14,6 +14,7 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     void Start () {
     }
 
+    /*
     RoomOptions createRoomOptions(bool isVisibled = true, bool isOpen = true, byte maxPlayer = 10)
     {
         RoomOptions roomOptions = new RoomOptions();
@@ -24,13 +25,13 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
         roomOptions.customRoomPropertiesForLobby = new string[] { "CustomProperties" };
         return roomOptions;
     }
+    */
 
     //サーバー１をロードする
     public void LoadServer1()
     {
         roomName = server1.text;
         Debug.Log(roomName + "join server1");
-        //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
         PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }
 
@@ -39,7 +40,6 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     {
         roomName = server2.text;
         Debug.Log(roomName + "join server2");
-        //PhotonNetwork.JoinOrCreateRoom(roomName, createRoomOptions(), null);
         PhotonNetwork.ConnectUsingSettings(roomName);   //名前を使って接続する
     }
 
@@ -47,10 +47,26 @@ public class CreateRoomWithButton : Photon.MonoBehaviour {
     void OnJoinedLobby()
     {
         Debug.Log(roomName + " Lobby join");
+        PhotonNetwork.JoinOrCreateRoom(roomName, StaticMethods.createRoomOptions(), null);
+        //PhotonNetwork.LoadLevel("CharacterSelect");
+        //Application.LoadLevel("CharacterSelect");
+        
+    }
+
+    /*
+    void OnJoinedRoom()
+    {
         PhotonNetwork.LoadLevel("CharacterSelect");
     }
+    */
 
     // Update is called once per frame
     void Update () {
+        Debug.Log(PhotonNetwork.connectionState);
+        //Debug.Log(PhotonNetwork.inRoom);
+        if (PhotonNetwork.connectionState == ConnectionState.Connected)
+        {
+            PhotonNetwork.LoadLevel("CharacterSelect");
+        }
     }
 }

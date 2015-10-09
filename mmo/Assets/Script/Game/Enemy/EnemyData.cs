@@ -103,7 +103,7 @@ public class EnemyData : Photon.MonoBehaviour {
                     break;
             }
             
-            Debug.Log(newRotation);
+            //Debug.Log(newRotation);
         }
         transform.Translate(moveValue * Time.deltaTime);
         AttachRotation();

@@ -178,6 +178,7 @@
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
      <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
+     <Compile Include="Assets\Script\Game\Equip\EquipBase.cs" />
      <Compile Include="Assets\Script\Game\Magic\FireShot.cs" />
      <Compile Include="Assets\Script\Game\Magic\LifeSpan.cs" />
      <Compile Include="Assets\Script\Game\Magic\MagicBase.cs" />
@@ -218,6 +219,7 @@
      <Compile Include="Assets\Script\Game\Skill\Warrior\Warcry.cs" />
      <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />
      <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
+     <Compile Include="Assets\Script\Game\System\LoadCSV.cs" />
      <Compile Include="Assets\Script\Game\System\MouseRay.cs" />
      <Compile Include="Assets\Script\Game\System\Party\PartySystem.cs" />
      <Compile Include="Assets\Script\Game\System\Party\ShowPartyMember.cs" />
@@ -228,6 +230,9 @@
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
+     <Compile Include="Assets\Script\Game\UI\Skill\DuplicateSprite.cs" />
+     <Compile Include="Assets\Script\Game\UI\Skill\MoveSprite.cs" />
+     <Compile Include="Assets\Script\Game\UI\Skill\SetSkillIcon.cs" />
      <Compile Include="Assets\Script\Game\UI\Status\UpdatePartyStatus.cs" />
      <Compile Include="Assets\Script\Game\UI\Status\UpdateShowStatus.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />

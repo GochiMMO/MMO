@@ -14,10 +14,13 @@ public class ShowMenu : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        if (boxCol.OverlapPoint(Input.mousePosition) && Input.GetMouseButtonDown(0))   //画像がクリックされたら
+        // 画像がクリックされたら
+        if (boxCol.OverlapPoint(Input.mousePosition) && Input.GetMouseButtonDown(0))
         {
+            // そのオブジェクトがインスタンス化されていなければ
             if (!objectInstance)
             {
+                // インスタンスを作成する
                 objectInstance = GameObject.Instantiate(menuPrefab);
             }
         }

@@ -10,7 +10,6 @@ public enum KIND_ITEM
     EQUIP = 1
 }
 
-
 /// <summary>
 /// All item have this struct.
 /// </summary>
@@ -130,6 +129,7 @@ public class ItemBase : ItemEquipBase
 {
     protected int hpRecoveryValue;  // HPの回復量
     protected int spRecoveryValue;  // SPの回復量
+    protected float coolTime = 3f;  // クールタイム
 
     /// <summary>
     /// Constractor.
@@ -275,7 +275,8 @@ public class ItemBase : ItemEquipBase
 public static class Items
 {
     public static System.Collections.Generic.Dictionary<int, ItemBase> items { get { return Items.items; } private set { Items.items = value; } }
-    static LoadCSV itemData = new LoadCSV("Items.csv");     // アイテムのデータがある部分
+    //static Entity_Items.Param[] item_data;
+    //static LoadCSV itemData = new LoadCSV("Items.csv");     // アイテムのデータがある部分
 
     /// <summary>
     /// Default constractor.
@@ -284,18 +285,20 @@ public static class Items
     {
         items = new System.Collections.Generic.Dictionary<int, ItemBase>();    // アイテムの配列
 
+        var item_data = Resources.Load<Entity_Items>("ItemData/Items").sheets[0].list;
+
         // データテーブルの数だけ繰り返す
-        for (int i = 0; i < itemData.dataTable.Count; i++)
+        for (int i = 0; i < item_data.Count; i++)
         {
             // アイテムを入れ込む
-            items.Add(int.Parse((string)itemData.dataTable[i][0]), new ItemBase(
-                id: int.Parse((string)itemData.dataTable[i][0]),
+            items.Add(item_data[i].id, new ItemBase(
+                id: item_data[i].id,
                 kind: KIND_ITEM.ITEM,
-                name: (string)itemData.dataTable[i][1],
-                imageName: (string)itemData.dataTable[i][2],
-                cost: int.Parse((string)itemData.dataTable[i][3]),
-                hpRecoveryValue: int.Parse((string)itemData.dataTable[i][4]),
-                spRecoveryValue: int.Parse((string)itemData.dataTable[i][5])
+                name: item_data[i].name,
+                imageName: item_data[i].spriteName,
+                cost: item_data[i].cost,
+                hpRecoveryValue: item_data[i].hpRecoveryValue,
+                spRecoveryValue: item_data[i].spReoveryValue
                 )
             );
         }

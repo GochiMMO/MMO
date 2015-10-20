@@ -11,6 +11,8 @@ public class PartySystem : Photon.MonoBehaviour {
     GameObject notLeaderWindow;
     [SerializeField, Tooltip("パーティーメンバーがいっぱいの時に出すウインドウ")]
     GameObject fullOfMemberWindow;
+    [SerializeField, Tooltip("相手が招待を断ったときに出すウィンドウ")]
+    GameObject turnDownWindow;
 
     PhotonView myPhoton;
     public const int PARTY_MAX_MEMBER = 4; // １パーティー４人まで
@@ -74,6 +76,16 @@ public class PartySystem : Photon.MonoBehaviour {
             partyMember.Add(member);    // リストに加える
         }
         engagedFlag = true;     // 加入フラグを立てる
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [PunRPC]
+    void InstantiateTurnDownWindow()
+    {
+        // 招待を断ってきたウィンドウを表示する
+        GameObject.Instantiate(turnDownWindow);
     }
 
     /// <summary>
@@ -173,11 +185,18 @@ public class PartySystem : Photon.MonoBehaviour {
         // ウインドウに表示する名前の設定
         obj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = owner.GetComponent<PhotonView>().owner.name;
 
-        // ウインドウに表示されているボタンにメソッドの登録
-        var button = obj.transform.GetChild(0).GetChild(3).GetComponent<UnityEngine.UI.Button>();
-        button.onClick.AddListener(() => AddMemberInParty());
-        button.onClick.AddListener(() => myPhoton.RPC("SetLeader", owner.GetPhotonView().owner));
-        button.onClick.AddListener(() => obj.GetComponent<Methods>().DestroyObject());
+        // ウインドウに表示されているボタンを取得
+        var okButton = obj.transform.GetChild(0).GetChild(3).GetComponent<UnityEngine.UI.Button>(); // OKボタンの取得
+        var noButton = obj.transform.GetChild(0).GetChild(4).GetComponent<UnityEngine.UI.Button>(); // NOボタンの取得
+        
+        // 加入ボタンにメソッドの登録
+        okButton.onClick.AddListener(() => AddMemberInParty());
+        okButton.onClick.AddListener(() => myPhoton.RPC("SetLeader", owner.GetPhotonView().owner));
+        okButton.onClick.AddListener(() => obj.GetComponent<Methods>().DestroyObject());
+
+        // 断るボタンにメソッドの登録
+        noButton.onClick.AddListener(() => myPhoton.RPC("InstantiateTurnDownWindow", owner.GetPhotonView().owner));
+        noButton.onClick.AddListener(() => obj.GetComponent<Methods>().DestroyObject());
     }
 
     /// <summary>

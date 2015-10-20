@@ -62,13 +62,20 @@
      <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonRigidbody2DViewEditor.cs" />
      <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonRigidbodyViewEditor.cs" />
      <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonTransformViewEditor.cs" />
+     <Compile Include="Assets\Terasurware\Classes\Editor\Items_importer.cs" />
+     <Compile Include="Assets\Terasurware\Editor\ExcelImporterMaker.cs" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
+     <None Include="Assets\Materials\CoolTime.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Elementals\!Readme.txt" />
      <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
+     <None Include="Assets\Terasurware\Editor\ExportTemplate.txt" />
+     <None Include="Assets\Terasurware\Editor\ExportTemplate2.txt" />
+     <None Include="Assets\Terasurware\Editor\EntityTemplate.txt" />
+     <None Include="Assets\Terasurware\Editor\EntityTemplate2.txt" />
      <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
@@ -96,6 +103,9 @@
  </Reference>
  <Reference Include="websocket-sharp">
  <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ </Reference>
+ <Reference Include="NPOI">
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Terasurware/Editor/npoi/NPOI.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
  <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>

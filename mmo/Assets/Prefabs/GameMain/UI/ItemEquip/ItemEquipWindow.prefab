@@ -100,6 +100,7 @@ GameObject:
   - 114: {fileID: 11425236}
   - 114: {fileID: 11404642}
   - 61: {fileID: 6139534}
+  - 114: {fileID: 11461898}
   m_Layer: 5
   m_Name: MoveTest
   m_TagString: Untagged
@@ -277,6 +278,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba598a8da3ef7db4ea1d39c5fcec2dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11461898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174758}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc58b64b18ba1714b95b8374d0e3b158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  skillPaletteNumber: 0
 --- !u!114 &11462330
 MonoBehaviour:
   m_ObjectHideFlags: 1

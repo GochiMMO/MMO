@@ -20,6 +20,18 @@ public class RemoveSprite : MonoBehaviour
                 catchFlag = true;
                 // 移動している画像をスキルスロットに教える
                 SetSkillIcon.moveImage = this.gameObject;
+
+                // そのアイコンがアイテムだった時の処理
+                UseItem useItem = gameObject.GetComponent<UseItem>();
+                if (useItem)
+                {
+                    // アイテムを使うスクリプトをオフにする
+                    useItem.enabled = false;
+                    // アイテムのフラグをオフにする
+                    SetSkillIcon.skillorItemFlag[useItem.skillPaletteNumber] = SetSkillIcon.PALETTE_CODE.NONE;
+                    // クールタイムのオブジェクトを非アクティブにする
+                    SetSkillIcon.itemCoolTimeObjects[useItem.skillPaletteNumber].SetActive(false);
+                }
             }
         }
         // 画像をつかんでいるフラグが立っていたら

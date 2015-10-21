@@ -129,7 +129,7 @@ public class ItemBase : ItemEquipBase
 {
     protected int hpRecoveryValue;  // HPの回復量
     protected int spRecoveryValue;  // SPの回復量
-    protected float coolTime = 3f;  // クールタイム
+    
 
     /// <summary>
     /// Constractor.
@@ -267,6 +267,15 @@ public class ItemBase : ItemEquipBase
             sp += spRecoveryValue;
         }
     }
+
+    /// <summary>
+    /// Return item name.
+    /// </summary>
+    /// <returns>Item name.</returns>
+    public override string ToString()
+    {
+        return itemData.ToString();
+    }
 }
 
 /// <summary>
@@ -274,7 +283,9 @@ public class ItemBase : ItemEquipBase
 /// </summary>
 public static class Items
 {
-    public static System.Collections.Generic.Dictionary<int, ItemBase> items { get { return Items.items; } private set { Items.items = value; } }
+    public static System.Collections.Generic.Dictionary<int, ItemBase> items = new System.Collections.Generic.Dictionary<int, ItemBase>();    // アイテムの配列
+    public static float coolTime = 3f;  // クールタイム
+
     //static Entity_Items.Param[] item_data;
     //static LoadCSV itemData = new LoadCSV("Items.csv");     // アイテムのデータがある部分
 
@@ -283,8 +294,6 @@ public static class Items
     /// </summary>
     static Items()
     {
-        items = new System.Collections.Generic.Dictionary<int, ItemBase>();    // アイテムの配列
-
         var item_data = Resources.Load<Entity_Items>("ItemData/Items").sheets[0].list;
 
         // データテーブルの数だけ繰り返す

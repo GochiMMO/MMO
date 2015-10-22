@@ -19,6 +19,23 @@ public class PushKey : MonoBehaviour {
         Instantiate(popupWindow, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
+    // オフラインモードで接続する
+    public void RunToOfflineMode()
+    {
+        PhotonNetwork.offlineMode = true;
+        PhotonNetwork.ConnectUsingSettings("0.0");
+        PhotonNetwork.JoinLobby();
+    }
+
+    IEnumerator loadLovel()
+    {
+        while (PhotonNetwork.connectionState != ConnectionState.Connected)
+        {
+            yield return null;
+        }
+        PhotonNetwork.LoadLevel("CharacterSelect");
+    }
+
     // Update is called once per frame
     void Update () {
         //push any keyを押すか、どこかのキーが押されたら

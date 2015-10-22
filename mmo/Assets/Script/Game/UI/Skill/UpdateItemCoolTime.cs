@@ -67,6 +67,9 @@ public class UpdateItemCoolTime : MonoBehaviour {
         }
     }
     
+    /// <summary>
+    /// Set rotation of right black image.
+    /// </summary>
     void RotateRightImage()
     {
         // 半分に到達する前
@@ -77,6 +80,9 @@ public class UpdateItemCoolTime : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Set rotation of left black image.
+    /// </summary>
     void RotateLeftImage()
     {
         if (timePercentage >= 0.5f)
@@ -88,6 +94,9 @@ public class UpdateItemCoolTime : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Initialization.
+    /// </summary>
     void Initialization()
     {
         Debug.Log("Call instantiate");
@@ -102,6 +111,10 @@ public class UpdateItemCoolTime : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="coolTime"></param>
     public void SetCoolTime(float coolTime)
     {
         if (!UpdateItemCoolTime.coolTimeFlag)

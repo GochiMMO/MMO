@@ -157,6 +157,7 @@
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonRigidbody2DViewEditor.cs" />
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonRigidbodyViewEditor.cs" />
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonTransformViewEditor.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Editor\EnemyData_importer.cs" />
     <Compile Include="Assets\Terasurware\Classes\Editor\Items_importer.cs" />
     <Compile Include="Assets\Terasurware\Editor\ExcelImporterMaker.cs" />
   </ItemGroup>

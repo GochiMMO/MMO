@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ApplyRootMotion.cs" />
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
@@ -257,6 +258,8 @@
      <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
      <Compile Include="Assets\Tazo_fx\Script\DestroySelf.cs" />
      <Compile Include="Assets\Terasurware\Classes\Entity_Items.cs" />
+     <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />
+     <Compile Include="Assets\WhenEndAnimDestroy.cs" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Materials\CoolTime.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />

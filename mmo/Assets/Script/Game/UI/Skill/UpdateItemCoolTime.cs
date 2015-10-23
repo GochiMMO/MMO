@@ -7,19 +7,20 @@ public class UpdateItemCoolTime : MonoBehaviour {
     [SerializeField, Tooltip("回転させる画像の左側")]
     Transform maskImage2;
 
+    // クールタイムかどうかのフラグ
     static bool coolTimeFlag = false;
 
+    // クールタイム
     public static float coolTime = 0f;
 
+    // クールタイムがスタートした時間
     static float nowTime = 0f;
-
+    // クールタイムの割合
     float timePercentage = 0f;
-    float angle = 0f;
 
-    void Start()
-    {
-    }
-
+    /// <summary>
+    /// Call this method, when this component is disabled.
+    /// </summary>
     void OnDisable()
     {
         // 回転を元に戻す
@@ -85,6 +86,7 @@ public class UpdateItemCoolTime : MonoBehaviour {
     /// </summary>
     void RotateLeftImage()
     {
+        // クールタイムの割合が半分を超えている場合
         if (timePercentage >= 0.5f)
         {
             // 左側の画像を回転させる
@@ -100,8 +102,6 @@ public class UpdateItemCoolTime : MonoBehaviour {
     void Initialization()
     {
         Debug.Log("Call instantiate");
-        // パラメータの初期化
-        angle = 0f;
         // クールタイムを解除する
         UpdateItemCoolTime.coolTime = 0f;
         UpdateItemCoolTime.nowTime = 0f;
@@ -112,15 +112,19 @@ public class UpdateItemCoolTime : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Set cool time and run cool time.
     /// </summary>
-    /// <param name="coolTime"></param>
+    /// <param name="coolTime">Cool time(sec)</param>
     public void SetCoolTime(float coolTime)
     {
+        // クールタイムを行うフラグが立っていなければ
         if (!UpdateItemCoolTime.coolTimeFlag)
         {
+
             Debug.Log("アイテムのクールタイム設定" + coolTime + "秒");
+            // クールタイムを設定する
             UpdateItemCoolTime.coolTime = coolTime;
+            // クールタイムを行うフラグを立てる
             UpdateItemCoolTime.coolTimeFlag = true;
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PushKey : MonoBehaviour {
+public class PushKey : Photon.MonoBehaviour {
     [SerializeField]
     GameObject popupWindow;
     BoxCollider2D col;  //押した時の当り判定オブジェクト
@@ -22,15 +22,32 @@ public class PushKey : MonoBehaviour {
     // オフラインモードで接続する
     public void RunToOfflineMode()
     {
+
+        PhotonNetwork.ConnectUsingSettings("0.1");
         PhotonNetwork.offlineMode = true;
-        PhotonNetwork.ConnectUsingSettings("0.0");
-        PhotonNetwork.JoinLobby();
+        //PhotonNetwork.JoinLobby();
+        //StartCoroutine("loadLovel");
+    }
+
+    void OnJoinedLobby()
+    {
+        if (PhotonNetwork.offlineMode)
+        {
+            PhotonNetwork.LoadLevel("CharacterSelect");
+        }
     }
 
     IEnumerator loadLovel()
     {
+        while (!PhotonNetwork.offlineMode)
+        {
+            yield return null;
+        }
+        
+        PhotonNetwork.JoinLobby();
         while (PhotonNetwork.connectionState != ConnectionState.Connected)
         {
+            Debug.Log(PhotonNetwork.connectionState);
             yield return null;
         }
         PhotonNetwork.LoadLevel("CharacterSelect");

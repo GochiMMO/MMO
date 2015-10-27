@@ -179,6 +179,7 @@
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
      <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
+     <Compile Include="Assets\Script\Game\Enemy\Sahagin.cs" />
      <Compile Include="Assets\Script\Game\Equip\EquipBase.cs" />
      <Compile Include="Assets\Script\Game\Item\UseItem.cs" />
      <Compile Include="Assets\Script\Game\Magic\FireShot.cs" />

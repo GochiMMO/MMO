@@ -51,6 +51,11 @@ public class EnemyData_importer : AssetPostprocessor {
 					cell = row.GetCell(4); p.MagicAttack = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(5); p.MagicDefense = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(6); p.MoveSpeed = (float)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(7); p.TrackingSpeed = (float)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(8); p.ActionInterval = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(9); p.FieldOfView = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(10); p.ViewDistance = (float)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(11); p.ActionDistance = (float)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

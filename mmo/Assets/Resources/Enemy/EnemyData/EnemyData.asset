@@ -21,6 +21,11 @@ MonoBehaviour:
       MagicAttack: 100
       MagicDefense: 100
       MoveSpeed: 3
+      TrackingSpeed: 5
+      ActionInterval: 4
+      FieldOfView: 180
+      ViewDistance: 10
+      ActionDistance: 2
   - name: Bee
     list:
     - Name: "\u30D3\u30FC"
@@ -30,3 +35,8 @@ MonoBehaviour:
       MagicAttack: 100
       MagicDefense: 100
       MoveSpeed: 1
+      TrackingSpeed: 5
+      ActionInterval: 5
+      FieldOfView: 120
+      ViewDistance: 5
+      ActionDistance: 1

@@ -26,7 +26,7 @@ public class ExcelImporterMaker : EditorWindow
             EditorPrefs.SetString(s_key_prefix + fileName + ".className", className);
             ExportEntity();
             ExportImporter();
-			
+            
             AssetDatabase.ImportAsset(filePath);
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             Close();
@@ -69,24 +69,24 @@ public class ExcelImporterMaker : EditorWindow
             cell.type = (ValueType)EditorGUILayout.EnumPopup(cell.type, GUILayout.MaxWidth(100));
             EditorPrefs.SetInt(s_key_prefix + fileName + ".type." + cell.name, (int)cell.type);
             GUILayout.EndHorizontal();
-			
+            
             EditorGUILayout.EndToggleGroup();
             lastCellName = cell.name;
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndScrollView();
-		
+        
     }	
-	
+    
     private enum ValueType
     {
         BOOL,
         STRING,
         INT,
-		FLOAT,
-		DOUBLE,
+        FLOAT,
+        DOUBLE,
     }
-	
+    
     private string filePath = string.Empty;
     private bool sepalateSheet = false;
     private List<ExcelRowParameter> typeList = new List<ExcelRowParameter>();
@@ -94,22 +94,22 @@ public class ExcelImporterMaker : EditorWindow
     private string className = string.Empty;
     private string fileName = string.Empty;
     private static string s_key_prefix = "terasurware.exel-importer-maker.";
-	
+    
     [MenuItem("Assets/XLS Import Settings...")]
     static void ExportExcelToAssetbundle()
     {
         foreach (Object obj in Selection.objects)
         {
-			
-		
+            
+        
             var window = ScriptableObject.CreateInstance<ExcelImporterMaker>();
             window.filePath = AssetDatabase.GetAssetPath(obj);
             window.fileName = Path.GetFileNameWithoutExtension(window.filePath);
-		
-		
+        
+        
             using (FileStream stream = File.Open (window.filePath, FileMode.Open, FileAccess.Read))
             {
-			
+            
                 IWorkbook book = new HSSFWorkbook(stream);
 
                 for (int i = 0; i < book.NumberOfSheets; ++i)
@@ -120,7 +120,7 @@ public class ExcelImporterMaker : EditorWindow
                     sht.isEnable = EditorPrefs.GetBool(s_key_prefix + window.fileName + ".sheet." + sht.sheetName, true);
                     window.sheetList.Add(sht);
                 }
-			
+            
                 ISheet sheet = book.GetSheetAt(0);
 
                 window.className = EditorPrefs.GetString(s_key_prefix + window.fileName + ".className", "Entity_" + sheet.SheetName);
@@ -156,7 +156,7 @@ public class ExcelImporterMaker : EditorWindow
                             continue;
                         }
                     }
-				
+                
                     if (cell.CellType != CellType.Unknown && cell.CellType != CellType.BLANK)
                     {
                         parser.isEnable = true;
@@ -201,15 +201,15 @@ public class ExcelImporterMaker : EditorWindow
                         {
                         }
                     }
-				
+                
                     window.typeList.Add(parser);
                 }
-			
+            
                 window.Show();
             }
         }
     }
-	
+    
     void ExportEntity()
     {
         string templateFilePath = (sepalateSheet) ? "Assets/Terasurware/Editor/EntityTemplate2.txt" : "Assets/Terasurware/Editor/EntityTemplate.txt";
@@ -235,20 +235,20 @@ public class ExcelImporterMaker : EditorWindow
                 }
             }
         }
-		
+        
         entittyTemplate = entittyTemplate.Replace("$Types$", builder.ToString());
         entittyTemplate = entittyTemplate.Replace("$ExcelData$", className);
-		
+        
         Directory.CreateDirectory("Assets/Terasurware/Classes/");
         File.WriteAllText("Assets/Terasurware/Classes/" + className + ".cs", entittyTemplate);
     }
-	
+    
     void ExportImporter()
     {
         string templateFilePath = (sepalateSheet) ? "Assets/Terasurware/Editor/ExportTemplate2.txt" : "Assets/Terasurware/Editor/ExportTemplate.txt";
 
         string importerTemplate = File.ReadAllText(templateFilePath);
-		
+        
         StringBuilder builder = new StringBuilder();
         StringBuilder sheetListbuilder = new StringBuilder();
         int rowCount = 0;
@@ -270,7 +270,7 @@ public class ExcelImporterMaker : EditorWindow
             }
             */
         }
-		
+        
         foreach (ExcelRowParameter row in typeList)
         {
             if (row.isEnable)
@@ -289,13 +289,13 @@ public class ExcelImporterMaker : EditorWindow
                         case ValueType.INT:
                             builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0} = (int)(cell == null ? 0 : cell.NumericCellValue);", row.name, rowCount);
                             break;
-						case ValueType.FLOAT:
-							builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0} = (float)(cell == null ? 0 : cell.NumericCellValue);", row.name, rowCount);
-							break;
-						case ValueType.STRING:
+                        case ValueType.FLOAT:
+                            builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0} = (float)(cell == null ? 0 : cell.NumericCellValue);", row.name, rowCount);
+                            break;
+                        case ValueType.STRING:
                             builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0} = (cell == null ? \"\" : cell.StringCellValue);", row.name, rowCount);
                             break;
-					}
+                    }
                 } else
                 {
                     // only the head of array should generate code
@@ -319,14 +319,14 @@ public class ExcelImporterMaker : EditorWindow
                             case ValueType.INT:
                                 builder.AppendFormat(tab + "p.{0} = new int[{1}];", row.name, arrayLength);
                                 break;
-							case ValueType.FLOAT:
-								builder.AppendFormat(tab + "p.{0} = new float[{1}];", row.name, arrayLength);
-								break;
+                            case ValueType.FLOAT:
+                                builder.AppendFormat(tab + "p.{0} = new float[{1}];", row.name, arrayLength);
+                                break;
                             case ValueType.STRING:
                                 builder.AppendFormat(tab + "p.{0} = new string[{1}];", row.name, arrayLength);
                                 break;
                         }
-						
+                        
                         for (int i = 0; i < arrayLength; ++i)
                         {
                             builder.AppendLine();
@@ -340,10 +340,10 @@ public class ExcelImporterMaker : EditorWindow
                                     break;
                                 case ValueType.INT:
                                     builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0}[{2}] = (int)(cell == null ? 0 : cell.NumericCellValue);", row.name, rowCount + i, i);
-									break;
-								case ValueType.FLOAT:
-									builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0}[{2}] = (float)(cell == null ? 0.0 : cell.NumericCellValue);", row.name, rowCount + i, i);
-									break;
+                                    break;
+                                case ValueType.FLOAT:
+                                    builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0}[{2}] = (float)(cell == null ? 0.0 : cell.NumericCellValue);", row.name, rowCount + i, i);
+                                    break;
                                 case ValueType.STRING:
                                     builder.AppendFormat(tab + "cell = row.GetCell({1}); p.{0}[{2}] = (cell == null ? \"\" : cell.StringCellValue);", row.name, rowCount + i, i);
                                     break;
@@ -363,11 +363,11 @@ public class ExcelImporterMaker : EditorWindow
         importerTemplate = importerTemplate.Replace("$SheetList$", sheetListbuilder.ToString());
         importerTemplate = importerTemplate.Replace("$EXPORT_DATA$", builder.ToString());
         importerTemplate = importerTemplate.Replace("$ExportTemplate$", fileName + "_importer");
-			
+            
         Directory.CreateDirectory("Assets/Terasurware/Classes/Editor/");
         File.WriteAllText("Assets/Terasurware/Classes/Editor/" + fileName + "_importer.cs", importerTemplate);
     }
-	
+    
     private class ExcelSheetParameter
     {
         public string sheetName;

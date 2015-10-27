@@ -3,12 +3,27 @@ using System.Collections;
 
 [RequireComponent(typeof(PhotonView))]          //PhotonViewを使う
 [RequireComponent(typeof(CapsuleCollider))]     //カプセルコライダーを使う
-public class EnemyData : Photon.MonoBehaviour {
-    static Entity_Sahagin.Param enemyData = null;
-
-    Animator anim;
-
-    enum Status
+abstract public class EnemyData : Photon.MonoBehaviour {
+    /// <summary>
+    /// 敵の元データの参照
+    /// </summary>
+    private static Entity_Sahagin enemyResourceData = null;
+    /// <summary>
+    /// 敵のステータスデータ
+    /// </summary>
+    protected Entity_Sahagin.Param enemyData = null;
+    /// <summary>
+    /// 敵の名前
+    /// </summary>
+    protected string enemyName;
+    /// <summary>
+    /// アニメーションコンポーネント
+    /// </summary>
+    protected Animator anim;
+    /// <summary>
+    /// 敵のステータス判別用列挙体
+    /// </summary>
+    protected enum Status
     {
         NORMAL,     // 普通
         ATTACK,     // 攻撃
@@ -16,48 +31,149 @@ public class EnemyData : Photon.MonoBehaviour {
         DISCOVER,   // プレイヤー発見
         DEAD        // 死亡
     };
+    /// <summary>
+    /// 体力
+    /// </summary>
+    private int HP;
+    /// <summary>
+    /// 攻撃力
+    /// </summary>
+    private int attack;
+    /// <summary>
+    /// 防御力
+    /// </summary>
+    private int defense;
+    /// <summary>
+    /// 魔法攻撃力
+    /// </summary>
+    private int magicAttack;
+    /// <summary>
+    /// 魔法防御力
+    /// </summary>
+    private int magicDefense;
+    /// <summary>
+    /// 移動速度
+    /// </summary>
+    private float moveSpeed;
+    /// <summary>
+    /// プレイヤー発見時、追跡する速度
+    /// </summary>
+    private float trackingSpeed;
+    /// <summary>
+    /// 敵が行動を変更する間隔（秒）
+    /// </summary>
+    private float actionInterval;
+    /// <summary>
+    /// 敵がプレイヤーを発見できる視野角（度）
+    /// </summary>
+    private float angle;
+    /// <summary>
+    /// 敵がプレイヤーを発見できる距離（メートル）
+    /// </summary>
+    private float angleDistance;
+    /// <summary>
+    /// 敵が何らかのアクションを行う距離
+    /// </summary>
+    private float actionDistance;
+    /// <summary>
+    /// 最後に行動が変わった時間
+    /// </summary>
+    private float lastActionTime;
+    /// <summary>
+    /// 実際に移動する速度
+    /// </summary>
+    protected Vector3 moveValue;
+    /// <summary>
+    /// 回転する角度
+    /// </summary>
+    protected Vector3 newRotation;
+    /// <summary>
+    /// １つ前のフレームの位置
+    /// </summary>
+    protected Vector3 pastPosition;  //過去位置
+    /// <summary>
+    /// プレイヤーの配列
+    /// </summary>
+    private GameObject[] players;
+    /// <summary>
+    /// ヘイトを一番稼いでるプレイヤーのオブジェクトを格納する変数
+    /// </summary>
+    protected GameObject haightMaxPlayer;
+    /// <summary>
+    /// 敵のステータス(状態遷移用)
+    /// </summary>
+    protected Status enemyStatus = Status.NORMAL;     // 最初の状態は普通状態
+    /// <summary>
+    /// スクリプト用コンポーネントを格納しておくオブジェクト
+    /// </summary>
+    private GameObject scripts;     // スクリプトコンポーネント
+    /// <summary>
+    /// //（敵にとって）自分が出現管理されているスクリプトの参照、インスペクターには表示しない
+    /// </summary>
+    [HideInInspector]
+    public PopEnemy myPopScriptRefarence;
 
-    int HP;             // HP
-    int attack;         // 攻撃力
-    int defense;        // 防御力
-    int magicAttack;    // 魔法攻撃力
-    int magicDefense;   // 魔法防御力
-    float moveSpeed;    // 移動速度
+    
 
+    /// <summary>
+    /// 移動方向を変更する処理（仮想関数）
+    /// </summary>
+    abstract protected void RotateDirection();
 
-    [SerializeField, Tooltip("追跡用速度")]
-    float trackingSpeed;
-    [SerializeField, Tooltip("敵行動間隔(秒)")]
-    float actionInterval;
-    [SerializeField, Tooltip("敵視野（℃）")]
-    float angle;
-    [SerializeField, Tooltip("視野距離")]
-    float angleDistance;
-    [SerializeField, Tooltip("接近距離")]
-    float Distance;
+    /// <summary>
+    /// 既定距離に達した時の行動
+    /// </summary>
+    abstract protected void NearPlayerAction();
 
-    float lastActionTime; //行動間隔用
-    Vector3 moveValue;    //移動用
-    Vector3 newRotation;  //回転用
-    Vector3 pastPosition;  //過去位置
+    /// <summary>
+    /// ダメージを食らった時の処理
+    /// </summary>
+    /// <param name="col">当たったコライダー</param>
+    abstract protected void SufferDamageAction(Collider col, int damage);
 
-    GameObject[] players; //Player情報取得用
-    GameObject haightMaxPlayer; //ヘイト用
+    /// <summary>
+    /// 敵の名前を設定する
+    /// </summary>
+    abstract protected void SetEnemyName();
 
-    Status enemyStatus = Status.NORMAL;     // 最初の状態は普通状態
-    GameObject scripts;     // スクリプトコンポーネント
+    /// <summary>
+    /// 攻撃を受けている時の処理
+    /// </summary>
+    abstract protected void SufferingDamage();
 
-    public PopEnemy myPopScriptRefarence;  //（敵にとって）自分が出現管理されているスクリプトの参照
+    /// <summary>
+    /// ダメージを食らっている処理が終わったかどうか
+    /// </summary>
+    /// <returns>終わったらtrue、終わっていなければfalse</returns>
+    abstract protected bool IsEndDamage();
 
-    void Action()
-    {
-        //ここに攻撃パターンを書く
+    /// <summary>
+    /// 攻撃が終了する処理
+    /// </summary>
+    /// <returns>終わったらtrue、終わってなければfalse</returns>
+    abstract protected bool IsEndAttack();
+
+    /// <summary>
+    /// 攻撃中の処理
+    /// </summary>
+    abstract protected void Attacking();
+
+    /// <summary>
+    /// ノーマル状態の向くべき方向
+    /// </summary>
+    private void AttachRotation()
+    {   
+        // x,z軸の回転を0にする
+        newRotation.x = 0f;
+        newRotation.z = 0f;
+        // 回転させる(既定角に0.5秒で回転する)
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(newRotation), Time.deltaTime*2);
     }
 
     /// <summary>
     /// ノーマル状態の移動処理
     /// </summary>
-    void Move()
+    private void Move()
     {
         // 既定時間が来たら
         if (Time.time - lastActionTime >= actionInterval)
@@ -69,7 +185,9 @@ public class EnemyData : Photon.MonoBehaviour {
             // 歩くモーションに切り替える
             anim.SetBool("walkFlag", true);
             // ランダムで移動する角度を変更する
-            RotateDirectionForRandom();
+            RotateDirection();
+            // ヘイト値が最大のプレイヤーを登録する
+            GetHaightHighestPlayer();
         }
         // 移動させる
         transform.Translate(moveValue * Time.deltaTime);
@@ -78,84 +196,22 @@ public class EnemyData : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// ランダムで移動方向を変更する
-    /// </summary>
-    void RotateDirectionForRandom(){
-        switch (Random.Range(0, 28))
-            {
-                case 0:
-                    newRotation.y = 0f;
-                    break;
-                case 1:
-                    newRotation.y = 180f;
-                    break;
-                case 2:
-                    newRotation.y = 90f;
-                    break;
-                case 3:
-                    newRotation.y = 270f;
-                    break;
-                case 4:
-                    newRotation.y = 135f;
-                    break;
-                case 5:
-                    newRotation.y = 225f;
-                    break;
-                case 6:
-                    newRotation.y = 45f;
-                    break;
-                case 7:
-                    newRotation.y = 315f;
-                    break;
-                case 8:
-                    moveValue.z = 0f;
-                    anim.SetBool("walkFlag", false);
-                    break;
-                default:
-                    
-                    break;
-            }
-    }
-
-    /// <summary>
-    /// ノーマル状態の向くべき方向
-    /// </summary>
-    void AttachRotation()
-    {   
-        // 回転度を計算する
-        newRotation.x = 0f;
-        newRotation.z = 0f;
-        // 回転度を合わせる
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(newRotation), Time.deltaTime*2);
-    }
-
-    /// <summary>
     /// プレイヤーを追いかける
     /// </summary>
-    void Tracking()
+    private void Tracking()
     {
         // プレイヤーとの距離を計算する
-        var kyori = (transform.position - haightMaxPlayer.transform.position).sqrMagnitude;
+        float kyori = (transform.position - haightMaxPlayer.transform.position).sqrMagnitude;
 
-        // 指定した距離であれば,止まる
-        if (kyori < Distance * Distance)
+        // 指定した距離に到達したかどうか
+        if (kyori < actionDistance * actionDistance)
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-            {
-                anim.SetTrigger("attackFlag");
-            }
-            CheckView();
+            // プレイヤーが近くに来た時の処理を行う
+            NearPlayerAction();
         }
         // 指定した距離に到達していない場合
         else
         {
-            // 回転度を変更する(プレイヤーの方を向く)
-            newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(haightMaxPlayer.transform.position - transform.position), 1.0f).eulerAngles;
-            // x,z方向の回転度を0に変更する
-            newRotation.z = 0f;
-            newRotation.x = 0f;
-            // 回転させる
-            transform.rotation = Quaternion.Euler(newRotation);
             // 移動速度を追いかける速度に変更する
             moveValue.z = trackingSpeed;
             // 走ってるアニメーションに変更する
@@ -163,28 +219,16 @@ public class EnemyData : Photon.MonoBehaviour {
             // 移動させる
             transform.Translate(moveValue * Time.deltaTime);
         }
-        /*
-        // プレイヤーが視覚範囲にいなくなり、距離も離れた場合
-        if (!((transform.position - haightMaxPlayer.transform.position).sqrMagnitude < angleDistance * angleDistance
-            && Vector3.Angle(haightMaxPlayer.transform.position - transform.position, transform.forward) <= angle)
-            && enemyStatus != Status.NORMAL)
-        {
-            // 走るフラグをオフにする
-            anim.SetBool("runFlag", false);
-            // 敵のステータスをノーマルに変更する
-            enemyStatus = Status.NORMAL;
-        }
-        */
     }
 
     /// <summary>
     /// 特定の視野内でのプレイヤー検索用
     /// </summary>
-    void CheckView()
+    private bool CheckView()
     {
         // プレイヤーを発見したら
-        if ((haightMaxPlayer.transform.position - transform.position).sqrMagnitude < angleDistance * angleDistance
-            && Vector3.Angle(transform.position - haightMaxPlayer.transform.position, transform.forward) <= angle)
+        if ((haightMaxPlayer.transform.position - transform.position).sqrMagnitude < angleDistance * angleDistance      // 距離計算
+            && Vector3.Angle(transform.position - haightMaxPlayer.transform.position, transform.forward) <= angle)      // 角度計算
         {
             // 回転度を計算する
             newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(haightMaxPlayer.transform.position - transform.position), 1.0f).eulerAngles;
@@ -194,6 +238,8 @@ public class EnemyData : Photon.MonoBehaviour {
             transform.rotation = Quaternion.Euler(newRotation);
             // 敵のステータスを発見状態に変える
             enemyStatus = Status.DISCOVER;
+            // 発見できているのでtrueを返す
+            return true;
         }
         // プレイヤーを発見していない時
         else {
@@ -201,23 +247,31 @@ public class EnemyData : Photon.MonoBehaviour {
             enemyStatus = Status.NORMAL;
             // 歩くアニメーションに変更する
             anim.SetBool("runFlag", false);
+            // 発見できなかったのでfalseを返す
+            return false;
         }
     }
 
     /// <summary>
     /// ヘイトの高いプレイヤーを探す
     /// </summary>
-    void GetPlayer()
+    private void GetHaightHighestPlayer()
     {
+        // "Player"とタグ付けされているオブジェクトを取得する
         players = GameObject.FindGameObjectsWithTag("Player");
+        // プレイヤーのヘイトの値を格納しておく
         int playerHaight = -9999;
-
-        foreach (var obj in players)    
+        // プレイヤーの分だけ繰り返す
+        foreach (var obj in players) 
         {
-            //プレイヤー達の中で一番ヘイトが高い奴の情報をもらう
-            if (obj.GetComponent<Haight>().GetHaight() > playerHaight)
+            // プレイヤーからヘイトを取得する
+            int haight = obj.GetComponent<Haight>().GetHaight();
+            // 格納したヘイトが一時変数のヘイトを上回ったら
+            if (haight > playerHaight)
             {
-                playerHaight = obj.GetComponent<Haight>().GetHaight();
+                // ヘイトの値を格納する
+                playerHaight = haight;
+                // プレイヤーの参照を格納する
                 haightMaxPlayer = obj;
             }
         }
@@ -226,89 +280,147 @@ public class EnemyData : Photon.MonoBehaviour {
     /// <summary>
     /// 自分の頭上にダメージが出る
     /// </summary>
-    /// <param name="damage"></param>
-    /// <param name="position"></param>
+    /// <param name="damage">出すダメージの値</param>
     [PunRPC]
-    void DrawDamage(int damage, Vector3 position)
+    public void DrawDamage(int damage)
     {
         // ダメージを出すコンポーネントを取得し、ダメージを表示する
-        scripts.GetComponent<CreateDamageBillboard>().DrawDamageBillboard(damage, position);
+        scripts.GetComponent<CreateDamageBillboard>().DrawDamageBillboard(damage, transform.position);
         // HPを減算する
         HP -= damage;
         // HPが0以下(つまり死亡したとき)
         if (HP <= 0)
         {
-            // ステータスを志望状態に変更する
+            // ステータスを死亡状態に変更する
             enemyStatus = Status.DEAD;
             // 死亡時アニメーションを再生する
             anim.SetTrigger("dead");
-            // 当り判定用オブジェクトをオフにする
-            // gameObject.GetComponent<CapsuleCollider>().enabled = false;
             // 死んだので数を減算
             myPopScriptRefarence.DeadEnemy();
         }
     }
 
     /// <summary>
-    /// 魔法によるダメージ
+    /// 何かのオブジェクトとぶつかったとき
     /// </summary>
-    /// <param name="damage"></param>
-    [PunRPC]
-    void HitCliantMagic(int damage)
+    /// <param name="col">当たってきたコライダー</param>
+    private void OnTriggerEnter(Collider col)
     {
-        // 全員にダメージを表示するRPCを飛ばす
-        GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);
-    }
-
-    // 何かとぶつかったとき
-     void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.tag == "Magic" && enemyStatus != Status.DEAD)  //当たった物体が魔法ならば
+        // 敵が死亡状態でないとき
+        if (enemyStatus != Status.DEAD)
         {
-            //マスタークライアントならば
-            if (PhotonNetwork.isMasterClient)
+            // そのコライダーが自分が出したものならば
+            if (col.gameObject.GetComponent<PhotonView>().isMine)
             {
-                int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();  //攻撃力をゲットする
-                GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage, transform.position);    //ダメージを表示する
-
-            }
-            //他のクライアントならば
-            else
-            {
-                // 攻撃力を取得する
-                int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
-                // ダメージを送信する(マスタークライアントに送信し、そこから全員に送信するようにする)
-                GetComponent<PhotonView>().RPC("HitCliantMagic", PhotonTargets.MasterClient, damage);
+                // 当たった物体が魔法ならば
+                if (col.gameObject.tag == "Magic")
+                {
+                    // 攻撃力をゲットする
+                    int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
+                    // 防御力を加味して計算する
+                    damage -= magicDefense;
+                    // もしダメージが0を下回ったら
+                    if (damage < 0)
+                    {
+                        // ノーダメージにする
+                        damage = 0;
+                    }
+                    // ダメージを表示させる、減算させるなどの処理を行う
+                    GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage);
+                    // 攻撃を食らった時の処理を行う
+                    SufferDamageAction(col, damage);
+                }
             }
         }
     }
 
-    void Start()
+    /// <summary>
+    /// スクリプトが開始した時の処理
+    /// </summary>
+    private void Start()
     {
-        GetPlayer();
-        // moveValue = new Vector3();  //ｉｎｓｔａｎｃｅ作成
+        // 敵の元データが無いならば
+        if (enemyResourceData == null)
+        {
+            // 敵の元データを読み込む
+            enemyResourceData = Resources.Load<Entity_Sahagin>("Enemy/EnemyData/EnemyData");
+        }
+        // 敵の名前を設定する(継承先で設定する)
+        SetEnemyName();
+        // 敵のデータを読み込む
+        LoadEnemyData();
+        // ステータスを設定する
+        if (!SetStatus())
+        {
+            // ステータスを設定できなければ自身を削除する
+            GameObject.Destroy(this.gameObject);
+            return;
+        }
+        // スクリプトコンポーネントのあるオブジェクトを格納する
         scripts = GameObject.FindGameObjectWithTag("Scripts");
-        if (enemyData == null)
-        {
-            enemyData = Resources.Load<Entity_Sahagin>("Enemy/EnemyData/EnemyData").sheets[0].list[0];
-        }
+        // アニメーションコンポーネントを取得する
         anim = gameObject.GetComponent<Animator>();
-        // ステータスの設定
-        this.HP = enemyData.HP;
-        this.magicAttack = enemyData.MagicAttack;
-        this.magicDefense = enemyData.MagicDefense;
-        this.moveSpeed = enemyData.MoveSpeed;
-        this.attack = enemyData.Attack;
-        this.defense = enemyData.Defense;
+        // ヘイトが一番高いプレイヤーを探す
+        GetHaightHighestPlayer();
     }
 
-    void Update()
+    /// <summary>
+    /// 敵の名前からデータを設定する
+    /// </summary>
+    private void LoadEnemyData()
+    {
+        // シートを読み込む
+        foreach (Entity_Sahagin.Sheet sheets in enemyResourceData.sheets)
+        {
+            // 敵の配列を読み込む
+            foreach (Entity_Sahagin.Param param in sheets.list)
+            {
+                // 設定された名前の敵のデータを呼び出す
+                if (param.Name == enemyName)
+                {
+                    // 敵のデータを登録する
+                    this.enemyData = param;
+                    return;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// ステータスの設定
+    /// </summary>
+    private bool SetStatus()
+    {
+        // 敵のデータが登録されていれば
+        if (enemyData != null)
+        {
+            // ステータスの設定
+            this.HP = enemyData.HP;
+            this.magicAttack = enemyData.MagicAttack;
+            this.magicDefense = enemyData.MagicDefense;
+            this.moveSpeed = enemyData.MoveSpeed;
+            this.attack = enemyData.Attack;
+            this.defense = enemyData.Defense;
+            this.trackingSpeed = enemyData.TrackingSpeed;
+            this.actionInterval = enemyData.ActionInterval;
+            this.angle = enemyData.FieldOfView;
+            this.angleDistance = enemyData.ViewDistance;
+            this.actionDistance = enemyData.ActionDistance;
+            // 設定されたことを返す
+            return true;
+        }
+        // 設定できなければfalseを返す
+        return false;
+    }
+
+    /// <summary>
+    /// 更新処理
+    /// </summary>
+    private void Update()
     {
         // マスタークライアントなら
         if (PhotonNetwork.isMasterClient)
         {
-            Debug.Log(enemyStatus);     // デバッグ用敵の状態表示
-            Debug.Log(anim.GetCurrentAnimatorStateInfo(0));
             // 状態によって変化する
             switch (enemyStatus)
             {
@@ -317,34 +429,39 @@ public class EnemyData : Photon.MonoBehaviour {
                     CheckView();    // プレイヤーを探す処理
                     break;
                 case Status.ATTACK:
+                    // 攻撃が終了する処理
+                    if (IsEndAttack())
+                    {
+                        Debug.Log("攻撃終了");
+                        // 攻撃する処理を行わない
+                        break;
+                    }
+                    // 攻撃中の処理
+                    Attacking();
                     break;
+                    // ダメージを食らった時の処理
                 case Status.DAMEGE:
+                    if (IsEndDamage())
+                    {
+                        // ダメージを食らう処理が終わったら
+                        break;
+                    }
+                    // ダメージを食らっている時の処理
+                    SufferingDamage();
                     break;
                     // プレイヤーを発見した時
                 case Status.DISCOVER:
-                    Tracking(); // 追いかける処理
+                    // プレイヤーを探し、発見したらtrue、発見できなかったらfalse
+                    if (!CheckView())
+                    {
+                        break;
+                    }
+                    // 追いかける処理
+                    Tracking();
                     break;
                 case Status.DEAD:
-                    //何らかのアニメーション
-                    //自分を削除
-                    
-                    //PhotonNetwork.Destroy(this.gameObject);
-                    
                     break;
             }
         }
     }
-
-//    //状態の同期
-//    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-//    {
-//        if (stream.isWriting)
-//        {
-//            stream.SendNext(enemyStates);   //ステータスを送信
-//        }
-//        else
-//        {
-//            enemyStates = (States)stream.ReceiveNext(); //ステータスを受信
-//        }
-//    }
 }

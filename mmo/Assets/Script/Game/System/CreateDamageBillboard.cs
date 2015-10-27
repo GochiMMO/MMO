@@ -15,7 +15,6 @@ public class CreateDamageBillboard : Photon.MonoBehaviour {
     
     }
 
-    [PunRPC]
     public void DrawDamageBillboard(int damage, Vector3 position){
         GameObject dame = GameObject.Instantiate(damageBillboard, position, Quaternion.identity) as GameObject;
         dame.GetComponent<DrawDamage>().SetValue(damage);

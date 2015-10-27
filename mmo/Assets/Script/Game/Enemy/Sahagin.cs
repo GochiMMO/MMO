@@ -62,7 +62,7 @@ public class Sahagin : EnemyData
         // 攻撃アニメーションが終了したら
         if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            // 追跡状態にする
+            // 状態を変更する
             this.enemyStatus = Status.NORMAL;
             // trueを返す
             return true;

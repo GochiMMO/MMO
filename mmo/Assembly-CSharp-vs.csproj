@@ -260,6 +260,7 @@
      <Compile Include="Assets\Tazo_fx\Script\DestroySelf.cs" />
      <Compile Include="Assets\Terasurware\Classes\Entity_Items.cs" />
      <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />
+     <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
      <Compile Include="Assets\WhenEndAnimDestroy.cs" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Materials\CoolTime.shader" />

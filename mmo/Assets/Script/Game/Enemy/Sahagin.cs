@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// サハギンを動かすスクリプト
 /// </summary>
-public class Sahagin : EnemyData
+public class Sahagin : LoiteringEnemyBase
 {
     /// <summary>
     /// とびかかり攻撃が来る割合
@@ -24,7 +24,7 @@ public class Sahagin : EnemyData
     /// <summary>
     /// 名前を設定する
     /// </summary>
-    protected override void SetEnemyName()
+    protected override void SetName()
     {
         // 名前をサハギンとする
         enemyName = "サハギン";
@@ -120,22 +120,6 @@ public class Sahagin : EnemyData
                 enemyStatus = Status.DAMEGE;
             }
         }
-    }
-
-    /// <summary>
-    /// ダメージを食らっている時の処理
-    /// </summary>
-    protected override void SufferingDamage()
-    {
-        // 特になし
-    }
-
-    /// <summary>
-    /// 攻撃中の処理
-    /// </summary>
-    protected override void Attacking()
-    {
-        // 特になし
     }
 
     /// <summary>

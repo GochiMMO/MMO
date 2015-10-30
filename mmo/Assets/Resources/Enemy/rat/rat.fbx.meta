@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 7be65672846b61d4e9e17a6e7650e67b
+timeCreated: 1444113053
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: back_leg.IK.L
+    100004: back_leg.IK.L.001
+    100006: back_leg.IK.L.001_end
+    100008: back_leg.IK.L_end
+    100010: back_leg.IK.R
+    100012: back_leg.IK.R.001
+    100014: back_leg.IK.R.001_end
+    100016: back_leg.IK.R_end
+    100018: back_leg.L.001
+    100020: back_leg.L.002
+    100022: back_leg.R.001
+    100024: back_leg.R.002
+    100026: body.001
+    100028: body.002
+    100030: Bone.014
+    100032: Bone.014_end
+    100034: front_leg.IK.L
+    100036: front_leg.IK.L_end
+    100038: front_leg.IK.R
+    100040: front_leg.IK.R_end
+    100042: front_leg.L.001
+    100044: front_leg.L.002
+    100046: front_leg.L.002_end
+    100048: front_leg.R.001
+    100050: front_leg.R.002
+    100052: front_leg.R.002_end
+    100054: head
+    100056: head_end
+    100058: //RootNode
+    100060: root
+    100062: tail
+    100064: tail.001
+    100066: tail.002
+    100068: tail.002_end
+    100070: "\u7ACB\u65B9\u4F53"
+    400000: Armature
+    400002: back_leg.IK.L
+    400004: back_leg.IK.L.001
+    400006: back_leg.IK.L.001_end
+    400008: back_leg.IK.L_end
+    400010: back_leg.IK.R
+    400012: back_leg.IK.R.001
+    400014: back_leg.IK.R.001_end
+    400016: back_leg.IK.R_end
+    400018: back_leg.L.001
+    400020: back_leg.L.002
+    400022: back_leg.R.001
+    400024: back_leg.R.002
+    400026: body.001
+    400028: body.002
+    400030: Bone.014
+    400032: Bone.014_end
+    400034: front_leg.IK.L
+    400036: front_leg.IK.L_end
+    400038: front_leg.IK.R
+    400040: front_leg.IK.R_end
+    400042: front_leg.L.001
+    400044: front_leg.L.002
+    400046: front_leg.L.002_end
+    400048: front_leg.R.001
+    400050: front_leg.R.002
+    400052: front_leg.R.002_end
+    400054: head
+    400056: head_end
+    400058: //RootNode
+    400060: root
+    400062: tail
+    400064: tail.001
+    400066: tail.002
+    400068: tail.002_end
+    400070: "\u7ACB\u65B9\u4F53"
+    4300000: "\u7ACB\u65B9\u4F53"
+    7400000: Armature|Attack
+    7400002: Armature|Attack2
+    7400004: Armature|Damage
+    7400006: Armature|Die
+    7400008: Armature|Idle
+    7400010: Armature|Run
+    7400012: Armature|Special
+    7400014: Armature|Walk
+    9500000: //RootNode
+    13700000: "\u7ACB\u65B9\u4F53"
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Attack
+      takeName: Armature|Attack
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Attack2
+      takeName: Armature|Attack2
+      firstFrame: 0
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Damage
+      takeName: Armature|Damage
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Die
+      takeName: Armature|Die
+      firstFrame: 0
+      lastFrame: 97
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Run
+      takeName: Armature|Run
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Special
+      takeName: Armature|Special
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Armature|Walk
+      takeName: Armature|Walk
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/root
+        weight: 1
+      - path: Armature/root/body.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.IK.L.001/back_leg.IK.L.001_end
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001
+        weight: 1
+      - path: Armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.IK.R.001/back_leg.IK.R.001_end
+        weight: 1
+      - path: Armature/root/body.001/body.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.L/back_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/back_leg.IK.R/back_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.L/front_leg.IK.L_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.IK.R/front_leg.IK.R_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.L.001/front_leg.L.002/front_leg.L.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: Armature/root/body.001/body.002/front_leg.R.001/front_leg.R.002/front_leg.R.002_end
+        weight: 1
+      - path: Armature/root/body.001/body.002/head
+        weight: 1
+      - path: Armature/root/body.001/body.002/head/head_end
+        weight: 1
+      - path: Armature/root/body.001/Bone.014
+        weight: 1
+      - path: Armature/root/body.001/Bone.014/Bone.014_end
+        weight: 1
+      - path: Armature/root/body.001/tail
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002
+        weight: 1
+      - path: Armature/root/body.001/tail/tail.001/tail.002/tail.002_end
+        weight: 1
+      - path: "\u7ACB\u65B9\u4F53"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

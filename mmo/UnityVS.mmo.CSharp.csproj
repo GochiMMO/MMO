@@ -212,7 +212,11 @@
     <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
     <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
     <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Bee.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Cokatris.cs" />
     <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\FullCustomEnemyBase.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\LoiteringEnemyBase.cs" />
     <Compile Include="Assets\Script\Game\Enemy\Sahagin.cs" />
     <Compile Include="Assets\Script\Game\Equip\EquipBase.cs" />
     <Compile Include="Assets\Script\Game\Item\UseItem.cs" />
@@ -296,6 +300,7 @@
     <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />
     <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
     <Compile Include="Assets\WhenEndAnimDestroy.cs" />
+    <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Elementals\!Readme.txt" />

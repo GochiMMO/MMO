@@ -15,16 +15,16 @@ MonoBehaviour:
   - name: Sahagin
     list:
     - Name: "\u30B5\u30CF\u30AE\u30F3"
-      HP: 1000
+      HP: 2500
       Attack: 100
       Defense: 100
       MagicAttack: 100
-      MagicDefense: 100
+      MagicDefense: 150
       MoveSpeed: 3
       TrackingSpeed: 5
       ActionInterval: 4
-      FieldOfView: 180
-      ViewDistance: 10
+      FieldOfView: 160
+      ViewDistance: 8
       ActionDistance: 2
   - name: Bee
     list:
@@ -40,3 +40,17 @@ MonoBehaviour:
       FieldOfView: 120
       ViewDistance: 5
       ActionDistance: 1
+  - name: Cokatris
+    list:
+    - Name: "\u30B3\u30AB\u30C8\u30EA\u30B9"
+      HP: 3000
+      Attack: 150
+      Defense: 200
+      MagicAttack: 0
+      MagicDefense: 50
+      MoveSpeed: 2
+      TrackingSpeed: 3
+      ActionInterval: 2
+      FieldOfView: 260
+      ViewDistance: 8
+      ActionDistance: 5

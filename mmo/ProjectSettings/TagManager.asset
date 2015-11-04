@@ -8,6 +8,7 @@ TagManager:
   - Scripts
   - YesButton
   - Enemy
+  - Text
   layers:
   - Default
   - TransparentFX

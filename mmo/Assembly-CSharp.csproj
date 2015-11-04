@@ -250,6 +250,9 @@
      <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusPartitionSystem.cs" />
      <Compile Include="Assets\Script\Game\UI\SystemMenu.cs" />
+     <Compile Include="Assets\Script\ImportScripts\SpringBone.cs" />
+     <Compile Include="Assets\Script\ImportScripts\SpringCollider.cs" />
+     <Compile Include="Assets\Script\ImportScripts\SpringManager.cs" />
      <Compile Include="Assets\Script\Input\MouseInput.cs" />
      <Compile Include="Assets\Script\JobSelect\EndInputName.cs" />
      <Compile Include="Assets\Script\JobSelect\JobSelectWindow.cs" />

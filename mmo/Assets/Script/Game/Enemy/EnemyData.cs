@@ -3,7 +3,16 @@ using System.Collections;
 
 [RequireComponent(typeof(PhotonView))]          //PhotonViewを使う
 [RequireComponent(typeof(CapsuleCollider))]     //カプセルコライダーを使う
+[RequireComponent(typeof(Rigidbody))]           // rigidbodyを使う
 abstract public class EnemyData : Photon.MonoBehaviour {
+    /// <summary>
+    /// 通信同期のためのコンポーネント
+    /// </summary>
+    protected PhotonTransformView photonTransformView;
+    /// <summary>
+    /// 物理演算を行うためのコンポーネント
+    /// </summary>
+    protected Rigidbody rigBody;
     /// <summary>
     /// 敵の元データの参照
     /// </summary>
@@ -44,43 +53,43 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// <summary>
     /// 攻撃力
     /// </summary>
-    protected int attack;
+    protected int attack { private set; get; }
     /// <summary>
     /// 防御力
     /// </summary>
-    protected int defense;
+    protected int defense { private set; get; }
     /// <summary>
     /// 魔法攻撃力
     /// </summary>
-    protected int magicAttack;
+    protected int magicAttack { private set; get; }
     /// <summary>
     /// 魔法防御力
     /// </summary>
-    protected int magicDefense;
+    protected int magicDefense { private set; get; }
     /// <summary>
     /// 移動速度
     /// </summary>
-    protected float moveSpeed;
+    protected float moveSpeed { private set; get; }
     /// <summary>
     /// プレイヤー発見時、追跡する速度
     /// </summary>
-    protected float trackingSpeed;
+    protected float trackingSpeed{ private set; get; }
     /// <summary>
     /// 敵が行動を変更する間隔（秒）
     /// </summary>
-    protected float actionInterval;
+    protected float actionInterval { private set; get; }
     /// <summary>
     /// 敵がプレイヤーを発見できる視野角（度）
     /// </summary>
-    protected float angle;
+    protected float angle { private set; get; }
     /// <summary>
     /// 敵がプレイヤーを発見できる距離（メートル）
     /// </summary>
-    protected float angleDistance;
+    protected float angleDistance { private set; get; }
     /// <summary>
     /// 敵が何らかのアクションを行う距離
     /// </summary>
-    protected float actionDistance;
+    protected float actionDistance { private set; get; }
     /// <summary>
     /// 最後に行動が変わった時間
     /// </summary>
@@ -90,21 +99,25 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     protected Vector3 moveValue;
     /// <summary>
+    /// 前フレーム移動速度
+    /// </summary>
+    protected Vector3 pastMoveValue;
+    /// <summary>
     /// 回転する角度
     /// </summary>
     protected Vector3 newRotation;
     /// <summary>
-    /// １つ前のフレームの位置
+    /// 前フレームの回転角度
     /// </summary>
-    protected Vector3 pastPosition;  //過去位置
+    protected Vector3 pastRotation;
     /// <summary>
     /// プレイヤーの配列
     /// </summary>
-    protected GameObject[] players;
+    protected GameObject[] players { private set; get; }
     /// <summary>
     /// ヘイトを一番稼いでるプレイヤーのオブジェクトを格納する変数
     /// </summary>
-    protected GameObject haightMaxPlayer;
+    protected GameObject haightMaxPlayer { private set; get; }
     /// <summary>
     /// 敵のステータス(状態遷移用)
     /// </summary>
@@ -112,9 +125,9 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// <summary>
     /// スクリプト用コンポーネントを格納しておくオブジェクト
     /// </summary>
-    protected GameObject scripts;     // スクリプトコンポーネント
+    private GameObject scripts;
     /// <summary>
-    /// //（敵にとって）自分が出現管理されているスクリプトの参照、インスペクターには表示しない
+    /// （敵にとって）自分が出現管理されているスクリプトの参照、インスペクターには表示しない
     /// </summary>
     [HideInInspector]
     public PopEnemy myPopScriptRefarence;
@@ -252,6 +265,18 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         scripts = GameObject.FindGameObjectWithTag("Scripts");
         // アニメーションコンポーネントを取得する
         anim = gameObject.GetComponent<Animator>();
+        // 通信同期のためのコンポーネントを取得する
+        photonTransformView = gameObject.GetComponent<PhotonTransformView>();
+        // 物理演算の為のコンポーネントを取得する
+        rigBody = gameObject.GetComponent<Rigidbody>();
+        // マスタークライアントならば
+        if (PhotonNetwork.isMasterClient)
+        {
+            // 移動速度を設定する
+            moveValue.z = moveSpeed;
+            // 通信同期のための移動速度を送る
+            photonTransformView.SetSynchronizedValues(moveValue, 0f);
+        }
         // ヘイトが一番高いプレイヤーを探す
         GetHaightHighestPlayer();
     }

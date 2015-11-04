@@ -165,7 +165,1255 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: bee.armature|Attack Special
+      takeName: bee.armature|Attack Special
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Attack_1
+      takeName: bee.armature|Attack_1
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Attack_2
+      takeName: bee.armature|Attack_2
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Damage
+      takeName: bee.armature|Damage
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Die
+      takeName: bee.armature|Die
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Flight
+      takeName: bee.armature|Flight
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: 'bee.armature|Hovering '
+      takeName: 'bee.armature|Hovering '
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: bee.armature|Hovering Special
+      takeName: bee.armature|Hovering Special
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bee
+        weight: 1
+      - path: bee.armature
+        weight: 1
+      - path: bee.armature/root
+        weight: 1
+      - path: bee.armature/root/body.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.001/back_leg.L.002/back_leg.L.003/back_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.L.004/back_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.001/back_leg.R.002/back_leg.R.003/back_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/back_leg.R.004/back_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.L/feather.L_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/feather.R/feather.R_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.001/touch.L.002/touch.L.003/touch.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.L.004/touch.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.001/touch.R.002/touch.R.003/touch.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/head/touch.R.004/touch.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.L.004/sickle.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/body.002/sickle.R.004/sickle.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.001/front_leg.L.002/front_leg.L.003/front_leg.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.L.004/front_leg.L.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.001/front_leg.R.002/front_leg.R.003/front_leg.R.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004
+        weight: 1
+      - path: bee.armature/root/body.001/front_leg.R.004/front_leg.R.004_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.L.001/sickle.L.002/sickle.L.003/sickle.L.003_end
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003
+        weight: 1
+      - path: bee.armature/root/body.001/sickle.R.001/sickle.R.002/sickle.R.003/sickle.R.003_end
+        weight: 1
+      - path: bee.armature/root/hip.001
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003
+        weight: 1
+      - path: bee.armature/root/hip.001/hip.002/hip.003/hip.003_end
+        weight: 1
+      - path: bee.armature/root/hip.004
+        weight: 1
+      - path: bee.armature/root/hip.004/hip.004_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

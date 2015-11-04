@@ -29,17 +29,17 @@ MonoBehaviour:
   - name: Bee
     list:
     - Name: "\u30D3\u30FC"
-      HP: 1000
-      Attack: 100
-      Defense: 100
-      MagicAttack: 100
-      MagicDefense: 100
-      MoveSpeed: 1
-      TrackingSpeed: 5
-      ActionInterval: 5
-      FieldOfView: 120
-      ViewDistance: 5
-      ActionDistance: 1
+      HP: 2500
+      Attack: 150
+      Defense: 10
+      MagicAttack: 200
+      MagicDefense: 10
+      MoveSpeed: 8
+      TrackingSpeed: 8
+      ActionInterval: 1
+      FieldOfView: 200
+      ViewDistance: 10
+      ActionDistance: 6
   - name: Cokatris
     list:
     - Name: "\u30B3\u30AB\u30C8\u30EA\u30B9"
@@ -54,3 +54,17 @@ MonoBehaviour:
       FieldOfView: 260
       ViewDistance: 8
       ActionDistance: 5
+  - name: Rat
+    list:
+    - Name: "\u30D3\u30FC"
+      HP: 1000
+      Attack: 100
+      Defense: 100
+      MagicAttack: 100
+      MagicDefense: 100
+      MoveSpeed: 1
+      TrackingSpeed: 5
+      ActionInterval: 5
+      FieldOfView: 120
+      ViewDistance: 12
+      ActionDistance: 1

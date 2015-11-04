@@ -17,7 +17,8 @@ abstract public class LoiteringEnemyBase : EnemyData{
     /// <summary>
     /// 既定距離に達した時の行動
     /// </summary>
-    abstract protected void NearPlayerAction();
+    /// <param name="distance">距離</param>
+    abstract protected void NearPlayerAction(float distance = -1f);
 
     /// <summary>
     /// 攻撃が終わった瞬間の処理
@@ -86,6 +87,14 @@ abstract public class LoiteringEnemyBase : EnemyData{
     /// 攻撃中の処理
     /// </summary>
     virtual protected void Attacking() { }
+    /// <summary>
+    /// 敵がプレイヤーを見失った瞬間の処理
+    /// </summary>
+    virtual protected void MissingPlayer() { }
+    /// <summary>
+    /// 敵の状態がその他であるときに行う行動
+    /// </summary>
+    virtual protected void OtherAction() { }
 
     /// <summary>
     /// ノーマル状態の向くべき方向
@@ -119,6 +128,12 @@ abstract public class LoiteringEnemyBase : EnemyData{
             RotateDirection();
             // その他のインターバル上で行いたい処理を行う
             OtherIntervalAction();
+            // マスタークライアントならば
+            if (PhotonNetwork.isMasterClient)
+            {
+                // 移動速度、回転度を同期する
+                photonTransformView.SetSynchronizedValues(moveValue, newRotation.y);
+            }
         }
         // 移動させる
         transform.Translate(moveValue * Time.deltaTime);
@@ -132,19 +147,17 @@ abstract public class LoiteringEnemyBase : EnemyData{
     private void Tracking()
     {
         // プレイヤーとの距離を計算する
-        float kyori = (transform.position - haightMaxPlayer.transform.position).sqrMagnitude;
+        float distance = (transform.position - haightMaxPlayer.transform.position).sqrMagnitude;
 
         // 指定した距離に到達したかどうか
-        if (kyori < actionDistance)
+        if (distance < actionDistance)
         {
             // プレイヤーが近くに来た時の処理を行う
-            NearPlayerAction();
-            Debug.Log("プレイヤー接近");
+            NearPlayerAction(distance);
         }
         // 指定した距離に到達していない場合
         else
         {
-            Debug.Log("プレイヤーから離れました");
             // 移動速度を追いかける速度に変更する
             moveValue.z = trackingSpeed;
             // 走ってるアニメーションに変更する
@@ -200,8 +213,10 @@ abstract public class LoiteringEnemyBase : EnemyData{
             // 状態によって変化する
             switch (enemyStatus)
             {
+                    // 通常時の処理
                 case Status.NORMAL:
-                    Move();         // 移動処理
+                    // 移動処理
+                    Move();
                     // プレイヤーを探す処理
                     if (CheckView())
                     {
@@ -209,6 +224,8 @@ abstract public class LoiteringEnemyBase : EnemyData{
                         SearchPlayer();
                     }
                     break;
+
+                    // 攻撃時の処理
                 case Status.ATTACK:
                     // 攻撃が終了する処理
                     if (IsEndAttack())
@@ -219,6 +236,7 @@ abstract public class LoiteringEnemyBase : EnemyData{
                     // 攻撃中の処理
                     Attacking();
                     break;
+
                 // ダメージを食らった時の処理
                 case Status.DAMEGE:
                     if (IsEndDamage())
@@ -229,21 +247,47 @@ abstract public class LoiteringEnemyBase : EnemyData{
                     // ダメージを食らっている時の処理
                     SufferingDamage();
                     break;
+
                 // プレイヤーを発見した時
                 case Status.DISCOVER:
                     // プレイヤーを探し、発見したらtrue、発見できなかったらfalse
                     if (!CheckView())
                     {
+                        // 敵がプレイヤーを見失った瞬間の処理
+                        MissingPlayer();
                         break;
                     }
                     // 追いかける処理
                     Tracking();
                     break;
+
+                // その他の処理
+                case Status.OTHER:
+                    OtherAction();
+                    break;
+
+                    // 敵が死亡したとき
                 case Status.DEAD:
                     break;
                 default:
                     break;
             }
+            // 前フレーム移動速度と現在移動速度が変わっていたら
+            if (pastMoveValue != moveValue)
+            {
+                // 移動速度を同期する
+                photonTransformView.SetSynchronizedValues(moveValue, newRotation.y);
+            }
+            // 前フレーム移動速度を設定する
+            pastMoveValue = moveValue;
+        }
+        // マスタークライアントでなければ
+        else
+        {
+            // 移動させる
+            gameObject.transform.Translate(moveValue * Time.deltaTime);
+            // 回転させる
+            gameObject.transform.Rotate(0f, newRotation.y * Time.deltaTime, 0f);
         }
     }
 }

@@ -74,7 +74,7 @@ public class Sahagin : LoiteringEnemyBase
     /// <summary>
     /// プレイヤーの近くにいる時の処理
     /// </summary>
-    protected override void NearPlayerAction()
+    protected override void NearPlayerAction(float distance)
     {
         // 攻撃アニメーションでない時
         if (enemyStatus != Status.ATTACK)

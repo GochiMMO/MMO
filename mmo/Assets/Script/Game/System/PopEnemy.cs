@@ -47,7 +47,8 @@ public class PopEnemy : Photon.MonoBehaviour {
                     GameObject enemy = PhotonNetwork.InstantiateSceneObject("Enemy/" + popEnemyPrefab.name, popPoint[Random.Range(0, popPoint.Length)], Quaternion.identity, 0, null);
                     nowPopEnemyNum++;
                     time = Time.time;
-                    enemy.GetComponent<EnemyData>().myPopScriptRefarence = this;    //自分の参照を入れておく
+                    var enemyData = enemy.GetComponent<EnemyData>();
+                    enemyData.myPopScriptRefarence = this;    //自分の参照を入れておく
                 }
             }
         }

@@ -80,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ApplyRootMotion.cs" />
     <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
     <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
@@ -211,7 +212,15 @@
     <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
     <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
     <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Bee.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Cokatris.cs" />
     <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\FullCustomEnemyBase.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\LoiteringEnemyBase.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Rat.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\Sahagin.cs" />
+    <Compile Include="Assets\Script\Game\Equip\EquipBase.cs" />
+    <Compile Include="Assets\Script\Game\Item\UseItem.cs" />
     <Compile Include="Assets\Script\Game\Magic\FireShot.cs" />
     <Compile Include="Assets\Script\Game\Magic\LifeSpan.cs" />
     <Compile Include="Assets\Script\Game\Magic\MagicBase.cs" />
@@ -252,6 +261,7 @@
     <Compile Include="Assets\Script\Game\Skill\Warrior\Warcry.cs" />
     <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />
     <Compile Include="Assets\Script\Game\System\DrawDamage.cs" />
+    <Compile Include="Assets\Script\Game\System\LoadCSV.cs" />
     <Compile Include="Assets\Script\Game\System\MouseRay.cs" />
     <Compile Include="Assets\Script\Game\System\Party\PartySystem.cs" />
     <Compile Include="Assets\Script\Game\System\Party\ShowPartyMember.cs" />
@@ -262,11 +272,22 @@
     <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
     <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
     <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\DuplicateSprite.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\MoveSprite.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\RemoveSprite.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\SetSkillIcon.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\SkillPaletteData.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\UpdateItemCoolTime.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\UpdateSkillCoolTime.cs" />
     <Compile Include="Assets\Script\Game\UI\Status\UpdatePartyStatus.cs" />
     <Compile Include="Assets\Script\Game\UI\Status\UpdateShowStatus.cs" />
     <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />
     <Compile Include="Assets\Script\Game\UI\StatusPartitionSystem.cs" />
     <Compile Include="Assets\Script\Game\UI\SystemMenu.cs" />
+    <Compile Include="Assets\Script\ImportScripts\SpringBone.cs" />
+    <Compile Include="Assets\Script\ImportScripts\SpringCollider.cs" />
+    <Compile Include="Assets\Script\ImportScripts\SpringManager.cs" />
+    <Compile Include="Assets\Script\Input\MouseInput.cs" />
     <Compile Include="Assets\Script\JobSelect\EndInputName.cs" />
     <Compile Include="Assets\Script\JobSelect\JobSelectWindow.cs" />
     <Compile Include="Assets\Script\JobSelect\SelectJob.cs" />
@@ -279,10 +300,16 @@
     <Compile Include="Assets\Tazo_fx\Script\AnimateTiledTextureOnTrail.cs" />
     <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
     <Compile Include="Assets\Tazo_fx\Script\DestroySelf.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Entity_Items.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />
+    <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
+    <Compile Include="Assets\WhenEndAnimDestroy.cs" />
+    <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Elementals\!Readme.txt" />
     <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
+    <None Include="Assets\Materials\CoolTime.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
@@ -292,6 +319,11 @@
     <None Include="Assets\Plugins\release_history.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Terasurware\Editor\EntityTemplate.txt" />
+    <None Include="Assets\Terasurware\Editor\EntityTemplate2.txt" />
+    <None Include="Assets\Terasurware\Editor\ExportTemplate.txt" />
+    <None Include="Assets\Terasurware\Editor\ExportTemplate2.txt" />
+    <None Include="Assets\Terasurware\Editor\npoi\NPOI.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

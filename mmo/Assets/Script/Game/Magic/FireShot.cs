@@ -6,21 +6,11 @@ public class FireShot : Photon.MonoBehaviour {
     float speed = 12f;     //移動速度
 
     Vector3 moveVec;        //移動方向とその力
-    //Collider col;           //コライダー
-    //bool shotFlag = false;  //移動するかどうか
     PhotonTransformView photonTransformView;
-    Rigidbody rig;
 
     // Use this for initialization
     void Start () {
-        //shotFlag = false;
-        //col = this.GetComponent<SphereCollider>();
         photonTransformView = GetComponent<PhotonTransformView>();
-        rig = GetComponent<Rigidbody>();
-        if (photonView.isMine)
-        {
-            rig.isKinematic = false;
-        }
     }
 
     /// <summary>
@@ -43,15 +33,15 @@ public class FireShot : Photon.MonoBehaviour {
         moveVec.x = -Mathf.Cos(direction * Mathf.PI / 180f) * speed;
         moveVec.z = Mathf.Sin(direction * Mathf.PI / 180f) * speed;
         moveVec.y = 0;
+        if (photonView.isMine)
+        {
+            photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
+        }
         //shotFlag = true;
     }
 
     // Update is called once per frame
     void Update () {
-        if (photonView.isMine)
-        {
-            photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
-        }
         this.transform.Translate(moveVec * Time.deltaTime, Space.World);
     }
 }

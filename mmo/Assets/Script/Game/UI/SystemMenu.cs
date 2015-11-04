@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SystemMenu : MonoBehaviour {
+public class SystemMenu : MonoBehaviour
+{
     [SerializeField, Tooltip("ログアウトするかどうかのウインドウ")]
     GameObject logoutWindow;
     [SerializeField, Tooltip("ゲーム終了するかどうかのウインドウ")]
@@ -42,7 +43,7 @@ public class SystemMenu : MonoBehaviour {
     }
 
     /// <summary>
-    /// Disconnect and quit game.
+    /// Disconnect and quit this game.
     /// </summary>
     public void PushGameQuitButton()
     {

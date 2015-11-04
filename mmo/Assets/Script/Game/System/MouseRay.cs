@@ -73,8 +73,8 @@ public class MouseRay : MonoBehaviour {
                     // ネームプレートの名前を変更する
                     namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.GetPhotonView().owner.name;
 
-                    // 右クリックされた時の処理
-                    if (rightClickFlag)
+                    // 右クリックされ、かつ自分以外のプレイヤーだった場合
+                    if (rightClickFlag && hit.collider.gameObject.GetPhotonView().ownerId != PhotonNetwork.player.ID)
                     {
                         targetPlayer = hit.collider.gameObject;     // 送り先を格納しておく
 

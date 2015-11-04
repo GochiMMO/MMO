@@ -14,13 +14,13 @@ public class Haight : MonoBehaviour {
         return haighting;
     }
 
-	void Start () {
+    void Start () {
         haighting = 0;
-	}
-	
-	void Update () {
+    }
+    
+    void Update () {
         //ここにヘイトを上昇、もしくは減少の処理をさせる
-	}
+    }
 
     //状態の同期
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

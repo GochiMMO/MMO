@@ -108,6 +108,7 @@
   <ItemGroup>
     <None Include="Assets\Elementals\!Readme.txt" />
     <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
+    <None Include="Assets\Materials\CoolTime.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
@@ -117,6 +118,11 @@
     <None Include="Assets\Plugins\release_history.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Terasurware\Editor\EntityTemplate.txt" />
+    <None Include="Assets\Terasurware\Editor\EntityTemplate2.txt" />
+    <None Include="Assets\Terasurware\Editor\ExportTemplate.txt" />
+    <None Include="Assets\Terasurware\Editor\ExportTemplate2.txt" />
+    <None Include="Assets\Terasurware\Editor\npoi\NPOI.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

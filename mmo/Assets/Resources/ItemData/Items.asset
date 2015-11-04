@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -11,24 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b29897b8601690428c5dba891011ebc, type: 3}
   m_Name: Items
   m_EditorClassIdentifier: 
-  sheets:
-  - name: Items
-    list:
-    - id: 0
-      name: "\u30DD\u30FC\u30B7\u30E7\u30F3"
-      spriteName: Potion
-      cost: 100
-      hpRecoveryValue: 300
-      spReoveryValue: 0
-    - id: 1
-      name: "\u30CF\u30A4\u30DD\u30FC\u30B7\u30E7\u30F3"
-      spriteName: HighPotion
-      cost: 500
-      hpRecoveryValue: 1000
-      spReoveryValue: 0
-    - id: 2
-      name: "\u30A8\u30AF\u30B9\u30DD\u30FC\u30B7\u30E7\u30F3"
-      spriteName: ExPotion
-      cost: 1500
-      hpRecoveryValue: 5000
-      spReoveryValue: 0
+  sheets: []

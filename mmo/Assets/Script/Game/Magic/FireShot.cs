@@ -7,10 +7,12 @@ public class FireShot : Photon.MonoBehaviour {
 
     Vector3 moveVec;        //移動方向とその力
     PhotonTransformView photonTransformView;
+    PhotonView pv;
 
     // Use this for initialization
     void Start () {
         photonTransformView = GetComponent<PhotonTransformView>();
+        pv = gameObject.GetComponent<PhotonView>();
     }
 
     /// <summary>
@@ -19,7 +21,7 @@ public class FireShot : Photon.MonoBehaviour {
     /// <param name="collider">Collider class.</param>
     void OnTriggerEnter(Collider collider)
     {
-        if (photonView.isMine)  //出現させたのが自分ならば処理を行う
+        if (pv.isMine)  //出現させたのが自分ならば処理を行う
         {
             if (collider.gameObject.tag != "Player")        //プレイヤーとは当り判定を取らない
             {
@@ -33,7 +35,7 @@ public class FireShot : Photon.MonoBehaviour {
         moveVec.x = -Mathf.Cos(direction * Mathf.PI / 180f) * speed;
         moveVec.z = Mathf.Sin(direction * Mathf.PI / 180f) * speed;
         moveVec.y = 0;
-        if (photonView.isMine)
+        if (pv.isMine)
         {
             photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
         }

@@ -172,7 +172,7 @@ abstract public class LoiteringEnemyBase : EnemyData{
     /// </summary>
     private bool CheckView()
     {
-        Debug.Log(Vector3.Angle(transform.position - haightMaxPlayer.transform.position, transform.forward).ToString());
+        // Debug.Log(Vector3.Angle(transform.position - haightMaxPlayer.transform.position, transform.forward).ToString());
 
         // プレイヤーを発見したら
         if ((haightMaxPlayer.transform.position - transform.position).sqrMagnitude < angleDistance                    // 距離計算

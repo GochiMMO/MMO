@@ -7,24 +7,26 @@ public class UpdateSkillCoolTime : MonoBehaviour {
     [SerializeField, Tooltip("回転させる画像の左側")]
     Transform maskImage2;
 
-    static bool coolTimeFlag = false;
+    // クールタイムを行っているフラグ
+    bool coolTimeFlag = false;
 
-    public static float coolTime = 0f;
+    // クールタイム
+    public float coolTime = 0f;
 
-    static float nowTime = 0f;
+    // 現在時間
+    float nowTime = 0f;
 
+    // どのくらいの割合回転させているか
     float timePercentage = 0f;
-    float angle = 0f;
 
-    void Start()
-    {
-    }
+    // 回転角
+    float angle = 0f;
 
     // Update is called once per frame
     void Update()
     {
         // クールタイムのフラグが立っていたら
-        if (UpdateSkillCoolTime.coolTimeFlag)
+        if (coolTimeFlag)
         {
             // 角度が設定されていなければ
             if (angle == 0f)
@@ -60,7 +62,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
             // アクティブならば
             if (this.gameObject.activeInHierarchy)
             {
-                Debug.Log("アイテムのクールタイムのフラグはオフ！");
+                Debug.Log("スキルのクールタイムのフラグはオフ！");
                 // 非アクティブにする
                 gameObject.SetActive(false);
             }
@@ -97,20 +99,27 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         maskImage1.rotation = Quaternion.Euler(Vector3.zero);
         maskImage2.rotation = Quaternion.Euler(Vector3.zero);
         // クールタイムを解除する
-        UpdateSkillCoolTime.coolTime = 0f;
-        UpdateSkillCoolTime.nowTime = 0f;
-        UpdateSkillCoolTime.coolTimeFlag = false;
+        coolTime = 0f;
+        nowTime = 0f;
+        coolTimeFlag = false;
         // 非アクティブにする
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// クールタイムを設定する関数
+    /// </summary>
+    /// <param name="coolTime">クールタイム(秒)</param>
     public void SetCoolTime(float coolTime)
     {
-        if (!UpdateSkillCoolTime.coolTimeFlag)
+        // クールタイムを行っているかどうか
+        if (!coolTimeFlag)
         {
-            Debug.Log("アイテムのクールタイム設定" + coolTime + "秒");
-            UpdateSkillCoolTime.coolTime = coolTime;
-            UpdateSkillCoolTime.coolTimeFlag = true;
+            Debug.Log("スキルのクールタイム設定" + coolTime + "秒");
+            // クールタイムを設定する
+            this.coolTime = coolTime;
+            // クールタイムを行うフラグを立てる
+            coolTimeFlag = true;
         }
     }
 }

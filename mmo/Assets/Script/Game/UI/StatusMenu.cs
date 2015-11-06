@@ -50,14 +50,15 @@ public class StatusMenu : MonoBehaviour {
         if (skillWindowInstance == null)
         {
             // インスタンスを作成する
-            GameObject.Instantiate(skillWindowPrefab);
+            skillWindowInstance = GameObject.Instantiate(skillWindowPrefab);
         }
     }
 
     // Use this for initialization
     void Start () {
+        GameObject player = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player");
         // プレイヤーのジョブを取得する
-        switch (StaticMethods.player.GetComponent<PlayerChar>().GetPlayerData().job)
+        switch (player.GetComponent<PlayerChar>().GetPlayerData().job)
         {
             case 0:
                 // スキルのウィンドウをアーチャーに設定する
@@ -75,12 +76,7 @@ public class StatusMenu : MonoBehaviour {
                 // スキルのウィンドウをモンクに設定する
                 skillWindowPrefab = monkSkillWindow;
                 break;
-
         }
-    }
-    
-    // Update is called once per frame
-    void Update () {
-    
+        Debug.Log(StaticMethods.player.GetComponent<PlayerChar>().GetPlayerData().job);
     }
 }

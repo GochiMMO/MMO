@@ -81,12 +81,14 @@ public class SetSkillIcon : MonoBehaviour {
                         // 位置を調整し、サイズを変更する
                         skills[i].transform.position = col[i].bounds.center;
                         skills[i].transform.localScale = new Vector3(1f, 1f, 1f);
+                        skills[i].GetComponent<RectTransform>().sizeDelta = new Vector2(80f, 80f);
 
-                        // 動かすコンポーネントと複製するコンポーネントをオフにする
+                        // 動かすコンポーネントをオフにする
                         skills[i].GetComponent<MoveSprite>().enabled = false;
 
-                        // そのセットされたものがアイテムならば
+                        // アイテムを使うクラスの変数定義
                         UseItem useItem;
+                        // そのセットされたものがアイテムならば
                         if ((useItem = skills[i].GetComponent<UseItem>()))
                         {
                             // アイテムを使うスクリプトに番号をセットする
@@ -100,6 +102,11 @@ public class SetSkillIcon : MonoBehaviour {
                                 // クールタイムのオブジェクトをアクティブにする
                                 itemCoolTimeObjects[i].SetActive(true);
                             }
+                        }
+                        else
+                        {
+                            // セットされたものはスキルとする
+                            skillorItemFlag[i] = PALETTE_CODE.SKILL;
                         }
 
                         // 離れるコンポーネントをオンにする

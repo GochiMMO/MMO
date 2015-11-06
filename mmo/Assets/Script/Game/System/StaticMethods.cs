@@ -4,14 +4,16 @@ using System.Collections;
 public static class StaticMethods{
     public static GameObject player
     {
-        private set { player = value; }
-        get { if (player == null) { FindAndSetPlayer(); } return player; }
+        private set { StaticMethods.player = value; }
+        get { if (StaticMethods.player.activeInHierarchy) { FindAndSetPlayer(); } return player; }
     }
 
     /// <summary>
     /// Constractor.
     /// </summary>
-    static StaticMethods() { player = null; }
+    static StaticMethods() {
+        FindAndSetPlayer();
+    }
 
     /// <summary>
     /// Destroy a game object.
@@ -220,8 +222,12 @@ public static class StaticMethods{
     {
         // Playerとタグが付くオブジェクトをすべて取得する
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+
+        Debug.Log(objs.Length);
+
         // PhotonView格納用ローカル変数定義
         PhotonView photonView;
+
         // objs分繰り返す
         foreach (GameObject obj in objs)
         {
@@ -230,8 +236,10 @@ public static class StaticMethods{
             // PhotonViewが存在する時
             if (photonView != null)
             {
+                Debug.Log("objID=" + photonView.owner.ID + "PhotonNetworkID=" + PhotonNetwork.player.ID);
+
                 // プレイヤーのIDとそのオブジェクトのIDが一致するかどうか
-                if (photonView.ownerId == PhotonNetwork.player.ID)
+                if (photonView.owner.ID == PhotonNetwork.player.ID)
                 {
                     // プレイヤーを設定する
                     StaticMethods.player = obj;

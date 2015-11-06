@@ -2,10 +2,16 @@
 using System.Collections;
 
 public static class StaticMethods{
+    public static GameObject player
+    {
+        private set { player = value; }
+        get { if (player == null) { FindAndSetPlayer(); } return player; }
+    }
+
     /// <summary>
     /// Constractor.
     /// </summary>
-    static StaticMethods() { }
+    static StaticMethods() { player = null; }
 
     /// <summary>
     /// Destroy a game object.
@@ -205,5 +211,33 @@ public static class StaticMethods{
     public static string CreateRichTextFromCaptionAndColorName(string caption, string colorName)
     {
         return "<color=" + colorName + ">" + caption + "</color>";
+    }
+
+    /// <summary>
+    /// プレイヤーを探してくる処理
+    /// </summary>
+    static void FindAndSetPlayer()
+    {
+        // Playerとタグが付くオブジェクトをすべて取得する
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        // PhotonView格納用ローカル変数定義
+        PhotonView photonView;
+        // objs分繰り返す
+        foreach (GameObject obj in objs)
+        {
+            // PhotonViewを取得する(通信用のコンポーネント
+            photonView = obj.GetPhotonView();
+            // PhotonViewが存在する時
+            if (photonView != null)
+            {
+                // プレイヤーのIDとそのオブジェクトのIDが一致するかどうか
+                if (photonView.ownerId == PhotonNetwork.player.ID)
+                {
+                    // プレイヤーを設定する
+                    StaticMethods.player = obj;
+                    return;
+                }
+            }
+        }
     }
 }

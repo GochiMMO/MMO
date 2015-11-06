@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// BoxCollider2Dを自動的にアタッチする
 [RequireComponent(typeof(BoxCollider2D))]
 public class MoveWindow : MonoBehaviour {
     //[SerializeField, Tooltip("ウインドウを動かすためのコライダー")]
     BoxCollider2D titleBarCollider;
 
+    // ウィンドウをつかんでるかのフラグ
     bool catchFlag = false;
+    // マウスの前からの移動量
     Vector2 mouseDeltaPosition;
+    // マウスの前フレーム移動位置
     Vector2 mousePastPosition;
 
     // Use this for initialization.
     void Start () {
         // アタッチしているコライダーを取得する
         titleBarCollider = GetComponent<BoxCollider2D>();
+        // 現在のフレームのマウス座標を入れておく
+        mousePastPosition = Input.mousePosition;
     }
 
     // Update is called once per frame

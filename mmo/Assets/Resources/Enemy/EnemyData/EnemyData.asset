@@ -56,7 +56,7 @@ MonoBehaviour:
       ActionDistance: 5
   - name: Rat
     list:
-    - Name: "\u30D3\u30FC"
+    - Name: "\u30E9\u30C3\u30C8"
       HP: 1000
       Attack: 100
       Defense: 100

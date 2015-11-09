@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(BoxCollider2D))]   //当たり判定オブジェクトを自動でアタッチ
 public class OverLapPoint : MonoBehaviour {
     [SerializeField, Tooltip("出すスキルのメニュー")]
-    GameObject SkillCanvas;
+    public GameObject SkillCanvas;
 
     // スクロール位置にマウスが存在するかどうか判定するコンポーネントの参照
     static ScrollOnMouseCheck scrollOnMouseCheck = null;

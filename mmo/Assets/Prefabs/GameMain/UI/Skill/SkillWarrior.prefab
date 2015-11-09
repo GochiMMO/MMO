@@ -66,6 +66,7 @@ GameObject:
   - 114: {fileID: 11428654}
   - 61: {fileID: 6160738}
   - 114: {fileID: 11416194}
+  - 114: {fileID: 11498312}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -153,6 +154,23 @@ GameObject:
   - 114: {fileID: 11420376}
   m_Layer: 5
   m_Name: Button2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &103302
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22468798}
+  - 222: {fileID: 22230386}
+  - 114: {fileID: 11401736}
+  m_Layer: 5
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,6 +387,7 @@ GameObject:
   - 114: {fileID: 11421026}
   - 61: {fileID: 6139772}
   - 114: {fileID: 11448750}
+  - 114: {fileID: 11438696}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -498,6 +517,24 @@ GameObject:
   - 114: {fileID: 11442744}
   m_Layer: 5
   m_Name: dummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &111576
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22427726}
+  - 222: {fileID: 22209246}
+  - 114: {fileID: 11436130}
+  - 114: {fileID: 11461680}
+  m_Layer: 5
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,6 +909,7 @@ GameObject:
   - 114: {fileID: 11469600}
   - 61: {fileID: 6182160}
   - 114: {fileID: 11442780}
+  - 114: {fileID: 11417324}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1049,6 +1087,7 @@ GameObject:
   - 114: {fileID: 11412398}
   - 61: {fileID: 6146412}
   - 114: {fileID: 11429902}
+  - 114: {fileID: 11446740}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1136,6 +1175,7 @@ GameObject:
   - 114: {fileID: 11411594}
   - 61: {fileID: 6116134}
   - 114: {fileID: 11401886}
+  - 114: {fileID: 11437330}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1421,6 +1461,7 @@ GameObject:
   - 114: {fileID: 11447584}
   - 61: {fileID: 6176154}
   - 114: {fileID: 11425198}
+  - 114: {fileID: 11478520}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1542,6 +1583,7 @@ GameObject:
   - 114: {fileID: 11446834}
   - 61: {fileID: 6151800}
   - 114: {fileID: 11465288}
+  - 114: {fileID: 11473882}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1596,6 +1638,7 @@ GameObject:
   - 114: {fileID: 11498180}
   - 61: {fileID: 6138630}
   - 114: {fileID: 11418448}
+  - 114: {fileID: 11496894}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1891,6 +1934,7 @@ GameObject:
   - 114: {fileID: 11495946}
   - 61: {fileID: 6195314}
   - 114: {fileID: 11437894}
+  - 114: {fileID: 11457842}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -1927,6 +1971,7 @@ GameObject:
   - 223: {fileID: 22382522}
   - 114: {fileID: 11466868}
   - 114: {fileID: 11453684}
+  - 114: {fileID: 11419352}
   m_Layer: 5
   m_Name: SkillWarrior
   m_TagString: Untagged
@@ -2031,6 +2076,7 @@ GameObject:
   - 114: {fileID: 11478792}
   - 61: {fileID: 6119136}
   - 114: {fileID: 11433410}
+  - 114: {fileID: 11422652}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2119,6 +2165,7 @@ GameObject:
   - 114: {fileID: 11419082}
   - 61: {fileID: 6154542}
   - 114: {fileID: 11478442}
+  - 114: {fileID: 11436324}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2476,6 +2523,7 @@ GameObject:
   - 114: {fileID: 11424690}
   - 61: {fileID: 6102938}
   - 114: {fileID: 11438214}
+  - 114: {fileID: 11445034}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2495,6 +2543,7 @@ GameObject:
   - 114: {fileID: 11427276}
   - 61: {fileID: 6147386}
   - 114: {fileID: 11452698}
+  - 114: {fileID: 11477150}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2568,6 +2617,7 @@ GameObject:
   - 114: {fileID: 11401974}
   - 61: {fileID: 6145670}
   - 114: {fileID: 11462416}
+  - 114: {fileID: 11422928}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2622,6 +2672,7 @@ GameObject:
   - 114: {fileID: 11451036}
   - 61: {fileID: 6178836}
   - 114: {fileID: 11483884}
+  - 114: {fileID: 11407678}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -2712,6 +2763,7 @@ GameObject:
   - 114: {fileID: 11429900}
   - 61: {fileID: 6164384}
   - 114: {fileID: 11487976}
+  - 114: {fileID: 11487856}
   m_Layer: 5
   m_Name: SkillIcon
   m_TagString: Untagged
@@ -3454,6 +3506,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11401736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\xD7"
 --- !u!114 &11401886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3764,6 +3842,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '-'
+--- !u!114 &11407678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191060}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11407896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4529,6 +4621,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &11417324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122198}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11417468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4609,6 +4715,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11419352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba598a8da3ef7db4ea1d39c5fcec2dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11419580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4914,6 +5031,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: +
+--- !u!114 &11422652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170982}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11422826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4976,6 +5107,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11422928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189496}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11423722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5868,6 +6013,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 14
+--- !u!114 &11436130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &11436324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173640}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11436478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5946,6 +6126,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Lv
+--- !u!114 &11437330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132840}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11437766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6029,6 +6223,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillFlag: 1
+--- !u!114 &11438696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11438768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6320,6 +6528,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 10000
+--- !u!114 &11445034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186798}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11446704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6341,6 +6563,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11446740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11446834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6963,6 +7199,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11457842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165574}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11457844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7087,6 +7337,58 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11461680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 11436130}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11419352}
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &11461766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7909,6 +8211,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11473882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150202}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11474384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8062,6 +8378,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &11477150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187282}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11477208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8153,6 +8483,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillFlag: 1
+--- !u!114 &11478520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146714}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11478792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8751,6 +9095,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '-'
+--- !u!114 &11487856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195224}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11487976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9220,6 +9578,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11496894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11496928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9339,6 +9711,20 @@ MonoBehaviour:
   m_PreferredHeight: 100
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &11498312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100840}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d155d2eb82001c48b86f9321041d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillPaletteNumber: 0
+  skillCoolTimeFlag: 0
 --- !u!114 &11498830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9488,6 +9874,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195224}
+--- !u!222 &22209246
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111576}
 --- !u!222 &22209406
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -9722,6 +10114,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182540}
+--- !u!222 &22230386
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103302}
 --- !u!222 &22230802
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -10411,6 +10809,7 @@ RectTransform:
   - {fileID: 22453544}
   - {fileID: 22440124}
   - {fileID: 22417014}
+  - {fileID: 22427726}
   m_Father: {fileID: 22432178}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
@@ -11139,6 +11538,24 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22427726
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 22468798}
+  m_Father: {fileID: 22402792}
+  m_RootOrder: 3
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -305.899994, y: 211.5}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22428394
 RectTransform:
@@ -12343,6 +12760,23 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22468798
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22427726}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}

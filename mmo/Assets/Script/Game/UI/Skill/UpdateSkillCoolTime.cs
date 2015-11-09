@@ -7,6 +7,11 @@ public class UpdateSkillCoolTime : MonoBehaviour {
     [SerializeField, Tooltip("回転させる画像の左側")]
     Transform maskImage2;
 
+    /// <summary>
+    /// スキルを使うスクリプトを登録しておく
+    /// </summary>
+    public UseSkill useSkill;
+
     // クールタイムを行っているフラグ
     bool coolTimeFlag = false;
 
@@ -22,9 +27,61 @@ public class UpdateSkillCoolTime : MonoBehaviour {
     // 回転角
     float angle = 0f;
 
+    // このスクリプトが有効化されたら
+    void OnEnable()
+    {
+        // 画像を非表示にする
+        maskImage1.gameObject.SetActive(false);
+        maskImage2.gameObject.SetActive(false);
+        // クールタイムを同期する
+        SyncCoolTime();
+    }
+
+    void OnDisable()
+    {
+        if (coolTimeFlag)
+        {
+            Initialization();
+        }
+    }
+
+    /// <summary>
+    /// クールタイムを同期する関数
+    /// </summary>
+    void SyncCoolTime()
+    {
+        // 設定されたスキルがクールタイム中であり、自分がクールタイム中でなければ
+        if (SyncSkillCoolTime.IsCoolTime(useSkill.skillID) && !coolTimeFlag || !SyncSkillCoolTime.IsSameCoolTime(useSkill.skillID, coolTime))
+        {
+            // 初期化処理を行う
+            Initialization();
+            // クールタイムをセットする
+            this.coolTime = SyncSkillCoolTime.GetCoolTime(useSkill.skillID);
+            // 始まった時間を取得する
+            this.nowTime = SyncSkillCoolTime.GetStartTime(useSkill.skillID);
+            // クールタイムを行うフラグをオンにする
+            this.coolTimeFlag = true;
+            // 画像を表示する
+            maskImage1.gameObject.SetActive(true);
+            maskImage2.gameObject.SetActive(true);
+        }
+        // スキルが外れた時
+        if (!useSkill)
+        {
+            // クールタイムを行うフラグが立っていたら
+            if (coolTimeFlag)
+            {
+                // 初期化処理
+                Initialization();
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // クールタイムを同期する
+        SyncCoolTime();
         // クールタイムのフラグが立っていたら
         if (coolTimeFlag)
         {
@@ -45,10 +102,10 @@ public class UpdateSkillCoolTime : MonoBehaviour {
             timePercentage = (Time.time - nowTime) / coolTime;
 
             // 画像の右回転
-            RotateRightImage(nowTime);
+            RotateRightImage();
 
             // 画像の左回転
-            RotateLeftImage(coolTime, nowTime);
+            RotateLeftImage();
 
             // クールタイムに達したら
             if (coolTime < Time.time - nowTime)
@@ -57,19 +114,12 @@ public class UpdateSkillCoolTime : MonoBehaviour {
                 Initialization();
             }
         }
-        else
-        {
-            // アクティブならば
-            if (this.gameObject.activeInHierarchy)
-            {
-                Debug.Log("スキルのクールタイムのフラグはオフ！");
-                // 非アクティブにする
-                gameObject.SetActive(false);
-            }
-        }
     }
     
-    void RotateRightImage(float nowTime)
+    /// <summary>
+    /// 右側の画像を回転させる処理
+    /// </summary>
+    void RotateRightImage()
     {
         // 半分に到達する前
         if (timePercentage < 0.5f)
@@ -79,7 +129,10 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         }
     }
 
-    void RotateLeftImage(float coolTime, float nowTime)
+    /// <summary>
+    /// 左側の画像を回転させる処理
+    /// </summary>
+    void RotateLeftImage()
     {
         if (timePercentage >= 0.5f)
         {
@@ -102,24 +155,15 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         coolTime = 0f;
         nowTime = 0f;
         coolTimeFlag = false;
-        // 非アクティブにする
-        this.gameObject.SetActive(false);
-    }
+        // クールタイムのフラグを折る
+        useSkill.skillCoolTimeFlag = false;
 
-    /// <summary>
-    /// クールタイムを設定する関数
-    /// </summary>
-    /// <param name="coolTime">クールタイム(秒)</param>
-    public void SetCoolTime(float coolTime)
-    {
-        // クールタイムを行っているかどうか
-        if (!coolTimeFlag)
-        {
-            Debug.Log("スキルのクールタイム設定" + coolTime + "秒");
-            // クールタイムを設定する
-            this.coolTime = coolTime;
-            // クールタイムを行うフラグを立てる
-            coolTimeFlag = true;
-        }
+        // 画像のオブジェクトを非アクティブにする
+        maskImage1.gameObject.SetActive(false);
+        maskImage2.gameObject.SetActive(false);
+
+        // 非アクティブにする
+        // this.gameObject.SetActive(false);
+
     }
 }

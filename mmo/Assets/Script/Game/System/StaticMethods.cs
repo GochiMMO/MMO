@@ -5,14 +5,14 @@ public static class StaticMethods{
     public static GameObject player
     {
         private set { StaticMethods.player = value; }
-        get { if (StaticMethods.player.activeInHierarchy) { FindAndSetPlayer(); } return player; }
+        get { if (!StaticMethods.player) { FindAndSetPlayer(); } return player; }
     }
 
     /// <summary>
     /// Constractor.
     /// </summary>
     static StaticMethods() {
-        FindAndSetPlayer();
+        //FindAndSetPlayer();
     }
 
     /// <summary>

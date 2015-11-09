@@ -77,6 +77,6 @@ public class StatusMenu : MonoBehaviour {
                 skillWindowPrefab = monkSkillWindow;
                 break;
         }
-        Debug.Log(StaticMethods.player.GetComponent<PlayerChar>().GetPlayerData().job);
+        //Debug.Log(StaticMethods.player.GetComponent<PlayerChar>().GetPlayerData().job);
     }
 }

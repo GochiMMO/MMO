@@ -114,7 +114,7 @@ public class SkillText : MonoBehaviour
 
     void Start()
     {
-        Text(); // スキルのテキストを表示させる クポォォォォォォォォォォォォォォ
+        Text(); // スキルのテキストを表示させる クポ
     }
         
 }

@@ -68,7 +68,8 @@ public class DuplicateSprite : MonoBehaviour {
                         obj.GetComponent<DuplicateSprite>().enabled = false;    // 複製用スクリプトをオフにする
                         obj.AddComponent<RemoveSprite>().enabled = false;       // 削除用スクリプトをアタッチし、オフにする
                         //obj.transform.SetParent(this.transform.parent); // 親を付ける
-                        obj.transform.SetParent(mainCanvas.transform);
+                        obj.transform.SetParent(mainCanvas.transform);  // 親を付ける
+                        obj.GetComponent<UseSkill>().skillID = transform.parent.GetComponent<OverLapPoint>().SkillCanvas.GetComponent<SkillText>().SkillID;
                         obj.transform.localScale = new Vector3(1f, 1f, 1f);
                         SetSkillIcon.moveImage = obj;
                     }

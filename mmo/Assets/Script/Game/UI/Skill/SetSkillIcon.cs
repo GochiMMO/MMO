@@ -49,6 +49,16 @@ public class SetSkillIcon : MonoBehaviour {
             }
         }
     }
+
+    /// <summary>
+    /// スキルのクールタイムを発生させる処理
+    /// </summary>
+    /// <param name="skillNumber">どのスキルか（どこのパレットか）</param>
+    public static void GenerationSkillCoolTime(int skillNumber)
+    {
+        // クールタイムを設定する
+        SyncSkillCoolTime.SetSkillCoolTime(skillNumber, SkillControl.skills[skillNumber].GetCoolTime());
+    }
     
     // Update is called once per frame
     void Update () {
@@ -105,8 +115,18 @@ public class SetSkillIcon : MonoBehaviour {
                         }
                         else
                         {
+                            // スキルを使うコンポーネントを取得する
+                            UseSkill useSkill = skills[i].GetComponent<UseSkill>();
                             // セットされたものはスキルとする
                             skillorItemFlag[i] = PALETTE_CODE.SKILL;
+                            // スキルがセットされているパレットの番号をセットする
+                            useSkill.skillPaletteNumber = i;
+                            // スキルを使えるようにする
+                            useSkill.enabled = true;
+                            // スキルを使うコンポーネントをセットする
+                            skillCoolTimeObjects[i].GetComponent<UpdateSkillCoolTime>().useSkill = useSkill;
+                            // スキルのクールタイムオブジェクトをアクティブ化する
+                            skillCoolTimeObjects[i].SetActive(true);
                         }
 
                         // 離れるコンポーネントをオンにする

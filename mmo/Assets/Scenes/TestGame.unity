@@ -2540,7 +2540,11 @@ Prefab:
     - target: {fileID: 9500000, guid: 58df93523129c384bb1abcfd7ef65c8e, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8d0f99a60dd34da49a12c7814a12bbd6, type: 2}
+      objectReference: {fileID: 9100000, guid: f9982756105e2484187dab8c9390ea20, type: 2}
+    - target: {fileID: 9500000, guid: 58df93523129c384bb1abcfd7ef65c8e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58df93523129c384bb1abcfd7ef65c8e, type: 3}
   m_IsPrefabParent: 0
@@ -6661,8 +6665,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 812676706}
   m_HandleRect: {fileID: 812676705}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: .999999821
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

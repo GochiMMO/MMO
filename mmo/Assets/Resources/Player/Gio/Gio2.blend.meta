@@ -1209,7 +1209,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default Take
       takeName: Default Take
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
@@ -1355,7 +1355,7 @@ ModelImporter:
     - serializedVersion: 16
       name: arrow
       takeName: arrow
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
@@ -1501,7 +1501,7 @@ ModelImporter:
     - serializedVersion: 16
       name: attack_M1
       takeName: attack_M1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -1647,7 +1647,7 @@ ModelImporter:
     - serializedVersion: 16
       name: attack_M2
       takeName: attack_M2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -1793,7 +1793,7 @@ ModelImporter:
     - serializedVersion: 16
       name: back
       takeName: back
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -1939,7 +1939,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BChant_1
       takeName: BChant_1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -2085,7 +2085,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BChant_2
       takeName: BChant_2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -2231,7 +2231,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BChant_S
       takeName: BChant_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -2377,7 +2377,7 @@ ModelImporter:
     - serializedVersion: 16
       name: beat_1
       takeName: beat_1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -2523,7 +2523,7 @@ ModelImporter:
     - serializedVersion: 16
       name: beat_2
       takeName: beat_2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -2669,7 +2669,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BloodRage
       takeName: BloodRage
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -2815,7 +2815,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BoparuBlade
       takeName: BoparuBlade
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -2961,7 +2961,7 @@ ModelImporter:
     - serializedVersion: 16
       name: BSkill_S
       takeName: BSkill_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -3107,7 +3107,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Chant_1
       takeName: Chant_1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -3253,7 +3253,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Chant_2
       takeName: Chant_2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -3399,7 +3399,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Chant_S
       takeName: Chant_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -3545,7 +3545,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Continuous_attacks
       takeName: Continuous_attacks
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -3691,7 +3691,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Dash_sword
       takeName: Dash_sword
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -3837,7 +3837,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Ded
       takeName: Ded
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -3983,7 +3983,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default_A
       takeName: Default_A
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -4129,7 +4129,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default_F
       takeName: Default_F
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -4275,7 +4275,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default_M
       takeName: Default_M
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -4421,7 +4421,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default_S
       takeName: Default_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -4567,7 +4567,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Drain_sword
       takeName: Drain_sword
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
@@ -4713,7 +4713,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Ether_flow_Convert
       takeName: Ether_flow_Convert
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
@@ -4859,7 +4859,7 @@ ModelImporter:
     - serializedVersion: 16
       name: FastBlade
       takeName: FastBlade
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -5005,7 +5005,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Hawk_EagleEye
       takeName: Hawk_EagleEye
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -5151,7 +5151,7 @@ ModelImporter:
     - serializedVersion: 16
       name: HeavyShot
       takeName: HeavyShot
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
@@ -5297,7 +5297,7 @@ ModelImporter:
     - serializedVersion: 16
       name: LSS
       takeName: LSS
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
@@ -5443,7 +5443,7 @@ ModelImporter:
     - serializedVersion: 16
       name: MAF
       takeName: MAF
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 107
       wrapMode: 0
       orientationOffsetY: 0
@@ -5589,7 +5589,7 @@ ModelImporter:
     - serializedVersion: 16
       name: MChant_1
       takeName: MChant_1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
@@ -5735,7 +5735,7 @@ ModelImporter:
     - serializedVersion: 16
       name: MChant_2
       takeName: MChant_2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -5881,7 +5881,7 @@ ModelImporter:
     - serializedVersion: 16
       name: MChant_S
       takeName: MChant_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -6027,7 +6027,7 @@ ModelImporter:
     - serializedVersion: 16
       name: "Pore_\u200B\u200Bbullet"
       takeName: "Pore_\u200B\u200Bbullet"
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
@@ -6173,7 +6173,7 @@ ModelImporter:
     - serializedVersion: 16
       name: PowerSlash
       takeName: PowerSlash
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
@@ -6319,7 +6319,7 @@ ModelImporter:
     - serializedVersion: 16
       name: RainOfDeath
       takeName: RainOfDeath
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
@@ -6465,7 +6465,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Revive
       takeName: Revive
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -6611,7 +6611,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Rolling_Kick
       takeName: Rolling_Kick
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -6757,7 +6757,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Rolling_Kick2
       takeName: Rolling_Kick2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
@@ -6903,8 +6903,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Rotation_sword
       takeName: Rotation_sword
-      firstFrame: -1
-      lastFrame: 29
+      firstFrame: 0
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -7049,7 +7049,7 @@ ModelImporter:
     - serializedVersion: 16
       name: RRF
       takeName: RRF
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0
@@ -7195,7 +7195,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_A
       takeName: Run_A
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -7341,7 +7341,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_F
       takeName: Run_F
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -7487,7 +7487,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_S
       takeName: Run_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -7633,7 +7633,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Sentinel_S
       takeName: Sentinel_S
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
@@ -7779,7 +7779,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Shield_Bash
       takeName: Shield_Bash
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
@@ -7925,7 +7925,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Shock_wave
       takeName: Shock_wave
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
@@ -8071,7 +8071,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Slash_1
       takeName: Slash_1
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
@@ -8217,7 +8217,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Slash_2
       takeName: Slash_2
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
@@ -8363,7 +8363,7 @@ ModelImporter:
     - serializedVersion: 16
       name: SniperShot
       takeName: SniperShot
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 64
       wrapMode: 0
       orientationOffsetY: 0
@@ -8509,7 +8509,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Spin_Kick
       takeName: Spin_Kick
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -8655,7 +8655,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Spirits_With_Inn
       takeName: Spirits_With_Inn
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 64
       wrapMode: 0
       orientationOffsetY: 0
@@ -8801,7 +8801,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Stance_F
       takeName: Stance_F
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -8947,7 +8947,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Straight
       takeName: Straight
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -9093,7 +9093,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Summer_Salt_kick
       takeName: Summer_Salt_kick
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
@@ -9239,7 +9239,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Twin_palm_strokes
       takeName: Twin_palm_strokes
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0

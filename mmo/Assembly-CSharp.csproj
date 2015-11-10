@@ -214,8 +214,10 @@
      <Compile Include="Assets\Script\Game\UI\Skill\RemoveSprite.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\SetSkillIcon.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\SkillPaletteData.cs" />
+     <Compile Include="Assets\Script\Game\UI\Skill\SyncSkillCoolTime.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\UpdateItemCoolTime.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\UpdateSkillCoolTime.cs" />
+     <Compile Include="Assets\Script\Game\UI\Skill\UseSkill.cs" />
      <Compile Include="Assets\Script\Game\UI\Status\UpdatePartyStatus.cs" />
      <Compile Include="Assets\Script\Game\UI\Status\UpdateShowStatus.cs" />
      <Compile Include="Assets\Script\Game\UI\StatusMenu.cs" />

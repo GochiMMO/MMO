@@ -42,7 +42,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         ATTACK,     // 攻撃
         DAMEGE,     // 被弾
         DISCOVER,   // プレイヤー発見
-        INTIMIDATION,   //威嚇
+        INTIMIDATION,   // 威嚇
         DEAD,        // 死亡
         OTHER           // その他の処理
     };
@@ -259,6 +259,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                 // ローカル上で削除する
                 GameObject.Destroy(this.gameObject);
             }
+            // 処理から抜ける
             return;
         }
         // スクリプトコンポーネントのあるオブジェクトを格納する

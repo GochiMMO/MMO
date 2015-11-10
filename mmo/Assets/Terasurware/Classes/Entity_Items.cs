@@ -16,6 +16,7 @@ public class Entity_Items : ScriptableObject
 	[System.SerializableAttribute]
 	public class Param
 	{
+		
 		public int id;
 		public string name;
 		public string spriteName;

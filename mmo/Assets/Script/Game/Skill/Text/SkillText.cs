@@ -8,6 +8,12 @@ public class SkillText : MonoBehaviour
     [SerializeField, Tooltip("スキルのID")]
     int skillId;
 
+    public int SkillID
+    {
+        private set { skillId = value; }
+        get { return skillId; }
+    }
+
     int lvMax = 10; // スキルの上限Lv クポ
 
     /// <summary>
@@ -108,7 +114,7 @@ public class SkillText : MonoBehaviour
 
     void Start()
     {
-        Text(); // スキルのテキストを表示させる クポォォォォォォォォォォォォォォ
+        Text(); // スキルのテキストを表示させる クポ
     }
         
 }

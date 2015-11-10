@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(PhotonView))]
 public class PopEnemy : Photon.MonoBehaviour {
     [SerializeField, Tooltip("敵の出現間隔(秒)")]
     float rePopSec;
@@ -8,8 +9,6 @@ public class PopEnemy : Photon.MonoBehaviour {
     int maxEnemyNum;
     [SerializeField, Tooltip("出現させる敵のプレハブ")]
     GameObject popEnemyPrefab;
-    [SerializeField, Tooltip("敵の出現位置")]
-    Vector3[] popPoint;
 
     int nowPopEnemyNum = 0;
     float time = 0f;
@@ -19,6 +18,7 @@ public class PopEnemy : Photon.MonoBehaviour {
         time = Time.time;
     }
 
+    /*
     //現在出現している敵の数を同期させる
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -33,22 +33,30 @@ public class PopEnemy : Photon.MonoBehaviour {
             //Debug.Log("receivePopEnemy" + nowPopEnemyNum);
         }
     }
+    */
 
     // Update is called once per frame
     void Update()
     {
-        //マスタークライアントのみ処理を行う
+        // マスタークライアントのみ処理を行う
         if (PhotonNetwork.isMasterClient)
         {
+            // 敵がまだ出現できるとき
             if (nowPopEnemyNum < maxEnemyNum)
             {
+                // 出現時間に達したら
                 if (Time.time - time >= rePopSec)
                 {
-                    GameObject enemy = PhotonNetwork.InstantiateSceneObject("Enemy/" + popEnemyPrefab.name, popPoint[Random.Range(0, popPoint.Length)], Quaternion.identity, 0, null);
+                    // 敵をインスタンス化する
+                    GameObject enemy = PhotonNetwork.InstantiateSceneObject("Enemy/" + popEnemyPrefab.name, gameObject.transform.position, Quaternion.identity, 0, null);
+                    // 敵の総数を加算する
                     nowPopEnemyNum++;
+                    // 時間を再設定する
                     time = Time.time;
+                    // 敵のデータを取得する
                     var enemyData = enemy.GetComponent<EnemyData>();
-                    enemyData.myPopScriptRefarence = this;    //自分の参照を入れておく
+                    // 自分の参照を入れておく
+                    enemyData.myPopScriptRefarence = this;
                 }
             }
         }

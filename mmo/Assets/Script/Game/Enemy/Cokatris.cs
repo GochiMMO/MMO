@@ -26,6 +26,7 @@ public class Cokatris : LoiteringEnemyBase {
     /// ジャンプアタックを行う確立
     /// </summary>
     private const int SPECIAL_ATTACK_PERCENT = 20;
+
     /// <summary>
     /// 攻撃が終わった時の処理
     /// </summary>

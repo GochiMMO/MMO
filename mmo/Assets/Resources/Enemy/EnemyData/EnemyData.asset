@@ -56,15 +56,15 @@ MonoBehaviour:
       ActionDistance: 5
   - name: Rat
     list:
-    - Name: "\u30D3\u30FC"
+    - Name: "\u30E9\u30C3\u30C8"
       HP: 1000
       Attack: 100
       Defense: 100
       MagicAttack: 100
       MagicDefense: 100
       MoveSpeed: 1
-      TrackingSpeed: 5
-      ActionInterval: 5
-      FieldOfView: 120
-      ViewDistance: 12
-      ActionDistance: 1
+      TrackingSpeed: 4
+      ActionInterval: 8
+      FieldOfView: 130
+      ViewDistance: 15
+      ActionDistance: 2

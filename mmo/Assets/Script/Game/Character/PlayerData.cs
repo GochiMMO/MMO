@@ -2,7 +2,7 @@
 
 //プレイヤーのデータ（保存する）
 [Serializable]
-public struct PlayerData {
+public class PlayerData {
     public int Lv;  //レベル
     public int job;    //職業
     public int characterNumber; //キャラクターの番号
@@ -29,6 +29,7 @@ public struct PlayerData {
     public float x;
     public float y;
     public float z;
-    
 
+    // スキルレベル
+    public int[] skillLevel = new int[20];
 }

@@ -26,6 +26,14 @@ MonoBehaviour:
       FieldOfView: 160
       ViewDistance: 8
       ActionDistance: 2
+      HpRate: 30
+      AttackRate: 20
+      DefenseRate: 20
+      MAtkRate: 25
+      MDefRate: 15
+      BaseExp: 100
+      ExpRate: 10
+      DamageRate: .300000012
   - name: Bee
     list:
     - Name: "\u30D3\u30FC"
@@ -40,6 +48,14 @@ MonoBehaviour:
       FieldOfView: 200
       ViewDistance: 10
       ActionDistance: 6
+      HpRate: 30
+      AttackRate: 20
+      DefenseRate: 20
+      MAtkRate: 25
+      MDefRate: 15
+      BaseExp: 100
+      ExpRate: 10
+      DamageRate: .200000003
   - name: Cokatris
     list:
     - Name: "\u30B3\u30AB\u30C8\u30EA\u30B9"
@@ -54,6 +70,14 @@ MonoBehaviour:
       FieldOfView: 260
       ViewDistance: 8
       ActionDistance: 5
+      HpRate: 30
+      AttackRate: 20
+      DefenseRate: 20
+      MAtkRate: 25
+      MDefRate: 15
+      BaseExp: 100
+      ExpRate: 10
+      DamageRate: .100000001
   - name: Rat
     list:
     - Name: "\u30E9\u30C3\u30C8"
@@ -63,8 +87,16 @@ MonoBehaviour:
       MagicAttack: 100
       MagicDefense: 100
       MoveSpeed: 1
-      TrackingSpeed: 4
-      ActionInterval: 8
-      FieldOfView: 130
-      ViewDistance: 15
-      ActionDistance: 2
+      TrackingSpeed: 5
+      ActionInterval: 5
+      FieldOfView: 120
+      ViewDistance: 12
+      ActionDistance: 1
+      HpRate: 30
+      AttackRate: 20
+      DefenseRate: 20
+      MAtkRate: 25
+      MDefRate: 15
+      BaseExp: 100
+      ExpRate: 10
+      DamageRate: .200000003

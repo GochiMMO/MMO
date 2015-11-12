@@ -25,15 +25,14 @@ public static class SaveManager{
     /// <param name="obj">struct type of "T"</param>
     /// <param name="fileName">Save File Name</param>
     /// <returns>obj</returns>
-    public static Nullable<T> Save<T>(T obj, string fileName)
-        where T : struct
+    public static void Save<T>(T obj, string fileName)
+        where T : class
     {
         File.Delete(savePass + "\\" + fileName + ".sav");
         FileStream fs = new FileStream(savePass + "\\" + fileName + ".sav", FileMode.OpenOrCreate, FileAccess.Write);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fs, obj);
         fs.Close();
-        return obj;
     }
 
     /// <summary>
@@ -92,7 +91,7 @@ public static class SaveManager{
     /// <param name="fileName">Load File Name</param>
     /// <returns>obj</returns>
     public static T Load<T>(T obj, string fileName)
-        where T : struct
+        where T : class
     {
         FileStream fs = new FileStream(savePass + "\\" + fileName + ".sav", FileMode.Open, FileAccess.Read);
         BinaryFormatter bf = new BinaryFormatter();

@@ -143,11 +143,12 @@ public static class SkillControl
         */
 
         // プレイヤーのジョブに応じたスキルシートを読み込む クポ
-        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[1].list;      // テスト用
-
         //Debug.Log("読み込み完了"); //デバッグ用
         //var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;      // 本番用
-        //Debug.Log(skill_data[0].name);
+
+        // テスト用 0 = アーチャー, 1 = ウォーリアー, 2 = ソーサラー, 3 = モンク
+        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[0].list;
+
         
         for (int i = 0; i < skill_data.Count; i++)
         {

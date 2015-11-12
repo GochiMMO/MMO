@@ -345,6 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage1: {fileID: 424753048}
   maskImage2: {fileID: 726405532}
+  useSkill: {fileID: 0}
+  coolTime: 0
 --- !u!1 &137941006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage1: {fileID: 179457679}
   maskImage2: {fileID: 532027966}
+  useSkill: {fileID: 0}
+  coolTime: 0
 --- !u!1 &493322712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage1: {fileID: 1247203659}
   maskImage2: {fileID: 339557593}
+  useSkill: {fileID: 0}
+  coolTime: 0
 --- !u!1 &531662598
 GameObject:
   m_ObjectHideFlags: 0
@@ -5760,6 +5766,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage1: {fileID: 327133749}
   maskImage2: {fileID: 1143917139}
+  useSkill: {fileID: 0}
+  coolTime: 0
 --- !u!1 &1339855929
 GameObject:
   m_ObjectHideFlags: 0
@@ -7494,6 +7502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage1: {fileID: 914163994}
   maskImage2: {fileID: 37881967}
+  useSkill: {fileID: 0}
+  coolTime: 0
 --- !u!1 &1653509561
 GameObject:
   m_ObjectHideFlags: 0
@@ -9289,10 +9299,6 @@ MonoBehaviour:
   rePopSec: 2
   maxEnemyNum: 1
   popEnemyPrefab: {fileID: 126974, guid: f8d46f6092efc114cbdcb47ee8d50f3e, type: 2}
-  popPoint:
-  - {x: 0, y: 3, z: 0}
-  - {x: 10, y: 3, z: 10}
-  - {x: -10, y: 3, z: -10}
 --- !u!114 &2079735369
 MonoBehaviour:
   m_ObjectHideFlags: 0

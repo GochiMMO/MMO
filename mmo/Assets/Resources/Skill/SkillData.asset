@@ -16,7 +16,7 @@ MonoBehaviour:
     list:
     - id: 0
       name: "\u30DB\u30FC\u30AF\u30A2\u30A4"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .0500000007
       defens: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
       type: 1
     - id: 1
       name: "\u30A4\u30FC\u30B0\u30EB\u30A2\u30A4"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: .100000001
       defens: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
       type: 1
     - id: 2
       name: "\u30B9\u30D4\u30F3\u30AD\u30C3\u30AF"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
       type: 2
     - id: 3
       name: "\u30D8\u30F4\u30A3\u30B7\u30E7\u30C3\u30C8"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
       type: 2
     - id: 4
       name: "\u30D4\u30A2\u30B7\u30F3\u30B0\u30A2\u30ED\u30FC"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .200000003
       defens: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
       type: 2
     - id: 5
       name: "\u30D9\u30CE\u30E0\u30D0\u30A4\u30C8"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
       type: 2
     - id: 6
       name: "\u30B5\u30A4\u30C9\u30EF\u30A4\u30F3\u30C0\u30FC"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .200000003
       defens: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
       type: 2
     - id: 7
       name: "\u30DE\u30B8\u30C3\u30AF\u30A2\u30ED\u30FC"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .200000003
       defens: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
       type: 2
     - id: 8
       name: "\u30EC\u30A4\u30F3\u30FB\u30AA\u30D6\u30FB\u30C7\u30B9"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .150000006
       defens: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
       type: 2
     - id: 9
       name: "\u30E0\u30FC\u30F3\u30B5\u30EB\u30C8"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .150000006
       defens: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
       type: 2
     - id: 10
       name: "\u30B9\u30CA\u30A4\u30D1\u30FC\u30B7\u30E7\u30C3\u30C8"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: .300000012
       defens: 0
@@ -157,84 +157,6 @@ MonoBehaviour:
       point: 8
       bonus: .00999999978
       type: 2
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
   - name: Warrior
     list:
     - id: 0
@@ -449,7 +371,7 @@ MonoBehaviour:
     list:
     - id: 0
       name: "\u30D5\u30A1\u30A4\u30A2"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: 0
       defens: 0
@@ -462,7 +384,7 @@ MonoBehaviour:
       type: 3
     - id: 1
       name: "\u30D0\u30FC\u30F3"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .100000001
       defens: 0
@@ -475,7 +397,7 @@ MonoBehaviour:
       type: 3
     - id: 2
       name: "\u30D5\u30EC\u30A2"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: .150000006
       defens: 0
@@ -488,7 +410,7 @@ MonoBehaviour:
       type: 3
     - id: 3
       name: "\u30E1\u30C6\u30AA"
-      lv: 1
+      lv: 0
       difficult: 4
       attack: .200000003
       defens: 0
@@ -501,7 +423,7 @@ MonoBehaviour:
       type: 3
     - id: 4
       name: "\u30D6\u30EA\u30B6\u30C9"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: 0
       defens: 0
@@ -514,7 +436,7 @@ MonoBehaviour:
       type: 3
     - id: 5
       name: "\u30D5\u30ED\u30B9\u30C8"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: 0
       defens: 0
@@ -527,7 +449,7 @@ MonoBehaviour:
       type: 3
     - id: 6
       name: "\u30D5\u30EA\u30FC\u30BA"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: 0
       defens: 0
@@ -540,7 +462,7 @@ MonoBehaviour:
       type: 3
     - id: 7
       name: "\u30B5\u30F3\u30C0\u30FC"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -553,7 +475,7 @@ MonoBehaviour:
       type: 3
     - id: 8
       name: "\u30B7\u30E7\u30C3\u30AF"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .100000001
       defens: 0
@@ -566,7 +488,7 @@ MonoBehaviour:
       type: 3
     - id: 9
       name: "\u30B5\u30F3\u30C0\u30FC\u30DC\u30EB\u30C8"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: .100000001
       defens: 0
@@ -579,7 +501,7 @@ MonoBehaviour:
       type: 3
     - id: 10
       name: "\u30D2\u30FC\u30EB"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: 0
       defens: 0
@@ -589,10 +511,10 @@ MonoBehaviour:
       effect: 0
       point: 2
       bonus: 0
-      type: 3
+      type: 1
     - id: 11
       name: "\u30AA\u30FC\u30EB\u30D2\u30FC\u30EB"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: 0
       defens: 0
@@ -602,10 +524,10 @@ MonoBehaviour:
       effect: 0
       point: 4
       bonus: 0
-      type: 3
+      type: 1
     - id: 12
       name: "\u30EA\u30B8\u30A7\u30CD"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: 0
       defens: 0
@@ -615,10 +537,10 @@ MonoBehaviour:
       effect: 0
       point: 4
       bonus: 0
-      type: 3
+      type: 1
     - id: 13
       name: "\u30D9\u30CD\u30C7\u30A3\u30AF\u30B7\u30E7\u30F3"
-      lv: 1
+      lv: 0
       difficult: 3
       attack: .200000003
       defens: 0
@@ -628,10 +550,10 @@ MonoBehaviour:
       effect: 0
       point: 4
       bonus: 0
-      type: 3
+      type: 1
     - id: 14
       name: "\u30B3\u30F3\u30D0\u30FC\u30C8"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .300000012
       defens: 0
@@ -644,7 +566,7 @@ MonoBehaviour:
       type: 1
     - id: 15
       name: "\u30A8\u30FC\u30C6\u30EB\u30D5\u30ED\u30FC"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -657,7 +579,7 @@ MonoBehaviour:
       type: 1
     - id: 16
       name: "\u30EC\u30A4\u30BA"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: .100000001
       defens: 0
@@ -667,90 +589,51 @@ MonoBehaviour:
       effect: 0
       point: 2
       bonus: 0
-      type: 3
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
+      type: 1
   - name: Monk
     list:
     - id: 0
       name: "\u91D1\u525B\u306E\u69CB\u3048"
-      lv: 1
+      lv: 0
       difficult: 1
       attack: 0
-      defens: .5
+      defens: .100000001
       sp: 20
       cooltime: 2
       casttime: 0
       effect: 0
       point: 2
-      bonus: 0
+      bonus: 1
       type: 1
     - id: 1
-      name: "\u7D05\u84EE\u306E\u69CB\u3048"
-      lv: 1
+      name: "\u75BE\u98A8\u306E\u69CB\u3048"
+      lv: 0
       difficult: 1
-      attack: .5
+      attack: 0
       defens: 0
-      sp: 40
+      sp: 20
       cooltime: 2
       casttime: 0
       effect: 0
-      point: 4
-      bonus: 0
+      point: 2
+      bonus: 1
       type: 1
     - id: 2
+      name: "\u7D05\u84EE\u306E\u69CB\u3048"
+      lv: 0
+      difficult: 1
+      attack: .100000001
+      defens: 0
+      sp: 20
+      cooltime: 2
+      casttime: 0
+      effect: 0
+      point: 2
+      bonus: 1
+      type: 1
+    - id: 3
       name: "\u7DF4\u6C17"
-      lv: 1
+      lv: 0
       difficult: 2
       attack: 0
       defens: .100000001
@@ -758,51 +641,25 @@ MonoBehaviour:
       cooltime: 5
       casttime: 0
       effect: 0
-      point: 6
-      bonus: .00999999978
-      type: 1
-    - id: 3
-      name: "\u767A\u52C1"
-      lv: 1
-      difficult: 2
-      attack: 0
-      defens: .100000001
-      sp: 20
-      cooltime: 5
-      casttime: 0
-      effect: 0
-      point: 2
+      point: 4
       bonus: .00999999978
       type: 1
     - id: 4
-      name: "\u9023\u6483"
-      lv: 1
-      difficult: 1
-      attack: .100000001
-      defens: 0
-      sp: 40
-      cooltime: 1
+      name: "\u767A\u52C1"
+      lv: 0
+      difficult: 2
+      attack: 0
+      defens: .100000001
+      sp: 60
+      cooltime: 5
       casttime: 0
       effect: 0
       point: 4
       bonus: .00999999978
       type: 1
     - id: 5
-      name: "\u6B63\u62F3\u7A81\u304D"
-      lv: 1
-      difficult: 1
-      attack: .100000001
-      defens: 0
-      sp: 60
-      cooltime: 1
-      casttime: 0
-      effect: 0
-      point: 6
-      bonus: .00999999978
-      type: 1
-    - id: 6
-      name: "\u56DE\u3057\u8E74\u308A"
-      lv: 1
+      name: "\u9023\u6483"
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -812,10 +669,23 @@ MonoBehaviour:
       effect: 0
       point: 2
       bonus: .00999999978
-      type: 2
+      type: 1
+    - id: 6
+      name: "\u6B63\u62F3\u7A81\u304D"
+      lv: 0
+      difficult: 1
+      attack: .100000001
+      defens: 0
+      sp: 20
+      cooltime: 1
+      casttime: 0
+      effect: 0
+      point: 2
+      bonus: .00999999978
+      type: 1
     - id: 7
-      name: "\u7F85\u5239\u885D"
-      lv: 1
+      name: "\u56DE\u3057\u8E74\u308A"
+      lv: 0
       difficult: 1
       attack: .100000001
       defens: 0
@@ -827,34 +697,34 @@ MonoBehaviour:
       bonus: .00999999978
       type: 2
     - id: 8
-      name: "\u53CC\u638C\u6253"
-      lv: 1
-      difficult: 2
-      attack: .200000003
+      name: "\u7F85\u5239\u885D"
+      lv: 0
+      difficult: 1
+      attack: .100000001
       defens: 0
       sp: 20
-      cooltime: 2
+      cooltime: 1
       casttime: 0
       effect: 0
       point: 2
       bonus: .00999999978
       type: 2
     - id: 9
-      name: "\u53CC\u7ADC\u811A"
-      lv: 1
+      name: "\u53CC\u638C\u6253"
+      lv: 0
       difficult: 2
       attack: .200000003
       defens: 0
-      sp: 20
+      sp: 40
       cooltime: 2
       casttime: 0
       effect: 0
-      point: 2
+      point: 4
       bonus: .00999999978
       type: 2
     - id: 10
-      name: "\u6C17\u5B54\u5F3E"
-      lv: 1
+      name: "\u53CC\u7ADC\u811A"
+      lv: 0
       difficult: 2
       attack: .200000003
       defens: 0
@@ -866,8 +736,8 @@ MonoBehaviour:
       bonus: .00999999978
       type: 2
     - id: 11
-      name: "\u9023\u74B0\u516D\u5408\u570F"
-      lv: 1
+      name: "\u6C17\u5B54\u5F3E"
+      lv: 0
       difficult: 2
       attack: .200000003
       defens: 0
@@ -879,41 +749,28 @@ MonoBehaviour:
       bonus: .00999999978
       type: 2
     - id: 12
-      name: "\u5922\u60F3\u963F\u4FEE\u7F85\u62F3"
-      lv: 1
-      difficult: 3
+      name: "\u9023\u74B0\u516D\u5408\u570F"
+      lv: 0
+      difficult: 2
       attack: .200000003
       defens: 0
       sp: 40
-      cooltime: 3
+      cooltime: 2
       casttime: 0
       effect: 0
       point: 4
       bonus: .00999999978
       type: 2
-    - id: 0
-      name: 
+    - id: 13
+      name: "\u5922\u60F3\u963F\u4FEE\u7F85\u62F3"
       lv: 0
-      difficult: 0
-      attack: 0
+      difficult: 3
+      attack: .200000003
       defens: 0
-      sp: 0
-      cooltime: 0
+      sp: 60
+      cooltime: 3
       casttime: 0
       effect: 0
-      point: 0
-      bonus: 0
-      type: 0
-    - id: 0
-      name: 
-      lv: 0
-      difficult: 0
-      attack: 0
-      defens: 0
-      sp: 0
-      cooltime: 0
-      casttime: 0
-      effect: 0
-      point: 0
-      bonus: 0
-      type: 0
+      point: 6
+      bonus: .00999999978
+      type: 2

@@ -25,10 +25,18 @@ public class Entity_Sahagin : ScriptableObject
 		public int MagicDefense;
 		public float MoveSpeed;
 		public float TrackingSpeed;
-		public float ActionInterval;
-		public float FieldOfView;
+		public int ActionInterval;
+		public int FieldOfView;
 		public float ViewDistance;
 		public float ActionDistance;
+		public int HpRate;
+		public int AttackRate;
+		public int DefenseRate;
+		public int MAtkRate;
+		public int MDefRate;
+		public int BaseExp;
+		public int ExpRate;
+		public float DamageRate;
 	}
 }
 

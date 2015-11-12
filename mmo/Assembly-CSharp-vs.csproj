@@ -39,16 +39,18 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ApplyRootMotion.cs" />
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
+     <Compile Include="Assets\EndAttackPlayer.cs" />
+     <Compile Include="Assets\EndDamagePlayer.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
      <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
      <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\JumpAndRunMovement.cs" />
@@ -174,12 +176,18 @@
      <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
      <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
      <Compile Include="Assets\Script\GUI\Skill\ScrollOnMouseCheck.cs" />
+     <Compile Include="Assets\Script\Game\Character\Archer.cs" />
      <Compile Include="Assets\Script\Game\Character\Haight.cs" />
+     <Compile Include="Assets\Script\Game\Character\Monk.cs" />
+     <Compile Include="Assets\Script\Game\Character\PlayerAttack.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+     <Compile Include="Assets\Script\Game\Character\Sorcerer.cs" />
+     <Compile Include="Assets\Script\Game\Character\Warrior.cs" />
      <Compile Include="Assets\Script\Game\Enemy\Bee.cs" />
      <Compile Include="Assets\Script\Game\Enemy\Cokatris.cs" />
+     <Compile Include="Assets\Script\Game\Enemy\EnemyAttack.cs" />
      <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
      <Compile Include="Assets\Script\Game\Enemy\FullCustomEnemyBase.cs" />
      <Compile Include="Assets\Script\Game\Enemy\LoiteringEnemyBase.cs" />
@@ -262,22 +270,22 @@
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

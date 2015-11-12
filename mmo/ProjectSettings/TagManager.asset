@@ -9,6 +9,8 @@ TagManager:
   - YesButton
   - Enemy
   - Text
+  - EnemyAttack
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

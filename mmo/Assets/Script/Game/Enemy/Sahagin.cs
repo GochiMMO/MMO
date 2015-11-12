@@ -91,6 +91,10 @@ public class Sahagin : LoiteringEnemyBase
             {
                 // 普通の攻撃アニメーション
                 anim.SetTrigger("attackFlag");
+                // 攻撃力の設定
+                SetAttack();
+                // 攻撃当たり判定コンポーネントの有効化
+                EnableAttackColliders();
                 Debug.Log("Normal Attack");
             }
             // 一定の割合でスペシャル攻撃
@@ -98,6 +102,10 @@ public class Sahagin : LoiteringEnemyBase
             {
                 // ジャンプ攻撃のアニメーション
                 anim.SetTrigger("jumpAttack");
+                // 魔法攻撃力を設定する
+                SetMagicAttack();
+                // 攻撃当たり判定コンポーネントの有効化
+                EnableAttackColliders();
                 Debug.Log("JumpAttack");
             }
         }

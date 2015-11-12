@@ -230,6 +230,8 @@ abstract public class LoiteringEnemyBase : EnemyData{
                     // 攻撃が終了する処理
                     if (IsEndAttack())
                     {
+                        // 攻撃当たり判定コンポーネントを無効化する
+                        DisableAttackColliders();
                         // 攻撃する処理を行わない
                         break;
                     }

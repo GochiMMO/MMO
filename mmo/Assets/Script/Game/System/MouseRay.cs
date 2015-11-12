@@ -54,7 +54,7 @@ public class MouseRay : MonoBehaviour {
                     namePlateInstance = GameObject.Instantiate(namePlate);
 
                     // ネームプレートに(Clone)を外した文字列をいれる
-                    namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.name.Replace("(Clone)", "");
+                    namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.GetComponent<EnemyData>().ToString();
                 }
 
                 // プレイヤーなら

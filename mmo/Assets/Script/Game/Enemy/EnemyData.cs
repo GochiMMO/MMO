@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(PhotonView))]          //PhotonViewを使う
-[RequireComponent(typeof(CapsuleCollider))]     //カプセルコライダーを使う
+[RequireComponent(typeof(PhotonView))]          // PhotonViewを使う
+[RequireComponent(typeof(CapsuleCollider))]     // カプセルコライダーを使う
 [RequireComponent(typeof(Rigidbody))]           // rigidbodyを使う
 abstract public class EnemyData : Photon.MonoBehaviour {
+    /// <summary>
+    /// 攻撃の当たり判定を行うコンポーネント
+    /// </summary>
+    [SerializeField, Tooltip("攻撃用当り判定コンポーネント")]
+    EnemyAttack[] enemyAttacks;
     /// <summary>
     /// 通信同期のためのコンポーネント
     /// </summary>
@@ -47,6 +52,37 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         OTHER           // その他の処理
     };
     /// <summary>
+    /// レベル
+    /// </summary>
+    protected int level;
+    /// <summary>
+    /// レベル設定用プロパティ
+    /// </summary>
+    public int Level
+    {
+        // レベルを調整してメンバ変数に設定する
+        set
+        {
+            // 100を超えていたときは
+            if (value > 100)
+            {
+                // 100に調整する
+                value = 100;
+            }
+            // 1を下回っていたときは
+            else if (value < 1)
+            {
+                // 1に調整する
+                value = 1;
+            }
+            // レベルを設定する
+            level = value;
+        }
+        // レベルを返す
+        get { return level; }
+    }
+
+    /// <summary>
     /// 体力
     /// </summary>
     protected int HP;
@@ -70,6 +106,10 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// 移動速度
     /// </summary>
     protected float moveSpeed { private set; get; }
+    /// <summary>
+    /// 獲得経験値
+    /// </summary>
+    protected int exp;
     /// <summary>
     /// プレイヤー発見時、追跡する速度
     /// </summary>
@@ -154,7 +194,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // プレイヤーのヘイトの値を格納しておく
         int playerHaight = -9999;
         // プレイヤーの分だけ繰り返す
-        foreach (var obj in players) 
+        foreach (var obj in players)
         {
             // プレイヤーからヘイトを取得する
             int haight = obj.GetComponent<Haight>().GetHaight();
@@ -193,6 +233,110 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// 攻撃用あたり判定コンポーネントを有効化する
+    /// </summary>
+    /// <param name="colliderNumber">当り判定コンポーネントの番号</param>
+    public void EnableAttackColliders(int colliderNumber = -1)
+    {
+        // コライダーに指定が無ければ
+        if (colliderNumber == -1)
+        {
+            // コライダーの数だけ繰り返す
+            for (int i = 0; i < enemyAttacks.Length; i++)
+            {
+                // 攻撃用コライダーコンポーネントを有効化する
+                enemyAttacks[i].col.enabled = true;
+            }
+        }
+        // コライダーの番号に指定があるとき範囲チェックを行い、チェック内だったら
+        else if(colliderNumber >= 0 && colliderNumber <= enemyAttacks.Length)
+        {
+            // 指定番号の攻撃用コンポーネントを有効化する
+            enemyAttacks[colliderNumber].col.enabled = true;
+        }
+    }
+
+    /// <summary>
+    /// 攻撃用あたり判定コンポーネントを無効化する
+    /// </summary>
+    /// <param name="colliderNumber">当り判定コンポーネントの番号</param>
+    public void DisableAttackColliders(int colliderNumber = -1)
+    {
+        // コライダー番号に指定が無ければ
+        if (colliderNumber == -1)
+        {
+            // コライダーの数だけ繰り返す
+            for (int i = 0; i < enemyAttacks.Length; i++)
+            {
+                // 攻撃用コライダーコンポーネントを無効化する
+                enemyAttacks[i].col.enabled = false;
+            }
+        }
+        // コライダーの番号に指定があるとき範囲チェックを行い、チェック内だったら
+        else if (colliderNumber >= 0 && colliderNumber <= enemyAttacks.Length)
+        {
+            // 指定番号の攻撃用コンポーネントを無効化する
+            enemyAttacks[colliderNumber].col.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 攻撃力の設定
+    /// </summary>
+    /// <param name="enemyAttackNumber">コンポーネントの番号(指定無しで全部)</param>
+    protected void SetAttack(int enemyAttackNumber = -1)
+    {
+        // 攻撃用コンポーネント番号の指定が無い場合
+        if (enemyAttackNumber == -1)
+        {
+            // 攻撃用コンポーネントの登録された数だけ繰り返す
+            for (int i = 0; i < enemyAttacks.Length; i++)
+            {
+                // 攻撃力を設定する
+                enemyAttacks[i].attack = this.attack;
+                // 敵の攻撃を物理にする
+                enemyAttacks[i].attackKind = EnemyAttack.AttackKind.PHYSICS;
+            }
+        }
+        // コンポーネント番号の指定があり、範囲内ならば
+        else if (enemyAttackNumber >= 0 && enemyAttackNumber < enemyAttacks.Length)
+        {
+            // 攻撃力を設定する
+            enemyAttacks[enemyAttackNumber].attack = this.attack;
+            // 敵の攻撃を物理にする
+            enemyAttacks[enemyAttackNumber].attackKind = EnemyAttack.AttackKind.PHYSICS;
+        }
+    }
+
+    /// <summary>
+    /// 魔法攻撃力の設定
+    /// </summary>
+    /// <param name="enemyAttackNumber">コンポーネントの番号(指定無しで全部)</param>
+    protected void SetMagicAttack(int enemyAttackNumber = -1)
+    {
+        // 攻撃用コンポーネント番号の指定が無い場合
+        if (enemyAttackNumber == -1)
+        {
+            // 攻撃用コンポーネントの登録された数だけ繰り返す
+            for (int i = 0; i < enemyAttacks.Length; i++)
+            {
+                // 攻撃力を設定する
+                enemyAttacks[i].attack = this.magicAttack;
+                // 攻撃の種類を魔法攻撃とする
+                enemyAttacks[i].attackKind = EnemyAttack.AttackKind.MAGIC;
+            }
+        }
+        // コンポーネント番号の指定があり、範囲内ならば
+        else if (enemyAttackNumber >= 0 && enemyAttackNumber < enemyAttacks.Length)
+        {
+            // 攻撃力を設定する
+            enemyAttacks[enemyAttackNumber].attack = this.magicAttack;
+            // 攻撃の種類を魔法攻撃とする
+            enemyAttacks[enemyAttackNumber].attackKind = EnemyAttack.AttackKind.MAGIC;
+        }
+    }
+
+    /// <summary>
     /// 何かのオブジェクトとぶつかったとき
     /// </summary>
     /// <param name="col">当たってきたコライダー</param>
@@ -201,16 +345,30 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // 敵が死亡状態でないとき
         if (enemyStatus != Status.DEAD)
         {
+            // PhotonViewを取得する
+            PhotonView photon = col.GetComponent<PhotonView>();
             // そのコライダーが自分が出したものならば
-            if (col.gameObject.GetComponent<PhotonView>().isMine)
+            if (photon && photon.isMine)
             {
-                // 当たった物体が魔法ならば
-                if (col.gameObject.tag == "Magic")
+                // 当たった物体がプレイヤーの攻撃ならば
+                if (col.gameObject.tag == "PlayerAttack")
                 {
+                    // プレイヤーの攻撃コンポーネントを取得する
+                    PlayerAttack playerAttack = col.GetComponent<PlayerAttack>();
                     // 攻撃力をゲットする
-                    int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
-                    // 防御力を加味して計算する
-                    damage -= magicDefense;
+                    int damage = playerAttack.GetDamage();
+                    // 物理、魔法によって処理分けを行う
+                    switch (playerAttack.attackKind)
+                    {
+                        // 魔法攻撃の場合
+                        case PlayerAttack.AttackKind.MAGIC:
+                            damage -= magicDefense;
+                            break;
+                        // 物理攻撃の場合
+                        case PlayerAttack.AttackKind.PHYSICS:
+                            damage -= defense;
+                            break;
+                    }
                     // もしダメージが0を下回ったら
                     if (damage < 0)
                     {
@@ -246,7 +404,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         if (!SetStatus())
         {
             // エラー文を表示
-            Debug.LogError(enemyName + "のステータスは設定されていません。");
+            Debug.LogError(enemyName + "のステータスが設定されていません。");
             // ネットワークに接続されていたら
             if (PhotonNetwork.connected)
             {
@@ -270,6 +428,8 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         photonTransformView = gameObject.GetComponent<PhotonTransformView>();
         // 物理演算の為のコンポーネントを取得する
         rigBody = gameObject.GetComponent<Rigidbody>();
+        // 攻撃用あたり判定コンポーネントをオフにする
+        DisableAttackColliders();
         // マスタークライアントならば
         if (PhotonNetwork.isMasterClient)
         {
@@ -315,22 +475,28 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     private bool SetStatus()
     {
         // 敵のデータが登録されていれば
-        if (enemyData != null)
+        if (enemyData != null && level > 0)
         {
             // ステータスの設定
-            this.HP = enemyData.HP;
-            this.magicAttack = enemyData.MagicAttack;
-            this.magicDefense = enemyData.MagicDefense;
+            this.HP = enemyData.HP + enemyData.HpRate * level;
+            this.magicAttack = enemyData.MagicAttack + enemyData.MAtkRate * level;
+            this.magicDefense = enemyData.MagicDefense + enemyData.MDefRate * level;
+            this.attack = enemyData.Attack + enemyData.AttackRate * level;
+            this.defense = enemyData.Defense + enemyData.DefenseRate * level;
+            this.exp = enemyData.BaseExp + enemyData.ExpRate * level;
             this.moveSpeed = enemyData.MoveSpeed;
-            this.attack = enemyData.Attack;
-            this.defense = enemyData.Defense;
             this.trackingSpeed = enemyData.TrackingSpeed;
             this.actionInterval = enemyData.ActionInterval;
             this.angle = enemyData.FieldOfView / 2;
             this.angleDistance = enemyData.ViewDistance * enemyData.ViewDistance;
             this.actionDistance = enemyData.ActionDistance * enemyData.ActionDistance;
-            // 設定されたことを返す
-            return true;
+            for (int i = 0; i < enemyAttacks.Length; i++)
+            {
+                // ダメージの振れ幅を設定する
+                enemyAttacks[i].damageRate = enemyData.DamageRate;
+            }
+                // 設定されたことを返す
+                return true;
         }
         // 設定できなければfalseを返す
         return false;
@@ -340,4 +506,10 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// 更新処理
     /// </summary>
     abstract protected void Update();
+
+    public override string ToString()
+    {
+        // 敵の名前とレベルを返す
+        return this.enemyName + " " + level.ToString() + "Lv";
+    }
 }

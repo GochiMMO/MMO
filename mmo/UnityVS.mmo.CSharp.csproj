@@ -83,6 +83,8 @@
     <Compile Include="Assets\ApplyRootMotion.cs" />
     <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
+    <Compile Include="Assets\EndAttackPlayer.cs" />
+    <Compile Include="Assets\EndDamagePlayer.cs" />
     <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\JumpAndRunMovement.cs" />
@@ -208,12 +210,18 @@
     <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
     <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
     <Compile Include="Assets\Script\GUI\Skill\ScrollOnMouseCheck.cs" />
+    <Compile Include="Assets\Script\Game\Character\Archer.cs" />
     <Compile Include="Assets\Script\Game\Character\Haight.cs" />
+    <Compile Include="Assets\Script\Game\Character\Monk.cs" />
+    <Compile Include="Assets\Script\Game\Character\PlayerAttack.cs" />
     <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
     <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
     <Compile Include="Assets\Script\Game\Character\Skill.cs" />
+    <Compile Include="Assets\Script\Game\Character\Sorcerer.cs" />
+    <Compile Include="Assets\Script\Game\Character\Warrior.cs" />
     <Compile Include="Assets\Script\Game\Enemy\Bee.cs" />
     <Compile Include="Assets\Script\Game\Enemy\Cokatris.cs" />
+    <Compile Include="Assets\Script\Game\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Script\Game\Enemy\EnemyData.cs" />
     <Compile Include="Assets\Script\Game\Enemy\FullCustomEnemyBase.cs" />
     <Compile Include="Assets\Script\Game\Enemy\LoiteringEnemyBase.cs" />

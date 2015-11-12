@@ -107,7 +107,7 @@ GameObject:
   - 114: {fileID: 11490212}
   m_Layer: 0
   m_Name: Cokatrice
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1320,6 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a099d9aa7e6f9479406d8d0e1c44a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAttacks: []
   myPopScriptRefarence: {fileID: 0}
 --- !u!114 &11484240
 MonoBehaviour:
@@ -1493,7 +1494,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 122122}

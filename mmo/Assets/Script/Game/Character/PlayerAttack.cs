@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// カプセルコライダーをアタッチする(攻撃当たり判定用)
-[RequireComponent(typeof(CapsuleCollider))]
 /// <summary>
-/// 敵の攻撃力等格納用スクリプト
+/// プレイヤーの攻撃コンポーネント
 /// </summary>
-public class EnemyAttack : MonoBehaviour {
+[RequireComponent(typeof(CapsuleCollider))]
+public class PlayerAttack : MonoBehaviour {
     /// <summary>
-    /// 敵の攻撃の種類
+    /// プレイヤーの攻撃の種類
     /// </summary>
     public enum AttackKind
     {
@@ -37,7 +36,7 @@ public class EnemyAttack : MonoBehaviour {
     [HideInInspector]
     public float damageRate;
     /// <summary>
-    /// 敵の攻撃の種類
+    /// プレイヤーの攻撃の種類
     /// </summary>
     [HideInInspector]
     public AttackKind attackKind = AttackKind.PHYSICS;
@@ -62,6 +61,6 @@ public class EnemyAttack : MonoBehaviour {
         // 当り判定を行うだけにする
         col.isTrigger = true;
         // タグを設定する
-        gameObject.tag = "EnemyAttack";
+        gameObject.tag = "PlayerAttack";
     }
 }

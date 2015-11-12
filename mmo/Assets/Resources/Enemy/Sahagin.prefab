@@ -169,7 +169,7 @@ GameObject:
   - 114: {fileID: 11422470}
   m_Layer: 0
   m_Name: Sahagin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1454,6 +1454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 0
+  col: {fileID: 0}
   damageRate: 0
   attackKind: 0
 --- !u!114 &11422440
@@ -1468,6 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 0
+  col: {fileID: 0}
   damageRate: 0
   attackKind: 0
 --- !u!114 &11422470
@@ -1601,7 +1603,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 145202}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: .680000007
   m_Height: 2.50999999
   m_Direction: 0
@@ -1614,7 +1616,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100242}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: .680000007
   m_Height: 2.50999999
   m_Direction: 0
@@ -1770,6 +1772,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_RotationModel.InterpolateOption
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

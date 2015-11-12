@@ -1006,9 +1006,10 @@ GameObject:
   - 114: {fileID: 11470658}
   - 114: {fileID: 11407298}
   - 114: {fileID: 11440354}
+  - 114: {fileID: 11492106}
   m_Layer: 0
   m_Name: mukimuki
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2030,7 +2031,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121384}
-  m_LocalRotation: {x: .652485728, y: .280952185, z: -.615419447, w: -.341448545}
+  m_LocalRotation: {x: .652485788, y: .280952215, z: -.615419507, w: -.341448575}
   m_LocalPosition: {x: .00608589314, y: .138404116, z: .0372342616}
   m_LocalScale: {x: 1, y: 1.00000012, z: 1.00000012}
   m_Children:
@@ -2292,7 +2293,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &9531108
 Animator:
@@ -2408,6 +2409,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9feae901e8912498c7d71fa199cf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11492106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3131a5609a986c4c8146c7583aeeb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13681190
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2519,7 +2531,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178638}

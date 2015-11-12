@@ -70,7 +70,7 @@ public class PopEnemy : Photon.MonoBehaviour {
                     // 自分の参照を入れておく
                     enemyData.myPopScriptRefarence = this;
                     // レベルを設定する
-                    enemyData.level = level + Random.Range(-levelRate, levelRate + 1);
+                    enemyData.Level = level + Random.Range(-levelRate, levelRate + 1);
                 }
             }
             // 敵の出現数が最大に達していたら

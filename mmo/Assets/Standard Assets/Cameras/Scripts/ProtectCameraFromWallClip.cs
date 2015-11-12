@@ -62,6 +62,16 @@ namespace UnityStandardAssets.Cameras
                 }
             }
 
+            // ƒJƒƒ‰‚Ì‰“‹ßˆ—
+            if (Input.mouseScrollDelta.y > 0 && closestDistance > 3)
+            {
+                closestDistance += 0.5f * -Input.mouseScrollDelta.y;
+            }
+            if (Input.mouseScrollDelta.y < 0 && closestDistance < 20)
+            {
+                closestDistance += 0.5f * -Input.mouseScrollDelta.y;
+            }
+
             // if there is a collision
             if (initialIntersect)
             {

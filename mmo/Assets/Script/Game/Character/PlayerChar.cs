@@ -6,6 +6,10 @@ using System.Collections;
 [RequireComponent(typeof(PhotonTransformView))]
 abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
+    /// プレイヤーの攻撃コンポーネント
+    /// </summary>
+    PlayerAttack[] playerAttacks;
+    /// <summary>
     /// プレイヤーの状態
     /// </summary>
     enum Status
@@ -206,9 +210,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
-            int attack = enmAttack.attack;
-            // ランダムでダメージを上下させる
-            attack = attack + (int)((float)attack * Random.Range(-enmAttack.damageRate, enmAttack.damageRate));
+            int attack = enmAttack.GetDamage();
             // 敵の攻撃の種類によって処理分け
             switch (enmAttack.attackKind)
             {
@@ -242,6 +244,8 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         strBuff = intBuff = defBuff = mndBuff = 1f;
         // 回転スピードを変更する
         rotateSpeed = 3f;
+        // プレイヤーの攻撃コンポーネントを取得する
+        playerAttacks = GetComponentsInChildren<PlayerAttack>();
     }
 
     /// <summary>
@@ -280,7 +284,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         else
         {
             // 回転させる
-            gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveValue), Time.deltaTime * rotateSpeed);
+            gameObject.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveValue), Time.deltaTime * rotateSpeed);
             // 移動させる
             gameObject.transform.Translate(moveValue, Space.World);
             // 走っているフラグをオンにする
@@ -321,6 +325,110 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         {
             // プレイヤーのステータスをもらう
             playerData = (PlayerData)stream.ReceiveNext();
+        }
+    }
+
+    /// <summary>
+    /// 攻撃用コンポーネントを有効化する
+    /// </summary>
+    /// <param name="attackNumber">コンポーネントの番号</param>
+    protected virtual void EnablePlayerAttack(int attackNumber = -1)
+    {
+        // 攻撃用コンポーネントの番号に指定が無ければ
+        if (attackNumber == -1)
+        {
+            // 攻撃用コンポーネントの数だけ繰り返す
+            for (int i = 0; i < playerAttacks.Length; i++)
+            {
+                // 攻撃用コンポーネントを有効化する
+                playerAttacks[i].enabled = true;
+            }
+        }
+        // 番号に指定があり、有効範囲内である場合
+        else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
+        {
+            // 指定番号のコンポ―ネントを有効化する
+            playerAttacks[attackNumber].enabled = true;
+        }
+    }
+
+    /// <summary>
+    /// 攻撃用コンポーネントを無効化する
+    /// </summary>
+    /// <param name="attackNumber">コンポーネントの番号</param>
+    protected virtual void DisablePlayerAttack(int attackNumber = -1)
+    {
+        // 攻撃用コンポーネントの番号に指定が無ければ
+        if (attackNumber == -1)
+        {
+            // 攻撃用コンポーネントの数だけ繰り返す
+            for (int i = 0; i < playerAttacks.Length; i++)
+            {
+                // 攻撃用コンポーネントを無効化する
+                playerAttacks[i].enabled = false;
+            }
+        }
+        // 番号に指定があり、有効範囲内である場合
+        else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
+        {
+            // 指定番号のコンポ―ネントを無効化する
+            playerAttacks[attackNumber].enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 攻撃力を設定する(物理)
+    /// </summary>
+    /// <param name="attackNumber">攻撃コンポーネントの番号</param>
+    virtual protected void SetAttack(int attackNumber = -1)
+    {
+        // 攻撃コンポーネントの番号が指定されていない時
+        if (attackNumber == -1)
+        {
+            // 攻撃コンポーネントの数だけ繰り返す
+            for (int i = 0; i < playerAttacks.Length; i++)
+            {
+                // 攻撃力を設定する
+                playerAttacks[i].attack = playerData.attack;
+                // 攻撃の種類を変更する
+                playerAttacks[i].attackKind = PlayerAttack.AttackKind.PHYSICS;
+            }
+        }
+        // 攻撃コンポーネントの番号に指定があった場合、範囲をチェックしその範囲内であったとき
+        else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
+        {
+            // 攻撃力を設定する
+            playerAttacks[attackNumber].attack = playerData.attack;
+            // 攻撃の種類を変更する
+            playerAttacks[attackNumber].attackKind = PlayerAttack.AttackKind.PHYSICS;
+        }
+    }
+
+    /// <summary>
+    /// 攻撃力を設定する(魔法)
+    /// </summary>
+    /// <param name="attackNumber">攻撃コンポーネントの番号</param>
+    virtual protected void SetMagicAttack(int attackNumber = -1)
+    {
+        // 攻撃コンポーネントの番号が指定されていない時
+        if (attackNumber == -1)
+        {
+            // 攻撃コンポーネントの数だけ繰り返す
+            for (int i = 0; i < playerAttacks.Length; i++)
+            {
+                // 攻撃力を設定する
+                playerAttacks[i].attack = playerData.magicAttack;
+                // 攻撃の種類を変更する
+                playerAttacks[i].attackKind = PlayerAttack.AttackKind.MAGIC;
+            }
+        }
+        // 攻撃コンポーネントの番号に指定があった場合、範囲をチェックしその範囲内であったとき
+        else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
+        {
+            // 攻撃力を設定する
+            playerAttacks[attackNumber].attack = playerData.magicAttack;
+            // 攻撃の種類を変更する
+            playerAttacks[attackNumber].attackKind = PlayerAttack.AttackKind.MAGIC;
         }
     }
 
@@ -367,7 +475,11 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// 攻撃が終了した瞬間の処理
     /// </summary>
-    abstract protected void EndOfAttack();
+    virtual protected void EndOfAttack()
+    {
+        // 攻撃用当り判定コンポーネントを無効化する
+        DisablePlayerAttack();
+    }
 
     /// <summary>
     /// 通常状態時の処理

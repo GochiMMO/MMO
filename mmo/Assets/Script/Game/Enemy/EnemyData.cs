@@ -54,7 +54,11 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// <summary>
     /// レベル
     /// </summary>
-    public int level
+    protected int level;
+    /// <summary>
+    /// レベル設定用プロパティ
+    /// </summary>
+    public int Level
     {
         // レベルを調整してメンバ変数に設定する
         set
@@ -77,6 +81,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // レベルを返す
         get { return level; }
     }
+
     /// <summary>
     /// 体力
     /// </summary>
@@ -240,14 +245,14 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             for (int i = 0; i < enemyAttacks.Length; i++)
             {
                 // 攻撃用コライダーコンポーネントを有効化する
-                enemyAttacks[i].collider.enabled = true;
+                enemyAttacks[i].col.enabled = true;
             }
         }
         // コライダーの番号に指定があるとき範囲チェックを行い、チェック内だったら
         else if(colliderNumber >= 0 && colliderNumber <= enemyAttacks.Length)
         {
             // 指定番号の攻撃用コンポーネントを有効化する
-            enemyAttacks[colliderNumber].collider.enabled = true;
+            enemyAttacks[colliderNumber].col.enabled = true;
         }
     }
 
@@ -264,14 +269,14 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             for (int i = 0; i < enemyAttacks.Length; i++)
             {
                 // 攻撃用コライダーコンポーネントを無効化する
-                enemyAttacks[i].collider.enabled = false;
+                enemyAttacks[i].col.enabled = false;
             }
         }
         // コライダーの番号に指定があるとき範囲チェックを行い、チェック内だったら
         else if (colliderNumber >= 0 && colliderNumber <= enemyAttacks.Length)
         {
             // 指定番号の攻撃用コンポーネントを無効化する
-            enemyAttacks[colliderNumber].collider.enabled = false;
+            enemyAttacks[colliderNumber].col.enabled = false;
         }
     }
 
@@ -340,16 +345,30 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // 敵が死亡状態でないとき
         if (enemyStatus != Status.DEAD)
         {
+            // PhotonViewを取得する
+            PhotonView photon = col.GetComponent<PhotonView>();
             // そのコライダーが自分が出したものならば
-            if (col.gameObject.GetComponent<PhotonView>().isMine)
+            if (photon && photon.isMine)
             {
-                // 当たった物体が魔法ならば
-                if (col.gameObject.tag == "Magic")
+                // 当たった物体がプレイヤーの攻撃ならば
+                if (col.gameObject.tag == "PlayerAttack")
                 {
+                    // プレイヤーの攻撃コンポーネントを取得する
+                    PlayerAttack playerAttack = col.GetComponent<PlayerAttack>();
                     // 攻撃力をゲットする
-                    int damage = col.gameObject.GetComponent<MagicBase>().GetAttack();
-                    // 防御力を加味して計算する
-                    damage -= magicDefense;
+                    int damage = playerAttack.GetDamage();
+                    // 物理、魔法によって処理分けを行う
+                    switch (playerAttack.attackKind)
+                    {
+                        // 魔法攻撃の場合
+                        case PlayerAttack.AttackKind.MAGIC:
+                            damage -= magicDefense;
+                            break;
+                        // 物理攻撃の場合
+                        case PlayerAttack.AttackKind.PHYSICS:
+                            damage -= defense;
+                            break;
+                    }
                     // もしダメージが0を下回ったら
                     if (damage < 0)
                     {
@@ -409,7 +428,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         photonTransformView = gameObject.GetComponent<PhotonTransformView>();
         // 物理演算の為のコンポーネントを取得する
         rigBody = gameObject.GetComponent<Rigidbody>();
-        // 攻撃用あたり判定コンポーネントを一旦オフにする
+        // 攻撃用あたり判定コンポーネントをオフにする
         DisableAttackColliders();
         // マスタークライアントならば
         if (PhotonNetwork.isMasterClient)
@@ -418,9 +437,9 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             moveValue.z = moveSpeed;
             // 通信同期のための移動速度を送る
             photonTransformView.SetSynchronizedValues(moveValue, 0f);
-            // ヘイトが一番高いプレイヤーを探す
-            GetHaightHighestPlayer();
         }
+        // ヘイトが一番高いプレイヤーを探す
+        GetHaightHighestPlayer();
     }
 
     /// <summary>
@@ -487,4 +506,10 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// 更新処理
     /// </summary>
     abstract protected void Update();
+
+    public override string ToString()
+    {
+        // 敵の名前とレベルを返す
+        return this.enemyName + " " + level.ToString() + "Lv";
+    }
 }

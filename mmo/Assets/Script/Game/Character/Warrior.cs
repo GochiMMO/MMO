@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Warrior : PlayerChar {
+
     protected override void Attack()
     {
         base.Attack();

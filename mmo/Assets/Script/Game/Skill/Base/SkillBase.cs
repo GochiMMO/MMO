@@ -126,8 +126,7 @@ public static class SkillControl
 
     static SkillControl()
     {
-        // デバッグ用
-        /*
+        
         // プレイヤーのデータを取得できるようにする クポ
         foreach (var players in GameObject.FindGameObjectsWithTag("Player"))
         {
@@ -140,14 +139,14 @@ public static class SkillControl
 
         // プレイヤーのジョブを取得 クポ
         job = playerData.job;
-        */
+        
 
-        // プレイヤーのジョブに応じたスキルシートを読み込む クポ
-        //Debug.Log("読み込み完了"); //デバッグ用
-        //var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;      // 本番用
+        //プレイヤーのジョブに応じたスキルシートを読み込む クポ
+        Debug.Log("読み込み完了"); //デバッグ用
+        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;      // 本番用
 
         // テスト用 0 = アーチャー, 1 = ウォーリアー, 2 = ソーサラー, 3 = モンク
-        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[0].list;
+        //var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[0].list;
 
         
         for (int i = 0; i < skill_data.Count; i++)

@@ -25,10 +25,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 437372}
-  - 135: {fileID: 13504354}
-  - 114: {fileID: 11446710}
   - 114: {fileID: 11477910}
   - 114: {fileID: 11433474}
+  - 136: {fileID: 13668650}
+  - 114: {fileID: 11449362}
   m_Layer: 0
   m_Name: ThunderVolt
   m_TagString: Magic
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.67999983, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 420602}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeSpan: 2
   usePhotonNetwork: 1
---- !u!114 &11446710
+--- !u!114 &11449362
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,12 +82,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 188530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887494616b0a76f479500b1b8bbd086e, type: 3}
+  m_Script: {fileID: 11500000, guid: 15fb2d885e046524690bc9bb5f944a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 350
-  spendSP: 0
-  randomNum: .5
+  attack: 0
+  col: {fileID: 0}
+  damageRate: 0
+  attackKind: 0
 --- !u!114 &11477910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,18 +114,19 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!135 &13504354
-SphereCollider:
+--- !u!136 &13668650
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188530}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: .5, z: 0}
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: .550000012, z: 0}
 --- !u!198 &19899806
 ParticleSystem:
   m_ObjectHideFlags: 1

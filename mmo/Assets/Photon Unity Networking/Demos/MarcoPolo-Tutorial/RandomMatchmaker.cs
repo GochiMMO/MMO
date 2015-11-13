@@ -7,6 +7,14 @@ public class RandomMatchmaker : Photon.PunBehaviour
     //public bool offlineMode = false;
     [SerializeField]
     UnityStandardAssets.Cameras.FreeLookCam cam;
+    [SerializeField, Tooltip("アーチャーのアニメーションコントローラー")]
+    RuntimeAnimatorController archerAnimationController;
+    [SerializeField, Tooltip("ウォーリアのアニメーションコントローラー")]
+    RuntimeAnimatorController warriorAnimationController;
+    [SerializeField, Tooltip("魔法職のアニメーションコントローラー")]
+    RuntimeAnimatorController sorcererAnimationController;
+    [SerializeField, Tooltip("モンクのアニメーションコントローラー")]
+    RuntimeAnimatorController monkAnimationController;
     
     // Use this for initialization
     void Start()
@@ -31,7 +39,45 @@ public class RandomMatchmaker : Photon.PunBehaviour
                 // BBAを出す
                 break;
         }
-        
+
+        // 職業によって処理分け
+        switch (PlayerStates.playerData.job)
+        {
+                // アーチャー
+            case 0:
+                // アーチャーを入れる
+                Archer archer = player.AddComponent<Archer>();
+                // PhotonViewの通信を使うリストにアーチャーを登録する
+                player.GetComponent<PhotonView>().ObservedComponents.Add(archer);
+                // アニメーションを変更する
+                player.GetComponent<Animator>().runtimeAnimatorController = archerAnimationController;
+                break;
+            case 1:
+                // ウォーリアを入れる
+                Warrior warrior = player.AddComponent<Warrior>();
+                // PhotonViewの通信を使うリストにアーチャーを登録する
+                player.GetComponent<PhotonView>().ObservedComponents.Add(warrior);
+                // アニメーションを変更する
+                player.GetComponent<Animator>().runtimeAnimatorController = warriorAnimationController;
+                break;
+            case 2:
+                // ソーサラーを入れる
+                Sorcerer sorcerer = player.AddComponent<Sorcerer>();
+                // PhotonViewの通信を使うリストにアーチャーを登録する
+                player.GetComponent<PhotonView>().ObservedComponents.Add(sorcerer);
+                // アニメーションを変更する
+                player.GetComponent<Animator>().runtimeAnimatorController = sorcererAnimationController;
+                break;
+            case 3:
+                // アーチャーを入れる
+                Monk monk = player.AddComponent<Monk>();
+                // PhotonViewの通信を使うリストにアーチャーを登録する
+                player.GetComponent<PhotonView>().ObservedComponents.Add(monk);
+                // アニメーションを変更する
+                player.GetComponent<Animator>().runtimeAnimatorController = monkAnimationController;
+                break;
+        }
+
         // GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         cam.SetTarget(player.transform);
         cam.enabled = true;

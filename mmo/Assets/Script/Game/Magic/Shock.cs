@@ -6,10 +6,6 @@ public class Shock : Photon.MonoBehaviour {
     ParticleSystem shotEffect;
     [SerializeField, Tooltip("爆発のエフェクト")]
     ParticleSystem shockEffect;
-    [SerializeField, Tooltip("ショットの当り判定")]
-    SphereCollider shotCollider;
-    [SerializeField, Tooltip("爆発の当り判定")]
-    SphereCollider shockCollider;
 
     public int speed;   //移動速度
     public float shotLife;  //ショット寿命
@@ -20,62 +16,88 @@ public class Shock : Photon.MonoBehaviour {
     bool hitFlag;       //当たったかのフラグ
 
     PhotonTransformView photonTransformView;
+
     // Use this for initialization
     void Start () {
-        shockEffect.Stop();   //爆発パーティクルをストップさせる
-        shockCollider.enabled = false;  //爆発当り判定をオフ
+        // ヒット時の爆発パーティクルエフェクトを停止しておく
+        shockEffect.Stop();
+        // 通信同期用コンポーネントを取得する
         photonTransformView = GetComponent<PhotonTransformView>();
-
-        startTime = Time.time;  //時間を登録
+        // 魔法が出た瞬間の時間を登録する
+        startTime = Time.time;
     }
 
     //方向の登録
     public void SetDirection(float yAngle)
     {
+        // 移動方向の決定(プレイヤーの正面に向ける)
         moveVector.y = 0f;
         moveVector.x = Mathf.Cos(yAngle * Mathf.PI / 180f) * -speed;
         moveVector.z = Mathf.Sin(yAngle * Mathf.PI / 180f) * speed;
+        // 自分で出した魔法ならば
+        if (photonView.isMine)
+        {
+            // 移動速度を同期する
+            photonTransformView.SetSynchronizedValues(speed: moveVector, turnSpeed: 0);
+        }
     }
 
-    //ヒットした時
+    /// <summary>
+    /// ヒットしたときに呼ばれる関数
+    /// </summary>
+    /// <param name="col">当たったコライダー</param>
     void OnTriggerEnter(Collider col)
     {
-        if (!hitFlag && col.gameObject.tag != "Player") //プレイヤーでなく、ヒットした最初のフレームならば
+        // 今までヒットしておらず、ヒットしたオブジェクトがプレイヤーでなければ
+        if (!hitFlag && col.gameObject.tag != "Player")
         {
+            // ヒットしたことにする
             hitFlag = true;
+            // 飛ばすためのパーティクルエフェクトを停止させる
             shotEffect.Stop();
+            // 当たった時の爆発パーティクルエフェクトを再生する
             shockEffect.Play();
-            shockCollider.enabled = true;
-            shotCollider.enabled = false;
-            moveVector = Vector3.zero;      //移動ベクトルを消す
-            startTime = Time.time;  //時間を計測しなおす
+            // 移動ベクトルを0にする
+            moveVector = Vector3.zero;
+            // 時間を今度は爆発待機時間計測に使うため、初期化する
+            startTime = Time.time;
+            // 自分で出した魔法ならば
+            if (photonView.isMine)
+            {
+                // 速度を同期(移動ベクトル = 0)する
+                photonTransformView.SetSynchronizedValues(speed: moveVector, turnSpeed: 0);
+            }
         }
     }
 
     // Update is called once per frame
     void Update () {
+        // まだヒットしていなければ
         if (!hitFlag)
         {
-            if (photonView.isMine)
-            {
-                photonTransformView.SetSynchronizedValues(speed: moveVector, turnSpeed: 0);
-            }
+            // 移動させる
             this.transform.Translate(moveVector * Time.deltaTime, Space.World);
-            //時間が経ったら
+            // 自分自身が出した魔法ならば
             if (photonView.isMine)
             {
+                // 時間が設定時間分経ったら
                 if (Time.time - startTime >= shotLife)
                 {
+                    // 消す
                     PhotonNetwork.Destroy(this.gameObject);
                 }
             }
         }
+        // ヒットした後ならば
         else
         {
+            // 自分が出した魔法ならば
             if (photonView.isMine)
             {
+                // 時間が設定時間分経過したら
                 if (Time.time - startTime >= shockLife)
                 {
+                    // 消す
                     PhotonNetwork.Destroy(this.gameObject);
                 }
             }

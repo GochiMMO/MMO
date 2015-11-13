@@ -44,9 +44,9 @@ public class FireShot : Photon.MonoBehaviour {
         moveVec.x = -Mathf.Cos(direction * Mathf.PI / 180f) * speed;
         moveVec.z = Mathf.Sin(direction * Mathf.PI / 180f) * speed;
         moveVec.y = 0;
-        if (pv.isMine)
+        //if (pv.isMine)
         {
-            photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
+            // photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
         }
         //shotFlag = true;
     }

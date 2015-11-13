@@ -139,15 +139,15 @@ public class LoadCharacterData : MonoBehaviour {
 
 
     /// <summary>
-    /// If push name button, show name, job and level of player data and show player model.
+    /// キャラクターの名前のボタンを押した時の処理
     /// </summary>
     /// <param name="playerNumber">Show player number.</param>
     public void pushPlayerButton(int playerNumber)
     {
-        //モデルの表示処理
+        // モデルの表示処理
         
 
-        //テキストの表示処理
+        // テキストの表示処理
         lvText.text = "Lv " + playerData[playerNumber].Lv.ToString();
         playerNameText.text = "名前 " + playerData[playerNumber].name;
         string job = "";
@@ -175,16 +175,22 @@ public class LoadCharacterData : MonoBehaviour {
         //ボタンキャンバスがインスタンス化していなければ
         if (!buttonsInstantiateFlag)
         {
+            // 削除ボタンを表示する
             deleteButtonCanvasInstance = GameObject.Instantiate(startAndDeleteButtonCanvas);
+            // ボタンがインスタンス化されたフラグを立てる
             buttonsInstantiateFlag = true;
+            // テキストに名前を表示する
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
+        // ボタンがインスタンス化されていたら
         else
         {
-            //deleteButtonCanvasInstance.transform.GetComponentInChildren<Text>().text = playerNumber.ToString();
+            // テキストに名前を表示する
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
+        // プレイヤーのステータスを登録する
         PlayerStates.playerData = playerData[playerNumber];
+        // プレイヤーの名前を設定する
         PhotonNetwork.playerName = PlayerStates.playerData.name;
     }
     

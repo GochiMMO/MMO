@@ -341,14 +341,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃用コンポーネントを有効化する
-                playerAttacks[i].enabled = true;
+                playerAttacks[i].col.enabled = true;
             }
         }
         // 番号に指定があり、有効範囲内である場合
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 指定番号のコンポ―ネントを有効化する
-            playerAttacks[attackNumber].enabled = true;
+            playerAttacks[attackNumber].col.enabled = true;
         }
     }
 
@@ -365,14 +365,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃用コンポーネントを無効化する
-                playerAttacks[i].enabled = false;
+                playerAttacks[i].col.enabled = false;
             }
         }
         // 番号に指定があり、有効範囲内である場合
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 指定番号のコンポ―ネントを無効化する
-            playerAttacks[attackNumber].enabled = false;
+            playerAttacks[attackNumber].col.enabled = false;
         }
     }
 
@@ -380,7 +380,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 攻撃力を設定する(物理)
     /// </summary>
     /// <param name="attackNumber">攻撃コンポーネントの番号</param>
-    virtual protected void SetAttack(int attackNumber = -1)
+    virtual protected void SetAttack(int attack, int attackNumber = -1)
     {
         // 攻撃コンポーネントの番号が指定されていない時
         if (attackNumber == -1)
@@ -389,7 +389,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃力を設定する
-                playerAttacks[i].attack = playerData.attack;
+                playerAttacks[i].attack = attack;
                 // 攻撃の種類を変更する
                 playerAttacks[i].attackKind = PlayerAttack.AttackKind.PHYSICS;
             }
@@ -398,7 +398,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 攻撃力を設定する
-            playerAttacks[attackNumber].attack = playerData.attack;
+            playerAttacks[attackNumber].attack = attack;
             // 攻撃の種類を変更する
             playerAttacks[attackNumber].attackKind = PlayerAttack.AttackKind.PHYSICS;
         }
@@ -408,7 +408,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 攻撃力を設定する(魔法)
     /// </summary>
     /// <param name="attackNumber">攻撃コンポーネントの番号</param>
-    virtual protected void SetMagicAttack(int attackNumber = -1)
+    virtual protected void SetMagicAttack(int attack, int attackNumber = -1)
     {
         // 攻撃コンポーネントの番号が指定されていない時
         if (attackNumber == -1)
@@ -417,7 +417,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃力を設定する
-                playerAttacks[i].attack = playerData.magicAttack;
+                playerAttacks[i].attack = attack;
                 // 攻撃の種類を変更する
                 playerAttacks[i].attackKind = PlayerAttack.AttackKind.MAGIC;
             }
@@ -426,7 +426,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 攻撃力を設定する
-            playerAttacks[attackNumber].attack = playerData.magicAttack;
+            playerAttacks[attackNumber].attack = attack;
             // 攻撃の種類を変更する
             playerAttacks[attackNumber].attackKind = PlayerAttack.AttackKind.MAGIC;
         }

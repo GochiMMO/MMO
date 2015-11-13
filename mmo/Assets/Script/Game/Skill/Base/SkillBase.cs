@@ -83,6 +83,12 @@ public class SkillBase {
     public float GetBonus() { return skillData.bonus; }
     public float GetEffectTime() { return ( skillData.effecttime + skillData.bonus * skillData.lv ); }
     public float GetCastTime() { return skillData.casttime; }
+
+    public void SetLevel(int level)
+    {
+        // レベルを設定する
+        this.skillData.lv = level;
+    }
 }
 
 /// <summary>
@@ -107,6 +113,26 @@ public static class SkillControl
     public static int job;
 
     /// <summary>
+    /// スキルレベルを設定する
+    /// </summary>
+    /// <param name="id">スキルのID</param>
+    /// <param name="skillLevel">スキルのレベル</param>
+    public static void SetSkillLevel(int id, int skillLevel)
+    {
+        skills[id].SetLevel(skillLevel);
+    }
+
+    /// <summary>
+    /// スキルのレベルを設定する
+    /// </summary>
+    /// <param name="skillName">スキルの名前</param>
+    /// <param name="skillLevel">スキルのレベル</param>
+    public static void SetSkillLevel(string skillName, int skillLevel)
+    {
+        skills[skillNameAndId[skillName]].SetLevel(skillLevel);
+    }
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     static SkillControl()
@@ -129,7 +155,8 @@ public static class SkillControl
             // スキルをを入れ込む 
             skills.Add(skill_data[i].id, new SkillBase(
                 id: skill_data[i].id,
-                lv: skill_data[i].lv,
+                // lv: skill_data[i].lv,
+                lv : PlayerStates.playerData.skillLevel[skill_data[i].id],
                 name: skill_data[i].name,
                 type: skill_data[i].type,
                 pt: skill_data[i].point,

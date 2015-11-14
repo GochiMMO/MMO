@@ -294,5 +294,25 @@ public class Sorcerer : PlayerChar {
         playerData.HP = playerData.SP;
     }
 
-
+    /// <summary>
+    /// プレイヤーを全回復させる関数
+    /// </summary>
+    /// <param name="player">回復させる対象</param>
+    private void Venediction(GameObject player)
+    {
+        // プレイヤーの情報をゲットする
+        PlayerChar playerChar = player.GetComponent<PlayerChar>();
+        // プレイヤーが取得できれば
+        if (playerChar)
+        {
+            // 他の誰かのHPを回復させる
+            gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, playerChar.GetPlayerData().MaxHP);
+        }
+        // 情報が取得できなければ
+        else
+        {
+            // 自分のHPを回復させる
+            Recover(playerData.MaxHP);
+        }
+    }
 }

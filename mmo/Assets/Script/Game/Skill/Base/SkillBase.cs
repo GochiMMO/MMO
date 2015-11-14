@@ -147,7 +147,7 @@ public static class SkillControl
     public static void LoadSkillData()
     {
         // プレイヤーのジョブをセットする
-        job = PlayerStates.playerData.job;
+        job = PlayerStatus.playerData.job;
         var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;      // 本番用
 
         for (int i = 0; i < skill_data.Count; i++)
@@ -156,7 +156,7 @@ public static class SkillControl
             skills.Add(skill_data[i].id, new SkillBase(
                 id: skill_data[i].id,
                 // lv: skill_data[i].lv,
-                lv : PlayerStates.playerData.skillLevel[skill_data[i].id],
+                lv : PlayerStatus.playerData.skillLevel[skill_data[i].id],
                 name: skill_data[i].name,
                 type: skill_data[i].type,
                 pt: skill_data[i].point,

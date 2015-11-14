@@ -24,11 +24,11 @@ public class StatusPartitionSystem : MonoBehaviour {
         }
 
         //それぞれ格納しておく
-        statusPoint[0] = PlayerStates.playerData.str;
-        statusPoint[1] = PlayerStates.playerData.vit;
-        statusPoint[2] = PlayerStates.playerData.intelligence;
-        statusPoint[3] = PlayerStates.playerData.mnd;
-        restStatusPoint = PlayerStates.playerData.statusPoint;
+        statusPoint[0] = PlayerStatus.playerData.str;
+        statusPoint[1] = PlayerStatus.playerData.vit;
+        statusPoint[2] = PlayerStatus.playerData.intelligence;
+        statusPoint[3] = PlayerStatus.playerData.mnd;
+        restStatusPoint = PlayerStatus.playerData.statusPoint;
     }
     
     // Update is called once per frame
@@ -62,7 +62,7 @@ public class StatusPartitionSystem : MonoBehaviour {
     /// <param name="statusNumber">Kind of status number.</param>
     public void PushMinusButton(int statusNumber)
     {
-        if (restStatusPoint < PlayerStates.playerData.statusPoint)  //残りステータスポイントがセーブデータのステータスポイントより少なければ（振っていれば）
+        if (restStatusPoint < PlayerStatus.playerData.statusPoint)  //残りステータスポイントがセーブデータのステータスポイントより少なければ（振っていれば）
         {
             int playerStatusPoint = 0;  //プレイヤーのステータスポイント
             
@@ -70,16 +70,16 @@ public class StatusPartitionSystem : MonoBehaviour {
             switch (statusNumber)
             {
                 case 0:
-                    playerStatusPoint = PlayerStates.playerData.str;
+                    playerStatusPoint = PlayerStatus.playerData.str;
                     break;
                 case 1:
-                    playerStatusPoint = PlayerStates.playerData.vit;
+                    playerStatusPoint = PlayerStatus.playerData.vit;
                     break;
                 case 2:
-                    playerStatusPoint = PlayerStates.playerData.intelligence;
+                    playerStatusPoint = PlayerStatus.playerData.intelligence;
                     break;
                 case 3:
-                    playerStatusPoint = PlayerStates.playerData.mnd;
+                    playerStatusPoint = PlayerStatus.playerData.mnd;
                     break;
             }
 
@@ -92,7 +92,7 @@ public class StatusPartitionSystem : MonoBehaviour {
                     statusPartitionTexts[statusNumber].color = Color.black;
                     
                 }
-                if (restStatusPoint == PlayerStates.playerData.statusPoint)
+                if (restStatusPoint == PlayerStatus.playerData.statusPoint)
                 {
                     statusText.color = Color.black;
                 }
@@ -107,14 +107,14 @@ public class StatusPartitionSystem : MonoBehaviour {
     public void DecideButton()
     {
         //セーブデータに一時記憶した値を入れる
-        PlayerStates.playerData.str = statusPoint[0];
-        PlayerStates.playerData.vit = statusPoint[1];
-        PlayerStates.playerData.intelligence = statusPoint[2];
-        PlayerStates.playerData.mnd = statusPoint[3];
-        PlayerStates.playerData.statusPoint = restStatusPoint;
+        PlayerStatus.playerData.str = statusPoint[0];
+        PlayerStatus.playerData.vit = statusPoint[1];
+        PlayerStatus.playerData.intelligence = statusPoint[2];
+        PlayerStatus.playerData.mnd = statusPoint[3];
+        PlayerStatus.playerData.statusPoint = restStatusPoint;
 
         //セーブする
-        PlayerStates.SavePlayerData();
+        PlayerStatus.SavePlayerData();
 
         foreach (var status in statusPartitionTexts)
         {
@@ -131,12 +131,12 @@ public class StatusPartitionSystem : MonoBehaviour {
     public void ChancellButton()
     {
         // ステータスポイントをセーブデータから呼び出し直す
-        statusPoint[0] = PlayerStates.playerData.str;
-        statusPoint[1] = PlayerStates.playerData.vit;
-        statusPoint[2] = PlayerStates.playerData.intelligence;
-        statusPoint[3] = PlayerStates.playerData.mnd;
+        statusPoint[0] = PlayerStatus.playerData.str;
+        statusPoint[1] = PlayerStatus.playerData.vit;
+        statusPoint[2] = PlayerStatus.playerData.intelligence;
+        statusPoint[3] = PlayerStatus.playerData.mnd;
 
-        restStatusPoint = PlayerStates.playerData.statusPoint;
+        restStatusPoint = PlayerStatus.playerData.statusPoint;
         foreach (var status in statusPartitionTexts)
         {
             status.color = Color.black;

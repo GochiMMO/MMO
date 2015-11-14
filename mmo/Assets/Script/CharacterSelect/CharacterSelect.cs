@@ -9,10 +9,10 @@ public class CharacterSelect : MonoBehaviour {
     [SerializeField, Tooltip("削除するかどうか聞くウインドウ")]
     GameObject askDeleteWindow;
 
-
     // Use this for initialization
     void Start () {
-        PlayerStates.Init();
+        // コンフィグファイルを読み込む
+        PlayerStatus.Init();
     }
 
     /// <summary>
@@ -20,13 +20,19 @@ public class CharacterSelect : MonoBehaviour {
     /// </summary>
     public void PushDeleteButton()
     {
+        // 本当に削除してもいいですか？のウィンドウを表示する
         var obj = GameObject.Instantiate(askDeleteWindow);
+        // 子オブジェクトの数だけ繰り返す
         for (int i = 0; i < obj.transform.childCount; i++)
         {
+            // 子オブジェクトを取得する
             GameObject childObj = obj.transform.GetChild(i).gameObject;
+            // タグがYesButtonに設定されていたら
             if (childObj.tag == "YesButton")
             {
+                // そのボタンのコンポーネントを取得する
                 var btn = childObj.GetComponent<UnityEngine.UI.Button>();
+                // プレイヤーの番号を取得する
                 int playerNumber = int.Parse(gameObject.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text);
                 // セーブデータを削除する関数を登録
                 btn.onClick.AddListener(() => { StaticMethods.DeletePlayerSaveData(playerNumber); });

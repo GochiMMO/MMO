@@ -28,10 +28,9 @@ public class SelectJob : MonoBehaviour {
             //クリックされたとき
             if (Input.GetMouseButtonDown(0))
             {
-                PlayerStates.playerData.job = jobNumber;
+                PlayerStatus.playerData.job = jobNumber;
                 GameObject.Instantiate(window);
                 windowVisibleFlag = true;
-                PlayerStates.LoadFirstStatus(jobName);
             }
         }
     }

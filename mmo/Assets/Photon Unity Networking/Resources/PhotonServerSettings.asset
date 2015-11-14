@@ -53,4 +53,5 @@ MonoBehaviour:
   - PartyChat
   - PtoPChat
   - InstantiateTurnDownWindow
+  - Recover
   DisableAutoOpenWizard: 1

@@ -151,7 +151,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// プレイヤーのステータス
     /// </summary>
-    protected PlayerData playerData;
+    protected PlayerData playerData = new PlayerData();
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -230,10 +230,15 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         }
     }
 
+    public void Initialize()
+    {
+        Start();
+    }
+
     // Use this for initialization
     protected virtual void Start () {
         // プレイヤーのステータスを取得する
-        playerData = PlayerStates.playerData;
+        playerData = PlayerStatus.playerData;
         // 通信同期のためのコンポーネントを取得する
         photonTransformView = gameObject.GetComponent<PhotonTransformView>();
         // アニメーションのためのコンポーネントを取得する
@@ -559,6 +564,17 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             // 移動させる
             // Transform();
         }
+    }
+
+    /// <summary>
+    /// 回復するスキル
+    /// </summary>
+    /// <param name="addHp">回復する値</param>
+    [PunRPC]
+    public void Recover(int addHp)
+    {
+        // プレイヤーのHPを足す
+        playerData.HP += addHp;
     }
 
     /// <summary>

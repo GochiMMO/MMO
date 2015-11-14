@@ -38,41 +38,30 @@ public static class StaticMethods{
     /// <param name="playerNumber">Delete player number.</param>
     public static void DeletePlayerSaveData(int playerNumber)
     {
-        //番号分け
+        // セーブデータを削除する
+        SaveManager.DeleteSaveData(PlayerStatus.environmentalSaveData.playerName[playerNumber]);
+        // プレイヤーの名前を削除する
+        PlayerStatus.environmentalSaveData.playerName[playerNumber] = default(string);
+
+        // 削除したプレイヤーの番号で処理分けを行う
         switch (playerNumber)
         {
+            // 最初のプレイヤーならば
             case 0:
-                SaveManager.DeleteSaveData(PlayerStates.environmentalSaveData.oneSaveDataName);
-                PlayerStates.environmentalSaveData.oneSaveDataName = null;
-                PlayerStates.environmentalSaveData.saveDataNum--;
-                if (PlayerStates.environmentalSaveData.saveDataNum > 1)
-                {
-                    PlayerStates.environmentalSaveData.oneSaveDataName = PlayerStates.environmentalSaveData.twoSaveDataName;
-                    PlayerStates.environmentalSaveData.twoSaveDataName = PlayerStates.environmentalSaveData.threeSaveDataName;
-                }
-                else if (PlayerStates.environmentalSaveData.saveDataNum > 0)
-                {
-                    PlayerStates.environmentalSaveData.oneSaveDataName = PlayerStates.environmentalSaveData.twoSaveDataName;
-                }
+                // セーブデータをずらす
+                PlayerStatus.environmentalSaveData.playerName[0] = PlayerStatus.environmentalSaveData.playerName[1];
+                PlayerStatus.environmentalSaveData.playerName[1] = PlayerStatus.environmentalSaveData.playerName[2];
                 break;
-
+            // 2番目のプレイヤーならば
             case 1:
-                SaveManager.DeleteSaveData(PlayerStates.environmentalSaveData.twoSaveDataName);
-                PlayerStates.environmentalSaveData.twoSaveDataName = null;
-                PlayerStates.environmentalSaveData.saveDataNum--;
-                if (PlayerStates.environmentalSaveData.saveDataNum > 1)
-                {
-                    PlayerStates.environmentalSaveData.twoSaveDataName = PlayerStates.environmentalSaveData.threeSaveDataName;
-                }
-                break;
-
-            case 2:
-                SaveManager.DeleteSaveData(PlayerStates.environmentalSaveData.threeSaveDataName);
-                PlayerStates.environmentalSaveData.threeSaveDataName = null;
-                PlayerStates.environmentalSaveData.saveDataNum--;
+                // セーブデータをずらす
+                PlayerStatus.environmentalSaveData.playerName[1] = PlayerStatus.environmentalSaveData.playerName[2];
                 break;
         }
-        PlayerStates.SaveEnvironmentalData();
+        // セーブデータの数を減算する
+        PlayerStatus.environmentalSaveData.saveDataNum--;
+        // コンフィグファイルをセーブする
+        PlayerStatus.SaveEnvironmentalData();
     }
 
     /// <summary>

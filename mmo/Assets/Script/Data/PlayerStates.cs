@@ -3,22 +3,43 @@ using System.Collections;
 using System.IO;
 using System.Xml.Serialization;
 
-public static class PlayerStates{
+/// <summary>
+/// プレイヤーのステータスやコンフィグファイルが格納されているクラス
+/// </summary>
+public static class PlayerStatus{
+    /// <summary>
+    /// 職業表
+    /// </summary>
+    public static readonly string[] JobName = { "アーチャー", "ウォーリア", "ソーサラー", "モンク" };
+    /// <summary>
+    /// 読込、セーブの対象になるプレイヤーのステータス
+    /// </summary>
     public static PlayerData playerData;
+    /// <summary>
+    /// コンフィグファイル、主にセーブデータの数とセーブデータの名前が登録される
+    /// </summary>
     public static EnvironmentalSaveData environmentalSaveData;
-    public static Jobs jobs;
+    /// <summary>
+    /// 職業毎の初期ステータスが格納されている
+    /// </summary>
+    private static Jobs jobs;
 
     /// <summary>
     /// Constractor.
     /// </summary>
-    static PlayerStates()
+    static PlayerStatus()
     {
         Debug.Log("PlayerStates class Constractor");
+        // プレイヤーのステータスを格納する変数の領域を確保
         playerData = new PlayerData();
+        // 初期ステータスを格納する変数の領域を確保
         jobs = new Jobs();
+        // コンフィグファイルを格納する変数の領域を確保
         environmentalSaveData = new EnvironmentalSaveData();
+        // 各職業の初期ステータスを読み込む
         LoadFirstStatus();
-        PlayerStates.Init();
+        // 初期化する
+        PlayerStatus.Init();
     }
 
     /// <summary>
@@ -43,7 +64,7 @@ public static class PlayerStates{
     /// <summary>
     /// 各職業の初期ステータスを読み込む
     /// </summary>
-    static void LoadFirstStatus()
+    private static void LoadFirstStatus()
     {
         // セーブデータを読み込む
         FileStream fs = new FileStream("./savedata/FirstStatus.xml", FileMode.Open);
@@ -69,7 +90,6 @@ public static class PlayerStates{
     /// </summary>
     public static void SaveEnvironmentalData()
     {
-        //environmentalSaveData.saveDataNum++;
         SaveManager.Save<EnvironmentalSaveData>(environmentalSaveData, "Config");
     }
 
@@ -94,7 +114,6 @@ public static class PlayerStates{
                 playerData.intelligence = int.Parse(job.intelligence);
                 playerData.mnd = int.Parse(job.mnd);
                 playerData.Lv = 1;
-                playerData.name = job.name;
                 playerData.HP = playerData.MaxHP = 1000;
                 playerData.SP = playerData.MaxSP = 100;
 

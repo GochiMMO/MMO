@@ -1003,7 +1003,6 @@ GameObject:
   - 95: {fileID: 9531108}
   - 54: {fileID: 5479584}
   - 136: {fileID: 13681190}
-  - 114: {fileID: 11470658}
   - 114: {fileID: 11407298}
   - 114: {fileID: 11440354}
   - 114: {fileID: 11492106}
@@ -2392,23 +2391,11 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11470658}
   - {fileID: 11407298}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!114 &11470658
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d9feae901e8912498c7d71fa199cf33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11492106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2533,6 +2520,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -2548,6 +2539,18 @@ Prefab:
       propertyPath: ObservedComponentsFoldoutOpen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 11407298}
+    - target: {fileID: 0}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 11407298}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178638}

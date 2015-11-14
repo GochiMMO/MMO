@@ -32,108 +32,90 @@ public class LoadCharacterData : MonoBehaviour {
     GameObject deleteButtonCanvasInstance;
     bool buttonsInstantiateFlag = false;
     PlayerData[] playerData;    //キャラクターのデータ
+
     // Use this for initialization
     void Start () {
-        Debug.Log(PlayerStates.environmentalSaveData.saveDataNum);
+        // セーブデータの個数を出す(デバッグ用)
+        Debug.Log(PlayerStatus.environmentalSaveData.saveDataNum);
+        // 背景イメージのオブジェクトを取得する
         backImage = canvas.transform.GetChild(0).gameObject;
+        // 背景イメージのRectTransformを取得する
         backImageRect = backImage.GetComponent<RectTransform>();
+        // ボタンを表示する１つの枠を計算する
         float buttonHeight = (backImageRect.anchorMax.y - backImageRect.anchorMin.y) / 3;
-        //セーブデータの読み込み
-        if (PlayerStates.environmentalSaveData.saveDataNum > 0)
+        // セーブデータの数を取得する
+        int saveDataNum = PlayerStatus.environmentalSaveData.saveDataNum;
+        // セーブデータの名前を格納する変数を定義する
+        string[] saveDataName = new string[3];
+        // セーブデータの名前を取得する
+        saveDataName = PlayerStatus.environmentalSaveData.playerName;
+
+        // セーブデータの数が0でない時
+        if (saveDataNum > 0)
         {
-            playerData = new PlayerData[PlayerStates.environmentalSaveData.saveDataNum];    //セーブデータの数だけプレイヤーがいる
-            playerData[0] = SaveManager.Load<PlayerData>(playerData[0], PlayerStates.environmentalSaveData.oneSaveDataName);
-            GameObject obj = GameObject.Instantiate(button);
-            obj.transform.SetParent(canvas.transform);
+            // セーブデータの数だけ領域を確保する
+            playerData = new PlayerData[saveDataNum];
 
-            RectTransform rt1 = obj.GetComponent<RectTransform>();
-            rt1.localScale = new Vector3(1f, 1f, 1f);
-            rt1.sizeDelta = new Vector2(0, 0);
-            rt1.anchorMin = new Vector2(rt1.anchorMin.x, backImageRect.anchorMax.y - buttonHeight);
-            rt1.anchorMax = new Vector2(rt1.anchorMax.x, backImageRect.anchorMax.y);
-            rt1.anchoredPosition = new Vector2(0f, 0f);
-
-            obj.transform.GetChild(0).GetComponent<Text>().text = playerData[0].name;
-            obj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener( ()=>pushPlayerButton(0) );
-
-            Debug.Log(playerData[0].name);
-            //キャラクターの数が２人以上
-            if (PlayerStates.environmentalSaveData.saveDataNum > 1)
+            for (int i = 0; i < saveDataNum; i++)
             {
-                playerData[1] = SaveManager.Load<PlayerData>(playerData[1], PlayerStates.environmentalSaveData.twoSaveDataName);
-                Debug.Log(playerData[1].name);
-                GameObject obj1 = GameObject.Instantiate(button);
-                obj1.GetComponent<RectTransform>().Translate(Vector3.up * -obj1.GetComponent<RectTransform>().rect.height * obj1.transform.localScale.y, Space.Self);
-                obj1.transform.SetParent(canvas.transform);
-                obj1.transform.GetChild(0).GetComponent<Text>().text = playerData[1].name;
-                obj1.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(1));
+                // セーブデータを読み込む
+                playerData[i] = SaveManager.Load<PlayerData>(playerData[i], saveDataName[i]);
+                // ボタンをインスタンス化する
+                GameObject obj = GameObject.Instantiate(button);
+                // ボタンのRectTransformを取得する
+                RectTransform buttonRect = obj.GetComponent<RectTransform>();
+                // 位置を変更する
+                buttonRect.Translate(Vector3.up * buttonRect.rect.height * obj.transform.localScale.y * i, Space.Self);
+                // キャンバスの子にする
+                obj.transform.SetParent(canvas.transform);
+                // サイズを1:1:1に変更する
+                buttonRect.localScale = new Vector3(1f, 1f, 1f);
+                // 上下のサイズ比を合わせる
+                buttonRect.sizeDelta = new Vector2(0, 0);
+                // アンカー位置を変更する
+                // 上アンカー位置の調整
+                buttonRect.anchorMax = new Vector2(buttonRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * i);
+                // 下アンカー位置の調整
+                buttonRect.anchorMin = new Vector2(buttonRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (i + 1));
+                // アンカーからのボタンの位置の調整(ぴったりアンカーに合わせるので0,0を入れる)
+                buttonRect.anchoredPosition = new Vector2(0f, 0f);
 
-                RectTransform rt2 = obj1.GetComponent<RectTransform>();
-                rt2.localScale = new Vector3(1f, 1f, 1f);
-                rt2.sizeDelta = new Vector2(0, 0);
-                rt2.anchorMin = new Vector2(rt2.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 2);
-                rt2.anchorMax = new Vector2(rt2.anchorMax.x, backImageRect.anchorMax.y - buttonHeight);
-                rt2.anchoredPosition = new Vector2(0f, 0f);
+                // テキストをプレイヤーの名前に変更する
+                obj.transform.GetChild(0).GetComponent<Text>().text = playerData[i].name;
 
-                //キャラクターの数が３人
-                if (PlayerStates.environmentalSaveData.saveDataNum > 2)
-                {
-                    playerData[2] = SaveManager.Load<PlayerData>(playerData[2], PlayerStates.environmentalSaveData.threeSaveDataName);
-                    Debug.Log(playerData[2].name);
-                    GameObject obj2 = GameObject.Instantiate(button);
-                    obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * 2 * obj2.transform.localScale.y, Space.Self);
-                    obj2.transform.SetParent(canvas.transform);
-                    obj2.transform.GetChild(0).GetComponent<Text>().text = playerData[2].name;
-                    obj2.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(2));
+                // プレイヤーの番号を設定する
+                int playerNumber = i;
 
-                    RectTransform rt3 = obj2.GetComponent<RectTransform>();
-                    rt3.localScale = new Vector3(1f, 1f, 1f);
-                    rt3.sizeDelta = new Vector2(0, 0);
-                    rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 3);
-                    rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 2);
-                    rt3.anchoredPosition = new Vector2(0f, 0f);
+                // ボタンに押された時の処理を行うようにメソッドを登録する
+                obj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(playerNumber));
 
-                }
-                else
-                {
-                    GameObject obj2 = GameObject.Instantiate(characterCreateButton);
-                    obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * 2 * obj2.transform.localScale.y, Space.Self);
-                    obj2.transform.SetParent(canvas.transform);
-
-                    RectTransform rt3 = obj2.GetComponent<RectTransform>();
-                    rt3.localScale = new Vector3(1f, 1f, 1f);
-                    rt3.sizeDelta = new Vector2(0, 0);
-                    rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 3);
-                    rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 2);
-                    rt3.anchoredPosition = new Vector2(0f, 0f);
-                }
-            }
-            else
-            {
-                GameObject obj2 = GameObject.Instantiate(characterCreateButton);
-                obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
-                obj2.transform.SetParent(canvas.transform);
-
-                RectTransform rt3 = obj2.GetComponent<RectTransform>();
-                rt3.localScale = new Vector3(1f, 1f, 1f);
-                rt3.sizeDelta = new Vector2(0, 0);
-                rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * 2);
-                rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * 1);
-                rt3.anchoredPosition = new Vector2(0f, 0f);
+                // プレイヤーの名前を出力する
+                Debug.Log(playerData[i].name);
             }
         }
-        else
-        {
-            GameObject obj2 = GameObject.Instantiate(characterCreateButton);
-            //obj2.transform.Translate(Vector3.up * -obj2.GetComponent<RectTransform>().rect.height * obj2.transform.localScale.y, Space.Self);
-            obj2.transform.SetParent(canvas.transform);
 
-            RectTransform rt3 = obj2.GetComponent<RectTransform>();
-            rt3.localScale = new Vector3(1f, 1f, 1f);
-            rt3.sizeDelta = new Vector2(0, 0);
-            rt3.anchorMin = new Vector2(rt3.anchorMin.x, backImageRect.anchorMax.y - buttonHeight);
-            rt3.anchorMax = new Vector2(rt3.anchorMax.x, backImageRect.anchorMax.y);
-            rt3.anchoredPosition = new Vector2(0f, 0f);
+        // セーブデータの数が３人分無ければ
+        if (saveDataNum != 3)
+        {
+            // キャラクター作成ボタンをインスタンス化する
+            GameObject charCreateButton = GameObject.Instantiate(characterCreateButton);
+            // ボタンのRectTransformを取得する
+            RectTransform buttonRect = charCreateButton.GetComponent<RectTransform>();
+            // 位置を変更する
+            buttonRect.Translate(Vector3.up * buttonRect.rect.height * charCreateButton.transform.localScale.y * saveDataNum, Space.Self);
+            // 親子関係を作る
+            charCreateButton.transform.SetParent(canvas.transform);
+            
+            // スケールを調整する
+            buttonRect.localScale = new Vector3(1f, 1f, 1f);
+            buttonRect.sizeDelta = new Vector2(0, 0);
+
+            // 上アンカー位置の変更
+            buttonRect.anchorMax = new Vector2(buttonRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum));
+            // 下アンカー位置の変更
+            buttonRect.anchorMin = new Vector2(buttonRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum + 1));
+            // アンカーにピッタリ合わせるようにする
+            buttonRect.anchoredPosition = new Vector2(0f, 0f);
         }
     }
 
@@ -151,6 +133,8 @@ public class LoadCharacterData : MonoBehaviour {
         lvText.text = "Lv " + playerData[playerNumber].Lv.ToString();
         playerNameText.text = "名前 " + playerData[playerNumber].name;
         string job = "";
+
+        // ジョブによって処理分け
         switch (playerData[playerNumber].job)
         {
             case 0:
@@ -185,17 +169,12 @@ public class LoadCharacterData : MonoBehaviour {
         // ボタンがインスタンス化されていたら
         else
         {
-            // テキストに名前を表示する
+            // 削除ボタンのテキストに名前を表示する
             deleteButtonCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = playerNumber.ToString();
         }
         // プレイヤーのステータスを登録する
-        PlayerStates.playerData = playerData[playerNumber];
+        PlayerStatus.playerData = playerData[playerNumber];
         // プレイヤーの名前を設定する
-        PhotonNetwork.playerName = PlayerStates.playerData.name;
-    }
-    
-    // Update is called once per frame
-    void Update () {
-    
+        PhotonNetwork.playerName = PlayerStatus.playerData.name;
     }
 }

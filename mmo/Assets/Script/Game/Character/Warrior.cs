@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class Warrior : PlayerChar {
+    public override bool UseSkill(int skillNumber, SkillBase skill)
+    {
+        return false;
+        // throw new System.NotImplementedException();
+    }
 
     /// <summary>
     /// バーサク (攻撃力上昇系)

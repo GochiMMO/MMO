@@ -39,9 +39,9 @@ public class SelectJob : MonoBehaviour {
                 break;
         }
         // モデルの位置を変更する
-        model.transform.position = col.bounds.center + Vector3.back * 5f;
+        model.transform.position = col.bounds.center + Vector3.back * 5f - Vector3.up * (col.bounds.center.y - col.bounds.min.y);
         // モデルのスケーリングを行う
-        model.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        model.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
         // 回転させる
         model.transform.Rotate(Vector3.up, 180f);
         // モデルの物理演算等をオフにする
@@ -83,8 +83,11 @@ public class SelectJob : MonoBehaviour {
             //クリックされたとき
             if (Input.GetMouseButtonDown(0))
             {
+                // ジョブ番号を登録する
                 PlayerStatus.playerData.job = jobNumber;
+                // ジョブ選択のウィンドウを表示する
                 GameObject.Instantiate(window);
+                // ウィンドウが表示されているフラグをオンにする
                 windowVisibleFlag = true;
             }
         }

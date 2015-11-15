@@ -3,6 +3,30 @@ using System.Collections;
 
 public class Sorcerer : PlayerChar {
     /// <summary>
+    /// 発動する魔法を入れる変数
+    /// </summary>
+    System.Action magic;
+    /// <summary>
+    /// 詠唱を行う関数
+    /// </summary>
+    /// <param name="chantTime"></param>
+    /// <param name="magic"></param>
+    /// <returns></returns>
+    IEnumerator Chant(float chantTime, System.Action magic)
+    {
+        // 開始時間を設定する
+        float startTime = Time.time;
+        // 詠唱が終了するまで待つ
+        yield return new WaitForSeconds(chantTime);
+        // 終了したらモーションを変更する
+        anim.SetTrigger("EndChant");
+        // 魔法を登録する
+        this.magic = magic;
+        // コルーチンから抜け出す
+        yield break;
+    }
+
+    /// <summary>
     /// 攻撃する際の処理
     /// </summary>
     protected override void Attack()
@@ -75,32 +99,82 @@ public class Sorcerer : PlayerChar {
     }
 
     /// <summary>
+    /// スキルを発動する関数
+    /// </summary>
+    /// <param name="skillNumber">スキルのID</param>
+    /// <param name="skill">スキルクラス</param>
+    /// <returns>true : 発動できる、 false : 発動できない</returns>
+    public override bool UseSkill(int skillNumber, SkillBase skill)
+    {
+        // 消費SPを超えていたら
+        if (skill.GetSp() > playerData.SP)
+        {
+            // スキルを発動できない
+            return false;
+        }
+        // 魔法を行う関数を登録する
+        System.Action magic = null;
+        // スキルのIDで処理分けを行う
+        switch (skillNumber)
+        {
+            // 0番目のスキル(Fire)
+            case 0:
+                magic = () => Fire();
+                break;
+        }
+        // スキルの難易度で処理分けを行う(詠唱のモーションが違うため)
+        switch (skill.GetDifficult())
+        {
+            case 1:
+                anim.SetTrigger("FirstLevelMagic");
+                break;
+            case 2:
+                anim.SetTrigger("SecondLevelMagic");
+                break;
+            default:
+                anim.SetTrigger("ThirdLevelMagic");
+                break;
+        }
+        // 詠唱を行う
+        StartCoroutine(Chant(skill.GetCastTime(), magic));
+        return true;
+    }
+
+    /// <summary>
+    /// 詠唱が終了したモーションが終了したら呼び出される
+    /// </summary>
+    public override void EndAttackAnimation()
+    {
+        // 基礎クラスの処理を行う
+        base.EndAttackAnimation();
+        // 魔法を発動する
+        magic();
+    }
+
+    /// <summary>
     /// 初級魔法「ファイア」
     /// </summary>
     private void Fire()
     {
         // ファイアのスキルを持ってくる
         SkillBase fireSkill = SkillControl.GetSkill("ファイア");
-        // 現在SPが消費SPを上回っていたら
-        if (fireSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= fireSkill.GetSp();
-            // ファイアオブジェクトをインスタンス化する
-            GameObject fire = PhotonNetwork.Instantiate("Magics/Fire", gameObject.transform.position + Vector3.up * 5f, Quaternion.identity, 0);
-            // ファイアの攻撃スクリプトをゲットする
-            PlayerAttack fireAttack = fire.GetComponent<PlayerAttack>();
-            // 基礎攻撃力を取得する
-            float magicAttack = playerData.magicAttack;
-            // 攻撃力に掛ける倍率を計算する
-            float magicAttackRate = fireSkill.GetAttack() + fireSkill.GetBonus();
-            // ファイアの攻撃力を設定する
-            fireAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate)  * intBuff);
-            // ファイアは魔法なので、種類を魔法にする
-            fireAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-            // ファイアに角度を与え、発射する
-            fire.GetComponent<FireShot>().SetShotVec(gameObject.transform.rotation.eulerAngles.y);
-        }
+        // SPを消費させる
+        playerData.SP -= fireSkill.GetSp();
+        // ファイアオブジェクトをインスタンス化する
+        GameObject fire = PhotonNetwork.Instantiate("Magics/Fire", gameObject.transform.position + Vector3.up * 5f, Quaternion.identity, 0);
+        // ファイアの攻撃スクリプトをゲットする
+        PlayerAttack fireAttack = fire.GetComponent<PlayerAttack>();
+        // 基礎攻撃力を取得する
+        float magicAttack = playerData.magicAttack;
+        // 攻撃力に掛ける倍率を計算する
+        float magicAttackRate = fireSkill.GetAttack() + fireSkill.GetBonus();
+        // ファイアの攻撃力を設定する
+        fireAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // ファイアは魔法なので、種類を魔法にする
+        fireAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
+        // ファイアに角度を与え、発射する
+        fire.GetComponent<FireShot>().SetShotVec(gameObject.transform.forward);
+
     }
 
     /// <summary>

@@ -109,6 +109,11 @@ public static class SkillControl
         return skills[skillNameAndId[skillName]];
     }
 
+    public static SkillBase GetSkill(int skillID)
+    {
+        return skills[skillID];
+    }
+
     public static PlayerData playerData;  //プレイヤーデータ 
     public static int job;
 

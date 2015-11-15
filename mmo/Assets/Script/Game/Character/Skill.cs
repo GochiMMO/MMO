@@ -14,7 +14,6 @@ public class Skill : Photon.MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 GameObject fireObj = PhotonNetwork.Instantiate("Magics/Fire", transform.position, Quaternion.identity, 0) as GameObject;     //炎のスキルを出す
-                fireObj.GetComponent<FireShot>().SetShotVec(this.transform.rotation.eulerAngles.y + 90f);
             }
             if (Input.GetMouseButtonDown(1))
             {

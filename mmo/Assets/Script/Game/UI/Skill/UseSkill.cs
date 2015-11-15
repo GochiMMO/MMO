@@ -5,22 +5,34 @@ public class UseSkill : MonoBehaviour {
     public int skillID;
     public int skillPaletteNumber;    // スキルパレットの番号
     public bool skillCoolTimeFlag = false;    // クールタイムかのフラグ
+    /// <summary>
+    /// プレイヤーのスクリプトの参照
+    /// </summary>
+    public static PlayerChar playerChar;
 
     // Update is called once per frame
     void Update()
     {
+        // プレイヤーのスクリプトが未割当の場合
+        if (!playerChar)
+        {
+            // プレイヤーを探し出す
+            playerChar = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player").GetComponent<PlayerChar>();
+        }
         // スキルの番号が押された時
         if (Input.GetKeyDown(KeyCode.Alpha1 + skillPaletteNumber))
         {
             // スキルのクールタイム発生フラグが立っていなければ
             if (!skillCoolTimeFlag)
             {
-                SetSkillIcon.GenerationSkillCoolTime(skillID);
-                // スキルを使う処理
-                Debug.Log("Use " + SkillControl.skills[skillID].GetName());
-                // クールタイムを発生させる
-                skillCoolTimeFlag = true;
-                Debug.Log("スキルクールタイムセット");
+                // スキルを使用する
+                if (playerChar.UseSkill(skillID, SkillControl.GetSkill(skillID)))
+                {
+                    // クールタイムの発生
+                    SetSkillIcon.GenerationSkillCoolTime(skillID);
+                    skillCoolTimeFlag = true;
+                    Debug.Log("スキルクールタイムセット");
+                }
             }
         }
     }

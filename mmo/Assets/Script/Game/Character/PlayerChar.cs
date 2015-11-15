@@ -451,7 +451,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// アニメーションの方から呼ばれる攻撃モーション終了の関数
     /// </summary>
-    public void EndAttackAnimation(){
+    public virtual void EndAttackAnimation(){
         isAttack = false;
     }
 
@@ -505,6 +505,12 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 生き返っている時の瞬間
     /// </summary>
     abstract protected void Revive();
+
+    /// <summary>
+    /// スキルを使う処理
+    /// </summary>
+    /// <param name="skillNumber">使うスキルの番号</param>
+    abstract public bool UseSkill(int skillNumber, SkillBase skill);
 
     // Update is called once per frame
     private void Update () {

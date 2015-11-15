@@ -34,15 +34,14 @@ public class FireShot : Photon.MonoBehaviour {
     /// 発射する方向を設定する関数
     /// </summary>
     /// <param name="direction">方向</param>
-    public void SetShotVec(float direction)
+    public void SetShotVec(Vector3 direction)
     {
         
         if (!pv || !photonTransformView)
         {
             Start();
         }
-        moveVec.x = -Mathf.Cos(direction * Mathf.PI / 180f) * speed;
-        moveVec.z = Mathf.Sin(direction * Mathf.PI / 180f) * speed;
+        moveVec = direction * speed;
         moveVec.y = 0;
         //if (pv.isMine)
         {

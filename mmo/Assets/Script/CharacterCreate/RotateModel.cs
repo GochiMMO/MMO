@@ -66,7 +66,7 @@ public class RotateModel : MonoBehaviour {
             yield return null;
         }
 
-        PlayerStates.playerData.characterNumber = this.characterNumber;
+        PlayerStatus.playerData.characterNumber = this.characterNumber;
         GameObject obj = GameObject.Instantiate(windowPrefab);
         windowObject = obj.GetComponent<PushYes>();
         windowObject.parentModel = this;

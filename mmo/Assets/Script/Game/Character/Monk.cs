@@ -37,6 +37,12 @@ public class Monk : PlayerChar {
 
     }
 
+    public override bool UseSkill(int skillNumber, SkillBase skill)
+    {
+        //throw new System.NotImplementedException();
+        return false;
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();

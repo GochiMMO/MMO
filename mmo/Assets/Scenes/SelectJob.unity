@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
-  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30A6\u30A9\u30FC\u30EA\u30A2"
   jobNumber: 1
 --- !u!1 &110258766
@@ -491,7 +490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
-  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30BD\u30FC\u30B5\u30E9\u30FC"
   jobNumber: 2
 --- !u!1 &1038829525
@@ -548,14 +546,14 @@ RectTransform:
   m_GameObject: {fileID: 1038829525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .956249952, y: 1.79999936, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2051318693}
   m_RootOrder: 1
-  m_AnchorMin: {x: .0455000028, y: .115314327}
+  m_AnchorMin: {x: 0, y: .115314327}
   m_AnchorMax: {x: .219687492, y: .761000037}
-  m_AnchoredPosition: {x: -436.539398, y: -36.7954674}
-  m_SizeDelta: {x: 203.541245, y: 191.833191}
+  m_AnchoredPosition: {x: -434.039398, y: -37}
+  m_SizeDelta: {x: 199, y: 392}
   m_Pivot: {x: .5, y: .5}
 --- !u!61 &1038829529
 BoxCollider2D:
@@ -567,9 +565,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000574448553, y: -1.17372119}
+  m_Offset: {x: .000579833984, y: .808227539}
   serializedVersion: 2
-  m_Size: {x: 222.248306, y: 256.906708}
+  m_Size: {x: 222.248306, y: 455.108093}
 --- !u!114 &1038829530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,7 +580,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
-  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30A2\u30FC\u30C1\u30E3\u30FC"
   jobNumber: 0
 --- !u!1 &1716467563
@@ -673,7 +670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
-  model: {fileID: 119996, guid: 1ef5aad2f3d429040a0d0acea93d03a4, type: 2}
   jobName: "\u30E2\u30F3\u30AF"
   jobNumber: 3
 --- !u!1 &1716843906

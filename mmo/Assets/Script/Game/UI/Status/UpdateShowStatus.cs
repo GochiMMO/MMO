@@ -29,11 +29,13 @@ public class UpdateShowStatus : MonoBehaviour {
     UpdatePartyStatus[] partyStatusWindow;
 
     PartySystem partySystem;
-    int prevHP;
-    int prevSP;
-    int prevLv;
 
-    PlayerChar playerChar;  // プレイヤーキャラクターのデータ
+    int prevHP = -1;
+    int prevSP = -1;
+    int prevLv = -1;
+
+    // プレイヤーキャラクターのデータ
+    PlayerChar playerChar = null;
     PlayerChar[] partyPlayerChar = new PlayerChar[3];
     // Use this for initialization
     void Start () {
@@ -42,17 +44,21 @@ public class UpdateShowStatus : MonoBehaviour {
     
     // Update is called once per frame
     void LateUpdate () {
-        // 自プレイヤーのデータを取得する
+        // 自プレイヤーのデータの参照が未取得の場合
         if (!playerChar)
         {
+            // Playerとタグが付いたオブジェクトを取得する
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
-                if (player.GetPhotonView().owner.ID == PhotonNetwork.player.ID)
+                // PhotonViewを取得する
+                PhotonView photonView = player.GetPhotonView();
+                // PhotonViewが存在し、自分で出したキャラならば
+                if (photonView && photonView.isMine)
                 {
                     // プレイヤーのデータを取得する
                     playerChar = player.GetComponent<PlayerChar>();
                     // プレイヤーの名前を設定する
-                    nameText.text = playerChar.GetPlayerData().name;
+                    nameText.text = PlayerStatus.playerData.name;
                     // ジョブの画像を変更する
                     SetJobImage();
                     break;
@@ -83,7 +89,7 @@ public class UpdateShowStatus : MonoBehaviour {
             // サイズを計算する
             float size = playerChar.GetPlayerData().HP / playerChar.GetPlayerData().MaxHP;
             // サイズを変更する
-            hpBarImage.transform.localScale.Set(size, 1f, 1f);
+            hpBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する
             hpText.text = playerChar.GetPlayerData().HP.ToString() + " / " + playerChar.GetPlayerData().MaxHP.ToString();
             // HPを更新しておく
@@ -102,7 +108,7 @@ public class UpdateShowStatus : MonoBehaviour {
             // サイズを計算する
             float size = playerChar.GetPlayerData().SP / playerChar.GetPlayerData().MaxSP;
             // サイズを変更する
-            spBarImage.transform.localScale.Set(size, 1f, 1f);
+            spBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する
             spText.text = playerChar.GetPlayerData().SP.ToString() + " / " + playerChar.GetPlayerData().MaxSP.ToString();
             // SPを更新しておく
@@ -131,7 +137,7 @@ public class UpdateShowStatus : MonoBehaviour {
     void SetJobImage()
     {
         // 職業によって変更する
-        switch (playerChar.GetPlayerData().job)
+        switch (PlayerStatus.playerData.job)
         {
             case 0:
                 // アーチャーの画像

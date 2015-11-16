@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
 
 public static class SaveManager{
     /// <summary>
@@ -71,16 +69,18 @@ public static class SaveManager{
     /// <returns>True is exist, False is not exist</returns>
     public static bool isExistSaveData(string fileName)
     {
-        if(PlayerStates.environmentalSaveData.oneSaveDataName == fileName ||
-            PlayerStates.environmentalSaveData.twoSaveDataName == fileName ||
-            PlayerStates.environmentalSaveData.threeSaveDataName == fileName)
+        // コンフィグファイルに登録されているプレイヤーの名前の数だけ繰り返す
+        foreach (string playerName in PlayerStatus.environmentalSaveData.playerName)
         {
-            return true;
+            // 指定名とプレイヤーの名前が一致したら
+            if (fileName == playerName)
+            {
+                // trueを返す
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        // 一致しなければfalseを返す
+        return false;
     }
 
     /// <summary>

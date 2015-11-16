@@ -13,8 +13,7 @@ public class Skill : Photon.MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
-                GameObject fireObj = PhotonNetwork.Instantiate("Magics/Fire", transform.position, Quaternion.identity, 0) as GameObject;     //炎のスキルを出す
-                fireObj.GetComponent<FireShot>().SetShotVec(this.transform.rotation.eulerAngles.y + 90f);
+                //GameObject fireObj = PhotonNetwork.Instantiate("Magics/Fire", transform.position, Quaternion.identity, 0) as GameObject;     //炎のスキルを出す
             }
             if (Input.GetMouseButtonDown(1))
             {
@@ -35,8 +34,8 @@ public class Skill : Photon.MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                GameObject obj = PhotonNetwork.Instantiate("Magics/Shock", transform.position + Vector3.up * 1, Quaternion.identity, 0);
-                obj.GetComponent<Shock>().SetDirection(transform.rotation.eulerAngles.y + 90f);
+                //GameObject obj = PhotonNetwork.Instantiate("Magics/Shock", transform.position + Vector3.up * 1, Quaternion.identity, 0);
+                //obj.GetComponent<Shock>().SetDirection(transform.rotation.eulerAngles.y + 90f);
             }
         }
     }

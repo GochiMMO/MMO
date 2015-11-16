@@ -15,14 +15,12 @@ public class RandomMatchmaker : Photon.PunBehaviour
     RuntimeAnimatorController sorcererAnimationController;
     [SerializeField, Tooltip("モンクのアニメーションコントローラー")]
     RuntimeAnimatorController monkAnimationController;
-    
-    // Use this for initialization
-    void Start()
+
+    GameObject player;
+
+    void Awake()
     {
-        //PhotonNetwork.ConnectUsingSettings("0.1");
-        //PhotonNetwork.offlineMode = offlineMode;
-        GameObject player = null;
-        switch (PlayerStates.playerData.characterNumber)
+        switch (PlayerStatus.playerData.characterNumber)
         {
             case 0:
                 // 青年を出す処理を書く
@@ -30,7 +28,7 @@ public class RandomMatchmaker : Photon.PunBehaviour
 
             case 1:
                 // ムキムキを出す
-                player = PhotonNetwork.Instantiate("Player/mukimuki", new Vector3(PlayerStates.playerData.x, PlayerStates.playerData.y, PlayerStates.playerData.z), Quaternion.identity, 0);
+                player = PhotonNetwork.Instantiate("Player/mukimuki", new Vector3(PlayerStatus.playerData.x, PlayerStatus.playerData.y, PlayerStatus.playerData.z), Quaternion.identity, 0);
                 break;
             case 2:
                 // 少女を出す
@@ -41,9 +39,9 @@ public class RandomMatchmaker : Photon.PunBehaviour
         }
 
         // 職業によって処理分け
-        switch (PlayerStates.playerData.job)
+        switch (PlayerStatus.playerData.job)
         {
-                // アーチャー
+            // アーチャー
             case 0:
                 // アーチャーを入れる
                 Archer archer = player.AddComponent<Archer>();
@@ -57,6 +55,11 @@ public class RandomMatchmaker : Photon.PunBehaviour
                 Warrior warrior = player.AddComponent<Warrior>();
                 // PhotonViewの通信を使うリストにアーチャーを登録する
                 player.GetComponent<PhotonView>().ObservedComponents.Add(warrior);
+
+                warrior.Initialize();
+
+                Debug.Log(warrior.GetPlayerData().name);
+
                 // アニメーションを変更する
                 player.GetComponent<Animator>().runtimeAnimatorController = warriorAnimationController;
                 break;
@@ -78,6 +81,12 @@ public class RandomMatchmaker : Photon.PunBehaviour
                 break;
         }
 
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        
         // GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         cam.SetTarget(player.transform);
         cam.enabled = true;

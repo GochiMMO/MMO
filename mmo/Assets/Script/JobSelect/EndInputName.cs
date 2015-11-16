@@ -11,36 +11,34 @@ public class EndInputName : MonoBehaviour{
     /// </summary>
     public void EndInput()
     {
+        // 入力ボックスが空ならば
         if (inputField.text == "")
         {
+            // 処理が行われない
             return;
         }
-        if (!SaveManager.isExistSaveData(inputField.text))      //セーブデータが存在しなければ（指定した名前のキャラが存在しなければ）
+        // 指定した名前のセーブデータが存在しなければ
+        if (!SaveManager.isExistSaveData(inputField.text))
         {
-
-            PlayerStates.playerData.name = inputField.text;     //名前を登録
-            PlayerStates.SavePlayerData();      //セーブ
-
-            if (PlayerStates.environmentalSaveData.oneSaveDataName == null)
-            {
-                PlayerStates.environmentalSaveData.oneSaveDataName = PlayerStates.playerData.name;
-            }
-            else if (PlayerStates.environmentalSaveData.twoSaveDataName == null)
-            {
-                PlayerStates.environmentalSaveData.twoSaveDataName = PlayerStates.playerData.name;
-            }
-            else
-            {
-                PlayerStates.environmentalSaveData.threeSaveDataName = PlayerStates.playerData.name;
-            }
-            PlayerStates.environmentalSaveData.saveDataNum++;   //セーブデータの数を増やす
-            SelectJob.windowVisibleFlag = false;        //職業選択ウィンドウの表示フラグを折る
-            PlayerStates.SaveEnvironmentalData();       //環境データファイルを保存する
-            Application.LoadLevel("CharacterSelect");   //キャラクターセレクト画面に遷移する
+            // 名前を登録する
+            PlayerStatus.playerData.name = inputField.text;
+            // 初期ステータスを設定する
+            PlayerStatus.LoadFirstStatus(PlayerStatus.JobName[PlayerStatus.playerData.job]);
+            // プレイヤーのデータをセーブする
+            PlayerStatus.SavePlayerData();
+            // コンフィグファイルに名前を登録する
+            PlayerStatus.environmentalSaveData.playerName[PlayerStatus.environmentalSaveData.saveDataNum++] = PlayerStatus.playerData.name;
+            // 職業選択ウィンドウの表示フラグを折る
+            SelectJob.windowVisibleFlag = false;
+            // コンフィグファイルをセーブする
+            PlayerStatus.SaveEnvironmentalData();
+            // キャラクターセレクト画面に遷移する
+            Application.LoadLevel("CharacterSelect");
         }
         else
         {
-            GameObject.Instantiate(popWindow);      //名前が被ってることを通知するウィンドウを表示する
+            // 名前が被ってることを通知するウィンドウを表示する
+            GameObject.Instantiate(popWindow);
         }
     }
 }

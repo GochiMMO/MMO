@@ -19,7 +19,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
     public float coolTime = 0f;
 
     // 現在時間
-    float nowTime = 0f;
+    float startTime = 0f;
 
     // どのくらいの割合回転させているか
     float timePercentage = 0f;
@@ -37,10 +37,13 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         SyncCoolTime();
     }
 
+    // スクリプトが無効化されたら
     void OnDisable()
     {
+        // クールタイムを行うフラグが立っていたら
         if (coolTimeFlag)
         {
+            // 初期化を行う
             Initialization();
         }
     }
@@ -58,9 +61,11 @@ public class UpdateSkillCoolTime : MonoBehaviour {
             // クールタイムをセットする
             this.coolTime = SyncSkillCoolTime.GetCoolTime(useSkill.skillID);
             // 始まった時間を取得する
-            this.nowTime = SyncSkillCoolTime.GetStartTime(useSkill.skillID);
+            this.startTime = SyncSkillCoolTime.GetStartTime(useSkill.skillID);
             // クールタイムを行うフラグをオンにする
             this.coolTimeFlag = true;
+            // スキルの方にもクールタイムを行うフラグを立てる
+            useSkill.skillCoolTimeFlag = true;
             // 画像を表示する
             maskImage1.gameObject.SetActive(true);
             maskImage2.gameObject.SetActive(true);
@@ -93,13 +98,13 @@ public class UpdateSkillCoolTime : MonoBehaviour {
             }
 
             // 現在時間が登録されていなければ
-            if (nowTime == 0f)
+            if (startTime == 0f)
             {
                 // 現在時間を登録する
-                nowTime = Time.time;
+                startTime = Time.time;
             }
             // クールタイムの割合を計算する
-            timePercentage = (Time.time - nowTime) / coolTime;
+            timePercentage = (Time.time - startTime) / coolTime;
 
             // 画像の右回転
             RotateRightImage();
@@ -108,7 +113,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
             RotateLeftImage();
 
             // クールタイムに達したら
-            if (coolTime < Time.time - nowTime)
+            if (coolTime < Time.time - startTime)
             {
                 // 初期化
                 Initialization();
@@ -125,7 +130,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         if (timePercentage < 0.5f)
         {
             // 回転させる
-            maskImage1.rotation = Quaternion.Euler(0f, 0f, -angle * (Time.time - nowTime));
+            maskImage1.rotation = Quaternion.Euler(0f, 0f, -angle * (Time.time - startTime));
         }
     }
 
@@ -137,7 +142,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         if (timePercentage >= 0.5f)
         {
             // 左側の画像を回転させる
-            maskImage2.rotation = Quaternion.Euler(0f, 0f, -angle * (Time.time - nowTime - coolTime / 2));
+            maskImage2.rotation = Quaternion.Euler(0f, 0f, -angle * (Time.time - startTime - coolTime / 2));
             // 右側の画像を半回転状態にしておく
             maskImage1.rotation = Quaternion.Euler(0f, 0f, 180);
         }
@@ -153,7 +158,7 @@ public class UpdateSkillCoolTime : MonoBehaviour {
         maskImage2.rotation = Quaternion.Euler(Vector3.zero);
         // クールタイムを解除する
         coolTime = 0f;
-        nowTime = 0f;
+        startTime = 0f;
         coolTimeFlag = false;
         // クールタイムのフラグを折る
         useSkill.skillCoolTimeFlag = false;

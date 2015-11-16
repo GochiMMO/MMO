@@ -30,9 +30,9 @@ public class UpdateShowStatus : MonoBehaviour {
 
     PartySystem partySystem;
 
-    int prevHP = 0;
-    int prevSP = 0;
-    int prevLv = 0;
+    int prevHP = -1;
+    int prevSP = -1;
+    int prevLv = -1;
 
     // プレイヤーキャラクターのデータ
     PlayerChar playerChar = null;
@@ -44,12 +44,15 @@ public class UpdateShowStatus : MonoBehaviour {
     
     // Update is called once per frame
     void LateUpdate () {
-        // 自プレイヤーのデータを取得する
+        // 自プレイヤーのデータの参照が未取得の場合
         if (!playerChar)
         {
+            // Playerとタグが付いたオブジェクトを取得する
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
+                // PhotonViewを取得する
                 PhotonView photonView = player.GetPhotonView();
+                // PhotonViewが存在し、自分で出したキャラならば
                 if (photonView && photonView.isMine)
                 {
                     // プレイヤーのデータを取得する

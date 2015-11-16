@@ -3,25 +3,24 @@ using System.Collections;
 
 public class Sorcerer : PlayerChar {
     /// <summary>
+    /// 詠唱を行っているかのフラグ
+    /// </summary>
+    bool chantFlag;
+    /// <summary>
     /// 発動する魔法を入れる変数
     /// </summary>
     System.Action magic;
     /// <summary>
     /// 詠唱を行う関数
     /// </summary>
-    /// <param name="chantTime"></param>
-    /// <param name="magic"></param>
-    /// <returns></returns>
-    IEnumerator Chant(float chantTime, System.Action magic)
+    /// <param name="chantTime">詠唱時間</param>
+    /// <returns>反復子</returns>
+    IEnumerator Chant(float chantTime)
     {
-        // 開始時間を設定する
-        float startTime = Time.time;
         // 詠唱が終了するまで待つ
         yield return new WaitForSeconds(chantTime);
         // 終了したらモーションを変更する
         anim.SetTrigger("EndChant");
-        // 魔法を登録する
-        this.magic = magic;
         // コルーチンから抜け出す
         yield break;
     }
@@ -106,37 +105,86 @@ public class Sorcerer : PlayerChar {
     /// <returns>true : 発動できる、 false : 発動できない</returns>
     public override bool UseSkill(int skillNumber, SkillBase skill)
     {
-        // 消費SPを超えていたら
-        if (skill.GetSp() > playerData.SP)
+        // 詠唱を行うかのフラグ
+        bool chantFlag = true;
+        // 消費SPを超えているか、他の魔法を発動中ならば
+        if (skill.GetSp() > SP || this.chantFlag)
         {
             // スキルを発動できない
             return false;
         }
-        // 魔法を行う関数を登録する
-        System.Action magic = null;
+        // SPを消費させる
+        SP -= skill.GetSp();
         // スキルのIDで処理分けを行う
         switch (skillNumber)
         {
             // 0番目のスキル(Fire)
             case 0:
-                magic = () => Fire();
+                // メソッドの登録
+                this.magic = () => Fire();
                 break;
-        }
-        // スキルの難易度で処理分けを行う(詠唱のモーションが違うため)
-        switch (skill.GetDifficult())
-        {
+            // 1番目のスキル(バーン)
             case 1:
-                anim.SetTrigger("FirstLevelMagic");
+                // メソッドの登録
+                this.magic = () => Burn();
                 break;
+            // 2番目のスキル(フレア)
             case 2:
-                anim.SetTrigger("SecondLevelMagic");
+                // メソッドの登録
+                this.magic = () => Flare();
                 break;
-            default:
-                anim.SetTrigger("ThirdLevelMagic");
+            // 3番目のスキル(メテオ)
+            case 3:
+                // メソッドの登録
+                this.magic = () => Meteo();
+                break;
+            // 7番目のスキル(サンダー)
+            case 7:
+                this.magic = () => Thunder();
+                break;
+            // 8番目のスキル(ショック)
+            case 8:
+                this.magic = () => Shock();
+                break;
+            // 9番目のスキル(サンダーボルト)
+            case 9:
+                this.magic = () => ThunderVolt();
+                break;
+            // 15番目のスキル(エーテルフロー)
+            case 15:
+                // メソッドの登録
+                this.magic = () => EtherFlow();
+                // 詠唱を行うフラグを折る
+                chantFlag = false;
+                // モーションを再生する
+                anim.SetTrigger("Buffs");
                 break;
         }
-        // 詠唱を行う
-        StartCoroutine(Chant(skill.GetCastTime(), magic));
+        // 詠唱を行うかのフラグが立っていたら
+        if (chantFlag)
+        {
+            // スキルの難易度で処理分けを行う(詠唱のモーションが違うため)
+            switch (skill.GetDifficult())
+            {
+                case 1:
+                    // １等級魔法の詠唱を行う
+                    anim.SetTrigger("FirstLevelMagic");
+                    break;
+                case 2:
+                    // ２等級魔法の詠唱を行う
+                    anim.SetTrigger("SecondLevelMagic");
+                    break;
+                default:
+                    // ３等級魔法の詠唱を行う
+                    anim.SetTrigger("ThirdLevelMagic");
+                    break;
+            }
+            // 詠唱を行う
+            StartCoroutine(Chant(skill.GetCastTime()));
+        }
+        // 詠唱を行うフラグを立てる
+        this.chantFlag = true;
+        // 魔法を発動できるのでtrueを返す
         return true;
     }
 
@@ -147,6 +195,8 @@ public class Sorcerer : PlayerChar {
     {
         // 基礎クラスの処理を行う
         base.EndAttackAnimation();
+        // 詠唱を行っているフラグを折る
+        chantFlag = false;
         // 魔法を発動する
         magic();
     }
@@ -158,8 +208,6 @@ public class Sorcerer : PlayerChar {
     {
         // ファイアのスキルを持ってくる
         SkillBase fireSkill = SkillControl.GetSkill("ファイア");
-        // SPを消費させる
-        playerData.SP -= fireSkill.GetSp();
         // ファイアオブジェクトをインスタンス化する
         GameObject fire = PhotonNetwork.Instantiate("Magics/Fire", gameObject.transform.position + Vector3.up * 5f, Quaternion.identity, 0);
         // ファイアの攻撃スクリプトをゲットする
@@ -184,24 +232,18 @@ public class Sorcerer : PlayerChar {
     {
         // バーンのスキルのデータを取得する
         SkillBase burnSkill = SkillControl.GetSkill("バーン");
-        // 現在SPが消費SPを上回っていたら
-        if (burnSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= burnSkill.GetSp();
-            // バーンのオブジェクトをインスタンス化する
-            GameObject burn = PhotonNetwork.Instantiate("Magic/Burn", transform.position + transform.forward * 3f + Vector3.up * 3f, Quaternion.identity, 0);
-            // バーンの攻撃スクリプトを取得する
-            PlayerAttack burnAttack = burn.GetComponent<PlayerAttack>();
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 魔法の倍率の計算
-            float magicAttackRate = burnSkill.GetAttack() + burnSkill.GetBonus();
-            // 攻撃力の設定
-            burnAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            burnAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // バーンのオブジェクトをインスタンス化する
+        GameObject burn = PhotonNetwork.Instantiate("Magics/Burn", transform.position + transform.forward * 3f + Vector3.up * 3f, Quaternion.identity, 0);
+        // バーンの攻撃スクリプトを取得する
+        PlayerAttack burnAttack = burn.GetComponent<PlayerAttack>();
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 魔法の倍率の計算
+        float magicAttackRate = burnSkill.GetAttack() + burnSkill.GetBonus();
+        // 攻撃力の設定
+        burnAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        burnAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
@@ -211,24 +253,18 @@ public class Sorcerer : PlayerChar {
     {
         // フレアのスキルのデータを取得する
         SkillBase flareSkill = SkillControl.GetSkill("フレア");
-        // 現在SPが消費SPを上回っていたら
-        if (flareSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= flareSkill.GetSp();
-            // フレアのオブジェクトをインスタンス化する
-            GameObject flare = PhotonNetwork.Instantiate("Magic/Flare", transform.position + transform.forward * 5f + Vector3.up * 3f, Quaternion.identity, 0);
-            // フレアの攻撃スクリプトを取得する
-            PlayerAttack flareAttack = flare.GetComponent<PlayerAttack>();
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 倍率の設定
-            float magicAttackRate = flareSkill.GetAttack() + flareSkill.GetBonus();
-            // 攻撃力の設定
-            flareAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            flareAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // フレアのオブジェクトをインスタンス化する
+        GameObject flare = PhotonNetwork.Instantiate("Magics/Flare", transform.position + transform.forward * 5f + Vector3.up * 3f, Quaternion.identity, 0);
+        // フレアの攻撃スクリプトを取得する
+        PlayerAttack flareAttack = flare.GetComponent<PlayerAttack>();
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 倍率の設定
+        float magicAttackRate = flareSkill.GetAttack() + flareSkill.GetBonus();
+        // 攻撃力の設定
+        flareAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        flareAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
@@ -238,53 +274,41 @@ public class Sorcerer : PlayerChar {
     {
         // サンダーのスキルのデータを取得する
         SkillBase thunderSkill = SkillControl.GetSkill("サンダー");
-        // 現在SPが消費SPを上回っていたら
-        if (thunderSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= thunderSkill.GetSp();
-            // サンダーのオブジェクトをインスタンス化する
-            GameObject thunder = PhotonNetwork.Instantiate("Magic/Thunder", transform.position + transform.forward * 5f, Quaternion.identity, 0);
-            // サンダーの攻撃スクリプトを取得する
-            PlayerAttack thunderAttack = thunder.GetComponent<PlayerAttack>();
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 倍率の設定
-            float magicAttackRate = thunderSkill.GetAttack() + thunderSkill.GetBonus();
-            // 攻撃力の設定
-            thunderAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            thunderAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // サンダーのオブジェクトをインスタンス化する
+        GameObject thunder = PhotonNetwork.Instantiate("Magics/Thunder", transform.position + transform.forward * 5f, Quaternion.identity, 0);
+        // サンダーの攻撃スクリプトを取得する
+        PlayerAttack thunderAttack = thunder.GetComponent<PlayerAttack>();
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 倍率の設定
+        float magicAttackRate = thunderSkill.GetAttack() + thunderSkill.GetBonus();
+        // 攻撃力の設定
+        thunderAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        thunderAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
     /// 雷の球体を発射し、着弾点を爆発させるスキル「ショック」
     /// </summary>
-    private void shock()
+    private void Shock()
     {
         // サンダーのスキルのデータを取得する
         SkillBase shockSkill = SkillControl.GetSkill("ショック");
-        // 現在SPが消費SPを上回っていたら
-        if (shockSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= shockSkill.GetSp();
-            // ショックのオブジェクトをインスタンス化する
-            GameObject shock = PhotonNetwork.Instantiate("Magic/Thunder", transform.position + Vector3.up * 4f, Quaternion.identity, 0);
-            // ショックの攻撃スクリプトを取得する
-            PlayerAttack shockAttack = shock.GetComponent<PlayerAttack>();
-            // 発射角度を設定する
-            shock.GetComponent<Shock>().SetDirection(gameObject.transform.position.y);
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 倍率の設定
-            float magicAttackRate = shockSkill.GetAttack() + shockSkill.GetBonus();
-            // 攻撃力の設定
-            shockAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            shockAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // ショックのオブジェクトをインスタンス化する
+        GameObject shock = PhotonNetwork.Instantiate("Magics/Shock", transform.position + Vector3.up * 4f, Quaternion.identity, 0);
+        // ショックの攻撃スクリプトを取得する
+        PlayerAttack shockAttack = shock.GetComponent<PlayerAttack>();
+        // 発射角度を設定する
+        shock.GetComponent<Shock>().SetDirection(gameObject.transform.forward);
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 倍率の設定
+        float magicAttackRate = shockSkill.GetAttack() + shockSkill.GetBonus();
+        // 攻撃力の設定
+        shockAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        shockAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
@@ -294,24 +318,18 @@ public class Sorcerer : PlayerChar {
     {
         // サンダーのスキルのデータを取得する
         SkillBase thunderVoltSkill = SkillControl.GetSkill("サンダーボルト");
-        // 現在SPが消費SPを上回っていたら
-        if (thunderVoltSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= thunderVoltSkill.GetSp();
-            // サンダーボルトのオブジェクトをインスタンス化する
-            GameObject thunderVolt = PhotonNetwork.Instantiate("Magic/Thunder", transform.position + transform.forward * 7f, Quaternion.identity, 0);
-            // サンダーボルトの攻撃スクリプトを取得する
-            PlayerAttack thunderVoltAttack = thunderVolt.GetComponent<PlayerAttack>();
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 倍率の設定
-            float magicAttackRate = thunderVoltSkill.GetAttack() + thunderVoltSkill.GetBonus();
-            // 攻撃力の設定
-            thunderVoltAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            thunderVoltAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // サンダーボルトのオブジェクトをインスタンス化する
+        GameObject thunderVolt = PhotonNetwork.Instantiate("Magics/ThunderVolt", transform.position + transform.forward * 7f, Quaternion.identity, 0);
+        // サンダーボルトの攻撃スクリプトを取得する
+        PlayerAttack thunderVoltAttack = thunderVolt.GetComponent<PlayerAttack>();
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 倍率の設定
+        float magicAttackRate = thunderVoltSkill.GetAttack() + thunderVoltSkill.GetBonus();
+        // 攻撃力の設定
+        thunderVoltAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        thunderVoltAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
@@ -321,24 +339,18 @@ public class Sorcerer : PlayerChar {
     {
         // メテオのスキルのデータを取得する
         SkillBase meteoSkill = SkillControl.GetSkill("メテオ");
-        // 現在SPが消費SPを上回っていたら
-        if (meteoSkill.GetSp() < playerData.SP)
-        {
-            // SPを消費させる
-            playerData.SP -= meteoSkill.GetSp();
-            // メテオのオブジェクトをインスタンス化する
-            GameObject meteo = PhotonNetwork.Instantiate("Magic/Thunder", transform.position + transform.forward * 10f, Quaternion.identity, 0);
-            // メテオの攻撃スクリプトを取得する
-            PlayerAttack meteoAttack = meteo.GetComponent<PlayerAttack>();
-            // 基礎攻撃力の設定
-            float magicAttack = playerData.magicAttack;
-            // 倍率の設定
-            float magicAttackRate = meteoSkill.GetAttack() + meteoSkill.GetBonus();
-            // 攻撃力の設定
-            meteoAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
-            // 攻撃の種類を魔法に設定する
-            meteoAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
-        }
+        // メテオのオブジェクトをインスタンス化する
+        GameObject meteo = PhotonNetwork.Instantiate("Magics/Meteo", transform.position + transform.forward * 10f, Quaternion.identity, 0);
+        // メテオの攻撃スクリプトを取得する
+        PlayerAttack meteoAttack = meteo.GetComponent<PlayerAttack>();
+        // 基礎攻撃力の設定
+        float magicAttack = playerData.magicAttack;
+        // 倍率の設定
+        float magicAttackRate = meteoSkill.GetAttack() + meteoSkill.GetBonus();
+        // 攻撃力の設定
+        meteoAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 攻撃の種類を魔法に設定する
+        meteoAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
 
     /// <summary>
@@ -351,7 +363,16 @@ public class Sorcerer : PlayerChar {
         // エーテルフローのスキルをゲットする
         SkillBase etherFlow = SkillControl.GetSkill("エーテルフロー");
         // SPを回復させる
-        playerData.SP += (int)((float)playerData.MaxSP * etherFlow.GetAttack());
+        SP += (int)((float)playerData.MaxSP * etherFlow.GetAttack());
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player"></param>
+    private void Regene(GameObject player)
+    {
+
     }
 
     /// <summary>
@@ -360,12 +381,42 @@ public class Sorcerer : PlayerChar {
     private void Convert()
     {
         // エフェクトを表示する
-        // PhotonNetwork.Instantiate("Magics/Convert", transform.position, Quaternion.identify, 0);
+        // PhotonNetwork.Instantiate("Magics/Convert", transform.position, Quaternion.identity, 0);
+        // SPが0の時は発動できない(HPが0になってしまうため
+        if (SP != 0)
+        {
+            // SPを退避する
+            int tempSP = SP;
+            // SPをHPにする
+            SP = HP;
+            // HPをSPにする
+            HP = tempSP;
+        }
+    }
 
-        // SPをHPにする
-        playerData.SP = playerData.HP;
-        // HPをSPにする
-        playerData.HP = playerData.SP;
+    /// <summary>
+    /// ヒール
+    /// </summary>
+    /// <param name="player">回復させるプレイヤーオブジェクト</param>
+    private void Heal(GameObject player)
+    {
+        // プレイヤーの情報を取得する
+        PlayerChar playerChar = player.GetComponent<PlayerChar>();
+        // ヒールのスキルを取得する
+            SkillBase healSkill = SkillControl.GetSkill("ヒール");
+        // プレイヤーが取得できれば
+        if (playerChar)
+        {
+            // 回復させるHPの量を計算する
+            int recoverHP = (int)((float)playerChar.HP * (healSkill.GetBonus() + healSkill.GetAttack()));
+            // そのプレイヤーのHPを回復させる
+            gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, recoverHP);
+        }
+        else
+        {
+            // 自分のHPを回復する
+            Recover((int)((float)HP * (healSkill.GetBonus() + healSkill.GetAttack())));
+        }
     }
 
     /// <summary>

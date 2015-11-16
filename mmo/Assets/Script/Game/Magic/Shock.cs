@@ -18,7 +18,7 @@ public class Shock : Photon.MonoBehaviour {
     PhotonTransformView photonTransformView;
 
     // Use this for initialization
-    void Start () {
+    void Init() {
         // ヒット時の爆発パーティクルエフェクトを停止しておく
         shockEffect.Stop();
         // 通信同期用コンポーネントを取得する
@@ -27,13 +27,13 @@ public class Shock : Photon.MonoBehaviour {
         startTime = Time.time;
     }
 
-    //方向の登録
-    public void SetDirection(float yAngle)
+    // 方向の登録
+    public void SetDirection(Vector3 direction)
     {
+        // 初期化処理を行う
+        Init();
         // 移動方向の決定(プレイヤーの正面に向ける)
-        moveVector.y = 0f;
-        moveVector.x = Mathf.Cos(yAngle * Mathf.PI / 180f) * -speed;
-        moveVector.z = Mathf.Sin(yAngle * Mathf.PI / 180f) * speed;
+        moveVector = direction * speed;
         // 自分で出した魔法ならば
         if (photonView.isMine)
         {

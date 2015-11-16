@@ -137,6 +137,35 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// HPを徐々に回復させる処理
+    /// </summary>
+    /// <param name="healValue">回復する量</param>
+    /// <param name="skillTime">スキルの効果時間</param>
+    /// <param name="healTime">回復する時間</param>
+    /// <returns>反復子</returns>
+    protected IEnumerator Regeneration(int healValue, float skillTime, float healTime)
+    {
+        // 開始時間を取得する
+        float startTime = Time.time;
+        // 回復した回数を設定する変数を定義
+        int healCount = 1;
+        // 時間が経つまで繰り返す
+        while (startTime + skillTime > Time.time)
+        {
+            // 回復する時間になったかどうか
+            if (startTime + healTime * healCount > Time.time)
+            {
+                // 回復させる
+                HP += healValue;
+            }
+            // 繰り返す
+            yield return null;
+        }
+        // 処理が終了したら抜け出す
+        yield break;
+    }
+
+    /// <summary>
     /// 移動速度、回転速度を同期するためのコンポーネント
     /// </summary>
     protected PhotonTransformView photonTransformView { private set; get; }
@@ -199,6 +228,60 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     private bool isDamage = false;
 
     /// <summary>
+    /// プレイヤーのHP
+    /// </summary>
+    public int HP
+    {
+        set
+        {
+            // MAXHPを超えていたら
+            if (value > playerData.MaxHP)
+            {
+                // MAXHPに調整する
+                value = playerData.MaxHP;
+            }
+            // HPを計算する
+            int hp = playerData.HP + value;
+            // HPが0を下回ったら
+            if (hp < 0)
+            {
+                // HPを0にする
+                hp = 0;
+            }
+            // PlayerのHPを更新する
+            playerData.HP = hp;
+        }
+        get
+        {
+            // プレイヤーのHPを返す
+            return playerData.HP;
+        }
+    }
+
+    /// <summary>
+    /// プレイヤーのSP
+    /// </summary>
+    public int SP
+    {
+        set
+        {
+            // MAXSPを超えていたら
+            if (value > playerData.MaxSP)
+            {
+                //MAXSPに調整する
+                value = playerData.MaxSP;
+            }
+            // PlayerのSPを調整する
+            playerData.SP = value;
+        }
+        get
+        {
+            // プレイヤーのSPを返す
+            return playerData.SP;
+        }
+    }
+
+    /// <summary>
     /// 何か当たり判定用コライダーが当たってきた時の処理
     /// </summary>
     /// <param name="hitCol">当たってきたコライダー</param>
@@ -226,10 +309,13 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
             // HPを減算する
-            playerData.HP -= attack;
+            HP -= attack;
         }
     }
 
+    /// <summary>
+    /// 初期化関数
+    /// </summary>
     public void Initialize()
     {
         Start();
@@ -438,6 +524,19 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// リジェネを発動する関数
+    /// </summary>
+    /// <param name="healValue">回復する量</param>
+    /// <param name="skillTime">スキルの効果時間</param>
+    /// <param name="healTime">回復する時間</param>
+    [PunRPC]
+    public void GenerationRegeneration(int healValue, float skillTime, float healTime)
+    {
+        // リジェネを発生させる
+        StartCoroutine(Regeneration(healValue, skillTime, healTime));
+    }
+
+    /// <summary>
     /// 攻撃をする関数
     /// </summary>
     protected virtual void Attack()
@@ -475,7 +574,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// 攻撃中の処理
     /// </summary>
-    abstract protected void Attacking();
+    virtual protected void Attacking() { }
 
     /// <summary>
     /// 攻撃が終了した瞬間の処理
@@ -489,22 +588,22 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// 通常状態時の処理
     /// </summary>
-    abstract protected void Normal();
+    virtual protected void Normal() { }
 
     /// <summary>
     /// 被弾中の処理
     /// </summary>
-    abstract protected void Damage();
+    virtual protected void Damage() { }
 
     /// <summary>
     /// 死亡中の処理
     /// </summary>
-    abstract protected void Dead();
+    virtual protected void Dead() { }
 
     /// <summary>
     /// 生き返っている時の瞬間
     /// </summary>
-    abstract protected void Revive();
+    virtual protected void Revive() { }
 
     /// <summary>
     /// スキルを使う処理
@@ -580,7 +679,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     public void Recover(int addHp)
     {
         // プレイヤーのHPを足す
-        playerData.HP += addHp;
+        HP += addHp;
     }
 
     /// <summary>

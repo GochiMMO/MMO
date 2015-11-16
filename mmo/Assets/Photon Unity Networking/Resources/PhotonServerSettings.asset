@@ -54,4 +54,5 @@ MonoBehaviour:
   - PtoPChat
   - InstantiateTurnDownWindow
   - Recover
+  - GenerationRegeneration
   DisableAutoOpenWizard: 1

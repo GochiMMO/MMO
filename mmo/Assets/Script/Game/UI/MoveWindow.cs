@@ -22,6 +22,11 @@ public class MoveWindow : MonoBehaviour {
         mousePastPosition = Input.mousePosition;
     }
 
+    void OnMouseDown()
+    {
+        Debug.Log("mouseDown");
+    }
+
     // Update is called once per frame
     void Update () {
         // そのコライダーがクリックされたら

@@ -284,6 +284,7 @@
     <Compile Include="Assets\Terasurware\Classes\Entity_Items.cs" />
     <Compile Include="Assets\Terasurware\Classes\Entity_Job.cs" />
     <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Entity_StatusPoint.cs" />
     <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
     <Compile Include="Assets\WhenEndAnimDestroy.cs" />
     <Compile Include="Assets\WhenEndEnmAtkCall.cs" />

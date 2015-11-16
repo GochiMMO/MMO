@@ -754,10 +754,10 @@ MonoBehaviour:
   thirdMember: {fileID: 126344}
   fourthMember: {fileID: 114744}
   emptyMemberShowing: {fileID: 118478}
-  archerImage: {fileID: 21300000, guid: eb5f6e2757c821940b69cf1456f7865a, type: 3}
-  warriorImage: {fileID: 21300000, guid: f588d850485d0ae479d73cf3bd0b7b00, type: 3}
-  sorcererImage: {fileID: 21300000, guid: 49b611e658efbf443b686a4036f74fe3, type: 3}
-  monkImage: {fileID: 21300000, guid: 5b1a64ea234fb2343b8d0686c51280de, type: 3}
+  archerImage: {fileID: 21300000, guid: 16052d7448ecec244bc7d6ca7b73e1a0, type: 3}
+  warriorImage: {fileID: 21300000, guid: 16548b9b1d745574db2cc14475de36e8, type: 3}
+  sorcererImage: {fileID: 21300000, guid: 16d4c9f51a0438f47a3f170dd138adb5, type: 3}
+  monkImage: {fileID: 21300000, guid: 630ae5cd22e8c594a92c2183b5769801, type: 3}
   removeButton: {fileID: 174506}
 --- !u!114 &11433268
 MonoBehaviour:
@@ -1059,7 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8573a995de42a41a0cd3546f8ffe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleBarCollider: {fileID: 6173690}
 --- !u!114 &11481488
 MonoBehaviour:
   m_ObjectHideFlags: 1

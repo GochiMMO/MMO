@@ -87,7 +87,7 @@ public class UpdateShowStatus : MonoBehaviour {
         if (playerChar.GetPlayerData().HP != prevHP)
         {
             // サイズを計算する
-            float size = playerChar.GetPlayerData().HP / playerChar.GetPlayerData().MaxHP;
+            float size = (float)playerChar.GetPlayerData().HP / (float)playerChar.GetPlayerData().MaxHP;
             // サイズを変更する
             hpBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する
@@ -106,7 +106,7 @@ public class UpdateShowStatus : MonoBehaviour {
         if (playerChar.GetPlayerData().SP != prevSP)
         {
             // サイズを計算する
-            float size = playerChar.GetPlayerData().SP / playerChar.GetPlayerData().MaxSP;
+            float size = (float)playerChar.GetPlayerData().SP / (float)playerChar.GetPlayerData().MaxSP;
             // サイズを変更する
             spBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する

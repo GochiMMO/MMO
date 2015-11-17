@@ -145,6 +145,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <returns>反復子</returns>
     protected IEnumerator Regeneration(int healValue, float skillTime, float healTime)
     {
+        
         // 開始時間を取得する
         float startTime = Time.time;
         // 回復した回数を設定する変数を定義
@@ -240,16 +241,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                 // MAXHPに調整する
                 value = playerData.MaxHP;
             }
-            // HPを計算する
-            int hp = playerData.HP + value;
-            // HPが0を下回ったら
-            if (hp < 0)
+            // HPが0を下回っていたら
+            else if (value < 0)
             {
-                // HPを0にする
-                hp = 0;
+                // 0にする
+                value = 0;
             }
-            // PlayerのHPを更新する
-            playerData.HP = hp;
+            // HPを設定する
+            playerData.HP = value;
         }
         get
         {
@@ -583,6 +582,8 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     {
         // 攻撃用当り判定コンポーネントを無効化する
         DisablePlayerAttack();
+        // ステータスをNormalに戻す
+        status = Status.NORMAL;
     }
 
     /// <summary>

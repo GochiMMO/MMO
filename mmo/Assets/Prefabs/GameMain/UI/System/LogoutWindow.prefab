@@ -10,6 +10,7 @@ GameObject:
   - 224: {fileID: 22441138}
   - 222: {fileID: 22204050}
   - 114: {fileID: 11496164}
+  - 114: {fileID: 11412034}
   m_Layer: 5
   m_Name: BackImage
   m_TagString: Untagged
@@ -212,6 +213,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u30ED\u30B0\u30A2\u30A6\u30C8\u3057\u307E\u3059\u304B\uFF1F"
+--- !u!114 &11412034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b4fa6c186a06549be05b811a46e1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 22377388}
 --- !u!114 &11418088
 MonoBehaviour:
   m_ObjectHideFlags: 1

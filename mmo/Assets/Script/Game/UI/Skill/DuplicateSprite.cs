@@ -27,7 +27,6 @@ public class DuplicateSprite : MonoBehaviour {
         {
             Debug.Log("set");
             scrollOnMouseCheck = gameObject.transform.parent.parent.parent.parent.GetComponent<ScrollOnMouseCheck>();
-            
         }
     }
 

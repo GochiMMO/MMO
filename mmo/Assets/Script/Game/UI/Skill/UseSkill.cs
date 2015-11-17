@@ -5,6 +5,7 @@ public class UseSkill : MonoBehaviour {
     public int skillID;
     public int skillPaletteNumber;    // スキルパレットの番号
     public bool skillCoolTimeFlag = false;    // クールタイムかのフラグ
+
     /// <summary>
     /// プレイヤーのスクリプトの参照
     /// </summary>

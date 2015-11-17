@@ -2,13 +2,33 @@
 using System.Collections;
 
 public class Warrior : PlayerChar {
-    public override bool UseSkill(int skillNumber, SkillBase skill)
-    {
-        return false;
-        // throw new System.NotImplementedException();
-    }
 
     private bool isSkills = false;
+
+    public override bool UseSkill(int skillNumber, SkillBase skill)
+    {
+        // スキルを使用中に切り替える
+        SkillFlag();
+
+        if (skill.GetSp() > SP || isSkills)
+        {
+            // スキル使用させない
+            return false;
+        }
+
+        // SPを消費させる
+        SP -= skill.GetSp();
+        // スキルのIDで処理分けを行う
+        
+        switch (skillNumber)
+        {
+            case 0:
+                this.Berserk();
+                break;
+        }
+        return true;
+        
+    }
 
     /// <summary>
     /// バーサク (攻撃力上昇系)
@@ -45,16 +65,12 @@ public class Warrior : PlayerChar {
     {
         SkillBase bloodrage = SkillControl.GetSkill("ブラッドレイジ");
 
-        if (!isSkills)
-        {
-            // 再生させるアニメーションを指定する
-            anim.SetTrigger("Buff");
-            // 攻撃力アップ
-            StartCoroutine(StrBuff(bloodrage.GetAttack(), bloodrage.GetEffectTime()));
-            // 防御力ダウン
-            StartCoroutine(DefBuff(bloodrage.GetDefence(), bloodrage.GetEffectTime()));
-        }
-    
+        // 再生させるアニメーションを指定する
+        anim.SetTrigger("Buff");
+        // 攻撃力アップ
+        StartCoroutine(StrBuff(bloodrage.GetAttack(), bloodrage.GetEffectTime()));
+        // 防御力ダウン
+        StartCoroutine(DefBuff(bloodrage.GetDefence(), bloodrage.GetEffectTime())); 
     }
 
     /// <summary>
@@ -64,14 +80,10 @@ public class Warrior : PlayerChar {
     {
         SkillBase defender = SkillControl.GetSkill("ディフェンダー");
 
-        if (!isSkills)
-        {
-            // 再生させるアニメーションを指定する
-            anim.SetTrigger("Buff");
-            // 物理防御力アップ
-            StartCoroutine(DefBuff(defender.GetAttack(), defender.GetEffectTime()));
-        }
-
+        // 再生させるアニメーションを指定する
+        anim.SetTrigger("Buff");
+        // 物理防御力アップ
+        StartCoroutine(DefBuff(defender.GetAttack(), defender.GetEffectTime()));
     }
 
     /// <summary>
@@ -81,14 +93,10 @@ public class Warrior : PlayerChar {
     {
         SkillBase lampart = SkillControl.GetSkill("ランパート");
 
-        if (!isSkills)
-        {
-            // 再生させるアニメーションを指定する
-            anim.SetTrigger("Buff");
-            // 物理防御力アップ
-            StartCoroutine(DefBuff(lampart.GetAttack(), lampart.GetEffectTime()));
-        }
-    
+        // 再生させるアニメーションを指定する
+        anim.SetTrigger("Buff");
+        // 物理防御力アップ
+        StartCoroutine(DefBuff(lampart.GetAttack(), lampart.GetEffectTime()));
     }
 
     /// <summary>
@@ -98,16 +106,12 @@ public class Warrior : PlayerChar {
     {
         SkillBase sentinel = SkillControl.GetSkill("センチネル");
 
-        if (!isSkills)
-        {
-            // 再生させるアニメーションを指定する
-            anim.SetTrigger("Sentinel");
-            // 物理防御力アップ
-            StartCoroutine(DefBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
-            // 魔法防御力アップ
-            StartCoroutine(MndBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
-        }
-
+        // 再生させるアニメーションを指定する
+        anim.SetTrigger("Sentinel");
+        // 物理防御力アップ
+        StartCoroutine(DefBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
+        // 魔法防御力アップ
+        StartCoroutine(MndBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
     }
 
     /// <summary>
@@ -119,22 +123,13 @@ public class Warrior : PlayerChar {
        
         // ダメージ計算式
         int damage = playerData.attack + (int)(playerData.attack * fastblade.GetAttack());
-       
-        // スキルが使用中でなければ
-        if (!isSkills)
-        {
+      
             // スキルごとのダメージを設定する
             SetAttack(damage);
             // 再生させるアニメーションを指定する
             anim.SetTrigger("FastBlade");
             // アタック中に切り替える
             Attack();
-            // スキルを使用中に切り替える
-            SkillFlag();
-
-            Debug.Log("スキル使用");
-        }
-
     }
 
     /// <summary>

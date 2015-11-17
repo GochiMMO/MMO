@@ -582,6 +582,8 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     {
         // 攻撃用当り判定コンポーネントを無効化する
         DisablePlayerAttack();
+        // ステータスをNormalに戻す
+        status = Status.NORMAL;
     }
 
     /// <summary>

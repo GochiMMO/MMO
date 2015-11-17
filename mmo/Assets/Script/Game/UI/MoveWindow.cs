@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 // BoxCollider2Dを自動的にアタッチする
 [RequireComponent(typeof(BoxCollider2D))]
-public class MoveWindow : MonoBehaviour {
+public class MoveWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
     //[SerializeField, Tooltip("ウインドウを動かすためのコライダー")]
     BoxCollider2D titleBarCollider;
 
@@ -22,25 +23,41 @@ public class MoveWindow : MonoBehaviour {
         mousePastPosition = Input.mousePosition;
     }
 
-    void OnMouseDown()
+    /// <summary>
+    /// ボタンが離された時に呼ばれるイベント
+    /// </summary>
+    /// <param name="eventData">イベントのデータ</param>
+    public void OnEndDrag (PointerEventData eventData)
     {
-        Debug.Log("mouseDown");
+        // 掴まれているフラグにfalseを入れる
+        catchFlag = false;
+        Debug.Log("mouseUp");
     }
 
-    // Update is called once per frame
-    void Update () {
-        // そのコライダーがクリックされたら
-        if (titleBarCollider.OverlapPoint(Input.mousePosition) && Input.GetMouseButtonDown(0))
+    /// <summary>
+    /// ドラッグの開始処理
+    /// </summary>
+    /// <param name="eventData">データ</param>
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        // コライダー上で左クリックされたら
+        if (eventData.button == PointerEventData.InputButton.Left && titleBarCollider.OverlapPoint(eventData.position))
         {
-            // クリックされたフラグを立てる
+            // マウスの座標を取得する
+            mousePastPosition = eventData.position;
+            // クリックされたフラグを格納する
             catchFlag = true;
+            Debug.Log("mouseDown");
         }
-        // クリックされており、離されたら
-        if(catchFlag && Input.GetMouseButtonUp(0)){
-            // クリックされたフラグを折る
-            catchFlag = false;
-        }
-        // クリックされていたら
+    }
+
+    /// <summary>
+    /// ドラッグ中の処理
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnDrag(PointerEventData eventData)
+    {
+        // コライダーが掴まれていたら
         if (catchFlag)
         {
             // マウスの移動量を計算する
@@ -48,8 +65,8 @@ public class MoveWindow : MonoBehaviour {
             mouseDeltaPosition.y = Input.mousePosition.y - mousePastPosition.y;
             // その移動量分移動させる
             gameObject.transform.Translate(mouseDeltaPosition, Space.World);
+            // マウスのポジションを取得しておく
+            mousePastPosition = Input.mousePosition;
         }
-        // マウスのポジションを取得しておく
-        mousePastPosition = Input.mousePosition;
     }
 }

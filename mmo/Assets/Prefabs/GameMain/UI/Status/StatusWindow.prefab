@@ -598,6 +598,7 @@ GameObject:
   - 61: {fileID: 6113696}
   - 114: {fileID: 11428974}
   - 114: {fileID: 11467044}
+  - 114: {fileID: 11440786}
   m_Layer: 5
   m_Name: Contents
   m_TagString: Untagged
@@ -1083,7 +1084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8573a995de42a41a0cd3546f8ffe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleBarCollider: {fileID: 6113696}
 --- !u!114 &11431336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1241,6 +1241,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11440786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b4fa6c186a06549be05b811a46e1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 22361614}
 --- !u!114 &11446018
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -164,6 +164,12 @@ public class Sorcerer : PlayerChar {
                 break;
             // 14番目のスキル(コンバート)
             case 14:
+                // SPが0ならば
+                if (SP == 0)
+                {
+                    // 発動できない
+                    return false;
+                }
                 this.magic = () => Convert();
                 // 詠唱を行うフラグを折る
                 chantFlag = false;
@@ -404,7 +410,7 @@ public class Sorcerer : PlayerChar {
             // 効果時間を計算する
             float skillTime = 20 + regeneSkill.GetLv() * 5;
             // 回復する時間を計算する
-            float healTime = 5f - regeneSkill.GetLv() * 0.5f;
+            float healTime = 5f - regeneSkill.GetLv() * 0.2f;
             // リジェネを発動させる
             photonView.RPC("GenerationRegeneration", player.GetPhotonView().owner, healHP, skillTime, healTime);
         }

@@ -6,39 +6,43 @@ using System.Collections;
 [RequireComponent(typeof(PhotonTransformView))]
 abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
+    /// パーティーのシステム
+    /// </summary>
+    PartySystem partySystem;
+    /// <summary>
     /// プレイヤーの攻撃コンポーネント
     /// </summary>
     PlayerAttack[] playerAttacks;
     /// <summary>
     /// プレイヤーの状態
     /// </summary>
-    enum Status
+    protected enum Status
     {
         /// <summary>
         /// 通常状態
         /// </summary>
-        NORMAL,
+        NORMAL = 0x01,
         /// <summary>
         /// 攻撃中
         /// </summary>
-        ATTACK,
+        ATTACK = 0x02,
         /// <summary>
         /// 被弾中
         /// </summary>
-        DAMAGE,
+        DAMAGE = 0x04,
         /// <summary>
         /// 死亡中
         /// </summary>
-        DEAD,
+        DEAD = 0x08,
         /// <summary>
         /// 復活中
         /// </summary>
-        REVIVE,
+        REVIVE = 0x10,
     }
     /// <summary>
     /// プレイヤーのステータス
     /// </summary>
-    Status status = Status.NORMAL;
+    protected Status status = Status.NORMAL;
 
     /// <summary>
     /// 攻撃力アップのバフ
@@ -156,8 +160,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             // 回復する時間になったかどうか
             if (startTime + healTime * healCount > Time.time)
             {
+                // エフェクトを発生させる
+                // GameObject.Instantiate(refeneEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
                 // 回復させる
-                HP += healValue;
+                Recover(healValue);
             }
             // 繰り返す
             yield return null;
@@ -174,6 +180,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// アニメーションをコントロールするコンポーネント
     /// </summary>
     protected Animator anim { private set; get; }
+    /// <summary>
+    /// Rigidbodyコンポーネント
+    /// </summary>
+    protected Rigidbody rigbody;
     /// <summary>
     /// ステータスを送るフラグ
     /// </summary>
@@ -218,7 +228,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 魔法防御力につくバフの値
     /// </summary>
     protected float mndBuff { private set; get; }
-
+    /// <summary>
+    /// 次に必要な経験値
+    /// </summary>
+    private int nextExp = 0;
     /// <summary>
     /// 攻撃中かどうか
     /// </summary>
@@ -287,7 +300,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     private void OnTriggerEnter(Collider hitCollider)
     {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
-        if (hitCollider.gameObject.tag == "EnemyAttack")
+        if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) != 0)
         {
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
@@ -309,6 +322,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             if (attack < 0) attack = 0;
             // HPを減算する
             HP -= attack;
+            // HPが0になったら
+            if (HP == 0)
+            {
+                // 死亡状態にする
+                status = Status.DEAD;
+                // アニメーションを再生する
+                anim.SetTrigger("Dead");
+            }
         }
     }
 
@@ -336,6 +357,55 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         rotateSpeed = 3f;
         // プレイヤーの攻撃コンポーネントを取得する
         playerAttacks = GetComponentsInChildren<PlayerAttack>();
+        // パーティーシステムを取得する
+        partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
+        // rigbodyを取得する
+        rigbody = gameObject.GetComponent<Rigidbody>();
+    }
+
+    /// <summary>
+    /// 経験値の加算
+    /// </summary>
+    /// <param name="exp">経験値</param>
+    public void AddExp(int exp)
+    {
+        // パーティーメンバーを格納する変数
+        GameObject[] partyMembers;
+        // パーティーメンバーが２人以上のとき
+        if ((partyMembers = partySystem.GetPartyMember()).Length > 1)
+        {
+            // expを変更する(パーティーメンバーの数だけ経験値を少し減らす
+            exp = (int)((float)exp * (1f - (float)partyMembers.Length / 10f));
+            // パーティーメンバー分繰り返す
+            foreach (GameObject partyMember in partyMembers)
+            {
+                // RPCを送信し、経験値を加算させる
+                photonView.RPC("AddExpRpc", partyMember.GetPhotonView().owner, exp);
+            }
+        }
+        // パーティーがいなければ
+        else
+        {
+            // EXPをそのまま加算する
+            playerData.nowExp += exp;
+        }
+    }
+
+    /// <summary>
+    /// 経験値を加算する関数
+    /// </summary>
+    /// <param name="exp">経験値</param>
+    [PunRPC]
+    public void AddExpRpc(int exp)
+    {
+        // 死亡状態でない時
+        if (status != Status.DEAD)
+        {
+            // 経験値を加算する
+            playerData.nowExp += exp;
+            // レベルアップチェックを行う
+            LevelUp();
+        }
     }
 
     /// <summary>
@@ -351,6 +421,43 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         rightVector = Camera.main.transform.TransformDirection(Vector3.right);
         // Y軸を0にする
         rightVector.y = 0f;
+    }
+
+    /// <summary>
+    /// レベルアップしてるかチェックする関数
+    /// </summary>
+    private void LevelUp()
+    {
+        // 現在経験値がレベルアップする経験値を超えていたら
+        if (playerData.nowExp > nextExp)
+        {
+            // エフェクトを表示する
+            // GameObject.Instantiate(levelUpEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
+            // 現在経験値を消費する
+            playerData.nowExp -= nextExp;
+            // レベルアップする
+            playerData.Lv++;
+            // ステータスポイントを加算する
+            playerData.statusPoint += 5;
+            // 加算するスキルポイントを格納する変数定義
+            int addSkillPoint = 0;
+            // 10Lvを下回っている間
+            if (playerData.Lv > 10)
+            {
+                // レベル自体を加算するポイントとする(1~9)
+                addSkillPoint = playerData.Lv;
+            }
+            // 10Lvを超えている時
+            else
+            {
+                // レベル / １０ * １０
+                addSkillPoint = (playerData.Lv / 10) * 10;
+            }
+            // スキルポイントを加算する
+            playerData.skillPoint += addSkillPoint;
+            // 次に必要な経験値を計算する
+            nextExp = 50 * playerData.Lv * playerData.Lv * playerData.Lv;
+        }
     }
 
     /// <summary>
@@ -599,7 +706,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// 死亡中の処理
     /// </summary>
-    virtual protected void Dead() { }
+    virtual protected void Dead() {
+        // rigidbodyが働いてるときは
+        if (!rigbody.isKinematic)
+        {
+            // オフにする
+            rigbody.isKinematic = true;
+        }
+    }
 
     /// <summary>
     /// 生き返っている時の瞬間
@@ -679,8 +793,12 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     [PunRPC]
     public void Recover(int addHp)
     {
-        // プレイヤーのHPを足す
-        HP += addHp;
+        // 死んでいなければ
+        if (status != Status.DEAD)
+        {
+            // プレイヤーのHPを足す
+            HP += addHp;
+        }
     }
 
     /// <summary>

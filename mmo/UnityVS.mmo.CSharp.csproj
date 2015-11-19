@@ -256,6 +256,7 @@
     <Compile Include="Assets\Script\Game\UI\Skill\MoveSprite.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\RemoveSprite.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\SetSkillIcon.cs" />
+    <Compile Include="Assets\Script\Game\UI\Skill\SkillButton.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\SkillPaletteData.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\SyncSkillCoolTime.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\UpdateItemCoolTime.cs" />
@@ -283,6 +284,8 @@
     <Compile Include="Assets\Tazo_fx\Script\AnimateTiledTextureOnTrail.cs" />
     <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
     <Compile Include="Assets\Tazo_fx\Script\DestroySelf.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Entity_Archer.cs" />
+    <Compile Include="Assets\Terasurware\Classes\Entity_FirstStatus.cs" />
     <Compile Include="Assets\Terasurware\Classes\Entity_Items.cs" />
     <Compile Include="Assets\Terasurware\Classes\Entity_Job.cs" />
     <Compile Include="Assets\Terasurware\Classes\Entity_Sahagin.cs" />

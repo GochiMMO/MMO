@@ -23,7 +23,7 @@ public class EndInputName : MonoBehaviour{
             // 名前を登録する
             PlayerStatus.playerData.name = inputField.text;
             // 初期ステータスを設定する
-            PlayerStatus.LoadFirstStatus(PlayerStatus.JobName[PlayerStatus.playerData.job]);
+            PlayerStatus.LoadFirstStatus();
             // プレイヤーのデータをセーブする
             PlayerStatus.SavePlayerData();
             // コンフィグファイルに名前を登録する

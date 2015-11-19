@@ -20,6 +20,7 @@ public class SortCanvas : MonoBehaviour, IPointerDownHandler, IComparer<SortCanv
     void Awake()
     {
         sortCanvass.Add(this);
+        this.canvas.sortingOrder = FindHighestSortCanvas() + 1;
     }
 
     public override int GetHashCode()

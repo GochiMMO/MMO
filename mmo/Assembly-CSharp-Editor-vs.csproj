@@ -63,6 +63,7 @@
      <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Views\PhotonTransformViewEditor.cs" />
      <Compile Include="Assets\Script\Game\Enemy\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\Terasurware\Classes\Editor\EnemyData_importer.cs" />
+     <Compile Include="Assets\Terasurware\Classes\Editor\FirstStatus_importer.cs" />
      <Compile Include="Assets\Terasurware\Classes\Editor\Items_importer.cs" />
      <Compile Include="Assets\Terasurware\Classes\Editor\SkillData_importer.cs" />
      <Compile Include="Assets\Terasurware\Classes\Editor\Status_Level_importer.cs" />

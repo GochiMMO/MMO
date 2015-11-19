@@ -5,6 +5,7 @@
 public class PlayerData {
     public int Lv;  //レベル
     public int job;    //職業
+    public int nowExp;  // 経験値
     public int characterNumber; //キャラクターの番号
     public string name; //名前
     public int HP;      // HP
@@ -50,6 +51,7 @@ public class PlayerData {
         obj.job = this.job;
         obj.logoutScene = logoutScene;
         obj.Lv = this.Lv;
+        obj.nowExp = this.nowExp;
         obj.magicAttack = this.magicAttack;
         obj.magicDefence = this.magicDefence;
         obj.MaxHP = this.MaxHP;

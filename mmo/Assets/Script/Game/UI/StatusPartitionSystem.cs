@@ -12,24 +12,18 @@ public class StatusPartitionSystem : MonoBehaviour {
     int[] statusPoint;      //ステータスを表示させておくテキスト
     int restStatusPoint;    //残りステータスポイント
 
-    // 各振り分けステータスによって実際の計算に使うステータスを増減させる量を持ったオブジェクトの変数定義
-    static Entity_StatusPoint status_level;
-
-    // プレイヤーのデータクラス
-    PlayerData playerData = new PlayerData();
+    // 追加される値が格納されている変数
+    int addAttack;
+    int addDefense;
+    int addMagicAttack;
+    int addMagicDefense;
+    int addHP;
+    int addSP;
 
     // Use this for initialization
     void Start () {
-        if (!status_level)
-        {
-            // 各ステータスの上昇値が載ったスクリプタブルオブジェクトを取得する
-            status_level = Resources.Load<Entity_StatusPoint>("Player/Status/Status_Level");
-        }
-
         statusPartitionTexts = new Text[4];     
         statusPoint = new int[4];       //メモリ領域を確保
-        // プレイヤーのデータのコピーを取得する
-        playerData = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player").GetComponent<PlayerChar>().GetPlayerData().Clone();
 
         //ステータスポイントを表示させるテキストを格納する
         for (int i = 0; i < 4; i++)
@@ -67,6 +61,48 @@ public class StatusPartitionSystem : MonoBehaviour {
             restStatusPoint--;              //残りステータスポイントを減らす
             statusText.color = Color.red;
             statusPartitionTexts[statusNumber].color = Color.green;
+            UpdateAddStatus();
+        }
+    }
+
+    /// <summary>
+    /// 追加されるステータスの幅を計算する関数
+    /// </summary>
+    /// <param name="statusNumber">追加するステータスの番号</param>
+    void UpdateAddStatus()
+    {
+        // 各値を初期化する
+        addHP = addSP = addAttack = addDefense = addMagicAttack = addMagicDefense = 0;
+        // ステータスの数だけ繰り返す
+        for (int i = 0; i < statusPoint.Length; i++)
+        {
+            // 変わったステータスの値を計算するための変数
+            int changeStatus = 0;
+            
+            switch (i)
+            {
+                case 0:
+                    changeStatus = PlayerStatus.playerData.str;
+                    break;
+                case 1:
+                    changeStatus = PlayerStatus.playerData.vit;
+                    break;
+                case 2:
+                    changeStatus = PlayerStatus.playerData.intelligence;
+                    break;
+                case 3:
+                    changeStatus = PlayerStatus.playerData.mnd;
+                    break;
+            }
+            // ステータスの上がり幅が入ってるクラスを取得する
+            var status_up = PlayerStatus.level_status.sheets[i].list[0];
+            // 各ステータスの増加幅を再計算する
+            addHP += (int)(statusPoint[i] * status_up.HP) - (int)(changeStatus * status_up.HP);
+            addSP += (int)(statusPoint[i] * status_up.SP) - (int)(changeStatus * status_up.SP);
+            addAttack += (int)(statusPoint[i] * status_up.Attack) - (int)(changeStatus * status_up.Attack);
+            addDefense += (int)(statusPoint[i] * status_up.Defense) - (int)(changeStatus * status_up.Defense);
+            addMagicAttack += (int)(statusPoint[i] * status_up.MagicAttack) - (int)(changeStatus * status_up.MagicAttack);
+            addMagicDefense += (int)(statusPoint[i] * status_up.MagicDefense) - (int)(changeStatus * status_up.MagicDefense);
         }
     }
 
@@ -96,21 +132,30 @@ public class StatusPartitionSystem : MonoBehaviour {
                     playerStatusPoint = PlayerStatus.playerData.mnd;
                     break;
             }
-
-            if (statusPoint[statusNumber] > playerStatusPoint)  //ステータスポイントが振ってあれば
+            // ステータスポイントを１でも振って有れば
+            if (statusPoint[statusNumber] > playerStatusPoint)
             {
-                statusPoint[statusNumber]--;    //ステータスを振った分だけ戻す
-                restStatusPoint++;      //残りステータスポイントを増やす
+                // 振ったステータスを減らす
+                statusPoint[statusNumber]--;    
+                // 残りステータスポイントを増やす
+                restStatusPoint++;
+
+                // 振った後と振る前とでステータスポイントが一緒になるならば
                 if (statusPoint[statusNumber] == playerStatusPoint)
                 {
+                    // テキストの色を黒に戻す
                     statusPartitionTexts[statusNumber].color = Color.black;
-                    
                 }
+                // 残りのポイントが降る前と同じならば
                 if (restStatusPoint == PlayerStatus.playerData.statusPoint)
                 {
+                    // テキストの色を黒に戻す
                     statusText.color = Color.black;
                 }
             }
+
+            // 振った分のステータスの増減値を再計算する
+            UpdateAddStatus();
         }
         
     }
@@ -120,23 +165,30 @@ public class StatusPartitionSystem : MonoBehaviour {
     /// </summary>
     public void DecideButton()
     {
-        //セーブデータに一時記憶した値を入れる
+        // セーブデータに一時記憶した値を入れる
         PlayerStatus.playerData.str = statusPoint[0];
         PlayerStatus.playerData.vit = statusPoint[1];
         PlayerStatus.playerData.intelligence = statusPoint[2];
         PlayerStatus.playerData.mnd = statusPoint[3];
         PlayerStatus.playerData.statusPoint = restStatusPoint;
 
-        //セーブする
+        // プレイヤーのステータスをstr,vit,int,mndを考慮したものに更新する
+        PlayerStatus.UpdateStatus();
+
+        // セーブする
         PlayerStatus.SavePlayerData();
 
+        // 振った分のステータスを表示するテキスト分だけ繰り返す
         foreach (var status in statusPartitionTexts)
         {
+            // それぞれのテキストの色を黒に変更する
             status.color = Color.black;
         }
-
+        // テキストの色を黒に変更する
         statusText.color = Color.black;
 
+        // ステータスの再計算を行う
+        UpdateAddStatus();
     }
 
     /// <summary>
@@ -157,5 +209,8 @@ public class StatusPartitionSystem : MonoBehaviour {
         }
 
         statusText.color = Color.black;
+
+        // ステータスの再計算を行う
+        UpdateAddStatus();
     }
 }

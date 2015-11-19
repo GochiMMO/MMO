@@ -23,7 +23,7 @@ public class DuplicateSprite : MonoBehaviour {
         // キャンバスを探して設定する
         mainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         // スクロールのコンポーネントを取得する
-        if (scrollOnMouseCheck == null)
+        if (scrollOnMouseCheck == null && skillFlag)
         {
             Debug.Log("set");
             scrollOnMouseCheck = gameObject.transform.parent.parent.parent.parent.GetComponent<ScrollOnMouseCheck>();

@@ -11,7 +11,8 @@ public class YNWindow : MonoBehaviour {
     public void Yes()
     {
         PhotonNetwork.JoinOrCreateRoom("test", StaticMethods.createRoomOptions(), null);  //ルームを作成
-        //PhotonNetwork.JoinOrCreateRoom("GameRoom", StaticMethods.createRoomOptions(), null);
+        // スキルの再読み込みを行う
+        SkillControl.LoadSkillData();
     }
 
     public void No()

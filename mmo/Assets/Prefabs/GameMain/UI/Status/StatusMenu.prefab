@@ -317,10 +317,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusWindowPrefab: {fileID: 123608, guid: 08cef7799573c124396be41f094c7c4d, type: 2}
-  archerSkillWindow: {fileID: 131030, guid: 3607fb3fdad43e7419ac67aa58256fa5, type: 2}
-  warriorSkillWindow: {fileID: 160936, guid: 0d63c1d49555e4346b6de893696fc701, type: 2}
-  sorcererSkillWindow: {fileID: 159302, guid: 16e881bf2508c5d4893cc95f332cc79c, type: 2}
-  monkSkillWindow: {fileID: 141900, guid: 75f22359a14674443a371aebab16d47d, type: 2}
+  archerSkillWindow: {fileID: 164370, guid: 3607fb3fdad43e7419ac67aa58256fa5, type: 2}
+  warriorSkillWindow: {fileID: 188582, guid: 0d63c1d49555e4346b6de893696fc701, type: 2}
+  sorcererSkillWindow: {fileID: 189060, guid: 16e881bf2508c5d4893cc95f332cc79c, type: 2}
+  monkSkillWindow: {fileID: 176612, guid: 75f22359a14674443a371aebab16d47d, type: 2}
 --- !u!114 &11468310
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -33,9 +33,11 @@ public class UpdateShowStatus : MonoBehaviour {
     int prevHP = -1;
     int prevSP = -1;
     int prevLv = -1;
+    int prevMaxHP = -1;
+    int prevMaxSP = -1;
 
     // プレイヤーキャラクターのデータ
-    PlayerChar playerChar = null;
+    PlayerData playerData = null;
     PlayerChar[] partyPlayerChar = new PlayerChar[3];
     // Use this for initialization
     void Start () {
@@ -45,25 +47,14 @@ public class UpdateShowStatus : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate () {
         // 自プレイヤーのデータの参照が未取得の場合
-        if (!playerChar)
+        if (playerData == null)
         {
-            // Playerとタグが付いたオブジェクトを取得する
-            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                // PhotonViewを取得する
-                PhotonView photonView = player.GetPhotonView();
-                // PhotonViewが存在し、自分で出したキャラならば
-                if (photonView && photonView.isMine)
-                {
-                    // プレイヤーのデータを取得する
-                    playerChar = player.GetComponent<PlayerChar>();
-                    // プレイヤーの名前を設定する
-                    nameText.text = PlayerStatus.playerData.name;
-                    // ジョブの画像を変更する
-                    SetJobImage();
-                    break;
-                }
-            }
+            // プレイヤーのデータを格納する
+            playerData = PlayerStatus.playerData;
+            // プレイヤーの名前を設定する
+            nameText.text = PlayerStatus.playerData.name;
+            // ジョブの画像を変更する
+            SetJobImage();
         }
         else
         {
@@ -84,16 +75,18 @@ public class UpdateShowStatus : MonoBehaviour {
     void UpdateHP()
     {
         // 前のHPと現在HPが変わったら
-        if (playerChar.GetPlayerData().HP != prevHP)
+        if (playerData.HP != prevHP || playerData.MaxHP != prevMaxHP)
         {
             // サイズを計算する
-            float size = (float)playerChar.GetPlayerData().HP / (float)playerChar.GetPlayerData().MaxHP;
+            float size = (float)playerData.HP / (float)playerData.MaxHP;
             // サイズを変更する
             hpBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する
-            hpText.text = playerChar.GetPlayerData().HP.ToString() + " / " + playerChar.GetPlayerData().MaxHP.ToString();
+            hpText.text = playerData.HP.ToString() + " / " + playerData.MaxHP.ToString();
             // HPを更新しておく
-            prevHP = playerChar.GetPlayerData().HP;
+            prevHP = playerData.HP;
+            // 最大HPを更新する
+            prevMaxHP = playerData.MaxHP;
         }
     }
 
@@ -103,16 +96,18 @@ public class UpdateShowStatus : MonoBehaviour {
     void UpdateSP()
     {
         // 前のSPと現在SPが変わったら
-        if (playerChar.GetPlayerData().SP != prevSP)
+        if (playerData.SP != prevSP || playerData.MaxSP != prevMaxSP)
         {
             // サイズを計算する
-            float size = (float)playerChar.GetPlayerData().SP / (float)playerChar.GetPlayerData().MaxSP;
+            float size = (float)playerData.SP / (float)playerData.MaxSP;
             // サイズを変更する
             spBarImage.transform.localScale = new Vector3(size, 1f, 1f);
             // テキストを変更する
-            spText.text = playerChar.GetPlayerData().SP.ToString() + " / " + playerChar.GetPlayerData().MaxSP.ToString();
+            spText.text = playerData.SP.ToString() + " / " + playerData.MaxSP.ToString();
             // SPを更新しておく
-            prevSP = playerChar.GetPlayerData().SP;
+            prevSP = playerData.SP;
+            // MaxSPを更新しておく
+            prevMaxSP = playerData.MaxSP;
         }
     }
 
@@ -122,12 +117,12 @@ public class UpdateShowStatus : MonoBehaviour {
     void UpdateLevel()
     {
         // レベルアップしたら
-        if (playerChar.GetPlayerData().Lv != prevLv)
+        if (playerData.Lv != prevLv)
         {
             // レベルを更新する
-            levelText.text = playerChar.GetPlayerData().Lv.ToString();
+            levelText.text = playerData.Lv.ToString();
             // レベルを更新しておく
-            prevLv = playerChar.GetPlayerData().Lv;
+            prevLv = playerData.Lv;
         }
     }
 

@@ -369,11 +369,19 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                             damage -= defense;
                             break;
                     }
+
                     // もしダメージが0を下回ったら
                     if (damage < 0)
                     {
                         // ノーダメージにする
                         damage = 0;
+                    }
+
+                    // HPが0を下回るならば
+                    if (HP - damage < 0)
+                    {
+                        // そのコライダーを出したプレイヤーに経験値を加算させる
+                        col.GetComponent<PlayerChar>().AddExp(exp);
                     }
                     // ダメージを表示させる、減算させるなどの処理を行う
                     GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage);
@@ -383,7 +391,6 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             }
         }
     }
-
 
     /// <summary>
     /// スクリプトが開始した時の処理
@@ -490,6 +497,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             this.angle = enemyData.FieldOfView / 2;
             this.angleDistance = enemyData.ViewDistance * enemyData.ViewDistance;
             this.actionDistance = enemyData.ActionDistance * enemyData.ActionDistance;
+            this.exp = enemyData.Exp * level;
             for (int i = 0; i < enemyAttacks.Length; i++)
             {
                 // ダメージの振れ幅を設定する

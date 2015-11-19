@@ -20,10 +20,13 @@ public static class PlayerStatus{
     /// </summary>
     public static EnvironmentalSaveData environmentalSaveData;
     /// <summary>
-    /// 職業毎の初期ステータスが格納されている
+    /// strなどのステータスによってどのくらいatk等が上がるか記載された変数
     /// </summary>
-    private static Jobs jobs;
-
+    public static readonly Entity_StatusPoint level_status;
+    /// <summary>
+    /// 初期ステータスが格納されている変数
+    /// </summary>
+    private static readonly Entity_FirstStatus firstStatus;
     /// <summary>
     /// Constractor.
     /// </summary>
@@ -32,12 +35,12 @@ public static class PlayerStatus{
         Debug.Log("PlayerStates class Constractor");
         // プレイヤーのステータスを格納する変数の領域を確保
         playerData = new PlayerData();
-        // 初期ステータスを格納する変数の領域を確保
-        jobs = new Jobs();
         // コンフィグファイルを格納する変数の領域を確保
         environmentalSaveData = new EnvironmentalSaveData();
-        // 各職業の初期ステータスを読み込む
-        LoadFirstStatus();
+        // ステータスアップによって(ry
+        level_status = Resources.Load<Entity_StatusPoint>("Player/Status/Status_Level");
+        // 初期ステータスを読み込む
+        firstStatus = Resources.Load<Entity_FirstStatus>("Player/Status/FirstStatus");
         // 初期化する
         PlayerStatus.Init();
     }
@@ -62,19 +65,6 @@ public static class PlayerStatus{
     }
 
     /// <summary>
-    /// 各職業の初期ステータスを読み込む
-    /// </summary>
-    private static void LoadFirstStatus()
-    {
-        // セーブデータを読み込む
-        FileStream fs = new FileStream("./savedata/FirstStatus.xml", FileMode.Open);
-        // XMLを解読して読み込む
-        XmlSerializer serializer = new XmlSerializer(typeof(Jobs));
-        // 職業として入れ込む
-        jobs = (Jobs)serializer.Deserialize(fs);
-    }
-
-    /// <summary>
     /// Save player data for file in "./savedata/".
     /// </summary>
     /// <returns></returns>
@@ -94,18 +84,77 @@ public static class PlayerStatus{
     }
 
     /// <summary>
+    /// ステータスの再計算
+    /// </summary>
+    public static void UpdateStatus()
+    {
+        // 初期ステータスを読み込む
+        Entity_FirstStatus.Param jobFirstStatus = firstStatus.sheets[playerData.job].list[0];
+        // ステータスを配列にまとめる
+        int[] statusValue = {playerData.str,playerData.vit, playerData.intelligence, playerData.mnd};
+        // 各ステータスを反映させる
+        playerData.MaxHP = jobFirstStatus.HP;
+        playerData.MaxSP = jobFirstStatus.SP;
+        playerData.attack = jobFirstStatus.Attack;
+        playerData.defense = jobFirstStatus.Defense;
+        playerData.magicAttack = jobFirstStatus.MagicAttack;
+        playerData.magicDefence = jobFirstStatus.MagicDefense;
+        // 現在の振れるステータスの値によってステータスを加算する
+        for(int i = 0 ; i < statusValue.Length ; i++)
+        {
+            // 上がり幅を計算する
+            playerData.MaxHP += (int)(statusValue[i] * level_status.sheets[i].list[0].HP);
+            playerData.MaxSP += (int)(statusValue[i] * level_status.sheets[i].list[0].SP);
+            playerData.attack += (int)(statusValue[i] * level_status.sheets[i].list[0].Attack);
+            playerData.defense += (int)(statusValue[i] * level_status.sheets[i].list[0].Defense);
+            playerData.magicAttack += (int)(statusValue[i] * level_status.sheets[i].list[0].MagicAttack);
+            playerData.magicDefence += (int)(statusValue[i] * level_status.sheets[i].list[0].MagicDefense);
+        }
+    }
+
+    /// <summary>
     /// 初期ステータスを読み込む
     /// </summary>
     /// <param name="jobName">Load job name</param>
     /// <returns>True is completed but false is not completed</returns>
-    public static bool LoadFirstStatus(string jobName)
+    public static bool LoadFirstStatus()
     {
+        // 職業、キャラクター、名前を引き継ぐ
+        int job = playerData.job;
+        int character = playerData.characterNumber;
+        string name = (string)playerData.name.Clone();
+        // 新しくインスタンスを作成する
+        playerData = new PlayerData();
+        // 名前を入れる
+        playerData.name = name;
+        // キャラクターの番号を入れる
+        playerData.characterNumber = character;
+        // 職業番号を入れる
+        playerData.job = job;
+        // 初期ステータスを読み込む
+        Entity_FirstStatus.Param jobFirstStatus = firstStatus.sheets[playerData.job].list[0];
+        // 各ステータスを反映させる
+        playerData.HP = playerData.MaxHP = jobFirstStatus.HP;
+        playerData.SP = playerData.MaxSP = jobFirstStatus.SP;
+        playerData.attack = jobFirstStatus.Attack;
+        playerData.defense = jobFirstStatus.Defense;
+        playerData.magicAttack = jobFirstStatus.MagicAttack;
+        playerData.magicDefence = jobFirstStatus.MagicDefense;
+        
+        // 最初にボーナスステータスポイントとボーナススキルポイントを与える
+        playerData.statusPoint = 10;
+        playerData.skillPoint = 10;
+        playerData.Lv = 1;
+
+        /*
         // ジョブの数だけ繰り返す
         foreach (var job in jobs.job)
         {
             // ジョブの名前と引数で設定されたジョブの名前が等しければ
             if (job.name == jobName)
             {
+
+
                 // 初期ステータスの読み込み
                 playerData.HP = int.Parse(job.hp);
                 playerData.SP = int.Parse(job.sp);
@@ -118,11 +167,12 @@ public static class PlayerStatus{
                 playerData.SP = playerData.MaxSP = 100;
 
                 //For debug.
-                playerData.skillPoint = 5;
-                playerData.statusPoint = 5;
+                playerData.skillPoint = 10;
+                playerData.statusPoint = 10;
                 return true;
             }
         }
-        return false;
+         * */
+        return true;
     }
 }

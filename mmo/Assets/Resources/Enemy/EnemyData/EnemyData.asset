@@ -34,6 +34,7 @@ MonoBehaviour:
       BaseExp: 100
       ExpRate: 10
       DamageRate: .300000012
+      Exp: 100
   - name: Bee
     list:
     - Name: "\u30D3\u30FC"
@@ -56,6 +57,7 @@ MonoBehaviour:
       BaseExp: 100
       ExpRate: 10
       DamageRate: .200000003
+      Exp: 100
   - name: Cokatris
     list:
     - Name: "\u30B3\u30AB\u30C8\u30EA\u30B9"
@@ -78,6 +80,7 @@ MonoBehaviour:
       BaseExp: 100
       ExpRate: 10
       DamageRate: .100000001
+      Exp: 100
   - name: Rat
     list:
     - Name: "\u30E9\u30C3\u30C8"
@@ -100,3 +103,4 @@ MonoBehaviour:
       BaseExp: 100
       ExpRate: 10
       DamageRate: .200000003
+      Exp: 100

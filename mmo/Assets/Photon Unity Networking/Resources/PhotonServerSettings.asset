@@ -55,4 +55,5 @@ MonoBehaviour:
   - InstantiateTurnDownWindow
   - Recover
   - GenerationRegeneration
+  - AddExpRpc
   DisableAutoOpenWizard: 1

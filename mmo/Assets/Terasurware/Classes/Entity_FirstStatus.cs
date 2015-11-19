@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Entity_Sahagin : ScriptableObject
+public class Entity_FirstStatus : ScriptableObject
 {	
 	public List<Sheet> sheets = new List<Sheet> ();
 
@@ -17,27 +17,12 @@ public class Entity_Sahagin : ScriptableObject
 	public class Param
 	{
 		
-		public string Name;
 		public int HP;
+		public int SP;
 		public int Attack;
 		public int Defense;
 		public int MagicAttack;
 		public int MagicDefense;
-		public float MoveSpeed;
-		public float TrackingSpeed;
-		public int ActionInterval;
-		public int FieldOfView;
-		public float ViewDistance;
-		public float ActionDistance;
-		public int HpRate;
-		public int AttackRate;
-		public int DefenseRate;
-		public int MAtkRate;
-		public int MDefRate;
-		public int BaseExp;
-		public int ExpRate;
-		public float DamageRate;
-		public int Exp;
 	}
 }
 

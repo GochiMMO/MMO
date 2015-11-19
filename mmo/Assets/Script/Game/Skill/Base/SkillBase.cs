@@ -29,6 +29,15 @@ public class SkillData
     public float bonus;     //ボーナス (LvUp時) 
     public float casttime;  //詠唱時間 
     public float effecttime; //持続時間 
+
+    /// <summary>
+    /// スキルの名前を返す
+    /// </summary>
+    /// <returns>スキルの名前</returns>
+    public override string ToString()
+    {
+        return name;
+    }
 }
 
 public class SkillBase {
@@ -84,10 +93,22 @@ public class SkillBase {
     public float GetEffectTime() { return ( skillData.effecttime + skillData.bonus * skillData.lv ); }
     public float GetCastTime() { return skillData.casttime; }
 
-    public void SetLevel(int level)
+    /// <summary>
+    /// スキルのレベル
+    /// </summary>
+    public int level
     {
-        // レベルを設定する
-        this.skillData.lv = level;
+        set { skillData.lv = value; }
+        get { return skillData.lv; }
+    }
+
+    /// <summary>
+    /// スキルの名前を返す
+    /// </summary>
+    /// <returns>スキルの名前</returns>
+    public override string ToString()
+    {
+        return skillData.name;
     }
 }
 
@@ -109,33 +130,18 @@ public static class SkillControl
         return skills[skillNameAndId[skillName]];
     }
 
+    /// <summary>
+    /// スキルのＩＤでスキルを返す関数
+    /// </summary>
+    /// <param name="skillID">スキルのID</param>
+    /// <returns>スキル</returns>
     public static SkillBase GetSkill(int skillID)
     {
         return skills[skillID];
     }
 
-    public static PlayerData playerData;  //プレイヤーデータ 
+    // public static PlayerData playerData;  //プレイヤーデータ 
     public static int job;
-
-    /// <summary>
-    /// スキルレベルを設定する
-    /// </summary>
-    /// <param name="id">スキルのID</param>
-    /// <param name="skillLevel">スキルのレベル</param>
-    public static void SetSkillLevel(int id, int skillLevel)
-    {
-        skills[id].SetLevel(skillLevel);
-    }
-
-    /// <summary>
-    /// スキルのレベルを設定する
-    /// </summary>
-    /// <param name="skillName">スキルの名前</param>
-    /// <param name="skillLevel">スキルのレベル</param>
-    public static void SetSkillLevel(string skillName, int skillLevel)
-    {
-        skills[skillNameAndId[skillName]].SetLevel(skillLevel);
-    }
 
     /// <summary>
     /// コンストラクタ
@@ -151,10 +157,14 @@ public static class SkillControl
     /// </summary>
     public static void LoadSkillData()
     {
-        // プレイヤーのジョブをセットする
+        // スキルが格納されたDictionaryをリセットする
+        skills.Clear();
+        // プレイヤーのジョブの番号をセットする
         job = PlayerStatus.playerData.job;
-        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;      // 本番用
+        // プレイヤーのジョブ番号からスキルを引っ張ってくる
+        var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;
 
+        // スキルの数だけ繰り返す
         for (int i = 0; i < skill_data.Count; i++)
         {
             // スキルをを入れ込む 
@@ -177,7 +187,8 @@ public static class SkillControl
             );
             // 名前とidを紐づける
             skillNameAndId.Add(skill_data[i].name, skill_data[i].id);
-            // Debug.Log(skill_data[i].name); //デバッグ用
+            // スキルレベルを設定する
+            skills[skill_data[i].id].level = PlayerStatus.playerData.skillLevel[skill_data[i].id];
         }
     }
 }

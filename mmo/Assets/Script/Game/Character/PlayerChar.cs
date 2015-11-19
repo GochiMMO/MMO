@@ -370,9 +370,9 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     public void AddExp(int exp)
     {
         // パーティーメンバーを格納する変数
-        GameObject[] partyMembers;
+        GameObject[] partyMembers = partySystem.GetPartyMember();
         // パーティーメンバーが２人以上のとき
-        if ((partyMembers = partySystem.GetPartyMember()).Length > 1)
+        if (partyMembers != null && partyMembers.Length > 1)
         {
             // expを変更する(パーティーメンバーの数だけ経験値を少し減らす
             exp = (int)((float)exp * (1f - (float)partyMembers.Length / 10f));
@@ -387,7 +387,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         else
         {
             // EXPをそのまま加算する
-            playerData.nowExp += exp;
+            AddExpRpc(exp);
         }
     }
 

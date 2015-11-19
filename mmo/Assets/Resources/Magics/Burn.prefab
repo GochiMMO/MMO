@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11439542}
   - 114: {fileID: 11403086}
   - 136: {fileID: 13670542}
-  - 114: {fileID: 11432540}
+  - 114: {fileID: 11431790}
   m_Layer: 0
   m_Name: Burn
   m_TagString: Magic
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeSpan: 5
   usePhotonNetwork: 1
---- !u!114 &11432540
+--- !u!114 &11431790
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -237,8 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: 0
   col: {fileID: 0}
-  damageRate: 0
+  damageRate: .100000001
   attackKind: 0
+  parentPlayer: {fileID: 0}
 --- !u!114 &11439542
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,11 +2,8 @@
 using System.Collections;
 
 public static class StaticMethods{
-    public static GameObject player
-    {
-        private set { StaticMethods.player = value; }
-        get { if (!StaticMethods.player) { FindAndSetPlayer(); } return player; }
-    }
+    public static GameObject player;
+    
 
     /// <summary>
     /// Constractor.
@@ -236,5 +233,27 @@ public static class StaticMethods{
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// 単精度浮動小数点数の線形補間数を返す関数
+    /// </summary>
+    /// <param name="f1">起点</param>
+    /// <param name="f2">終点</param>
+    /// <param name="rate">割合</param>
+    /// <returns>線形補間数</returns>
+    public static float GetLerp(float f1, float f2, float rate)
+    {
+        return (f2 - f1) * rate + f1; 
+    }
+
+    public static float GetSlerp(float f1, float f2, float rate)
+    {
+        return Vector3.Slerp(Vector3.right * f1, Vector3.right * f2, rate).x;
+    }
+
+    public static float GetSinWave(float f1, float f2, float rate)
+    {
+        return (f2 - f1) * Mathf.Sin(rate * Mathf.PI * 0.50f) + f1;
     }
 }

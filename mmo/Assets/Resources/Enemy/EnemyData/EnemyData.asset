@@ -15,11 +15,11 @@ MonoBehaviour:
   - name: Sahagin
     list:
     - Name: "\u30B5\u30CF\u30AE\u30F3"
-      HP: 2500
-      Attack: 100
-      Defense: 100
-      MagicAttack: 100
-      MagicDefense: 150
+      HP: 200
+      Attack: 50
+      Defense: 10
+      MagicAttack: 70
+      MagicDefense: 10
       MoveSpeed: 3
       TrackingSpeed: 5
       ActionInterval: 4

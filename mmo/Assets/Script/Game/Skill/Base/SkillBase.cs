@@ -159,6 +159,7 @@ public static class SkillControl
     {
         // スキルが格納されたDictionaryをリセットする
         skills.Clear();
+        skillNameAndId.Clear();
         // プレイヤーのジョブの番号をセットする
         job = PlayerStatus.playerData.job;
         // プレイヤーのジョブ番号からスキルを引っ張ってくる

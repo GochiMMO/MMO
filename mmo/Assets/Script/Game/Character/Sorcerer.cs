@@ -246,6 +246,8 @@ public class Sorcerer : PlayerChar {
         fireAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // ファイアは魔法なので、種類を魔法にする
         fireAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
+        // 自分を設定する
+        fireAttack.parentPlayer = this;
         // ファイアに角度を与え、発射する
         fire.GetComponent<FireShot>().SetShotVec(gameObject.transform.forward);
 
@@ -268,6 +270,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = burnSkill.GetAttack() + burnSkill.GetBonus();
         // 攻撃力の設定
         burnAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        burnAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         burnAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
@@ -289,6 +293,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = flareSkill.GetAttack() + flareSkill.GetBonus();
         // 攻撃力の設定
         flareAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        flareAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         flareAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
@@ -310,6 +316,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = thunderSkill.GetAttack() + thunderSkill.GetBonus();
         // 攻撃力の設定
         thunderAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        thunderAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         thunderAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
@@ -333,6 +341,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = shockSkill.GetAttack() + shockSkill.GetBonus();
         // 攻撃力の設定
         shockAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        shockAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         shockAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
@@ -354,6 +364,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = thunderVoltSkill.GetAttack() + thunderVoltSkill.GetBonus();
         // 攻撃力の設定
         thunderVoltAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        thunderVoltAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         thunderVoltAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }
@@ -375,6 +387,8 @@ public class Sorcerer : PlayerChar {
         float magicAttackRate = meteoSkill.GetAttack() + meteoSkill.GetBonus();
         // 攻撃力の設定
         meteoAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
+        // 自分を設定する
+        meteoAttack.parentPlayer = this;
         // 攻撃の種類を魔法に設定する
         meteoAttack.attackKind = PlayerAttack.AttackKind.MAGIC;
     }

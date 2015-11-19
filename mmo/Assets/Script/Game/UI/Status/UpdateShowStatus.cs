@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class UpdateShowStatus : MonoBehaviour {
     [SerializeField, Tooltip("HPバーのイメージ画像")]
-    GameObject hpBarImage;
+    Image hpBarImage;
     [SerializeField, Tooltip("SPバーのイメージ画像")]
-    GameObject spBarImage;
+    Image spBarImage;
+    [SerializeField, Tooltip("Expバーのイメージ画像")]
+    Image expBarImage;
     [SerializeField, Tooltip("Lvを出力するテキスト")]
     Text levelText;
     [SerializeField, Tooltip("名前を出力するテキスト")]
@@ -30,15 +32,29 @@ public class UpdateShowStatus : MonoBehaviour {
 
     PartySystem partySystem;
 
+    // 範囲
     int prevHP = -1;
     int prevSP = -1;
     int prevLv = -1;
     int prevMaxHP = -1;
     int prevMaxSP = -1;
+    int prevExp = -1;
 
     // プレイヤーキャラクターのデータ
     PlayerData playerData = null;
     PlayerChar[] partyPlayerChar = new PlayerChar[3];
+
+    // HP,SPバーのサイズが変わる時間
+    float hpBarChangeTime = CHANGE_BAR_TIME;
+    float spBarChangeTime = CHANGE_BAR_TIME;
+
+    // 変更前HP,SPの値
+    int beforeSPValue;
+    int beforeHPValue;
+
+    // HP,SPバーがどのくらいで移動完了となるか(秒)
+    const float CHANGE_BAR_TIME = 1f;
+
     // Use this for initialization
     void Start () {
         partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
@@ -62,6 +78,8 @@ public class UpdateShowStatus : MonoBehaviour {
             UpdateHP();
             // SPバーとテキストの更新
             UpdateSP();
+            // EXPバーのテキストを更新する
+            UpdateExp();
             // レベルを更新
             UpdateLevel();
             // パーティーのステータスを更新する
@@ -77,16 +95,43 @@ public class UpdateShowStatus : MonoBehaviour {
         // 前のHPと現在HPが変わったら
         if (playerData.HP != prevHP || playerData.MaxHP != prevMaxHP)
         {
-            // サイズを計算する
-            float size = (float)playerData.HP / (float)playerData.MaxHP;
-            // サイズを変更する
-            hpBarImage.transform.localScale = new Vector3(size, 1f, 1f);
-            // テキストを変更する
-            hpText.text = playerData.HP.ToString() + " / " + playerData.MaxHP.ToString();
+            // もしバーのサイズが変わり切る前にHPが変わったら
+            if (hpBarChangeTime < CHANGE_BAR_TIME)
+            {
+                // 前回の値を起点にする
+                beforeHPValue = prevHP;
+            }
             // HPを更新しておく
             prevHP = playerData.HP;
             // 最大HPを更新する
             prevMaxHP = playerData.MaxHP;
+            // 変更する時間を更新する
+            hpBarChangeTime = 0f;
+        }
+        // 変化する時間がまだ到達していなければ
+        else if (hpBarChangeTime < CHANGE_BAR_TIME)
+        {
+            // 時間を足しこむ
+            hpBarChangeTime += Time.deltaTime;
+            // 時間が到達していたら
+            if (hpBarChangeTime > CHANGE_BAR_TIME)
+            {
+                // 既定時間に設定する
+                hpBarChangeTime = CHANGE_BAR_TIME;
+            }
+            // HPを計算する
+            int hp = (int)StaticMethods.GetSinWave(beforeHPValue, prevHP, hpBarChangeTime / CHANGE_BAR_TIME);
+            // バーのサイズを計算する
+            float size = (float)hp / (float)playerData.MaxHP;
+            // サイズを更新する
+            hpBarImage.fillAmount = size;
+            // HPのテキストを更新する
+            hpText.text = hp.ToString() + " / " + playerData.MaxHP.ToString();
+        }
+        else
+        {
+            // 以前のHPの値を登録する
+            beforeHPValue = prevHP;
         }
     }
 
@@ -98,16 +143,60 @@ public class UpdateShowStatus : MonoBehaviour {
         // 前のSPと現在SPが変わったら
         if (playerData.SP != prevSP || playerData.MaxSP != prevMaxSP)
         {
-            // サイズを計算する
-            float size = (float)playerData.SP / (float)playerData.MaxSP;
-            // サイズを変更する
-            spBarImage.transform.localScale = new Vector3(size, 1f, 1f);
-            // テキストを変更する
-            spText.text = playerData.SP.ToString() + " / " + playerData.MaxSP.ToString();
+            // もしバーのサイズが変わり切る前にSPが変わったら
+            if (spBarChangeTime < CHANGE_BAR_TIME)
+            {
+                // 前回の値を起点にする
+                beforeSPValue = prevSP;
+            }
             // SPを更新しておく
             prevSP = playerData.SP;
-            // MaxSPを更新しておく
+            // 最大SPを更新する
             prevMaxSP = playerData.MaxSP;
+            // 変更する時間を更新する
+            spBarChangeTime = 0f;
+        }
+        // 変化する時間がまだ到達していなければ
+        else if (spBarChangeTime < CHANGE_BAR_TIME)
+        {
+            // 時間を足しこむ
+            spBarChangeTime += Time.deltaTime;
+            // 時間が到達していたら
+            if (spBarChangeTime > CHANGE_BAR_TIME)
+            {
+                // 既定時間に設定する
+                spBarChangeTime = CHANGE_BAR_TIME;
+            }
+            // SPを計算する
+            int sp = (int)StaticMethods.GetSinWave(beforeSPValue, prevSP, spBarChangeTime / CHANGE_BAR_TIME);
+            // バーのサイズを計算する
+            float size = (float)sp / (float)playerData.MaxSP;
+            // サイズを更新する
+            spBarImage.fillAmount = size;
+            // SPのテキストを更新する
+            spText.text = sp.ToString() + " / " + playerData.MaxSP.ToString();
+        }
+        else
+        {
+            // 以前のSPの値を登録する
+            beforeSPValue = prevSP;
+        }
+    }
+
+    /// <summary>
+    /// 経験値のバーを更新する
+    /// </summary>
+    void UpdateExp()
+    {
+        // 経験値が変動していたら
+        if (playerData.nowExp != prevExp)
+        {
+            // 経験値がどのくらいたまっているか計算する
+            float size = (float)playerData.nowExp / (float)Mathf.Pow(playerData.Lv, 3) * 50f;
+            // サイズを変更する
+            expBarImage.fillAmount = size;
+            // EXPを更新する
+            prevExp = playerData.nowExp;
         }
     }
 

@@ -346,7 +346,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         if (enemyStatus != Status.DEAD)
         {
             // PhotonViewを取得する
-            PhotonView photon = col.GetComponent<PhotonView>();
+            PhotonView photon = col.gameObject.GetComponent<PhotonView>();
             // そのコライダーが自分が出したものならば
             if (photon && photon.isMine)
             {
@@ -354,7 +354,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                 if (col.gameObject.tag == "PlayerAttack")
                 {
                     // プレイヤーの攻撃コンポーネントを取得する
-                    PlayerAttack playerAttack = col.GetComponent<PlayerAttack>();
+                    PlayerAttack playerAttack = col.gameObject.GetComponent<PlayerAttack>();
                     // 攻撃力をゲットする
                     int damage = playerAttack.GetDamage();
                     // 物理、魔法によって処理分けを行う
@@ -381,7 +381,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                     if (HP - damage < 0)
                     {
                         // そのコライダーを出したプレイヤーに経験値を加算させる
-                        col.GetComponent<PlayerChar>().AddExp(exp);
+                        playerAttack.parentPlayer.AddExp(exp);
                     }
                     // ダメージを表示させる、減算させるなどの処理を行う
                     GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage);

@@ -17,7 +17,7 @@ public class LvText : MonoBehaviour
     void TextPreview()
     {
         // スキルｌｖが０の場合
-        if (skill.GetLv() == 0)
+        if (skill.level == 0)
         {
             text.text = ("-");
         }

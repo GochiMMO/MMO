@@ -2,14 +2,22 @@
 using System.Collections;
 
 public static class StaticMethods{
-    public static GameObject player;
-    
+    private static GameObject player;
 
+    /// <summary>
+    /// 操作キャラをゲットするプロパティ
+    /// </summary>
+    public static GameObject localPlayer
+    {
+        private set { }
+        get { return player; }
+    }
     /// <summary>
     /// Constractor.
     /// </summary>
     static StaticMethods() {
-        //FindAndSetPlayer();
+        // プレイヤーを検索する
+        // FindAndSetPlayer();
     }
 
     /// <summary>
@@ -208,9 +216,6 @@ public static class StaticMethods{
     {
         // Playerとタグが付くオブジェクトをすべて取得する
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-
-        Debug.Log(objs.Length);
-
         // PhotonView格納用ローカル変数定義
         PhotonView photonView;
 
@@ -247,11 +252,25 @@ public static class StaticMethods{
         return (f2 - f1) * rate + f1; 
     }
 
+    /// <summary>
+    /// 球面線形補間を行う(まだ行えない)
+    /// </summary>
+    /// <param name="f1">起点</param>
+    /// <param name="f2">終点</param>
+    /// <param name="rate">割合</param>
+    /// <returns>球面線形補間数</returns>
     public static float GetSlerp(float f1, float f2, float rate)
     {
         return Vector3.Slerp(Vector3.right * f1, Vector3.right * f2, rate).x;
     }
 
+    /// <summary>
+    /// サイン波補間を行う
+    /// </summary>
+    /// <param name="f1">起点</param>
+    /// <param name="f2">終点</param>
+    /// <param name="rate">割合</param>
+    /// <returns>補間数</returns>
     public static float GetSinWave(float f1, float f2, float rate)
     {
         return (f2 - f1) * Mathf.Sin(rate * Mathf.PI * 0.50f) + f1;

@@ -215,6 +215,7 @@
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
+     <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
@@ -246,6 +247,8 @@
      <Compile Include="Assets\Script\Title\FindServer.cs" />
      <Compile Include="Assets\Script\Title\MatchingServer.cs" />
      <Compile Include="Assets\Script\Title\PushKey.cs" />
+     <Compile Include="Assets\SkySphere_V1\Examples\Gui.cs" />
+     <Compile Include="Assets\SkySphere_V1\Examples\MouseLook.cs" />
      <Compile Include="Assets\Tazo_fx\Script\ActiveSelf.cs" />
      <Compile Include="Assets\Tazo_fx\Script\AnimateTiledTextureOnTrail.cs" />
      <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
@@ -264,6 +267,7 @@
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
+     <None Include="Assets\SkySphere_V1\Documentation\How to use.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Elementals\!Readme.txt" />
      <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />

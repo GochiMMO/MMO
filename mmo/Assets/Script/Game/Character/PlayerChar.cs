@@ -6,6 +6,10 @@ using System.Collections;
 [RequireComponent(typeof(PhotonTransformView))]
 abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
+    /// キャラクターのコントローラーコンポーネント
+    /// </summary>
+    CharacterController character;
+    /// <summary>
     /// パーティーのシステム
     /// </summary>
     PartySystem partySystem;
@@ -294,14 +298,16 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// 何か当たり判定用コライダーが当たってきた時の処理
+    /// キャラクターコントローラーにぶつかってきたとき
     /// </summary>
-    /// <param name="hitCol">当たってきたコライダー</param>
-    private void OnTriggerEnter(Collider hitCollider)
+    /// <param name="hitCollider"></param>
+    private void OnControllerColliderHit(ControllerColliderHit hitCollider)
     {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
-        if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) != 0)
+        if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
         {
+            // 呼ばれた関数を出力する
+            Debug.Log("OnControllerColliderHit");
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
@@ -320,6 +326,52 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             }
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
+            // 攻撃力を出力する
+            Debug.Log(attack.ToString());
+            // HPを減算する
+            HP -= attack;
+            // HPが0になったら
+            if (HP == 0)
+            {
+                // 死亡状態にする
+                status = Status.DEAD;
+                // アニメーションを再生する
+                anim.SetTrigger("Dead");
+            }
+        }
+    }
+
+    /// <summary>
+    /// 何か当たり判定用コライダーが当たってきた時の処理
+    /// </summary>
+    /// <param name="hitCol">当たってきたコライダー</param>
+    private void OnTriggerEnter(Collider hitCollider)
+    {
+        // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
+        if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
+        {
+            // 呼ばれたメソッド名を出力する
+            Debug.Log("OnTriggerEnter");
+            // 敵の攻撃用コンポーネントを取得する
+            EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
+            // 敵の攻撃力を設定する
+            int attack = enmAttack.GetDamage();
+            // 敵の攻撃の種類によって処理分け
+            switch (enmAttack.attackKind)
+            {
+                case EnemyAttack.AttackKind.PHYSICS:
+                    // 防御力を適用する
+                    attack -= playerData.defense;
+                    break;
+                case EnemyAttack.AttackKind.MAGIC:
+                    // 魔法防御力を適用する
+                    attack -= playerData.magicDefence;
+                    break;
+            }
+            // 攻撃力が0を下回ったとき0とする
+            if (attack < 0) attack = 0;
+            // 攻撃力を出力する
+            Debug.Log(attack.ToString());
             // HPを減算する
             HP -= attack;
             // HPが0になったら
@@ -361,6 +413,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
         // rigbodyを取得する
         rigbody = gameObject.GetComponent<Rigidbody>();
+        // キャラクターコントローラーを取得する
+        character = gameObject.GetComponent<CharacterController>();
+        // サブカメラを探し出し、その数だけ繰り返す
+        foreach (GameObject subCamera in GameObject.FindGameObjectsWithTag("SubCamera"))
+        {
+            // 自分を入れる
+            subCamera.GetComponent<MiniMapCamera>().player = this.gameObject;
+        }
     }
 
     /// <summary>
@@ -403,8 +463,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         {
             // 経験値を加算する
             playerData.nowExp += exp;
-            // レベルアップチェックを行う
-            LevelUp();
         }
     }
 
@@ -429,34 +487,20 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     private void LevelUp()
     {
         // 現在経験値がレベルアップする経験値を超えていたら
-        if (playerData.nowExp > nextExp)
+        while(playerData.nowExp > nextExp)
         {
             // エフェクトを表示する
-            // GameObject.Instantiate(levelUpEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
+            // PhotonNetwork.Instantiate(levelUpEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
             // 現在経験値を消費する
             playerData.nowExp -= nextExp;
             // レベルアップする
             playerData.Lv++;
             // ステータスポイントを加算する
             playerData.statusPoint += 5;
-            // 加算するスキルポイントを格納する変数定義
-            int addSkillPoint = 0;
-            // 10Lvを下回っている間
-            if (playerData.Lv > 10)
-            {
-                // レベル自体を加算するポイントとする(1~9)
-                addSkillPoint = playerData.Lv;
-            }
-            // 10Lvを超えている時
-            else
-            {
-                // レベル / １０ * １０
-                addSkillPoint = (playerData.Lv / 10) * 10;
-            }
             // スキルポイントを加算する
-            playerData.skillPoint += addSkillPoint;
+            playerData.skillPoint += PlayerStatus.addSkillPoint;
             // 次に必要な経験値を計算する
-            nextExp = 50 * playerData.Lv * playerData.Lv * playerData.Lv;
+            nextExp = PlayerStatus.nextLevel;
         }
     }
 
@@ -481,13 +525,18 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         else
         {
             // 回転させる
-            gameObject.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveValue), Time.deltaTime * rotateSpeed);
+            gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveValue), Time.deltaTime * rotateSpeed);
+
             // 移動させる
-            gameObject.transform.Translate(moveValue, Space.World);
+            // gameObject.transform.Translate(moveValue, Space.World);
+            
             // 走っているフラグをオンにする
             anim.SetBool("RunFlag", true);
+
+            // 移動させる
+            character.Move(moveValue);
         }
-        // ネットワーク同期処理
+        // ネットワーク同期処理(速度と回転)
         photonTransformView.SetSynchronizedValues(moveValue, rotateSpeed);
     }
 
@@ -708,11 +757,13 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// </summary>
     virtual protected void Dead() {
         // rigidbodyが働いてるときは
+        /*
         if (!rigbody.isKinematic)
         {
             // オフにする
             rigbody.isKinematic = true;
         }
+        */
     }
 
     /// <summary>
@@ -777,6 +828,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                     Revive();
                     break;
             }
+            // レベルアップ監視
+            LevelUp();
+            // rigidbodyを使えるようにしておく
+            rigbody.WakeUp();
         }
         // 他のプレイヤーのキャラクターだった場合
         //else

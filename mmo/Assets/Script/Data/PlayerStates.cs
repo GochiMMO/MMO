@@ -145,34 +145,32 @@ public static class PlayerStatus{
         playerData.statusPoint = 10;
         playerData.skillPoint = 10;
         playerData.Lv = 1;
-
-        /*
-        // ジョブの数だけ繰り返す
-        foreach (var job in jobs.job)
-        {
-            // ジョブの名前と引数で設定されたジョブの名前が等しければ
-            if (job.name == jobName)
-            {
-
-
-                // 初期ステータスの読み込み
-                playerData.HP = int.Parse(job.hp);
-                playerData.SP = int.Parse(job.sp);
-                playerData.str = int.Parse(job.str);
-                playerData.vit = int.Parse(job.vit);
-                playerData.intelligence = int.Parse(job.intelligence);
-                playerData.mnd = int.Parse(job.mnd);
-                playerData.Lv = 1;
-                playerData.HP = playerData.MaxHP = 1000;
-                playerData.SP = playerData.MaxSP = 100;
-
-                //For debug.
-                playerData.skillPoint = 10;
-                playerData.statusPoint = 10;
-                return true;
-            }
-        }
-         * */
         return true;
+    }
+
+    /// <summary>
+    /// 次のレベルに必要な経験値を計算する関数
+    /// </summary>
+    public static int nextLevel
+    {
+        private set { }
+        get
+        {
+            // レベルの３乗×50
+            return playerData.Lv * playerData.Lv * playerData.Lv * 50;
+        }
+    }
+
+    /// <summary>
+    /// 追加するスキルポイントの値
+    /// </summary>
+    public static int addSkillPoint
+    {
+        private set { }
+        get
+        {
+            // (プレイヤーのレベル ÷ 10) × 10;
+            return (int)(((float)playerData.Lv / 10f) * 10f);
+        }
     }
 }

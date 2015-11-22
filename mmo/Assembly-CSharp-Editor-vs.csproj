@@ -69,9 +69,11 @@
      <Compile Include="Assets\Terasurware\Classes\Editor\Status_Level_importer.cs" />
      <Compile Include="Assets\Terasurware\Editor\ExcelImporterMaker.cs" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
+     <None Include="Assets\Sprites\Test\TexMask.shader" />
      <None Include="Assets\Materials\CoolTime.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Plugins\release_history.txt" />
+     <None Include="Assets\Shader\TextureMask.shader" />
      <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
      <None Include="Assets\SkySphere_V1\Documentation\How to use.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -84,6 +86,7 @@
      <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
+     <None Include="Assets\Sprites\Test\TextureMaskShader.shader" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="Assembly-UnityScript">
  <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>

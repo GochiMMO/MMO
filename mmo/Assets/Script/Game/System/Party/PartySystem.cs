@@ -16,7 +16,7 @@ public class PartySystem : Photon.MonoBehaviour {
 
     PhotonView myPhoton;
     public const int PARTY_MAX_MEMBER = 4; // １パーティー４人まで
-    List<GameObject> partyMember;   // パーティーメンバー
+    static List<GameObject> partyMember = new List<GameObject>();   // パーティーメンバー
     bool engagedFlag = false;       // (自分が)加入しているかのフラグ
     bool isLeader = false;          // リーダーであるかどうか
 
@@ -25,14 +25,12 @@ public class PartySystem : Photon.MonoBehaviour {
 
     // Use this for initialization.
     void Start () {
-        // パーティーメンバーを格納するリスト
-        partyMember = new List<GameObject>();
         // 自分のPhotonViewを取得する
         myPhoton = GetComponent<PhotonView>();
     }
 
     /// <summary>
-    /// Get party member of array.
+    /// Get party member to array.
     /// </summary>
     /// <returns>Party members.</returns>
     public GameObject[] GetPartyMember()
@@ -59,6 +57,32 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// パーティーメンバーを配列で返す関数
+    /// </summary>
+    /// <returns>パーティーメンバーの配列</returns>
+    public static GameObject[] GetPartyMembers()
+    {
+        // パーティーメンバーが自分含め2人以上ならば
+        if (partyMember.Count > 1)
+        {
+            // デバッグ用出力
+            Debug.Log(partyMember.Count);
+            foreach (var obj in partyMember)
+            {
+                Debug.Log(obj.GetPhotonView().owner.name);
+            }
+
+            // パーティーメンバーを配列にして返す
+            return partyMember.ToArray();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+
+    /// <summary>
     /// [RPC]Add party member.
     /// </summary>
     /// <param name="member">Additional member's ID.</param>
@@ -68,7 +92,7 @@ public class PartySystem : Photon.MonoBehaviour {
         // IDからプレイヤーを検索する
         var member = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(memberID, "Player");
 
-        Debug.Log("add member, name of " + member.GetPhotonView().owner.name);
+        Debug.Log("add member, name is " + member.GetPhotonView().owner.name);
 
         // 加入済みメンバーでなければ
         if (!partyMember.Contains(member))

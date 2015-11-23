@@ -550,31 +550,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// Synchronized player data.
-    /// </summary>
-    /// <param name="stream">PhotonStream</param>
-    /// <param name="info">PhotonMessageInfo</param>
-    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.isWriting)
-        {
-            // まだステータスを送っていない時
-            if (!firstSyncFlag)
-            {
-                // プレイヤーのステータスを送る
-                stream.SendNext(playerData);
-                // ステータスを送ったフラグを立てる
-                firstSyncFlag = true;
-            }
-        }
-        else
-        {
-            // プレイヤーのステータスをもらう
-            playerData = (PlayerData)stream.ReceiveNext();
-        }
-    }
-
-    /// <summary>
     /// 攻撃用コンポーネントを有効化する
     /// </summary>
     /// <param name="attackNumber">コンポーネントの番号</param>
@@ -878,5 +853,28 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     {
         // セーブする
         SavePlayerCharData();
+    }
+
+    /// <summary>
+    /// プレイヤーの状態を同期する
+    /// </summary>
+    /// <param name="stream">同期用変数</param>
+    /// <param name="info">送ってきたプレイヤーのデータ</param>
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(playerData.HP);
+            stream.SendNext(playerData.job);
+            stream.SendNext(playerData.Lv);
+            stream.SendNext(playerData.name);
+        }
+        else
+        {
+            playerData.HP = (int)stream.ReceiveNext();
+            playerData.job = (int)stream.ReceiveNext();
+            playerData.Lv = (int)stream.ReceiveNext();
+            playerData.name = (string)stream.ReceiveNext();
+        }
     }
 }

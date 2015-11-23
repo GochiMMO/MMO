@@ -56,4 +56,6 @@ MonoBehaviour:
   - Recover
   - GenerationRegeneration
   - AddExpRpc
+  - ReciveLevelAndName
+  - SendLevelAndName
   DisableAutoOpenWizard: 1

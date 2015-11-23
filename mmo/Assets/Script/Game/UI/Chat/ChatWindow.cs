@@ -33,6 +33,8 @@ public class ChatWindow : Photon.MonoBehaviour {
     public Color nonActiveColor;
     TypeOfChat nowChatNumber = TypeOfChat.ALL;
     const int MAX_CHAT_LINE_NUM = 50;
+    // 最小化するためのスクリプトコンポーネント
+    MiniChatWindow miniChatWindow;
 
     int[] chatLineNum = new int[4];
 
@@ -54,6 +56,8 @@ public class ChatWindow : Photon.MonoBehaviour {
         buttons[3] = logWindowButton.GetComponent<BoxCollider2D>();
         // パーティーシステムを取得
         partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
+        // 最小化するためのスクリプトコンポーネントを取得する
+        miniChatWindow = gameObject.GetComponent<MiniChatWindow>();
     }
     
     // Update is called once per frame
@@ -363,6 +367,8 @@ public class ChatWindow : Photon.MonoBehaviour {
             // チャット行数を減らす
             chatLineNum[(int)TypeOfChat.ALL]--;
         }
+        // チャットを受け取ったことを通知する
+        miniChatWindow.RecieveChat();
     }
 
     /// <summary>
@@ -401,6 +407,8 @@ public class ChatWindow : Photon.MonoBehaviour {
             // チャット行数を減らす
             chatLineNum[(int)TypeOfChat.PARTY]--;
         }
+        // チャットを受け取ったことを通知する
+        miniChatWindow.RecieveChat();
     }
 
     /// <summary>
@@ -439,6 +447,8 @@ public class ChatWindow : Photon.MonoBehaviour {
             // チャット行数を減らす
             chatLineNum[(int)TypeOfChat.PTOP]--;
         }
+        // チャットを受け取ったことを通知する
+        miniChatWindow.RecieveChat();
     }
 
     /// <summary>

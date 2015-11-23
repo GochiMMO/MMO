@@ -408,7 +408,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // 敵のデータを読み込む
         LoadEnemyData();
         // ステータスを設定する
-        if (!SetStatus())
+        if (!SetStatus() && PhotonNetwork.isMasterClient)
         {
             // エラー文を表示
             Debug.LogError(enemyName + "のステータスが設定されていません。");
@@ -426,6 +426,12 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             }
             // 処理から抜ける
             return;
+        }
+        // マスタークライアントでなければ
+        else if (!PhotonNetwork.isMasterClient)
+        {
+            // マスタークライアントにレベルと名前を送ってもらう
+            RequireLevelAndNameForMaster();
         }
         // スクリプトコンポーネントのあるオブジェクトを格納する
         scripts = GameObject.FindGameObjectWithTag("Scripts");
@@ -497,7 +503,6 @@ abstract public class EnemyData : Photon.MonoBehaviour {
             this.angle = enemyData.FieldOfView / 2;
             this.angleDistance = enemyData.ViewDistance * enemyData.ViewDistance;
             this.actionDistance = enemyData.ActionDistance * enemyData.ActionDistance;
-            this.exp = enemyData.Exp * level;
             for (int i = 0; i < enemyAttacks.Length; i++)
             {
                 // ダメージの振れ幅を設定する
@@ -508,6 +513,50 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         }
         // 設定できなければfalseを返す
         return false;
+    }
+
+    /// <summary>
+    /// マスタークライアントにレベルと名前を送ってもらうよう依頼する関数
+    /// </summary>
+    void RequireLevelAndNameForMaster()
+    {
+        // マスタークライアントにレベルと名前の請求を行う
+        photonView.RPC("SendLevelAndName", PhotonTargets.MasterClient);
+    }
+
+    /// <summary>
+    /// レベルと名前をすべてのプレイヤーに送信する処理
+    /// </summary>
+    [PunRPC]
+    public void SendLevelAndName()
+    {
+        // レベルと敵の名前を送る
+        photonView.RPC("ReciveLevelAndName", PhotonTargets.All, level, enemyName);
+    }
+
+    /// <summary>
+    /// 送られてきたレベルと名前を受ける関数
+    /// </summary>
+    /// <param name="level">レベル</param>
+    /// <param name="name">名前</param>
+    [PunRPC]
+    public void ReciveLevelAndName(int level, string name)
+    {
+        // 変数に登録する
+        this.level = level;
+        this.enemyName = name;
+        // ステータスの設定を行う
+        SetStatus();
+    }
+
+    /// <summary>
+    /// Photonの力でネットワーク同期！のコールバック関数
+    /// </summary>
+    /// <param name="stream">ビスコだよ！</param>
+    /// <param name="info">送ってきた相手の情報</param>
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
     }
 
     /// <summary>

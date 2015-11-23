@@ -243,7 +243,7 @@ public class UpdateShowStatus : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// パーティーメンバーのステータスを更新する
     /// </summary>
     void UpdatePartyStatus()
     {

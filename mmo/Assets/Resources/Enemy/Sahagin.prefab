@@ -1505,7 +1505,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: dead
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &11445544
 MonoBehaviour:

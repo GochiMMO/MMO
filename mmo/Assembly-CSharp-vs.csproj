@@ -215,6 +215,7 @@
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
+     <Compile Include="Assets\Script\Game\UI\Chat\MiniChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />

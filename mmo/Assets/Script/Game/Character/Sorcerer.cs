@@ -20,7 +20,7 @@ public class Sorcerer : PlayerChar {
         // 詠唱が終了するまで待つ
         yield return new WaitForSeconds(chantTime);
         // 終了したらモーションを変更する
-        anim.SetTrigger("EndChant");
+        SetTrigger("EndChant");
         // コルーチンから抜け出す
         yield break;
     }
@@ -174,7 +174,7 @@ public class Sorcerer : PlayerChar {
                 // 詠唱を行うフラグを折る
                 chantFlag = false;
                 // モーションを再生する
-                anim.SetTrigger("Buffs");
+                SetTrigger("Buffs");
                 break;
             // 15番目のスキル(エーテルフロー)
             case 15:
@@ -183,7 +183,7 @@ public class Sorcerer : PlayerChar {
                 // 詠唱を行うフラグを折る
                 chantFlag = false;
                 // モーションを再生する
-                anim.SetTrigger("Buffs");
+                SetTrigger("Buffs");
                 break;
         }
         // 詠唱を行うかのフラグが立っていたら
@@ -194,15 +194,15 @@ public class Sorcerer : PlayerChar {
             {
                 case 1:
                     // １等級魔法の詠唱を行う
-                    anim.SetTrigger("FirstLevelMagic");
+                    SetTrigger("FirstLevelMagic");
                     break;
                 case 2:
                     // ２等級魔法の詠唱を行う
-                    anim.SetTrigger("SecondLevelMagic");
+                    SetTrigger("SecondLevelMagic");
                     break;
                 default:
                     // ３等級魔法の詠唱を行う
-                    anim.SetTrigger("ThirdLevelMagic");
+                    SetTrigger("ThirdLevelMagic");
                     break;
             }
             // 詠唱を行う

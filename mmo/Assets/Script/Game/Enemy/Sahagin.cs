@@ -90,7 +90,7 @@ public class Sahagin : LoiteringEnemyBase
             if (random >= SPECIAL_ATTACK_PERCENT)
             {
                 // 普通の攻撃アニメーション
-                anim.SetTrigger("attackFlag");
+                SetTrigger("attackFlag");
                 // 攻撃力の設定
                 SetAttack();
                 // 攻撃当たり判定コンポーネントの有効化
@@ -101,7 +101,7 @@ public class Sahagin : LoiteringEnemyBase
             else
             {
                 // ジャンプ攻撃のアニメーション
-                anim.SetTrigger("jumpAttack");
+                SetTrigger("jumpAttack");
                 // 魔法攻撃力を設定する
                 SetMagicAttack();
                 // 攻撃当たり判定コンポーネントの有効化
@@ -123,7 +123,7 @@ public class Sahagin : LoiteringEnemyBase
             if (Random.Range(0, 101) < DAMAGE_ACTION_PERCENT)
             {
                 // ダメージを受けたモーションにする
-                anim.SetTrigger("damaged");
+                SetTrigger("damaged");
                 // ステータスを被弾にする
                 enemyStatus = Status.DAMEGE;
             }

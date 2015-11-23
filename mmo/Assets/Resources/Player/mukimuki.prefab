@@ -1006,6 +1006,8 @@ GameObject:
   - 114: {fileID: 11492106}
   - 143: {fileID: 14307132}
   - 54: {fileID: 5481496}
+  - 114: {fileID: 11432682}
+  - 114: {fileID: 11408262}
   m_Layer: 0
   m_Name: mukimuki
   m_TagString: Player
@@ -2030,7 +2032,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121384}
-  m_LocalRotation: {x: .652485728, y: .280952185, z: -.615419447, w: -.341448545}
+  m_LocalRotation: {x: .652485788, y: .280952215, z: -.615419507, w: -.341448575}
   m_LocalPosition: {x: .00608589314, y: .138404116, z: .0372342616}
   m_LocalScale: {x: 1, y: 1.00000012, z: 1.00000012}
   m_Children:
@@ -2371,6 +2373,75 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &11408262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b9f24599fc6604ebfc829a088ae1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archerAnimationController: {fileID: 9100000, guid: 9062e98bcaa7cb148b5d1bde3475974a,
+    type: 2}
+  warriorAnimationController: {fileID: 9100000, guid: 719364adc7826ae4f817571fd0e72a07,
+    type: 2}
+  sorcererAnimationController: {fileID: 9100000, guid: 8d0f99a60dd34da49a12c7814a12bbd6,
+    type: 2}
+  monkAnimationController: {fileID: 9100000, guid: f9982756105e2484187dab8c9390ea20,
+    type: 2}
+--- !u!114 &11432682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: RunFlag
+  - Type: 9
+    SynchronizeType: 0
+    Name: NormalAttack
+  - Type: 9
+    SynchronizeType: 0
+    Name: NormalAttack2
+  - Type: 9
+    SynchronizeType: 0
+    Name: KnockBack
+  - Type: 9
+    SynchronizeType: 0
+    Name: Revive
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 0
+    Name: FirstLevelMagic
+  - Type: 9
+    SynchronizeType: 0
+    Name: SecondLevelMagic
+  - Type: 9
+    SynchronizeType: 0
+    Name: ThirdLevelMagic
+  - Type: 9
+    SynchronizeType: 0
+    Name: Buffs
+  - Type: 9
+    SynchronizeType: 0
+    Name: EndChant
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!114 &11440354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2392,6 +2463,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11407298}
+  - {fileID: 11432682}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

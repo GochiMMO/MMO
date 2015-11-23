@@ -127,7 +127,7 @@ sealed public class Bee : LoiteringEnemyBase {
             if (Random.Range(0, 100) < DAMAGE_ACTION_PERCENT - 1)
             {
                 // ダメージモーションに変更する
-                anim.SetTrigger("damage");
+                SetTrigger("damage");
                 // 状態を被ダメに変更する
                 enemyStatus = Status.DAMEGE;
             }
@@ -175,7 +175,7 @@ sealed public class Bee : LoiteringEnemyBase {
             if (random < HOVERING_PERCENT)
             {
                 // ホバリングする
-                anim.SetTrigger("hovering");
+                SetTrigger("hovering");
                 // 攻撃状態にする
                 enemyStatus = Status.ATTACK;
             }
@@ -185,7 +185,7 @@ sealed public class Bee : LoiteringEnemyBase {
                 // 遠距離攻撃をする
                 // PhotonNetwork.Instantiate("Enemy/Attack/" + shotObjectPrefab.name, this.transform.position, Quaternion.identity, 0);
                 // モーションを変更する
-                anim.SetTrigger("shotAttack");
+                SetTrigger("shotAttack");
                 // ステータスを攻撃に変更する
                 enemyStatus = Status.ATTACK;
 
@@ -200,14 +200,14 @@ sealed public class Bee : LoiteringEnemyBase {
             if (attackRandom <= SPECIAL_ATTACK_PERCENT)
             {
                 // ２連撃アニメーションを再生する
-                anim.SetTrigger("specialAttack");
+                SetTrigger("specialAttack");
                 // ステータスを攻撃に遷移する
                 enemyStatus = Status.ATTACK;
             }
             else
             {
                 // 通常攻撃アニメーションを再生する
-                anim.SetTrigger("attackFlag");
+                SetTrigger("attackFlag");
                 // ステータスを攻撃に遷移する
                 enemyStatus = Status.ATTACK;
             }

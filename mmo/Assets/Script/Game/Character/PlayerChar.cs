@@ -336,7 +336,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                 // 死亡状態にする
                 status = Status.DEAD;
                 // アニメーションを再生する
-                anim.SetTrigger("Dead");
+                SetTrigger("Dead");
             }
         }
     }
@@ -380,7 +380,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                 // 死亡状態にする
                 status = Status.DEAD;
                 // アニメーションを再生する
-                anim.SetTrigger("Dead");
+                SetTrigger("Dead");
             }
         }
     }
@@ -395,31 +395,35 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start () {
-        // プレイヤーのステータスを取得する
-        playerData = PlayerStatus.playerData;
         // 通信同期のためのコンポーネントを取得する
         photonTransformView = gameObject.GetComponent<PhotonTransformView>();
         // アニメーションのためのコンポーネントを取得する
         anim = gameObject.GetComponent<Animator>();
-        // 移動速度を設定する
-        moveSpeed = 10f;
-        // バフの値を初期化する
-        strBuff = intBuff = defBuff = mndBuff = 1f;
-        // 回転スピードを変更する
-        rotateSpeed = 3f;
-        // プレイヤーの攻撃コンポーネントを取得する
-        playerAttacks = GetComponentsInChildren<PlayerAttack>();
-        // パーティーシステムを取得する
-        partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
-        // rigbodyを取得する
-        rigbody = gameObject.GetComponent<Rigidbody>();
-        // キャラクターコントローラーを取得する
-        character = gameObject.GetComponent<CharacterController>();
-        // サブカメラを探し出し、その数だけ繰り返す
-        foreach (GameObject subCamera in GameObject.FindGameObjectsWithTag("SubCamera"))
+        if (photonView.isMine)
         {
-            // 自分を入れる
-            subCamera.GetComponent<MiniMapCamera>().player = this.gameObject;
+            // プレイヤーのステータスを取得する
+            playerData = PlayerStatus.playerData;
+            
+            // 移動速度を設定する
+            moveSpeed = 10f;
+            // バフの値を初期化する
+            strBuff = intBuff = defBuff = mndBuff = 1f;
+            // 回転スピードを変更する
+            rotateSpeed = 3f;
+            // プレイヤーの攻撃コンポーネントを取得する
+            playerAttacks = GetComponentsInChildren<PlayerAttack>();
+            // パーティーシステムを取得する
+            partySystem = GameObject.Find("Scripts").GetComponent<PartySystem>();
+            // rigbodyを取得する
+            rigbody = gameObject.GetComponent<Rigidbody>();
+            // キャラクターコントローラーを取得する
+            character = gameObject.GetComponent<CharacterController>();
+            // サブカメラを探し出し、その数だけ繰り返す
+            foreach (GameObject subCamera in GameObject.FindGameObjectsWithTag("SubCamera"))
+            {
+                // 自分を入れる
+                subCamera.GetComponent<MiniMapCamera>().player = this.gameObject;
+            }
         }
     }
 
@@ -514,7 +518,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // moveValueを初期化する
         moveValue = Vector3.zero;
         // 移動ベクトルを計算する
-        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * Time.deltaTime * moveSpeed;
+        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * moveSpeed;
         // 移動ベクトルが0ならば
         if (moveValue == Vector3.zero)
         {
@@ -529,12 +533,11 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
 
             // 移動させる
             // gameObject.transform.Translate(moveValue, Space.World);
-            
+            // 移動させる
+            character.Move(moveValue * Time.deltaTime);
+
             // 走っているフラグをオンにする
             anim.SetBool("RunFlag", true);
-
-            // 移動させる
-            character.Move(moveValue);
         }
         // ネットワーク同期処理(速度と回転)
         photonTransformView.SetSynchronizedValues(moveValue, rotateSpeed);
@@ -755,7 +758,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     // Update is called once per frame
     private void Update () {
         // プレイヤーがローカル処理下に置いてあるか
-        //if (photonView.isMine)
+        if (photonView.isMine)
         {
             // プレイヤーのステータスによって処理分けを行う
             switch (status)
@@ -809,10 +812,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             rigbody.WakeUp();
         }
         // 他のプレイヤーのキャラクターだった場合
-        //else
+        else
         {
             // 移動させる
-            // Transform();
+            Transform();
         }
     }
 
@@ -860,7 +863,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="stream">同期用変数</param>
     /// <param name="info">送ってきたプレイヤーのデータ</param>
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
@@ -876,5 +879,28 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             playerData.Lv = (int)stream.ReceiveNext();
             playerData.name = (string)stream.ReceiveNext();
         }
+    }
+
+    /// <summary>
+    /// ローカルプレイヤーのアニメーションを変更し、他のＰＣの自分も変更させる
+    /// </summary>
+    /// <param name="trigger"></param>
+    protected void SetTrigger(string trigger)
+    {
+        // 自分のアニメーションを変更する
+        anim.SetTrigger(trigger);
+        // 他のプレイヤーのアニメーションも変更させる
+        photonView.RPC("SetTriggerForRPC", PhotonTargets.All, trigger);
+    }
+
+    /// <summary>
+    /// RPCで飛んできた
+    /// </summary>
+    /// <param name="trigger"></param>
+    [PunRPC]
+    public void SetTriggerForRPC(string trigger)
+    {
+        // アニメーションを変更する
+        anim.SetTrigger(trigger);
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class MiniChatWindow : MonoBehaviour {
     [SerializeField, Tooltip("最大化ボタンコンポーネント")]
     UnityEngine.UI.Button maxButton;
+    [SerializeField, Tooltip("点滅する時間")]
+    float flashingSpeed = 0.5f;
 
     // チャットの最大化や最小化のアニメーションを行うコンポーネント
     Animator chatAnim;
@@ -65,7 +67,7 @@ public class MiniChatWindow : MonoBehaviour {
             // 色をボタンに適用する
             maxButton.colors = colors;
             // 1秒待つ
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(flashingSpeed);
         }
         // 点滅させるフラグを折る
         flashingFlag = false;

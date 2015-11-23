@@ -14,7 +14,7 @@ public class UpdatePartyStatus : MonoBehaviour {
 
     public PlayerChar playerChar = null;
 
-    int prevHP;
+    int prevHP = -1;
 
     // Use this for initialization
     void Start () {

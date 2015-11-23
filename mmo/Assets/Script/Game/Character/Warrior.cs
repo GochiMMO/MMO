@@ -38,7 +38,7 @@ public class Warrior : PlayerChar {
         SkillBase berserk = SkillControl.GetSkill("バーサク");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buff");
+        SetTrigger("Buff");
         // 攻撃力アップ
         StartCoroutine(StrBuff(berserk.GetAttack(), berserk.GetEffectTime()));
         // 防御力ダウン
@@ -53,7 +53,7 @@ public class Warrior : PlayerChar {
         SkillBase warcry = SkillControl.GetSkill("ウォークライ");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buff");
+        SetTrigger("Buff");
         // 攻撃力アップ
         StartCoroutine(StrBuff(warcry.GetAttack(), warcry.GetEffectTime()));
     }
@@ -66,7 +66,7 @@ public class Warrior : PlayerChar {
         SkillBase bloodrage = SkillControl.GetSkill("ブラッドレイジ");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buff");
+        SetTrigger("Buff");
         // 攻撃力アップ
         StartCoroutine(StrBuff(bloodrage.GetAttack(), bloodrage.GetEffectTime()));
         // 防御力ダウン
@@ -81,7 +81,7 @@ public class Warrior : PlayerChar {
         SkillBase defender = SkillControl.GetSkill("ディフェンダー");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buff");
+        SetTrigger("Buff");
         // 物理防御力アップ
         StartCoroutine(DefBuff(defender.GetAttack(), defender.GetEffectTime()));
     }
@@ -94,7 +94,7 @@ public class Warrior : PlayerChar {
         SkillBase lampart = SkillControl.GetSkill("ランパート");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buff");
+        SetTrigger("Buff");
         // 物理防御力アップ
         StartCoroutine(DefBuff(lampart.GetAttack(), lampart.GetEffectTime()));
     }
@@ -107,7 +107,7 @@ public class Warrior : PlayerChar {
         SkillBase sentinel = SkillControl.GetSkill("センチネル");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Sentinel");
+        SetTrigger("Sentinel");
         // 物理防御力アップ
         StartCoroutine(DefBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
         // 魔法防御力アップ
@@ -127,7 +127,7 @@ public class Warrior : PlayerChar {
             // スキルごとのダメージを設定する
             SetAttack(damage);
             // 再生させるアニメーションを指定する
-            anim.SetTrigger("FastBlade");
+            SetTrigger("FastBlade");
             // アタック中に切り替える
             Attack();
     }

@@ -66,14 +66,14 @@ public class Cokatris : LoiteringEnemyBase {
             if (random >= SPECIAL_ATTACK_PERCENT)
             {
                 // 普通の攻撃アニメーション
-                anim.SetTrigger("attackFlag");
+                SetTrigger("attackFlag");
                 Debug.Log("Normal Attack");
             }
             // 一定の割合でスペシャル攻撃
             else
             {
                 // ジャンプ攻撃のアニメーション
-                anim.SetTrigger("jumpAttack");
+                SetTrigger("jumpAttack");
                 Debug.Log("JumpAttack");
             }
             // 攻撃中のフラグを立てる
@@ -156,7 +156,7 @@ public class Cokatris : LoiteringEnemyBase {
                 // ステータスを変更する
                 enemyStatus = Status.OTHER;
                 // 威嚇アニメーションを再生する
-                anim.SetTrigger("intimidation");
+                SetTrigger("intimidation");
                 // 威嚇を開始する
                 StartCoroutine("Intimidation");
             }
@@ -236,7 +236,7 @@ public class Cokatris : LoiteringEnemyBase {
                     // ステータスを被ダメに変更する
                     enemyStatus = Status.DAMEGE;
                     // ダメージを受けたアニメーションを再生する
-                    anim.SetTrigger("damage");
+                    SetTrigger("damage");
                 }
             }
         }

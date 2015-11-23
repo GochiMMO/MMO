@@ -554,7 +554,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="stream">ビスコだよ！</param>
     /// <param name="info">送ってきた相手の情報</param>
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
     }
@@ -568,5 +568,28 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     {
         // 敵の名前とレベルを返す
         return this.enemyName + " " + level.ToString() + "Lv";
+    }
+
+    /// <summary>
+    /// アニメーションを変更する
+    /// </summary>
+    /// <param name="trigger">変更するアニメーション</param>
+    protected void SetTrigger(string trigger)
+    {
+        // アニメーションを変更する
+        anim.SetTrigger(trigger);
+        // 他のプレイヤーの敵もアニメーションを変更する
+        photonView.RPC("SetTriggerForRPC", PhotonTargets.All, trigger);
+    }
+
+    /// <summary>
+    /// 飛んできたTriggerにアニメーションを変更する
+    /// </summary>
+    /// <param name="trigger">変更するアニメーション</param>
+    [PunRPC]
+    public void SetTriggerForRPC(string trigger)
+    {
+        // アニメーションを変更する
+        anim.SetTrigger(trigger);
     }
 }

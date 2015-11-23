@@ -253,7 +253,7 @@ public class UpdateShowStatus : MonoBehaviour {
         int serachMeInParty = 0;
 
         // パーティーメンバーがいる場合処理を行う
-        if (partyMember != null)
+        if (partyMember != null && partyMember.Length != 0)
         {
             // パーティーメンバーの数だけ繰り返す
             for (int i = 0; i < partyMember.Length; i++)

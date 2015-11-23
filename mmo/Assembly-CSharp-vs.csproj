@@ -182,6 +182,7 @@
      <Compile Include="Assets\Script\Game\Character\PlayerAttack.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerChar.cs" />
      <Compile Include="Assets\Script\Game\Character\PlayerData.cs" />
+     <Compile Include="Assets\Script\Game\Character\PlayerStartUp.cs" />
      <Compile Include="Assets\Script\Game\Character\Skill.cs" />
      <Compile Include="Assets\Script\Game\Character\Sorcerer.cs" />
      <Compile Include="Assets\Script\Game\Character\Warrior.cs" />

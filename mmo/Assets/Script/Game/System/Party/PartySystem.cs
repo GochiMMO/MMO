@@ -39,13 +39,13 @@ public class PartySystem : Photon.MonoBehaviour {
         if (engagedFlag)
         {
             // for Debug
-
+            /*
             Debug.Log(partyMember.Count);
             foreach (var obj in partyMember)
             {
                 Debug.Log(obj.GetPhotonView().owner.name);
             }
-            
+            */
             // パーティーメンバーを配列にして返す
             return partyMember.ToArray();
         }

@@ -58,4 +58,7 @@ MonoBehaviour:
   - AddExpRpc
   - ReciveLevelAndName
   - SendLevelAndName
+  - ReciveJob
+  - SendMyJob
+  - SetTriggerForRPC
   DisableAutoOpenWizard: 1

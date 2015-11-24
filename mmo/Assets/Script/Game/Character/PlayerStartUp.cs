@@ -11,8 +11,13 @@ public class PlayerStartUp : Photon.MonoBehaviour {
     [SerializeField, Tooltip("モンクのアニメーションコントローラー")]
     RuntimeAnimatorController monkAnimationController;
 
+    Animator anim;
+    PhotonAnimatorView animView;
+
     // Use this for initialization
     void Start () {
+        anim = gameObject.GetComponent<Animator>();
+        animView = gameObject.GetComponent<PhotonAnimatorView>();
         // 自分自身ならば
         if (photonView.isMine)
         {
@@ -20,12 +25,8 @@ public class PlayerStartUp : Photon.MonoBehaviour {
         }
         else
         {
-            // プレイヤー処理用スクリプトが存在しなければ
-            if (gameObject.GetComponent<PlayerChar>() == null)
-            {
-                // ジョブを送らせる
-                photonView.RPC("SendMyJob", photonView.owner, PhotonNetwork.player);
-            }
+            // ジョブを送らせる
+            photonView.RPC("SendMyJob", photonView.owner);
         }
     }
     
@@ -34,10 +35,12 @@ public class PlayerStartUp : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="targetPlayer">送り先</param>
     [PunRPC]
-    public void SendMyJob(PhotonPlayer targetPlayer)
+    public void SendMyJob(PhotonMessageInfo info)
     {
         // ジョブの番号を送り返す
-        photonView.RPC("ReciveJob", targetPlayer, PlayerStatus.playerData.job);
+        photonView.RPC("ReciveJob", info.sender, PlayerStatus.playerData.job);
+        // デバッグ用
+        Debug.Log(info.sender.name);
     }
 
     /// <summary>
@@ -45,7 +48,7 @@ public class PlayerStartUp : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="job">ジョブの番号</param>
     [PunRPC]
-    public void ReciveJob(int job)
+    public void ReciveJob(int job, PhotonMessageInfo info)
     {
         PlayerChar playerChar = null;
         // ジョブの番号によって処理を分ける
@@ -55,29 +58,33 @@ public class PlayerStartUp : Photon.MonoBehaviour {
                 // アーチャーのコンポ―ネントを入れる
                 playerChar = gameObject.AddComponent<Archer>();
                 // アーチャーのアニメーションを設定する
-                gameObject.GetComponent<Animator>().runtimeAnimatorController = archerAnimationController;
+                anim.runtimeAnimatorController = archerAnimationController;
                 break;
             case 1:
                 // ウォーリアのコンポ―ネントを入れる
                 playerChar = gameObject.AddComponent<Warrior>();
                 // ウォーリアのアニメーションを設定する
-                gameObject.GetComponent<Animator>().runtimeAnimatorController = warriorAnimationController;
+                anim.runtimeAnimatorController = warriorAnimationController;
                 break;
             case 2:
                 // ソーサラーのコンポーネントを入れる
                 playerChar = gameObject.AddComponent<Sorcerer>();
                 // ソーサラーのアニメーションを設定する
-                gameObject.GetComponent<Animator>().runtimeAnimatorController = sorcererAnimationController;
+                anim.runtimeAnimatorController = sorcererAnimationController;
                 break;
             case 3:
                 // モンクのコンポーネントを入れる
                 playerChar = gameObject.AddComponent<Monk>();
                 // モンクのアニメーションを設定する
-                gameObject.GetComponent<Animator>().runtimeAnimatorController = monkAnimationController;
+                anim.runtimeAnimatorController = monkAnimationController;
                 break;
         }
         // 同期対象に追加する
         photonView.ObservedComponents.Add(playerChar);
+        // レイヤーの0番を同期に設定する
+        animView.SetLayerSynchronized(0, PhotonAnimatorView.SynchronizeType.Discrete);
+        // 同期設定を行う
+        animView.SetParameterSynchronized("RunFlag", PhotonAnimatorView.ParameterType.Bool, PhotonAnimatorView.SynchronizeType.Discrete);
     }
 
     // Update is called once per frame

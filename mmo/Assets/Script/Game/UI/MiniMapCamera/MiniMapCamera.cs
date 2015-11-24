@@ -11,6 +11,8 @@ public class MiniMapCamera : MonoBehaviour {
 
     new private Camera camera;
 
+    bool changeFlag = false;
+
     // Use this for initialization
     void Start () {
         // カメラスクリプトを取得する
@@ -32,11 +34,41 @@ public class MiniMapCamera : MonoBehaviour {
     }
 
     /// <summary>
+    /// 視覚範囲をヌラーって変える関数
+    /// </summary>
+    /// <param name="value">変える量</param>
+    /// <returns>反復子</returns>
+    IEnumerator ChangeFieldOfView(float value)
+    {
+        // 変えてるフラグを立てる
+        changeFlag = true;
+        // 開始時刻を記録する
+        float startTime = Time.time;
+        // 1秒間繰り返す
+        while (startTime + 1f > Time.time)
+        {
+            // カメラの画角を変える
+            camera.fieldOfView += value * Time.deltaTime;
+            yield return null;
+        }
+        // 処理終了
+        changeFlag = false;
+        // コルーチンから抜ける
+        yield break;
+    }
+
+    /// <summary>
     /// 拡大ボタン
     /// </summary>
     public void Expansion()
     {
-
+        // 範囲チェックを行う
+        if (camera.fieldOfView > 60f && !changeFlag)
+        {
+            // カメラの見える範囲を縮小する(つまり1キャラが大きく映る)
+            StartCoroutine(ChangeFieldOfView(-10f));
+            
+        }
     }
 
     /// <summary>
@@ -45,9 +77,10 @@ public class MiniMapCamera : MonoBehaviour {
     public void Reduction()
     {
         // 範囲チェックを行う
-        if (camera.fieldOfView < 120)
+        if (camera.fieldOfView < 120f && !changeFlag)
         {
-
+            // カメラの見える範囲を拡大する(つまり1キャラが小さく映る)
+            StartCoroutine(ChangeFieldOfView(10f));
         }
     }
 }

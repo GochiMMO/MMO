@@ -80,7 +80,6 @@ public class PartySystem : Photon.MonoBehaviour {
             return null;
         }
     }
-    
 
     /// <summary>
     /// [RPC]Add party member.
@@ -358,10 +357,33 @@ public class PartySystem : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// パーティーメンバーを更新する(脱退者がいるかどうか)
+    /// </summary>
+    void UpdatePartyMember()
+    {
+        // パーティーに加入していたら
+        if (engagedFlag)
+        {
+            // パーティーメンバーの数だけ繰り返す
+            foreach (GameObject member in partyMember)
+            {
+                // アクティブでなければ
+                if (!member)
+                {
+                    // 脱退させる
+                    partyMember.Remove(member);
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Update per after "Update" method.
     /// </summary>
     void LateUpdate()
     {
+        // パーティーメンバーを更新する
+        UpdatePartyMember();
         // 解散するかどうか
         DisbandParty();
     }

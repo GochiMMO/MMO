@@ -165,7 +165,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             if (startTime + healTime * healCount > Time.time)
             {
                 // エフェクトを発生させる
-                // GameObject.Instantiate(refeneEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
+                // GameObject.Instantiate(regeneEffect, gameObject.transform.position + Vector3.up * 3f, Quaternion.identity);
                 // 回復させる
                 Recover(healValue);
             }
@@ -865,19 +865,23 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <param name="info">送ってきたプレイヤーのデータ</param>
     protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+
         if (stream.isWriting)
         {
+            Debug.Log("プレイヤーのステータス送信");
             stream.SendNext(playerData.HP);
+            stream.SendNext(playerData.MaxHP);
             stream.SendNext(playerData.job);
             stream.SendNext(playerData.Lv);
-            stream.SendNext(playerData.name);
         }
         else
         {
+            Debug.Log("プレイヤーのステータス受信  " + info.sender.name);
             playerData.HP = (int)stream.ReceiveNext();
+            playerData.MaxHP = (int)stream.ReceiveNext();
             playerData.job = (int)stream.ReceiveNext();
             playerData.Lv = (int)stream.ReceiveNext();
-            playerData.name = (string)stream.ReceiveNext();
+            playerData.name = info.sender.name;
         }
     }
 

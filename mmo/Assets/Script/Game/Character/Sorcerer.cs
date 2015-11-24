@@ -150,6 +150,26 @@ public class Sorcerer : PlayerChar {
             case 9:
                 this.magic = () => ThunderVolt();
                 break;
+            // 10番目のスキル(ヒール)
+            case 10:
+                this.magic = () => Heal(MouseRay.targetPlayer);
+                break;
+            // 12番目のスキル(リジェネ)
+            case 12:
+                this.magic = () => Regene(MouseRay.targetPlayer);
+                break;
+            // 13番目のスキル(ベネディクション)
+            case 13:
+                this.magic = () => Venediction(MouseRay.targetPlayer);
+                break;
+            // 14番目のスキル(コンバート)
+            case 14:
+                this.magic = () => Convert();
+                // 詠唱を行うフラグを折る
+                chantFlag = false;
+                // モーションを再生する
+                anim.SetTrigger("Buffs");
+                break;
             // 15番目のスキル(エーテルフロー)
             case 15:
                 // メソッドの登録
@@ -372,7 +392,32 @@ public class Sorcerer : PlayerChar {
     /// <param name="player"></param>
     private void Regene(GameObject player)
     {
-
+        // リジェネのスキルを取得する
+        SkillBase regeneSkill = SkillControl.GetSkill("リジェネ");
+        // プレイヤーのスクリプトを取得する
+        PlayerChar playerChar = player.GetComponent<PlayerChar>();
+        // playerがプレイヤーならば
+        if (player)
+        {
+            // 回復量を計算する
+            int healHP = (int)((float)playerChar.GetPlayerData().MaxHP * (regeneSkill.GetBonus() + regeneSkill.GetAttack()));
+            // 効果時間を計算する
+            float skillTime = 20 + regeneSkill.GetLv() * 5;
+            // 回復する時間を計算する
+            float healTime = 5f - regeneSkill.GetLv() * 0.5f;
+            // リジェネを発動させる
+            photonView.RPC("GenerationRegeneration", player.GetPhotonView().owner, healHP, skillTime, healTime);
+        }
+        else{
+            // 回復量を計算する
+            int healHP = (int)((float)playerData.MaxHP * (regeneSkill.GetBonus() + regeneSkill.GetAttack()));
+            // 効果時間を計算する
+            float skillTime = 20 + regeneSkill.GetLv() * 5;
+            // 回復する時間を計算する
+            float healTime = 5f - regeneSkill.GetLv() * 0.5f;
+            // リジェネを発動する
+            GenerationRegeneration(healHP, skillTime, healTime);
+        }
     }
 
     /// <summary>
@@ -403,19 +448,19 @@ public class Sorcerer : PlayerChar {
         // プレイヤーの情報を取得する
         PlayerChar playerChar = player.GetComponent<PlayerChar>();
         // ヒールのスキルを取得する
-            SkillBase healSkill = SkillControl.GetSkill("ヒール");
+        SkillBase healSkill = SkillControl.GetSkill("ヒール");
         // プレイヤーが取得できれば
         if (playerChar)
         {
             // 回復させるHPの量を計算する
-            int recoverHP = (int)((float)playerChar.HP * (healSkill.GetBonus() + healSkill.GetAttack()));
+            int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.GetAttack()));
             // そのプレイヤーのHPを回復させる
             gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, recoverHP);
         }
         else
         {
             // 自分のHPを回復する
-            Recover((int)((float)HP * (healSkill.GetBonus() + healSkill.GetAttack())));
+            Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.GetAttack())));
         }
     }
 

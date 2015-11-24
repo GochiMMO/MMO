@@ -14,13 +14,16 @@ public class MouseRay : MonoBehaviour {
     GameObject optionWindowInstance = null;
     PartySystem partySystem;
     GameObject playerObject;
-    GameObject targetPlayer;
+    static public GameObject targetPlayer;
     bool leftClickFlag;     // 左クリックのフラグ
     bool rightClickFlag;    // 右クリックのフラグ
 
     // Use this for initialization
     void Start () {
+        // パーティーシステムを取得する
         partySystem = this.gameObject.GetComponent<PartySystem>();
+        // 最初は自分を格納しておく
+        targetPlayer = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player");
         ray = new Ray();
         hit = new RaycastHit();
         

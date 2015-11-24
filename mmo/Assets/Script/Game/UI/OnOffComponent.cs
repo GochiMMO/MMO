@@ -18,12 +18,14 @@ public class OnOffComponent : MonoBehaviour {
     [SerializeField, Tooltip("オンオフしたいコンポーネントのクラスの型")]
     string type;
 
+    bool onFlag = false;
+
     Behaviour component;
     GameObject tooltipObjectInstance;
     const int SHOW_TOOLTIP_TIME_SEC = 1;    // ツールチップを出すまでの時間
     float firstTime = 0;
     BoxCollider2D col;
-    bool onFlag;
+    
     // Use this for initialization
     void Start () {
         col = GetComponent<BoxCollider2D>();

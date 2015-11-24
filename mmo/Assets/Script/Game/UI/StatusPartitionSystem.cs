@@ -12,10 +12,24 @@ public class StatusPartitionSystem : MonoBehaviour {
     int[] statusPoint;      //ステータスを表示させておくテキスト
     int restStatusPoint;    //残りステータスポイント
 
+    // 各振り分けステータスによって実際の計算に使うステータスを増減させる量を持ったオブジェクトの変数定義
+    static Entity_StatusPoint status_level;
+
+    // プレイヤーのデータクラス
+    PlayerData playerData = new PlayerData();
+
     // Use this for initialization
     void Start () {
+        if (!status_level)
+        {
+            // 各ステータスの上昇値が載ったスクリプタブルオブジェクトを取得する
+            status_level = Resources.Load<Entity_StatusPoint>("Player/Status/Status_Level");
+        }
+
         statusPartitionTexts = new Text[4];     
         statusPoint = new int[4];       //メモリ領域を確保
+        // プレイヤーのデータのコピーを取得する
+        playerData = StaticMethods.FindGameObjectWithPhotonNetworkIDAndObjectTag(PhotonNetwork.player.ID, "Player").GetComponent<PlayerChar>().GetPlayerData().Clone();
 
         //ステータスポイントを表示させるテキストを格納する
         for (int i = 0; i < 4; i++)

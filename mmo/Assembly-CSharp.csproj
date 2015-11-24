@@ -173,6 +173,7 @@
      <Compile Include="Assets\Script\Data\Jobs.cs" />
      <Compile Include="Assets\Script\Data\PlayerStates.cs" />
      <Compile Include="Assets\Script\GUI\Skill\HelpWindow.cs" />
+     <Compile Include="Assets\Script\GUI\Skill\NowPoint.cs" />
      <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
      <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
      <Compile Include="Assets\Script\GUI\Skill\ScrollOnMouseCheck.cs" />

@@ -161,6 +161,7 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+     <Compile Include="Assets\Prefabs\GameMain\UI\Overrides\CustomScrollRect.cs" />
      <Compile Include="Assets\Script\CharacterCreate\LoadCharacterData.cs" />
      <Compile Include="Assets\Script\CharacterCreate\PushCharacter.cs" />
      <Compile Include="Assets\Script\CharacterCreate\PushYes.cs" />
@@ -216,6 +217,7 @@
      <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
+     <Compile Include="Assets\Script\Game\UI\All\PopStatusMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\MiniChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
@@ -265,9 +267,11 @@
      <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
      <Compile Include="Assets\WhenEndAnimDestroy.cs" />
      <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
+     <None Include="Assets\CloudsToy\Shaders\CloudBright.shader" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
      <None Include="Assets\Sprites\Test\TexMask.shader" />
-     <None Include="Assets\Materials\CoolTime.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\Shader\TextureMask.shader" />
@@ -280,9 +284,12 @@
      <None Include="Assets\Terasurware\Editor\ExportTemplate2.txt" />
      <None Include="Assets\Terasurware\Editor\EntityTemplate.txt" />
      <None Include="Assets\Terasurware\Editor\EntityTemplate2.txt" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
      <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
      <None Include="Assets\Photon Unity Networking\readme.txt" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
+     <None Include="Assets\CloudsToy\Shaders\CloudRealistic.shader" />
      <None Include="Assets\Sprites\Test\TextureMaskShader.shader" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="UnityEngine.UI">
@@ -300,6 +307,9 @@
  <Reference Include="websocket-sharp">
  <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
+ <Reference Include="Cloudstoyv5">
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/CloudsToy/DLL/Cloudstoyv5.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
@@ -307,6 +317,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{5F5C9411-520B-BEE7-BE3E-CC6B84480007}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{61A5F977-D87D-0D55-FA18-159B13BDF77B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

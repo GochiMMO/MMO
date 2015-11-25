@@ -63,11 +63,11 @@ namespace UnityStandardAssets.Cameras
             }
 
             // ƒJƒƒ‰‚Ì‰“‹ßˆ—
-            if (Input.mouseScrollDelta.y > 0 && closestDistance > 3)
+            if (Input.mouseScrollDelta.y > 0 && closestDistance > 10)
             {
                 closestDistance += 0.5f * -Input.mouseScrollDelta.y;
             }
-            if (Input.mouseScrollDelta.y < 0 && closestDistance < 20)
+            if (Input.mouseScrollDelta.y < 0 && closestDistance < 25)
             {
                 closestDistance += 0.5f * -Input.mouseScrollDelta.y;
             }

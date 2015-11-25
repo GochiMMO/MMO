@@ -126,6 +126,12 @@
     <Reference Include="UnityVS.VersionSpecific">
       <HintPath>Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
     </Reference>
+    <Reference Include="Cloudstoyv5">
+      <HintPath>Assets\CloudsToy\DLL\Cloudstoyv5.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript-firstpass">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-UnityScript">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
     </Reference>
@@ -141,6 +147,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CloudsToy\Editor\CloudsToyEditor.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\DemoHub\Editor\PunStartup.cs" />
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\AccountService.cs" />
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonConverter.cs" />
@@ -165,9 +172,10 @@
     <Compile Include="Assets\Terasurware\Editor\ExcelImporterMaker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CloudsToy\Shaders\CloudBright.shader" />
+    <None Include="Assets\CloudsToy\Shaders\CloudRealistic.shader" />
     <None Include="Assets\Elementals\!Readme.txt" />
     <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
-    <None Include="Assets\Materials\CoolTime.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoPickup\Assets\3dFont\3dText.shader" />
     <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
@@ -181,6 +189,10 @@
     <None Include="Assets\Sprites\Test\TextureMaskShader.shader" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+    <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
     <None Include="Assets\Terasurware\Editor\EntityTemplate.txt" />
     <None Include="Assets\Terasurware\Editor\EntityTemplate2.txt" />
     <None Include="Assets\Terasurware\Editor\ExportTemplate.txt" />

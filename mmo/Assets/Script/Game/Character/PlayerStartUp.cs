@@ -85,6 +85,7 @@ public class PlayerStartUp : Photon.MonoBehaviour {
         animView.SetLayerSynchronized(0, PhotonAnimatorView.SynchronizeType.Discrete);
         // 同期設定を行う
         animView.SetParameterSynchronized("RunFlag", PhotonAnimatorView.ParameterType.Bool, PhotonAnimatorView.SynchronizeType.Discrete);
+        playerChar.GetPlayerData().job = job;
     }
 
     // Update is called once per frame

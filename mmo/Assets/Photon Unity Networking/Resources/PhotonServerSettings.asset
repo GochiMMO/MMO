@@ -61,4 +61,7 @@ MonoBehaviour:
   - ReciveJob
   - SendMyJob
   - SetTriggerForRPC
+  - ReciveStatus
+  - ReciveNameAndJob
+  - SendNameAndJob
   DisableAutoOpenWizard: 1

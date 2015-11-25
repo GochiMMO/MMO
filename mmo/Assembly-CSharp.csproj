@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -217,12 +217,16 @@
      <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
      <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
      <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
+     <Compile Include="Assets\Script\Game\UI\All\MenuObjects.cs" />
      <Compile Include="Assets\Script\Game\UI\All\PopStatusMenu.cs" />
+     <Compile Include="Assets\Script\Game\UI\All\ScaleStatusMenu.cs" />
+     <Compile Include="Assets\Script\Game\UI\All\TranslateWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\Chat\MiniChatWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
+     <Compile Include="Assets\Script\Game\UI\Party\AnimStart.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\DuplicateSprite.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\MoveSprite.cs" />
@@ -267,7 +271,6 @@
      <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
      <Compile Include="Assets\WhenEndAnimDestroy.cs" />
      <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
-     <None Include="Assets\CloudsToy\Shaders\CloudBright.shader" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
@@ -289,29 +292,25 @@
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
-     <None Include="Assets\CloudsToy\Shaders\CloudRealistic.shader" />
      <None Include="Assets\Sprites\Test\TextureMaskShader.shader" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
- </Reference>
- <Reference Include="Cloudstoyv5">
- <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/CloudsToy/DLL/Cloudstoyv5.dll</HintPath>
+ <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

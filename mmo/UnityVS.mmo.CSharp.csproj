@@ -72,9 +72,6 @@
     <Reference Include="websocket-sharp">
       <HintPath>Assets\Plugins\WebSocket\websocket-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Cloudstoyv5">
-      <HintPath>Assets\CloudsToy\DLL\Cloudstoyv5.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-UnityScript-firstpass">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
     </Reference>
@@ -257,12 +254,16 @@
     <Compile Include="Assets\Script\Game\System\PopEnemy.cs" />
     <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
     <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
+    <Compile Include="Assets\Script\Game\UI\All\MenuObjects.cs" />
     <Compile Include="Assets\Script\Game\UI\All\PopStatusMenu.cs" />
+    <Compile Include="Assets\Script\Game\UI\All\ScaleStatusMenu.cs" />
+    <Compile Include="Assets\Script\Game\UI\All\TranslateWindow.cs" />
     <Compile Include="Assets\Script\Game\UI\Chat\ChatWindow.cs" />
     <Compile Include="Assets\Script\Game\UI\Chat\MiniChatWindow.cs" />
     <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
     <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
     <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
+    <Compile Include="Assets\Script\Game\UI\Party\AnimStart.cs" />
     <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\DuplicateSprite.cs" />
     <Compile Include="Assets\Script\Game\UI\Skill\MoveSprite.cs" />
@@ -309,8 +310,6 @@
     <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\CloudsToy\Shaders\CloudBright.shader" />
-    <None Include="Assets\CloudsToy\Shaders\CloudRealistic.shader" />
     <None Include="Assets\Elementals\!Readme.txt" />
     <None Include="Assets\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
     <None Include="Assets\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />

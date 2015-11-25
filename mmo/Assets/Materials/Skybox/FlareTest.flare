@@ -5,7 +5,7 @@ Flare:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Flare
+  m_Name: FlareTest
   m_FlareTexture: {fileID: 0}
   m_TextureLayout: 0
   m_Elements:

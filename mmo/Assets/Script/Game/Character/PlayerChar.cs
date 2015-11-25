@@ -244,6 +244,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 被弾中かどうか
     /// </summary>
     private bool isDamage = false;
+    /// <summary>
+    /// ステータスを同期するタイミング(秒)
+    /// </summary>
+    private static readonly float UpdateStatusRate = 0.2f;
 
     /// <summary>
     /// プレイヤーのHP
@@ -424,6 +428,13 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                 // 自分を入れる
                 subCamera.GetComponent<MiniMapCamera>().player = this.gameObject;
             }
+            // プレイヤーのステータスを送信する
+            StartCoroutine(UpdateStatusOtherPlayers());
+        }
+        else
+        {
+            // 職業と名前を送らせる
+            photonView.RPC("SendNameAndJob", photonView.owner);
         }
     }
 
@@ -854,6 +865,8 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// </summary>
     protected virtual void OnDestroy()
     {
+        // コルーチンをストップする
+        StopAllCoroutines();
         // セーブする
         SavePlayerCharData();
     }
@@ -865,7 +878,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <param name="info">送ってきたプレイヤーのデータ</param>
     protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
+        /*
         if (stream.isWriting)
         {
             Debug.Log("プレイヤーのステータス送信");
@@ -882,6 +895,69 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             playerData.job = (int)stream.ReceiveNext();
             playerData.Lv = (int)stream.ReceiveNext();
             playerData.name = info.sender.name;
+        }
+        */
+    }
+
+    /// <summary>
+    /// 自分のステータスを送る処理
+    /// </summary>
+    private void SendStatus()
+    {
+        // 自分のステータスを送信する
+        photonView.RPC("ReciveStatus", PhotonTargets.All, HP, playerData.MaxHP, playerData.Lv);
+    }
+
+    /// <summary>
+    /// 名前と職業を送らせる関数
+    /// </summary>
+    [PunRPC]
+    private void SendNameAndJob(PhotonMessageInfo info)
+    {
+        // RPCで名前と職業を送る
+        photonView.RPC("ReciveNameAndJob", info.sender, playerData.name, playerData.job);
+    }
+
+    /// <summary>
+    /// 名前と職業を受け取る関数
+    /// </summary>
+    /// <param name="name">名前</param>
+    /// <param name="job">職業の番号</param>
+    [PunRPC]
+    public void ReciveNameAndJob(string name, int job)
+    {
+        // 名前を設定する
+        playerData.name = name;
+        // 職業を設定する
+        playerData.job = job;
+    }
+
+    /// <summary>
+    /// ステータスを受け取る関数
+    /// </summary>
+    /// <param name="hp">現在HP</param>
+    /// <param name="maxHP">最大HP</param>
+    /// <param name="level">現在レベル</param>
+    [PunRPC]
+    public void ReciveStatus(int hp, int maxHP, int level, PhotonMessageInfo info)
+    {
+        // ステータスを反映する
+        playerData.HP = hp;
+        playerData.MaxHP = maxHP;
+        playerData.Lv = level;
+        playerData.name = info.sender.name;
+    }
+
+    /// <summary>
+    /// 他のプレイヤーにステータスを送信する処理
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator UpdateStatusOtherPlayers()
+    {
+        while (true)
+        {
+            SendStatus();
+            yield return new WaitForSeconds(UpdateStatusRate);
         }
     }
 

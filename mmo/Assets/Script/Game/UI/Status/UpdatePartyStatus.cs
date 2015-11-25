@@ -12,8 +12,10 @@ public class UpdatePartyStatus : MonoBehaviour {
     [SerializeField, Tooltip("ＨＰバーのゲームオブジェクト")]
     Image hpBarObject;
 
+    [HideInInspector]
     public PlayerChar playerChar = null;
 
+    // HPの前の値
     int prevHP = -1;
 
     // Use this for initialization

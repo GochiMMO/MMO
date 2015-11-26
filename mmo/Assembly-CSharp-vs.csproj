@@ -267,7 +267,6 @@
      <Compile Include="Assets\WhenEndAnimDestFlag.cs" />
      <Compile Include="Assets\WhenEndAnimDestroy.cs" />
      <Compile Include="Assets\WhenEndEnmAtkCall.cs" />
-     <None Include="Assets\CloudsToy\Shaders\CloudBright.shader" />
      <None Include="Assets\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
@@ -289,11 +288,10 @@
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
-     <None Include="Assets\CloudsToy\Shaders\CloudRealistic.shader" />
      <None Include="Assets\Sprites\Test\TextureMaskShader.shader" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Masui/Documents/MMO/mmo/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -309,9 +307,6 @@
  </Reference>
  <Reference Include="websocket-sharp">
  <HintPath>C:/Users/Masui/Documents/MMO/mmo/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
- </Reference>
- <Reference Include="Cloudstoyv5">
- <HintPath>C:/Users/J Nonaka/Documents/MMO/mmo/Assets/CloudsToy/DLL/Cloudstoyv5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

@@ -5,6 +5,8 @@ using System.Collections;
 /// 徘徊型モンスターの基礎クラス
 /// </summary>
 abstract public class LoiteringEnemyBase : EnemyData{
+    // 視覚範囲内のヘイトが一番高いプレイヤー
+    int inViewHatePlayer = 0;
     /// <summary>
     /// 攻撃中かのフラグ
     /// </summary>
@@ -13,7 +15,6 @@ abstract public class LoiteringEnemyBase : EnemyData{
     /// 移動方向を変更する処理
     /// </summary>
     abstract protected void RotateDirection();
-
     /// <summary>
     /// 既定距離に達した時の行動
     /// </summary>
@@ -147,7 +148,7 @@ abstract public class LoiteringEnemyBase : EnemyData{
     private void Tracking()
     {
         // プレイヤーとの距離を計算する
-        float distance = (transform.position - haightMaxPlayer.transform.position).sqrMagnitude;
+        float distance = (transform.position - players[inViewHatePlayer].transform.position).sqrMagnitude;
 
         // 指定した距離に到達したかどうか
         if (distance < actionDistance)
@@ -172,15 +173,35 @@ abstract public class LoiteringEnemyBase : EnemyData{
     /// </summary>
     private bool CheckView()
     {
-        // Debug.Log(Vector3.Angle(transform.position - haightMaxPlayer.transform.position, transform.forward).ToString());
-
-        // プレイヤーを発見したら
-        if ((haightMaxPlayer.transform.position - transform.position).sqrMagnitude < angleDistance                    // 距離計算
-            && Vector3.Angle(haightMaxPlayer.transform.position - transform.position, transform.forward) <= angle)    // 角度計算
+        // 視覚範囲にいるプレイヤーの番号を格納する変数
+        int inViewPlayer = 0;
+        // ヘイトの値を格納する
+        int hate = -1;
+        // プレイヤーの数だけ繰り返す
+        for (int i = 0; i < players.Length; i++)
         {
-            
+            // プレイヤーが視覚範囲に存在していたら
+            if ((players[i].transform.position - transform.position).sqrMagnitude < angleDistance                       // 距離計算
+                && Vector3.Angle(players[i].transform.position - transform.position, transform.forward) <= angle)    // 角度計算
+            {
+                // 視覚範囲に存在したプレイヤーの番号を入れる
+                inViewPlayer |= 0x01 << i;
+                // ヘイトの値を取得する
+                if (hate < playersHates[i])
+                {
+                    // ヘイトの値を設定する
+                    hate = playersHates[i];
+                    // ヘイトが一番高いプレイヤーを登録する
+                    inViewHatePlayer = i;
+                }
+            }
+        }
+        // 視覚範囲で一番ヘイトが高いプレイヤーを追いかける
+        if ((players[inViewHatePlayer].transform.position - transform.position).sqrMagnitude < angleDistance                    // 距離計算
+            && Vector3.Angle(players[inViewHatePlayer].transform.position - transform.position, transform.forward) <= angle)    // 角度計算
+        {
             // 回転度を計算する
-            newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(haightMaxPlayer.transform.position - transform.position), 1.0f).eulerAngles;
+            newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hateMaxPlayer.transform.position - transform.position), 1.0f).eulerAngles;
             newRotation.x = 0f;
             newRotation.z = 0f;
             // 回転を変える

@@ -16,14 +16,14 @@ public class JobSelectWindow : MonoBehaviour {
     public void PushYesButton()
     {
         GameObject.Instantiate(inputNameWindow);
-        GameObject.Destroy(this.gameObject);
+        // GameObject.Destroy(this.gameObject);
     }
     
     //いいえボタンを押した時の処理
     public void PushNoButton()
     {
         SelectJob.windowVisibleFlag = false;
-        GameObject.Destroy(this.gameObject);
+        // GameObject.Destroy(this.gameObject);
     }
 
     // Update is called once per frame

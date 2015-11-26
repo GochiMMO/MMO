@@ -23,10 +23,10 @@ public class CharacterSelect : MonoBehaviour {
         // 本当に削除してもいいですか？のウィンドウを表示する
         var obj = GameObject.Instantiate(askDeleteWindow);
         // 子オブジェクトの数だけ繰り返す
-        for (int i = 0; i < obj.transform.childCount; i++)
+        for (int i = 0; i < obj.transform.GetChild(0).childCount; i++)
         {
             // 子オブジェクトを取得する
-            GameObject childObj = obj.transform.GetChild(i).gameObject;
+            GameObject childObj = obj.transform.GetChild(0).GetChild(i).gameObject;
             // タグがYesButtonに設定されていたら
             if (childObj.tag == "YesButton")
             {

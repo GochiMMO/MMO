@@ -155,9 +155,13 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     protected GameObject[] players { private set; get; }
     /// <summary>
+    /// ヘイトを格納する配列
+    /// </summary>
+    protected int[] playersHates;
+    /// <summary>
     /// ヘイトを一番稼いでるプレイヤーのオブジェクトを格納する変数
     /// </summary>
-    protected GameObject haightMaxPlayer { private set; get; }
+    protected GameObject hateMaxPlayer { private set; get; }
     /// <summary>
     /// 敵のステータス(状態遷移用)
     /// </summary>
@@ -192,19 +196,22 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // "Player"とタグ付けされているオブジェクトを取得する
         players = GameObject.FindGameObjectsWithTag("Player");
         // プレイヤーのヘイトの値を格納しておく
-        int playerHaight = -9999;
+        int playerHate = -9999;
+        // ヘイトの配列を設定する
+        playersHates = new int[players.Length];
+
         // プレイヤーの分だけ繰り返す
-        foreach (var obj in players)
+        for (int i = 0; i < players.Length; i++ )
         {
             // プレイヤーからヘイトを取得する
-            int haight = obj.GetComponent<Haight>().GetHaight();
+            int hate = players[i].GetComponent<PlayerChar>().Hate;
             // 格納したヘイトが一時変数のヘイトを上回ったら
-            if (haight > playerHaight)
+            if (hate > playerHate)
             {
                 // ヘイトの値を格納する
-                playerHaight = haight;
+                playerHate = hate;
                 // プレイヤーの参照を格納する
-                haightMaxPlayer = obj;
+                hateMaxPlayer = players[i];
             }
         }
     }

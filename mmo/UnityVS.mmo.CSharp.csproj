@@ -255,6 +255,8 @@
     <Compile Include="Assets\Script\Game\System\SaveManager.cs" />
     <Compile Include="Assets\Script\Game\System\StaticMethods.cs" />
     <Compile Include="Assets\Script\Game\UI\All\MenuObjects.cs" />
+    <Compile Include="Assets\Script\Game\UI\All\OnMouseAndTransparent.cs" />
+    <Compile Include="Assets\Script\Game\UI\All\PopAlpha.cs" />
     <Compile Include="Assets\Script\Game\UI\All\PopStatusMenu.cs" />
     <Compile Include="Assets\Script\Game\UI\All\ScaleStatusMenu.cs" />
     <Compile Include="Assets\Script\Game\UI\All\TranslateWindow.cs" />

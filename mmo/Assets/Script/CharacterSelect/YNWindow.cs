@@ -5,7 +5,7 @@ public class YNWindow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-    
+        
     }
 
     public void Yes()
@@ -23,7 +23,7 @@ public class YNWindow : MonoBehaviour {
     void OnJoinedRoom()
     {
         Debug.Log("Join room");
-        PhotonNetwork.LoadLevel(2);
+        PhotonNetwork.LoadLevel("TestGame");
     }
 
     // Update is called once per frame

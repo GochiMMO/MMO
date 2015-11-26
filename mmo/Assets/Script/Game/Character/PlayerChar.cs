@@ -47,7 +47,18 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// プレイヤーのステータス
     /// </summary>
     protected Status status = Status.NORMAL;
-
+    /// <summary>
+    /// ヘイトの値
+    /// </summary>
+    private int hate = 0;
+    /// <summary>
+    /// ヘイトを設定するプロパティ
+    /// </summary>
+    public int Hate
+    {
+        set { hate = value < 0 ? 0 : value; }
+        get { return hate; }
+    }
     /// <summary>
     /// 攻撃力アップのバフ
     /// </summary>
@@ -177,6 +188,24 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// 移動速度のバフ
+    /// </summary>
+    /// <param name="percent">上がる割合</param>
+    /// <param name="time">時間</param>
+    /// <returns></returns>
+    protected IEnumerator SpeedBuf(float percent, float time)
+    {
+        // バフの値を乗算する
+        speedBuf *= percent;
+        // 時間まで待つ
+        yield return new WaitForSeconds(time);
+        // バフの値を元に戻す
+        speedBuf /= percent;
+        // コルーチンから抜ける
+        yield break;
+    }
+
+    /// <summary>
     /// 移動速度、回転速度を同期するためのコンポーネント
     /// </summary>
     protected PhotonTransformView photonTransformView { private set; get; }
@@ -232,6 +261,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 魔法防御力につくバフの値
     /// </summary>
     protected float mndBuff { private set; get; }
+    /// <summary>
+    /// 移動速度につくバフ
+    /// </summary>
+    private float speedBuf = 1f;
     /// <summary>
     /// 次に必要な経験値
     /// </summary>
@@ -354,8 +387,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
         if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
         {
-            // 呼ばれたメソッド名を出力する
-            Debug.Log("OnTriggerEnter");
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
@@ -529,7 +560,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // moveValueを初期化する
         moveValue = Vector3.zero;
         // 移動ベクトルを計算する
-        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * moveSpeed;
+        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * moveSpeed * speedBuf;
         // 移動ベクトルが0ならば
         if (moveValue == Vector3.zero)
         {

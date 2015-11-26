@@ -14,7 +14,7 @@ public class SystemMenu : MonoBehaviour
     public void InstantiateLogoutWindow()
     {
         GameObject logoutWindowInstance = GameObject.Instantiate(logoutWindow);
-        GameObject yesButton = logoutWindowInstance.transform.GetChild(2).gameObject;
+        GameObject yesButton = logoutWindowInstance.transform.GetChild(0).GetChild(2).gameObject;
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Find("Scripts").GetComponent<PartySystem>().RemoveMemberInParty(PhotonNetwork.player.ID));
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PushLogoutButton);
     }
@@ -25,7 +25,7 @@ public class SystemMenu : MonoBehaviour
     public void InstantiateQuitWindow()
     {
         GameObject quitWindowInstance = GameObject.Instantiate(quitWindow);
-        GameObject yesButton = quitWindowInstance.transform.GetChild(2).gameObject;
+        GameObject yesButton = quitWindowInstance.transform.GetChild(0).GetChild(2).gameObject;
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Find("Scripts").GetComponent<PartySystem>().RemoveMemberInParty(PhotonNetwork.player.ID));
         yesButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PushGameQuitButton);
     }
@@ -38,7 +38,6 @@ public class SystemMenu : MonoBehaviour
         Debug.Log("Push logout button.");
         new WaitForSeconds(2f);
         PhotonNetwork.LeaveRoom();  //部屋から出る
-        //PhotonNetwork.JoinOrCreateRoom("CharacterSelect", StaticMethods.createRoomOptions(), null);     //部屋を作る
         PhotonNetwork.LoadLevel("CharacterSelect");
     }
 

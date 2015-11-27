@@ -266,6 +266,8 @@
      <Compile Include="Assets\Script\Game\UI\MiniMapCamera\MiniMapCamera.cs" />
      <Compile Include="Assets\Script\Game\UI\MoveWindow.cs" />
      <Compile Include="Assets\Script\Game\UI\OnOffComponent.cs" />
+     <Compile Include="Assets\Script\Game\UI\Overrides\AppendScrollArea.cs" />
+     <Compile Include="Assets\Script\Game\UI\Overrides\CustomScrollBar.cs" />
      <Compile Include="Assets\Script\Game\UI\Party\AnimStart.cs" />
      <Compile Include="Assets\Script\Game\UI\ShowMenu.cs" />
      <Compile Include="Assets\Script\Game\UI\Skill\DuplicateSprite.cs" />

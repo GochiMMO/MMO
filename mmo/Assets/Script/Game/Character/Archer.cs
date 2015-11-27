@@ -27,11 +27,6 @@ public class Archer : PlayerChar {
 
     }
 
-    protected override void Normal()
-    {
-
-    }
-
     protected override void Revive()
     {
 

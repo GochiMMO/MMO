@@ -27,11 +27,6 @@ public class Monk : PlayerChar {
 
     }
 
-    protected override void Normal()
-    {
-
-    }
-
     protected override void Revive()
     {
 

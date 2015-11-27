@@ -538,6 +538,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         rightVector = Camera.main.transform.TransformDirection(Vector3.right);
         // Y軸を0にする
         rightVector.y = 0f;
+        // 前方向ベクトルを正規化する
+        forwardVector.Normalize();
+        // 右方向ベクトルを正規化する
+        rightVector.Normalize();
     }
 
     /// <summary>
@@ -774,12 +778,12 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // ステータスをNormalに戻す
         status = Status.NORMAL;
     }
-
+    /*
     /// <summary>
     /// 通常状態時の処理
     /// </summary>
     virtual protected void Normal() { }
-
+    */
     /// <summary>
     /// 被弾中の処理
     /// </summary>
@@ -797,6 +801,34 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             rigbody.isKinematic = true;
         }
         */
+    }
+
+    /// <summary>
+    /// 通常攻撃
+    /// </summary>
+    virtual protected void NormalAttack() {
+        Debug.Log("Player do a normal attack");
+    }
+
+    /// <summary>
+    /// 通常状態の処理
+    /// </summary>
+    private void OnNormal()
+    {
+        // 左クリックされたら
+        if (Input.GetMouseButtonDown(0))
+        {
+            // マウスの座標を取得する
+            Vector2 mousePosition = Input.mousePosition;
+            // レイを飛ばし、ヒットするかどうかチェックする
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            // ヒットしていなければ
+            if (!hit.collider)
+            {
+                // 通常攻撃を行う
+                NormalAttack();
+            }
+        }
     }
 
     /// <summary>
@@ -820,13 +852,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             {
                 case Status.NORMAL:
                     // 通常状態の処理を行う
-                    Normal();
+                    OnNormal();
                     // ステータスが通常状態でなくなったら
                     if (Status.NORMAL != status)
                     {
                         // 処理を外れる
                         break;
                     }
+                    
                     // 移動関数
                     Move();
                     break;

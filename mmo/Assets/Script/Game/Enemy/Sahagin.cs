@@ -38,10 +38,10 @@ public class Sahagin : LoiteringEnemyBase
         // ランダム行動用変数定義
         int random = Random.Range(0, 20);
         // ランダムの値が9を下回っていたら
-        if (random < 9)
+        if (random < 12)
         {
             // 角度を変更する
-            newRotation.y = 45f * random;
+            newRotation.y += 30f * random;
             // 角度が0度ならば
             if (newRotation.y == 0f)
             {
@@ -95,7 +95,6 @@ public class Sahagin : LoiteringEnemyBase
                 SetAttack();
                 // 攻撃当たり判定コンポーネントの有効化
                 EnableAttackColliders();
-                Debug.Log("Normal Attack");
             }
             // 一定の割合でスペシャル攻撃
             else
@@ -106,7 +105,6 @@ public class Sahagin : LoiteringEnemyBase
                 SetMagicAttack();
                 // 攻撃当たり判定コンポーネントの有効化
                 EnableAttackColliders();
-                Debug.Log("JumpAttack");
             }
         }
     }
@@ -117,7 +115,7 @@ public class Sahagin : LoiteringEnemyBase
     protected override void SufferDamageAction(Collider col, int damage)
     {
         // ダメージが一定の値を超えていたら
-        if (damage >= DAMAGE_ACTION_NUM)
+        if (damage >= DAMAGE_ACTION_NUM * level)
         {
             // 一定の確立で処理を行う
             if (Random.Range(0, 101) < DAMAGE_ACTION_PERCENT)

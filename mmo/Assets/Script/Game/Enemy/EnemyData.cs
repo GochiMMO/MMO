@@ -205,6 +205,8 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         {
             // プレイヤーからヘイトを取得する
             int hate = players[i].GetComponent<PlayerChar>().Hate;
+            // ヘイトの値を登録する
+            playersHates[i] = hate;
             // 格納したヘイトが一時変数のヘイトを上回ったら
             if (hate > playerHate)
             {
@@ -221,22 +223,42 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="damage">出すダメージの値</param>
     [PunRPC]
-    public void DrawDamage(int damage)
+    public void DrawDamage(int damage, PhotonMessageInfo info)
     {
         // ダメージを出すコンポーネントを取得し、ダメージを表示する
         scripts.GetComponent<CreateDamageBillboard>().DrawDamageBillboard(damage, transform.position);
-        // HPを減算する
-        HP -= damage;
-        // HPが0以下(つまり死亡したとき)
-        if (HP <= 0)
+        // マスタークライアントならば
+        if (PhotonNetwork.isMasterClient)
         {
-            // ステータスを死亡状態に変更する
-            enemyStatus = Status.DEAD;
-            // 死亡時アニメーションを再生する
-            anim.SetTrigger("dead");
-            // 死んだので数を減算
-            myPopScriptRefarence.DeadEnemy();
+            // HPを減算する
+            HP -= damage;
+            // HPを他のプレイヤーに飛ばして同期させる
+            // photonView.RPC("SetHP", PhotonTargets.Others, HP);
+            // HPが0以下(つまり死亡したとき)
+            if (HP <= 0)
+            {
+                // 倒したプレイヤーに経験値を加算させる処理を行わせる
+                // info.photonView.gameObject.GetComponent<PlayerChar>().CallAddExp(this.exp);
+                // ステータスを死亡状態に変更する
+                enemyStatus = Status.DEAD;
+                // 死亡時アニメーションを再生する
+                SetTrigger("dead");
+                // 死んだので数を減算
+                myPopScriptRefarence.DeadEnemy();
+            }
         }
+    }
+
+    /// <summary>
+    /// HPを設定する関数
+    /// </summary>
+    /// <param name="hp"></param>
+    /// <param name="info"></param>
+    [PunRPC]
+    public void SetHP(int hp, PhotonMessageInfo info)
+    {
+        // HPを設定する
+        this.HP = hp;
     }
 
     /// <summary>
@@ -383,7 +405,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                         // ノーダメージにする
                         damage = 0;
                     }
-
+                    
                     // HPが0を下回るならば
                     if (HP - damage < 0)
                     {
@@ -561,9 +583,16 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="stream">ビスコだよ！</param>
     /// <param name="info">送ってきた相手の情報</param>
-    protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    virtual protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
+        if (stream.isWriting)
+        {
+            stream.SendNext(HP);
+        }
+        else
+        {
+            HP = (int)stream.ReceiveNext();
+        }
     }
 
     /// <summary>

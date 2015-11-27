@@ -11,4 +11,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe7ecb215fb27c4097f8c351b8d596e, type: 3}
   m_Name: Status_Level
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: str
+    list:
+    - HP: .100000001
+      SP: 0
+      Attack: 5
+      MagicAttack: 0
+      Defense: 1
+      MagicDefense: 0
+  - name: vit
+    list:
+    - HP: 10
+      SP: 0
+      Attack: 0
+      MagicAttack: 0
+      Defense: 5
+      MagicDefense: 0
+  - name: int
+    list:
+    - HP: 0
+      SP: .5
+      Attack: 0
+      MagicAttack: 5
+      Defense: 0
+      MagicDefense: .100000001
+  - name: mnd
+    list:
+    - HP: 1
+      SP: 3
+      Attack: 0
+      MagicAttack: .200000003
+      Defense: 0
+      MagicDefense: 5

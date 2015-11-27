@@ -6,6 +6,14 @@ using System.Collections;
 [RequireComponent(typeof(PhotonTransformView))]
 abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
+    /// 重力
+    /// </summary>
+    const float GRAVITY = 9.8f;
+    /// <summary>
+    /// 重力計算用構造体W
+    /// </summary>
+    Vector3 gravity = Vector3.zero;
+    /// <summary>
     /// キャラクターのコントローラーコンポーネント
     /// </summary>
     CharacterController character;
@@ -343,8 +351,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
         if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
         {
-            // 呼ばれた関数を出力する
-            Debug.Log("OnControllerColliderHit");
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
@@ -363,8 +369,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             }
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
-            // 攻撃力を出力する
-            Debug.Log(attack.ToString());
             // HPを減算する
             HP -= attack;
             // HPが0になったら
@@ -405,8 +409,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             }
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
-            // 攻撃力を出力する
-            Debug.Log(attack.ToString());
             // HPを減算する
             HP -= attack;
             // HPが0になったら
@@ -470,9 +472,20 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// プレイヤーに対し経験値を加算させる
+    /// </summary>
+    /// <param name="exp"></param>
+    public void CallAddExp(int exp)
+    {
+        // このキャラクターを出したプレイヤーに経験値加算命令を出す
+        photonView.RPC("AddExp", photonView.owner, exp);
+    }
+
+    /// <summary>
     /// 経験値の加算
     /// </summary>
     /// <param name="exp">経験値</param>
+    [PunRPC]
     public void AddExp(int exp)
     {
         // パーティーメンバーを格納する変数
@@ -1013,5 +1026,22 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     {
         // アニメーションを変更する
         anim.SetTrigger(trigger);
+    }
+
+    /// <summary>
+    /// 物理に沿った動きを計算するアップデート
+    /// </summary>
+    void FixedUpdate()
+    {
+        // 落下
+        // gravity.y += Physics.gravity.y * Time.fixedDeltaTime;
+        gravity.y += Physics.gravity.y;
+        character.Move(gravity * Time.fixedDeltaTime);
+
+        // 着地していたら速度を0にする
+        if (character.isGrounded)
+        {
+            gravity.y = 0f;
+        }
     }
 }

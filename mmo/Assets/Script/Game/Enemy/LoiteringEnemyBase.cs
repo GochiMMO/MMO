@@ -185,7 +185,7 @@ abstract public class LoiteringEnemyBase : EnemyData{
                 && Vector3.Angle(players[i].transform.position - transform.position, transform.forward) <= angle)    // 角度計算
             {
                 // 視覚範囲に存在したプレイヤーの番号を入れる
-                inViewPlayer |= 0x01 << i;
+                inViewPlayer |= 0x00000001 << i;
                 // ヘイトの値を取得する
                 if (hate < playersHates[i])
                 {
@@ -196,12 +196,11 @@ abstract public class LoiteringEnemyBase : EnemyData{
                 }
             }
         }
-        // 視覚範囲で一番ヘイトが高いプレイヤーを追いかける
-        if ((players[inViewHatePlayer].transform.position - transform.position).sqrMagnitude < angleDistance                    // 距離計算
-            && Vector3.Angle(players[inViewHatePlayer].transform.position - transform.position, transform.forward) <= angle)    // 角度計算
+        // プレイヤーを発見していたら
+        if ((inViewPlayer & 0xffffffff) != 0x00000000)
         {
-            // 回転度を計算する
-            newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hateMaxPlayer.transform.position - transform.position), 1.0f).eulerAngles;
+            // ヘイトが一番高いプレイヤーに向う回転度を計算する
+            newRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[inViewHatePlayer].transform.position - transform.position), 1.0f).eulerAngles;
             newRotation.x = 0f;
             newRotation.z = 0f;
             // 回転を変える

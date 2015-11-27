@@ -64,6 +64,11 @@ public class PlayerAttack : MonoBehaviour {
         this.parentPlayer = parentPlayer;
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log(col.name);
+    }
+
     /// <summary>
     /// 振れ幅計算を行い、ダメージを返す関数
     /// </summary>

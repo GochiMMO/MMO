@@ -64,4 +64,6 @@ MonoBehaviour:
   - ReciveStatus
   - ReciveNameAndJob
   - SendNameAndJob
+  - AddExp
+  - SetHP
   DisableAutoOpenWizard: 1

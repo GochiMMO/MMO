@@ -215,11 +215,9 @@ public class PartySystem : Photon.MonoBehaviour {
         // 加入ボタンにメソッドの登録
         okButton.onClick.AddListener(() => AddMemberInParty());
         okButton.onClick.AddListener(() => myPhoton.RPC("SetLeader", owner.GetPhotonView().owner));
-        okButton.onClick.AddListener(() => obj.GetComponent<Methods>().DestroyObject());
 
         // 断るボタンにメソッドの登録
         noButton.onClick.AddListener(() => myPhoton.RPC("InstantiateTurnDownWindow", owner.GetPhotonView().owner));
-        noButton.onClick.AddListener(() => obj.GetComponent<Methods>().DestroyObject());
     }
 
     /// <summary>

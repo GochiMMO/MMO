@@ -6,6 +6,14 @@ using System.Collections;
 [RequireComponent(typeof(PhotonTransformView))]
 abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
+    /// 重力
+    /// </summary>
+    const float GRAVITY = 9.8f;
+    /// <summary>
+    /// 重力計算用構造体W
+    /// </summary>
+    Vector3 gravity = Vector3.zero;
+    /// <summary>
     /// キャラクターのコントローラーコンポーネント
     /// </summary>
     CharacterController character;
@@ -47,7 +55,18 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// プレイヤーのステータス
     /// </summary>
     protected Status status = Status.NORMAL;
-
+    /// <summary>
+    /// ヘイトの値
+    /// </summary>
+    private int hate = 0;
+    /// <summary>
+    /// ヘイトを設定するプロパティ
+    /// </summary>
+    public int Hate
+    {
+        set { hate = value < 0 ? 0 : value; }
+        get { return hate; }
+    }
     /// <summary>
     /// 攻撃力アップのバフ
     /// </summary>
@@ -177,6 +196,24 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// 移動速度のバフ
+    /// </summary>
+    /// <param name="percent">上がる割合</param>
+    /// <param name="time">時間</param>
+    /// <returns></returns>
+    protected IEnumerator SpeedBuf(float percent, float time)
+    {
+        // バフの値を乗算する
+        speedBuf *= percent;
+        // 時間まで待つ
+        yield return new WaitForSeconds(time);
+        // バフの値を元に戻す
+        speedBuf /= percent;
+        // コルーチンから抜ける
+        yield break;
+    }
+
+    /// <summary>
     /// 移動速度、回転速度を同期するためのコンポーネント
     /// </summary>
     protected PhotonTransformView photonTransformView { private set; get; }
@@ -232,6 +269,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 魔法防御力につくバフの値
     /// </summary>
     protected float mndBuff { private set; get; }
+    /// <summary>
+    /// 移動速度につくバフ
+    /// </summary>
+    private float speedBuf = 1f;
     /// <summary>
     /// 次に必要な経験値
     /// </summary>
@@ -310,8 +351,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
         if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
         {
-            // 呼ばれた関数を出力する
-            Debug.Log("OnControllerColliderHit");
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
@@ -330,8 +369,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             }
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
-            // 攻撃力を出力する
-            Debug.Log(attack.ToString());
             // HPを減算する
             HP -= attack;
             // HPが0になったら
@@ -354,8 +391,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // 当たってきたコライダーの名前がEnemyAttack(敵の攻撃)だった場合
         if (hitCollider.gameObject.tag == "EnemyAttack" && (status & (Status.DEAD | Status.REVIVE)) == 0)
         {
-            // 呼ばれたメソッド名を出力する
-            Debug.Log("OnTriggerEnter");
             // 敵の攻撃用コンポーネントを取得する
             EnemyAttack enmAttack = hitCollider.gameObject.GetComponent<EnemyAttack>();
             // 敵の攻撃力を設定する
@@ -374,8 +409,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             }
             // 攻撃力が0を下回ったとき0とする
             if (attack < 0) attack = 0;
-            // 攻撃力を出力する
-            Debug.Log(attack.ToString());
             // HPを減算する
             HP -= attack;
             // HPが0になったら
@@ -439,9 +472,20 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     }
 
     /// <summary>
+    /// プレイヤーに対し経験値を加算させる
+    /// </summary>
+    /// <param name="exp"></param>
+    public void CallAddExp(int exp)
+    {
+        // このキャラクターを出したプレイヤーに経験値加算命令を出す
+        photonView.RPC("AddExp", photonView.owner, exp);
+    }
+
+    /// <summary>
     /// 経験値の加算
     /// </summary>
     /// <param name="exp">経験値</param>
+    [PunRPC]
     public void AddExp(int exp)
     {
         // パーティーメンバーを格納する変数
@@ -494,6 +538,10 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         rightVector = Camera.main.transform.TransformDirection(Vector3.right);
         // Y軸を0にする
         rightVector.y = 0f;
+        // 前方向ベクトルを正規化する
+        forwardVector.Normalize();
+        // 右方向ベクトルを正規化する
+        rightVector.Normalize();
     }
 
     /// <summary>
@@ -529,7 +577,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // moveValueを初期化する
         moveValue = Vector3.zero;
         // 移動ベクトルを計算する
-        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * moveSpeed;
+        moveValue = (Input.GetAxis("Horizontal") * rightVector + Input.GetAxis("Vertical") * forwardVector) * moveSpeed * speedBuf;
         // 移動ベクトルが0ならば
         if (moveValue == Vector3.zero)
         {
@@ -730,12 +778,12 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         // ステータスをNormalに戻す
         status = Status.NORMAL;
     }
-
+    /*
     /// <summary>
     /// 通常状態時の処理
     /// </summary>
     virtual protected void Normal() { }
-
+    */
     /// <summary>
     /// 被弾中の処理
     /// </summary>
@@ -753,6 +801,34 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             rigbody.isKinematic = true;
         }
         */
+    }
+
+    /// <summary>
+    /// 通常攻撃
+    /// </summary>
+    virtual protected void NormalAttack() {
+        Debug.Log("Player do a normal attack");
+    }
+
+    /// <summary>
+    /// 通常状態の処理
+    /// </summary>
+    private void OnNormal()
+    {
+        // 左クリックされたら
+        if (Input.GetMouseButtonDown(0))
+        {
+            // マウスの座標を取得する
+            Vector2 mousePosition = Input.mousePosition;
+            // レイを飛ばし、ヒットするかどうかチェックする
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            // ヒットしていなければ
+            if (!hit.collider)
+            {
+                // 通常攻撃を行う
+                NormalAttack();
+            }
+        }
     }
 
     /// <summary>
@@ -776,13 +852,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             {
                 case Status.NORMAL:
                     // 通常状態の処理を行う
-                    Normal();
+                    OnNormal();
                     // ステータスが通常状態でなくなったら
                     if (Status.NORMAL != status)
                     {
                         // 処理を外れる
                         break;
                     }
+                    
                     // 移動関数
                     Move();
                     break;
@@ -982,5 +1059,22 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     {
         // アニメーションを変更する
         anim.SetTrigger(trigger);
+    }
+
+    /// <summary>
+    /// 物理に沿った動きを計算するアップデート
+    /// </summary>
+    void FixedUpdate()
+    {
+        // 落下
+        // gravity.y += Physics.gravity.y * Time.fixedDeltaTime;
+        gravity.y += Physics.gravity.y;
+        character.Move(gravity * Time.fixedDeltaTime);
+
+        // 着地していたら速度を0にする
+        if (character.isGrounded)
+        {
+            gravity.y = 0f;
+        }
     }
 }

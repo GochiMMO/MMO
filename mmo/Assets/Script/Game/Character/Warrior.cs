@@ -416,15 +416,9 @@ public class Warrior : PlayerChar {
     }
 
     // 今のところ使用しない
-    protected override void Normal()
-    {
-
-    }
-
-    // 今のところ使用しない
     protected override void Revive()
     {
-
+        
     }
 
     protected override void OnDestroy()

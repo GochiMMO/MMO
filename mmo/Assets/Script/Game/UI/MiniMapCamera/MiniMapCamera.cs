@@ -9,6 +9,9 @@ public class MiniMapCamera : MonoBehaviour {
     [SerializeField, Tooltip("矢印オブジェクト")]
     private GameObject arrow;
 
+    // 離すY軸距離
+    float yDistance = -1f;
+
     new private Camera camera;
 
     bool changeFlag = false;
@@ -24,10 +27,18 @@ public class MiniMapCamera : MonoBehaviour {
         // プレイヤーが設定されていたら
         if (player != null)
         {
+            // Y軸の距離が設定されていなければ
+            if (yDistance == -1f)
+            {
+                // Y軸距離を計算する
+                yDistance = player.transform.position.y - gameObject.transform.position.y;
+            }
+            float cameraY = gameObject.transform.position.y;
+
             // プレイヤーの位置に移動させる
-            gameObject.transform.Translate(player.transform.position.x - gameObject.transform.position.x, 0f, player.transform.position.z - gameObject.transform.position.z, Space.World);
+            gameObject.transform.Translate(player.transform.position.x - gameObject.transform.position.x,  player.transform.position.y  - gameObject.transform.position.y - yDistance, player.transform.position.z - gameObject.transform.position.z, Space.World);
             // 矢印オブジェクトを自分の真下に移動させる
-            arrow.transform.Translate(gameObject.transform.position.x - arrow.transform.position.x, 0f, gameObject.transform.position.z - arrow.transform.position.z, Space.World);
+            arrow.transform.Translate(gameObject.transform.position.x - arrow.transform.position.x, player.transform.position.y - cameraY - yDistance, gameObject.transform.position.z - arrow.transform.position.z, Space.World);
             // 矢印オブジェクトを回転させる
             arrow.transform.rotation = player.transform.rotation;
         }

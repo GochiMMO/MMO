@@ -16,9 +16,6 @@ public class CameraRaycast : MonoBehaviour {
             {
                 Debug.Log(hit.collider.gameObject.name);
                 // OnMouseDownメッセージを送信する
-                hit.collider.gameObject.SendMessage(
-                  "OnMouseDown",
-                  SendMessageOptions.DontRequireReceiver);
             }
         }
     }

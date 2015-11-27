@@ -155,9 +155,13 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     protected GameObject[] players { private set; get; }
     /// <summary>
+    /// ヘイトを格納する配列
+    /// </summary>
+    protected int[] playersHates;
+    /// <summary>
     /// ヘイトを一番稼いでるプレイヤーのオブジェクトを格納する変数
     /// </summary>
-    protected GameObject haightMaxPlayer { private set; get; }
+    protected GameObject hateMaxPlayer { private set; get; }
     /// <summary>
     /// 敵のステータス(状態遷移用)
     /// </summary>
@@ -192,19 +196,24 @@ abstract public class EnemyData : Photon.MonoBehaviour {
         // "Player"とタグ付けされているオブジェクトを取得する
         players = GameObject.FindGameObjectsWithTag("Player");
         // プレイヤーのヘイトの値を格納しておく
-        int playerHaight = -9999;
+        int playerHate = -9999;
+        // ヘイトの配列を設定する
+        playersHates = new int[players.Length];
+
         // プレイヤーの分だけ繰り返す
-        foreach (var obj in players)
+        for (int i = 0; i < players.Length; i++ )
         {
             // プレイヤーからヘイトを取得する
-            int haight = obj.GetComponent<Haight>().GetHaight();
+            int hate = players[i].GetComponent<PlayerChar>().Hate;
+            // ヘイトの値を登録する
+            playersHates[i] = hate;
             // 格納したヘイトが一時変数のヘイトを上回ったら
-            if (haight > playerHaight)
+            if (hate > playerHate)
             {
                 // ヘイトの値を格納する
-                playerHaight = haight;
+                playerHate = hate;
                 // プレイヤーの参照を格納する
-                haightMaxPlayer = obj;
+                hateMaxPlayer = players[i];
             }
         }
     }
@@ -214,22 +223,42 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="damage">出すダメージの値</param>
     [PunRPC]
-    public void DrawDamage(int damage)
+    public void DrawDamage(int damage, PhotonMessageInfo info)
     {
         // ダメージを出すコンポーネントを取得し、ダメージを表示する
         scripts.GetComponent<CreateDamageBillboard>().DrawDamageBillboard(damage, transform.position);
-        // HPを減算する
-        HP -= damage;
-        // HPが0以下(つまり死亡したとき)
-        if (HP <= 0)
+        // マスタークライアントならば
+        if (PhotonNetwork.isMasterClient)
         {
-            // ステータスを死亡状態に変更する
-            enemyStatus = Status.DEAD;
-            // 死亡時アニメーションを再生する
-            anim.SetTrigger("dead");
-            // 死んだので数を減算
-            myPopScriptRefarence.DeadEnemy();
+            // HPを減算する
+            HP -= damage;
+            // HPを他のプレイヤーに飛ばして同期させる
+            // photonView.RPC("SetHP", PhotonTargets.Others, HP);
+            // HPが0以下(つまり死亡したとき)
+            if (HP <= 0)
+            {
+                // 倒したプレイヤーに経験値を加算させる処理を行わせる
+                // info.photonView.gameObject.GetComponent<PlayerChar>().CallAddExp(this.exp);
+                // ステータスを死亡状態に変更する
+                enemyStatus = Status.DEAD;
+                // 死亡時アニメーションを再生する
+                SetTrigger("dead");
+                // 死んだので数を減算
+                myPopScriptRefarence.DeadEnemy();
+            }
         }
+    }
+
+    /// <summary>
+    /// HPを設定する関数
+    /// </summary>
+    /// <param name="hp"></param>
+    /// <param name="info"></param>
+    [PunRPC]
+    public void SetHP(int hp, PhotonMessageInfo info)
+    {
+        // HPを設定する
+        this.HP = hp;
     }
 
     /// <summary>
@@ -376,7 +405,7 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                         // ノーダメージにする
                         damage = 0;
                     }
-
+                    
                     // HPが0を下回るならば
                     if (HP - damage < 0)
                     {
@@ -554,9 +583,16 @@ abstract public class EnemyData : Photon.MonoBehaviour {
     /// </summary>
     /// <param name="stream">ビスコだよ！</param>
     /// <param name="info">送ってきた相手の情報</param>
-    protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    virtual protected void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
+        if (stream.isWriting)
+        {
+            stream.SendNext(HP);
+        }
+        else
+        {
+            HP = (int)stream.ReceiveNext();
+        }
     }
 
     /// <summary>

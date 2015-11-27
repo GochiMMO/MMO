@@ -35,8 +35,6 @@ public class LoadCharacterData : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        // セーブデータの個数を出す(デバッグ用)
-        Debug.Log(PlayerStatus.environmentalSaveData.saveDataNum);
         // 背景イメージのオブジェクトを取得する
         backImage = canvas.transform.GetChild(0).gameObject;
         // 背景イメージのRectTransformを取得する
@@ -88,9 +86,6 @@ public class LoadCharacterData : MonoBehaviour {
 
                 // ボタンに押された時の処理を行うようにメソッドを登録する
                 obj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => pushPlayerButton(playerNumber));
-
-                // プレイヤーの名前を出力する
-                Debug.Log(playerData[i].name);
             }
         }
 

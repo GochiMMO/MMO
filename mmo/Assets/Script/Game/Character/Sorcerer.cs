@@ -66,14 +66,6 @@ public class Sorcerer : PlayerChar {
     }
 
     /// <summary>
-    /// 通常状態の処理
-    /// </summary>
-    protected override void Normal()
-    {
-
-    }
-
-    /// <summary>
     /// プレイヤーがシーンから削除された時の処理
     /// </summary>
     protected override void OnDestroy()

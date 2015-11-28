@@ -172,7 +172,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <returns>反復子</returns>
     protected IEnumerator Regeneration(int healValue, float skillTime, float healTime)
     {
-        
         // 開始時間を取得する
         float startTime = Time.time;
         // 回復した回数を設定する変数を定義
@@ -816,19 +815,32 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     private void OnNormal()
     {
         // 左クリックされたら
+        if (IsClick())
+        {
+            // 通常攻撃を行う
+            NormalAttack();
+        }
+    }
+
+    /// <summary>
+    /// 左クリックされ、かつUIの上にカーソルが無ければtrue、その他はfalse
+    /// </summary>
+    /// <returns></returns>
+    protected bool IsClick()
+    {
+        // 左クリックされたら
         if (Input.GetMouseButtonDown(0))
         {
-            // マウスの座標を取得する
-            Vector2 mousePosition = Input.mousePosition;
             // レイを飛ばし、ヒットするかどうかチェックする
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector2.zero);
             // ヒットしていなければ
             if (!hit.collider)
             {
-                // 通常攻撃を行う
-                NormalAttack();
+                return true;
             }
         }
+        // クリックされてないか、コライダーにヒットしたか
+        return false;
     }
 
     /// <summary>

@@ -38,7 +38,14 @@ public class Sorcerer : PlayerChar {
     /// </summary>
     protected override void Attacking()
     {
-
+        // クリックされていたら
+        if (IsClick())
+        {
+            // 通常攻撃2段目を放つフラグをオンにする
+            SetTrigger("NormalAttack2");
+            // 攻撃中に戻す
+            Attack();
+        }
     }
 
     /// <summary>
@@ -107,6 +114,8 @@ public class Sorcerer : PlayerChar {
         }
         // SPを消費させる
         SP -= skill.GetSp();
+        // ステータスを攻撃中に変更する
+        Attack();
         // スキルのIDで処理分けを行う
         switch (skillNumber)
         {
@@ -496,5 +505,51 @@ public class Sorcerer : PlayerChar {
             // 自分のHPを回復させる
             Recover(playerData.MaxHP);
         }
+    }
+
+    /// <summary>
+    /// 通常攻撃を行う
+    /// </summary>
+    protected override void NormalAttack()
+    {
+        // base.NormalAttack();
+        // 攻撃中でなければ
+        if (status != Status.ATTACK)
+        {
+            // 通常攻撃をさせる
+            SetTrigger("NormalAttack1");
+            // 攻撃に変更する
+            Attack();
+            // 攻撃を登録する
+            magic = () => NormalAttack1();
+            // 詠唱フラグを立てる
+            this.chantFlag = true;
+        }
+    }
+
+    /// <summary>
+    /// 通常攻撃１を発射する
+    /// </summary>
+    private void NormalAttack1()
+    {
+        // 魔法オブジェクトをインスタンス化する
+        GameObject attack = PhotonNetwork.Instantiate("Magics/NormalAttack1", gameObject.transform.position + Vector3.up * 1.2f, Quaternion.identity, 0);
+        // 移動ベクトルを設定する
+        attack.GetComponent<FireShot>().SetShotVec(gameObject.transform.forward);
+        // 攻撃力等を入れる
+        attack.GetComponent<PlayerAttack>().SetProperties((int)(playerData.magicAttack * intBuff), 0.2f, PlayerAttack.AttackKind.MAGIC, this, 10);
+    }
+
+    /// <summary>
+    /// 通常攻撃２を発射する
+    /// </summary>
+    private void NormalAttack2()
+    {
+        // 魔法オブジェクトをインスタンス化する
+        GameObject attack = PhotonNetwork.Instantiate("Magics/NormalAttack2", gameObject.transform.position + Vector3.up * 1.2f, Quaternion.identity, 0);
+        // 移動ベクトルを設定する
+        attack.GetComponent<FireShot>().SetShotVec(gameObject.transform.forward);
+        // 攻撃力等を入れる
+        attack.GetComponent<PlayerAttack>().SetProperties((int)(playerData.magicAttack * intBuff), 0.2f, PlayerAttack.AttackKind.MAGIC, this, 15);
     }
 }

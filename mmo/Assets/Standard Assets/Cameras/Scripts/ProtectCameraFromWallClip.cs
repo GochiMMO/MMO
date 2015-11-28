@@ -62,15 +62,25 @@ namespace UnityStandardAssets.Cameras
                 }
             }
 
-            // カメラの遠近処理
-            if (Input.mouseScrollDelta.y > 0 && closestDistance > 10)
+            if (Input.mouseScrollDelta.x != 0f || Input.mouseScrollDelta.y != 0f)
             {
-                closestDistance += 0.5f * -Input.mouseScrollDelta.y;
+                // レイを飛ばし、ヒットするかどうかチェックする
+                RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector2.zero);
+                // ヒットしていなければ
+                if (!hit.collider)
+                {
+                    // カメラの遠近処理
+                    if (Input.mouseScrollDelta.y > 0 && closestDistance > 5)
+                    {
+                        closestDistance += 0.4f * -Input.mouseScrollDelta.y;
+                    }
+                    if (Input.mouseScrollDelta.y < 0 && closestDistance < 12)
+                    {
+                        closestDistance += 0.4f * -Input.mouseScrollDelta.y;
+                    }
+                }
             }
-            if (Input.mouseScrollDelta.y < 0 && closestDistance < 25)
-            {
-                closestDistance += 0.5f * -Input.mouseScrollDelta.y;
-            }
+            
 
             // if there is a collision
             if (initialIntersect)

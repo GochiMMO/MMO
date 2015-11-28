@@ -38,6 +38,8 @@ public class MouseRay : MonoBehaviour {
         // クリックされたとき
         if (leftClickFlag || rightClickFlag)
         {
+            targetPlayer = null;
+
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             bool rayHitFlag = Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity);  //レイを飛ばし、オブジェクトが存在するか調べる
 
@@ -73,13 +75,16 @@ public class MouseRay : MonoBehaviour {
                     // ネームプレートをインスタンス化する
                     namePlateInstance = GameObject.Instantiate(namePlate);
 
+                    // プレイヤーの登録を行う
+                    targetPlayer = hit.collider.gameObject;
+
                     // ネームプレートの名前を変更する
                     namePlateInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Text>().text = hit.collider.gameObject.GetPhotonView().owner.name;
 
                     // 右クリックされ、かつ自分以外のプレイヤーだった場合
                     if (rightClickFlag && hit.collider.gameObject.GetPhotonView().ownerId != PhotonNetwork.player.ID)
                     {
-                        targetPlayer = hit.collider.gameObject;     // 送り先を格納しておく
+                        GameObject sendPlayer = hit.collider.gameObject;     // 送り先を格納しておく
 
                         // 右クリックオプションウインドウの作成
                         optionWindowInstance = GameObject.Instantiate(optionWindow);
@@ -90,12 +95,12 @@ public class MouseRay : MonoBehaviour {
                         // ボタンのメソッドを削除する
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
                         // PTに誘うボタンのメソッドを登録する
-                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetTarget(targetPlayer));
+                        optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetTarget(sendPlayer));
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.SetOwner(playerObject));
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => partySystem.PushInviteButton());
                         optionWindowInstance.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
                         // チャットを送るボタンのメソッドを登録する
-                        optionWindowInstance.transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => chatWindow.SetPtoPChat(targetPlayer.GetPhotonView().owner.name));
+                        optionWindowInstance.transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => chatWindow.SetPtoPChat(sendPlayer.GetPhotonView().owner.name));
                         optionWindowInstance.transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameObject.Destroy(optionWindowInstance));
                     }
                 }
@@ -105,6 +110,8 @@ public class MouseRay : MonoBehaviour {
             {
                 deleteNamePlate();
                 DeleteOptionWindow();
+
+                
             }
         }
     }

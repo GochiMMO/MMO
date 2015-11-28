@@ -31,7 +31,6 @@ public class MoveWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         // 掴まれているフラグにfalseを入れる
         catchFlag = false;
-        Debug.Log("mouseUp");
     }
 
     /// <summary>
@@ -47,7 +46,6 @@ public class MoveWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             mousePastPosition = eventData.position;
             // クリックされたフラグを格納する
             catchFlag = true;
-            Debug.Log("mouseDown");
         }
     }
 

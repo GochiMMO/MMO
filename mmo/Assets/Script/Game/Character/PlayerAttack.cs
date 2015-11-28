@@ -21,6 +21,10 @@ public class PlayerAttack : MonoBehaviour {
         MAGIC
     }
     /// <summary>
+    /// 攻撃が当たったときに加算されるSPの値
+    /// </summary>
+    public int sp;
+    /// <summary>
     /// 攻撃力
     /// </summary>
     // [HideInInspector]
@@ -52,7 +56,7 @@ public class PlayerAttack : MonoBehaviour {
     /// <param name="damageRate">ダメージの振れ幅</param>
     /// <param name="kind">攻撃の種類</param>
     /// <param name="parentPlayer">攻撃を出した親オブジェクト</param>
-    public void SetProperties(int attack, float damageRate, AttackKind kind, PlayerChar parentPlayer)
+    public void SetProperties(int attack, float damageRate, AttackKind kind, PlayerChar parentPlayer, int sp = 0)
     {
         // 攻撃力を設定する
         this.attack = attack;
@@ -62,6 +66,7 @@ public class PlayerAttack : MonoBehaviour {
         this.attackKind = kind;
         // 攻撃の親オブジェクトを設定する
         this.parentPlayer = parentPlayer;
+        // 加算されるSPの値を入れる
     }
 
     void OnTriggerEnter(Collider col)

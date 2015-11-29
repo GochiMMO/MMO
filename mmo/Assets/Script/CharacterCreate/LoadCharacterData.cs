@@ -31,6 +31,10 @@ public class LoadCharacterData : MonoBehaviour {
     RectTransform backImageRect;
     GameObject deleteButtonCanvasInstance;
     bool buttonsInstantiateFlag = false;
+
+    // ボタンを押した時に表示されるモデル
+    static GameObject model = null;
+
     PlayerData[] playerData;    //キャラクターのデータ
 
     // Use this for initialization
@@ -75,9 +79,15 @@ public class LoadCharacterData : MonoBehaviour {
                 buttonRect.anchorMax = new Vector2(buttonRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * i);
                 // 下アンカー位置の調整
                 buttonRect.anchorMin = new Vector2(buttonRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (i + 1));
+
+                // 上アンカー位置の調整
+                buttonRect.anchorMax = new Vector2(backImageRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * i);
+                // 下アンカー位置の調整
+                buttonRect.anchorMin = new Vector2(backImageRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (i + 1));
+
+
                 // アンカーからのボタンの位置の調整(ぴったりアンカーに合わせるので0,0を入れる)
                 buttonRect.anchoredPosition = new Vector2(0f, 0f);
-
                 // テキストをプレイヤーの名前に変更する
                 obj.transform.GetChild(0).GetComponent<Text>().text = playerData[i].name;
 
@@ -96,6 +106,8 @@ public class LoadCharacterData : MonoBehaviour {
             GameObject charCreateButton = GameObject.Instantiate(characterCreateButton);
             // ボタンのRectTransformを取得する
             RectTransform buttonRect = charCreateButton.GetComponent<RectTransform>();
+
+
             // 位置を変更する
             buttonRect.Translate(Vector3.up * buttonRect.rect.height * charCreateButton.transform.localScale.y * saveDataNum, Space.Self);
             // 親子関係を作る
@@ -121,8 +133,39 @@ public class LoadCharacterData : MonoBehaviour {
     /// <param name="playerNumber">Show player number.</param>
     public void pushPlayerButton(int playerNumber)
     {
+        // 表示中のモデルが存在すれば
+        if (model)
+        {
+            // 削除する
+            GameObject.Destroy(model);
+        }
         // モデルの表示処理
-        
+        // キャラクターの番号によって処理分け
+        switch (playerData[playerNumber].characterNumber)
+        {
+            case 0:
+                // 青年をだす
+
+                break;
+            case 1:
+                // ムキムキを出す
+                model = GameObject.Instantiate(Resources.Load<GameObject>("Player/mukimuki"), new Vector3(330f, 100f, 0f), Quaternion.identity) as GameObject;
+                break;
+            case 2:
+                // 少女を出す
+
+                break;
+            case 3:
+                // 熟女を出す
+
+                break;
+        }
+        // 拡大する
+        model.transform.localScale = new Vector3(100f,100f,100f);
+        // 回転させる
+        model.transform.Rotate(Vector3.up, 180f);
+        // モデルのAnimatorを取得する
+        Animator modelAnim = model.GetComponent<Animator>();
 
         // テキストの表示処理
         lvText.text = "Lv " + playerData[playerNumber].Lv.ToString();
@@ -134,15 +177,21 @@ public class LoadCharacterData : MonoBehaviour {
         {
             case 0:
                 job = "アーチャー";
+                modelAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Player/ArcherAnimation");
                 break;
             case 1:
                 job = "ウォーリア";
+                modelAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Player/WarriorAnimation");
+                
                 break;
             case 2:
                 job = "ソーサラー";
+                modelAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Player/SorcererAnimation");
+                
                 break;
             case 3:
                 job = "モンク";
+                modelAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Player/MonkAnimation");
                 break;
         }
         jobName.text = "職業 " + job;

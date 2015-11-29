@@ -192,7 +192,7 @@ public class UpdateShowStatus : MonoBehaviour {
         if (playerData.nowExp != prevExp)
         {
             // 経験値がどのくらいたまっているか計算する
-            float size = (float)playerData.nowExp / (float)PlayerStatus.nextLevel;
+            float size = (float)playerData.nowExp / (float)PlayerStatus.nextLevelExp;
             // サイズを変更する
             expBarImage.fillAmount = size;
             // EXPを更新する

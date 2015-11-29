@@ -503,40 +503,40 @@ MonoBehaviour:
       name: "\u30D2\u30FC\u30EB"
       lv: 0
       difficult: 1
-      attack: 0
+      attack: .200000003
       defens: 0
       sp: 10
       cooltime: 1
       casttime: .5
       effect: 0
       point: 2
-      bonus: 0
+      bonus: .0199999996
       type: 1
     - id: 11
       name: "\u30AA\u30FC\u30EB\u30D2\u30FC\u30EB"
       lv: 0
       difficult: 2
-      attack: 0
+      attack: .150000006
       defens: 0
       sp: 20
       cooltime: 2
       casttime: 1
       effect: 0
       point: 4
-      bonus: 0
+      bonus: .0149999997
       type: 1
     - id: 12
       name: "\u30EA\u30B8\u30A7\u30CD"
       lv: 0
       difficult: 1
-      attack: 0
+      attack: .0500000007
       defens: 0
       sp: 10
       cooltime: .5
       casttime: .5
       effect: 0
       point: 4
-      bonus: 0
+      bonus: .00999999978
       type: 1
     - id: 13
       name: "\u30D9\u30CD\u30C7\u30A3\u30AF\u30B7\u30E7\u30F3"
@@ -588,7 +588,7 @@ MonoBehaviour:
       casttime: 4
       effect: 0
       point: 2
-      bonus: 0
+      bonus: .0500000007
       type: 1
   - name: Monk
     list:

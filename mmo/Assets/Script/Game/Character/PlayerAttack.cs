@@ -67,11 +67,21 @@ public class PlayerAttack : MonoBehaviour {
         // 攻撃の親オブジェクトを設定する
         this.parentPlayer = parentPlayer;
         // 加算されるSPの値を入れる
+        this.sp = sp;
     }
 
+    /// <summary>
+    /// 何かと衝突した時に呼ばれる関数
+    /// </summary>
+    /// <param name="col">衝突したコライダー</param>
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.name);
+        // 当たった物体が敵ならば
+        if (col.tag == "Enemy")
+        {
+            // SPを加算する
+            parentPlayer.SP += sp;
+        }
     }
 
     /// <summary>

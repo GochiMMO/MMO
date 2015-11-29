@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 425474}
   - 114: {fileID: 11445376}
+  - 114: {fileID: 11491864}
   m_Layer: 0
   m_Name: HealEffect
   m_TagString: Magic
@@ -94,7 +95,6 @@ GameObject:
   - 4: {fileID: 483354}
   - 198: {fileID: 19837694}
   - 199: {fileID: 19911296}
-  - 82: {fileID: 8245578}
   m_Layer: 0
   m_Name: L_Recover_hold
   m_TagString: Untagged
@@ -239,75 +239,6 @@ Transform:
   - {fileID: 421206}
   m_Father: {fileID: 425474}
   m_RootOrder: 0
---- !u!82 &8245578
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195402}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e507d722cef0adc4eb4235e006ff8104, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: .800000012
-  Loop: 1
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!114 &11445376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,6 +264,19 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11491864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014a42d2de7b93d478a1d5183080f7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSpan: 2
+  usePhotonNetwork: 1
 --- !u!198 &19815662
 ParticleSystem:
   m_ObjectHideFlags: 1

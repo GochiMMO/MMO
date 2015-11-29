@@ -9,14 +9,14 @@ public class SpawnFlare : MonoBehaviour {
     [SerializeField, Tooltip("エフェクトを表示する時間")]
     float effectShowTime;
 
-    SphereCollider col;
+    CapsuleCollider col;
     float firstTime = 0f;
     bool playFlag = false;
     float colliderRadius;
 
-    // Use this for initialization
+    // Use for initialization.
     void Awake () {
-        col = GetComponent<SphereCollider>();   //コリジョンコンポーネントを取得
+        col = GetComponent<CapsuleCollider>();   //コリジョンコンポーネントを取得
         col.enabled = false;        //一度無効化する(フレアは演出を挟むため)
         colliderRadius = col.radius;
         col.radius = 0f;    //コライダーの半径を0にする

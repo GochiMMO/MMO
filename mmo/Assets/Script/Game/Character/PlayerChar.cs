@@ -377,6 +377,8 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
                 status = Status.DEAD;
                 // アニメーションを再生する
                 SetTrigger("Dead");
+                // デスペナルティーとして最大経験値の10%を減らす
+                playerData.nowExp -= PlayerStatus.nextLevelExp / 10;
             }
         }
     }
@@ -562,7 +564,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             // スキルポイントを加算する
             playerData.skillPoint += PlayerStatus.addSkillPoint;
             // 次に必要な経験値を計算する
-            nextExp = PlayerStatus.nextLevel;
+            nextExp = PlayerStatus.nextLevelExp;
         }
     }
 
@@ -792,14 +794,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 死亡中の処理
     /// </summary>
     virtual protected void Dead() {
-        // rigidbodyが働いてるときは
-        /*
-        if (!rigbody.isKinematic)
-        {
-            // オフにする
-            rigbody.isKinematic = true;
-        }
-        */
+
     }
 
     /// <summary>

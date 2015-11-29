@@ -408,7 +408,7 @@ public class Sorcerer : PlayerChar {
     }
 
     /// <summary>
-    /// 
+    /// プレイヤーのHPを徐々に回復させる「リジェネ」
     /// </summary>
     /// <param name="player"></param>
     private void Regene(GameObject player)
@@ -473,6 +473,8 @@ public class Sorcerer : PlayerChar {
         // プレイヤーが取得できれば
         if (playerChar)
         {
+            // そのプレイヤーの場所に回復エフェクトを表示させる
+            PhotonNetwork.Instantiate("Magics/HealEffect", player.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
             // 回復させるHPの量を計算する
             int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.GetAttack()));
             // そのプレイヤーのHPを回復させる
@@ -480,6 +482,8 @@ public class Sorcerer : PlayerChar {
         }
         else
         {
+            // 自分の位置に回復エフェクトを表示させる
+            PhotonNetwork.Instantiate("Magics/HealEffect", gameObject.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
             // 自分のHPを回復する
             Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.GetAttack())));
         }
@@ -522,8 +526,12 @@ public class Sorcerer : PlayerChar {
             Attack();
             // 攻撃を登録する
             magic = () => NormalAttack1();
+            // 攻撃オブジェクトを発射する
+            // NormalAttack1();
             // 詠唱フラグを立てる
             this.chantFlag = true;
+            // 魔法を無登録にする
+            // magic = null;
         }
     }
 

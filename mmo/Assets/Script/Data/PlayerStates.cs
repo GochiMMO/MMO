@@ -149,9 +149,9 @@ public static class PlayerStatus{
     }
 
     /// <summary>
-    /// 次のレベルに必要な経験値を計算する関数
+    /// 次のレベルに必要な経験値を返すプロパティ
     /// </summary>
-    public static int nextLevel
+    public static int nextLevelExp
     {
         private set { }
         get

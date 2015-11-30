@@ -13,6 +13,7 @@ TagManager:
   - PlayerAttack
   - Status
   - SubCamera
+  - ListSkill
   layers:
   - Default
   - TransparentFX

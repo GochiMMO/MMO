@@ -1038,9 +1038,12 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <returns></returns>
     IEnumerator UpdateStatusOtherPlayers()
     {
+        // 無限ループ
         while (true)
         {
+            // ステータスを送信する
             SendStatus();
+            // ステータスを送信する時間を待つ
             yield return new WaitForSeconds(UpdateStatusRate);
         }
     }

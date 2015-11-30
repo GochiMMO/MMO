@@ -6,6 +6,10 @@ public class StatusPartitionSystem : MonoBehaviour {
     GameObject texts;
     [SerializeField, Tooltip("スキルポイントを表示しておくテキスト")]
     Text statusText;
+    [SerializeField, Tooltip("HPとSPを表示するテキスト")]
+    Text[] hpAndSPText;
+    [SerializeField, Tooltip("HPとSPのゲージ(Image)")]
+    Image[] hpAndSPBar;
 
     Text[] statusPartitionTexts;    //ステータスを表示するテキスト
     // ステータスを表示するテキスト
@@ -48,6 +52,9 @@ public class StatusPartitionSystem : MonoBehaviour {
 
         // 残りステータスポイントを格納する
         restStatusPoint = PlayerStatus.playerData.statusPoint;
+
+        // ステータスを表示させる
+        UpdateAddStatus();
     }
     
     // Update is called once per frame
@@ -60,6 +67,8 @@ public class StatusPartitionSystem : MonoBehaviour {
         }
         // 残りステータスポイントを表示する
         statusText.text = restStatusPoint.ToString();
+        // HPとSPのゲージを計算する
+        UpdateBars();
     }
 
     /// <summary>
@@ -122,7 +131,29 @@ public class StatusPartitionSystem : MonoBehaviour {
             addMagicAttack += (int)(statusPoint[i] * status_up.MagicAttack) - (int)(changeStatus * status_up.MagicAttack);
             addMagicDefense += (int)(statusPoint[i] * status_up.MagicDefense) - (int)(changeStatus * status_up.MagicDefense);
         }
+        // HPのテキストを表示する
+        hpAndSPText[0].text = addHP == 0 ? PlayerStatus.playerData.HP.ToString() + " / " + PlayerStatus.playerData.MaxHP : PlayerStatus.playerData.HP.ToString() + " / " + "<color=green>" + (PlayerStatus.playerData.MaxHP + addHP).ToString() + "</color>";
+        // SPのテキストを表示する
+        hpAndSPText[1].text = addSP == 0 ? PlayerStatus.playerData.SP.ToString() + " / " + PlayerStatus.playerData.MaxSP : PlayerStatus.playerData.SP.ToString() + " / " + "<color=green>" + (PlayerStatus.playerData.MaxSP + addSP).ToString() + "</color>";
+        // 攻撃力のテキストを表示する
+        realStatusText[0].text = addAttack == 0 ? PlayerStatus.playerData.attack.ToString() : "<color=green>" + (PlayerStatus.playerData.attack + addAttack).ToString() + "</color>";
+        // 防御力のテキストを表示する
+        realStatusText[1].text = addDefense == 0 ? PlayerStatus.playerData.defense.ToString() : "<color=green>" + (PlayerStatus.playerData.defense + addDefense).ToString() + "</color>";
+        // 魔法攻撃力のテキストを表示する
+        realStatusText[2].text = addMagicAttack == 0 ? PlayerStatus.playerData.magicAttack.ToString() : "<color=green>" + (PlayerStatus.playerData.magicAttack + addMagicAttack).ToString() + "</color>";
+        // 魔法防御力のテキストを表示する
+        realStatusText[3].text = addMagicDefense == 0 ? PlayerStatus.playerData.magicDefence.ToString() : "<color=green>" + (PlayerStatus.playerData.magicDefence + addMagicDefense).ToString() + "</color>";
+    }
 
+    /// <summary>
+    /// HPとSPのゲージの長さを計算する関数
+    /// </summary>
+    void UpdateBars()
+    {
+        // HPバーの長さを計算する
+        hpAndSPBar[0].fillAmount = (float)PlayerStatus.playerData.HP / (float)PlayerStatus.playerData.MaxHP;
+        // SPバーの長さを計算する
+        hpAndSPBar[1].fillAmount = (float)PlayerStatus.playerData.SP / (float)PlayerStatus.playerData.MaxSP;
     }
 
     /// <summary>

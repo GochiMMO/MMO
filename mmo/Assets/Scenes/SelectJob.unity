@@ -114,14 +114,14 @@ RectTransform:
   m_GameObject: {fileID: 5794490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .956249952, y: 1.79999936, z: 1}
+  m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 2051318693}
   m_RootOrder: 2
-  m_AnchorMin: {x: .26850003, y: .154174611}
-  m_AnchorMax: {x: .441571444, y: .734523833}
-  m_AnchoredPosition: {x: -170.057877, y: -37.461113}
-  m_SizeDelta: {x: 206.224228, y: 198.37439}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -156, y: -43.461113}
+  m_SizeDelta: {x: 365, y: 563}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &5794492
 MonoBehaviour:
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6f6cd473d43493d45ba0425417497e8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 222.248306, y: 256.906708}
+  m_Size: {x: 254.699997, y: 486.899994}
 --- !u!114 &5794495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,14 +429,14 @@ RectTransform:
   m_GameObject: {fileID: 419844759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .956249952, y: 1.79999936, z: 1}
+  m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 2051318693}
   m_RootOrder: 3
-  m_AnchorMin: {x: .514285743, y: .154174611}
-  m_AnchorMax: {x: .684214354, y: .734523833}
-  m_AnchoredPosition: {x: 118.115021, y: -37.461113}
-  m_SizeDelta: {x: 204.515747, y: 198.37439}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 166, y: -43.461113}
+  m_SizeDelta: {x: 365, y: 563}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &419844761
 MonoBehaviour:
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 43a48b1915b3654468516b49989ac9d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -477,7 +477,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 222.248306, y: 256.906708}
+  m_Size: {x: 254.699997, y: 486.899994}
 --- !u!114 &419844764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a2238c3f8480a69479bdd71d97503bb1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -546,14 +546,14 @@ RectTransform:
   m_GameObject: {fileID: 1038829525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 2051318693}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .115314327}
-  m_AnchorMax: {x: .219687492, y: .761000037}
-  m_AnchoredPosition: {x: -434.039398, y: -37}
-  m_SizeDelta: {x: 199, y: 392}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -481, y: -43}
+  m_SizeDelta: {x: 365, y: 563}
   m_Pivot: {x: .5, y: .5}
 --- !u!61 &1038829529
 BoxCollider2D:
@@ -565,9 +565,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .000579833984, y: .808227539}
+  m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 222.248306, y: 455.108093}
+  m_Size: {x: 254.699997, y: 486.899994}
 --- !u!114 &1038829530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,14 +609,14 @@ RectTransform:
   m_GameObject: {fileID: 1716467563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .956249952, y: 1.79999936, z: 1}
+  m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 2051318693}
   m_RootOrder: 4
-  m_AnchorMin: {x: .756857216, y: .154174611}
-  m_AnchorMax: {x: .932000041, y: .734523833}
-  m_AnchoredPosition: {x: 405.925842, y: -37.461113}
-  m_SizeDelta: {x: 207.668579, y: 198.37439}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 489, y: -43.461113}
+  m_SizeDelta: {x: 365, y: 563}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1716467565
 MonoBehaviour:
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ade52697cb8e69d4293466751169625c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -657,7 +657,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: .000574448553, y: -1.17372119}
   serializedVersion: 2
-  m_Size: {x: 222.248306, y: 256.906708}
+  m_Size: {x: 254.699997, y: 486.899994}
 --- !u!114 &1716467568
 MonoBehaviour:
   m_ObjectHideFlags: 0

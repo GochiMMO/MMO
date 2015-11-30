@@ -34,7 +34,7 @@ public class Archer : PlayerChar {
 
     public override bool UseSkill(int skillNumber, SkillBase skill)
     {
-        // throw new System.NotImplementedException();
+        
         return false;
     }
 

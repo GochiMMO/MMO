@@ -8,6 +8,8 @@ public class StatusPartitionSystem : MonoBehaviour {
     Text statusText;
 
     Text[] statusPartitionTexts;    //ステータスを表示するテキスト
+    // ステータスを表示するテキスト
+    Text[] realStatusText = new Text[4];
 
     int[] statusPoint;      //ステータスを表示させておくテキスト
     int restStatusPoint;    //残りステータスポイント
@@ -21,21 +23,30 @@ public class StatusPartitionSystem : MonoBehaviour {
     int addSP;
 
     // Use this for initialization
-    void Start () {
-        statusPartitionTexts = new Text[4];     
+    void Start()
+    {
+        statusPartitionTexts = new Text[4];
         statusPoint = new int[4];       //メモリ領域を確保
 
-        //ステータスポイントを表示させるテキストを格納する
+        // ステータスポイントを表示させるテキストを格納する
         for (int i = 0; i < 4; i++)
         {
+            // ステータスポイントを表示するテキストを1ずつ格納する
             statusPartitionTexts[i] = texts.transform.GetChild(i).gameObject.GetComponent<Text>();
         }
+        // 攻撃力等のステータスを表示するテキストを格納する
+        for (int i = 4; i < 8; i++)
+        {
+            realStatusText[i - 4] = texts.transform.GetChild(i).gameObject.GetComponent<Text>();
+        }
 
-        //それぞれ格納しておく
+        // それぞれ格納する
         statusPoint[0] = PlayerStatus.playerData.str;
         statusPoint[1] = PlayerStatus.playerData.vit;
         statusPoint[2] = PlayerStatus.playerData.intelligence;
         statusPoint[3] = PlayerStatus.playerData.mnd;
+
+        // 残りステータスポイントを格納する
         restStatusPoint = PlayerStatus.playerData.statusPoint;
     }
     
@@ -44,23 +55,30 @@ public class StatusPartitionSystem : MonoBehaviour {
         // 表示処理
         for (int i = 0; i < 4; i++)
         {
+            // テキストを表示する
             statusPartitionTexts[i].text = statusPoint[i].ToString();
         }
+        // 残りステータスポイントを表示する
         statusText.text = restStatusPoint.ToString();
     }
 
     /// <summary>
-    /// Push a plus button method of status point.
+    /// プラスボタンを押した時の処理
     /// </summary>
     /// <param name="statusNumber">Kind of status number.</param>
     public void PushPlusButton(int statusNumber)
     {
         if (restStatusPoint > 0)    //ステータスポイントが余っていたら
         {
-            statusPoint[statusNumber]++;    //ステータスを増やす
-            restStatusPoint--;              //残りステータスポイントを減らす
+            // ステータスを増やす
+            statusPoint[statusNumber]++;
+            // 残りステータスポイントを減らす
+            restStatusPoint--;              
+            // 残りステータスポイントを表示するテキストを赤色にする
             statusText.color = Color.red;
+            // 色を緑色にする
             statusPartitionTexts[statusNumber].color = Color.green;
+            // ステータスを更新する
             UpdateAddStatus();
         }
     }
@@ -104,6 +122,7 @@ public class StatusPartitionSystem : MonoBehaviour {
             addMagicAttack += (int)(statusPoint[i] * status_up.MagicAttack) - (int)(changeStatus * status_up.MagicAttack);
             addMagicDefense += (int)(statusPoint[i] * status_up.MagicDefense) - (int)(changeStatus * status_up.MagicDefense);
         }
+
     }
 
     /// <summary>
@@ -144,13 +163,13 @@ public class StatusPartitionSystem : MonoBehaviour {
                 if (statusPoint[statusNumber] == playerStatusPoint)
                 {
                     // テキストの色を黒に戻す
-                    statusPartitionTexts[statusNumber].color = Color.black;
+                    statusPartitionTexts[statusNumber].color = Color.white;
                 }
                 // 残りのポイントが降る前と同じならば
                 if (restStatusPoint == PlayerStatus.playerData.statusPoint)
                 {
                     // テキストの色を黒に戻す
-                    statusText.color = Color.black;
+                    statusText.color = Color.white;
                 }
             }
 
@@ -182,10 +201,10 @@ public class StatusPartitionSystem : MonoBehaviour {
         foreach (var status in statusPartitionTexts)
         {
             // それぞれのテキストの色を黒に変更する
-            status.color = Color.black;
+            status.color = Color.white;
         }
         // テキストの色を黒に変更する
-        statusText.color = Color.black;
+        statusText.color = Color.white;
 
         // ステータスの再計算を行う
         UpdateAddStatus();
@@ -205,10 +224,10 @@ public class StatusPartitionSystem : MonoBehaviour {
         restStatusPoint = PlayerStatus.playerData.statusPoint;
         foreach (var status in statusPartitionTexts)
         {
-            status.color = Color.black;
+            status.color = Color.white;
         }
 
-        statusText.color = Color.black;
+        statusText.color = Color.white;
 
         // ステータスの再計算を行う
         UpdateAddStatus();

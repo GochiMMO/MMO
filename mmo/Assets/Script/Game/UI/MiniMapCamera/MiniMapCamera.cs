@@ -8,6 +8,10 @@ public class MiniMapCamera : MonoBehaviour {
     // 矢印オブジェクト
     [SerializeField, Tooltip("矢印オブジェクト")]
     private GameObject arrow;
+    [SerializeField, Tooltip("画角の広さの最大値")]
+    private float maxViewPort = 120f;
+    [SerializeField, Tooltip("画角の広さの最小値")]
+    private float minViewPort = 60f;
 
     // 離すY軸距離
     float yDistance = -1f;
@@ -60,10 +64,24 @@ public class MiniMapCamera : MonoBehaviour {
         {
             // カメラの画角を変える
             camera.fieldOfView += value * Time.deltaTime;
+            // 画角が上限に達していたら
+            if (camera.fieldOfView >= maxViewPort)
+            {
+                // カメラの画角を最大に設定する
+                camera.fieldOfView = maxViewPort;
+                // 処理から抜ける
+                yield break;
+            }
+            // 画角が下限に達していたら
+            else if (camera.fieldOfView <= minViewPort)
+            {
+                // カメラの画角を最小に設定する
+                camera.fieldOfView = minViewPort;
+                // 処理から抜ける
+                yield break;
+            }
             yield return null;
         }
-        // 処理終了
-        changeFlag = false;
         // コルーチンから抜ける
         yield break;
     }
@@ -74,7 +92,7 @@ public class MiniMapCamera : MonoBehaviour {
     public void Expansion()
     {
         // 範囲チェックを行う
-        if (camera.fieldOfView > 60f && !changeFlag)
+        if (camera.fieldOfView > minViewPort)
         {
             // カメラの見える範囲を縮小する(つまり1キャラが大きく映る)
             StartCoroutine(ChangeFieldOfView(-10f));
@@ -88,7 +106,7 @@ public class MiniMapCamera : MonoBehaviour {
     public void Reduction()
     {
         // 範囲チェックを行う
-        if (camera.fieldOfView < 120f && !changeFlag)
+        if (camera.fieldOfView < maxViewPort)
         {
             // カメラの見える範囲を拡大する(つまり1キャラが小さく映る)
             StartCoroutine(ChangeFieldOfView(10f));

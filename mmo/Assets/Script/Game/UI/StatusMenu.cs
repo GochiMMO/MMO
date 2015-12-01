@@ -21,12 +21,12 @@ public class StatusMenu : MonoBehaviour {
     /// <summary>
     /// ステータスを表示するウィンドウのインスタンスの参照
     /// </summary>
-    GameObject statusWindowInstance = null;
+    static GameObject statusWindowInstance = null;
 
     /// <summary>
     /// スキルを表示するウィンドウのインスタンスの参照
     /// </summary>
-    GameObject skillWindowInstance = null;
+    static GameObject skillWindowInstance = null;
 
     /// <summary>
     /// Create instance of status window.
@@ -38,6 +38,12 @@ public class StatusMenu : MonoBehaviour {
         {
             // インスタンスを作成する
             statusWindowInstance = GameObject.Instantiate(statusWindowPrefab);
+        }
+        else
+        {
+            // 閉じるボタンがクリックされた処理を行う
+            statusWindowInstance.transform.GetChild(0).GetComponent<ScaleStatusMenu>().Reduct();
+            statusWindowInstance.transform.GetChild(0).GetComponent<TranslateWindow>().Return();
         }
     }
 

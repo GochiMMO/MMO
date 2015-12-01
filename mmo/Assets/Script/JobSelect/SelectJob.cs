@@ -87,7 +87,6 @@ public class SelectJob : MonoBehaviour {
                 anim.SetTrigger("NormalAttack1");
             }
 
-
             //クリックされたとき
             if (Input.GetMouseButtonDown(0))
             {

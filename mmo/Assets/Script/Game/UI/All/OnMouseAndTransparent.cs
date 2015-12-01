@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OnMouseAndTransparent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    [SerializeField, Tooltip("透過させる対象のスプライト")]
+    new RawImage image = null;
     [SerializeField, Tooltip("透過にかかる時間")]
     float second = 0.2f;
     [SerializeField, Tooltip("透過の値")]
@@ -18,8 +20,17 @@ public class OnMouseAndTransparent : MonoBehaviour, IPointerEnterHandler, IPoint
     /// </summary>
     void Start()
     {
-        // 画像のスクリプトを取得する
-        transparentImage = GetComponent<RawImage>();
+        // 画像が設定されていていなかったら
+        if (image == null)
+        {
+            // 画像のスクリプトを取得する
+            transparentImage = GetComponent<RawImage>();
+        }
+        // 画像が設定されていたら
+        else
+        {
+            transparentImage = image;
+        }
         // 最初の透過度を取得しておく
         firstAlpha = transparentImage.color.a;
     }

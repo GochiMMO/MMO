@@ -75,10 +75,6 @@ public class LoadCharacterData : MonoBehaviour {
                 // 上下のサイズ比を合わせる
                 buttonRect.sizeDelta = new Vector2(0, 0);
                 // アンカー位置を変更する
-                // 上アンカー位置の調整
-                buttonRect.anchorMax = new Vector2(buttonRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * i);
-                // 下アンカー位置の調整
-                buttonRect.anchorMin = new Vector2(buttonRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (i + 1));
 
                 // 上アンカー位置の調整
                 buttonRect.anchorMax = new Vector2(backImageRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * i);
@@ -118,9 +114,9 @@ public class LoadCharacterData : MonoBehaviour {
             buttonRect.sizeDelta = new Vector2(0, 0);
 
             // 上アンカー位置の変更
-            buttonRect.anchorMax = new Vector2(buttonRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum));
+            buttonRect.anchorMax = new Vector2(backImageRect.anchorMax.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum));
             // 下アンカー位置の変更
-            buttonRect.anchorMin = new Vector2(buttonRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum + 1));
+            buttonRect.anchorMin = new Vector2(backImageRect.anchorMin.x, backImageRect.anchorMax.y - buttonHeight * (saveDataNum + 1));
             // アンカーにピッタリ合わせるようにする
             buttonRect.anchoredPosition = new Vector2(0f, 0f);
         }

@@ -236,7 +236,7 @@ public class Sorcerer : PlayerChar {
         // ファイアのスキルを持ってくる
         SkillBase fireSkill = SkillControl.GetSkill("ファイア");
         // ファイアオブジェクトをインスタンス化する
-        GameObject fire = PhotonNetwork.Instantiate("Magics/Fire", gameObject.transform.position + Vector3.up * 5f, Quaternion.identity, 0);
+        GameObject fire = PhotonNetwork.Instantiate("Magics/Fire", gameObject.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
         // ファイアの攻撃スクリプトをゲットする
         PlayerAttack fireAttack = fire.GetComponent<PlayerAttack>();
         // 基礎攻撃力を取得する

@@ -22,6 +22,7 @@ public class MiniMapCamera : MonoBehaviour {
     void Start () {
         // カメラスクリプトを取得する
         camera = gameObject.GetComponent<Camera>();
+        
     }
     
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class MiniMapCamera : MonoBehaviour {
             // 矢印オブジェクトを回転させる
             arrow.transform.rotation = player.transform.rotation;
             // 回転を合わせる
-            arrow.transform.Rotate(Vector3.up, 180f);
+            arrow.transform.Rotate(Vector3.up, 180f, Space.World);
         }
     }
 

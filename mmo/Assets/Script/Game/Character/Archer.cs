@@ -9,21 +9,6 @@ public class Archer : PlayerChar {
 
     bool attackFlag = false;
     
-    protected override void Damage()
-    {
-
-    }
-
-    protected override void EndOfAttack()
-    {
-
-    }
-
-    protected override void Revive()
-    {
-
-    }
-
     /// <summary>
     /// 攻撃アニメーションが終了した瞬間の処理
     /// </summary>
@@ -43,8 +28,15 @@ public class Archer : PlayerChar {
     /// </summary>
     protected override void NormalAttack()
     {
-        // 通常攻撃を登録する
-        useSkill = () => NormalAttack1();
+        if (!attackFlag)
+        {
+            // 通常攻撃を登録する
+            useSkill = () => NormalAttack1();
+            // 攻撃してるフラグをオンにする
+            attackFlag = true;
+            // アニメーションを再生する
+            SetTrigger("NormalAttack1");
+        }
     }
 
     /// <summary>
@@ -58,8 +50,6 @@ public class Archer : PlayerChar {
         normalAttackObj.GetComponent<FireShot>().SetShotVec(transform.forward);
         // 攻撃のプロパティを設定する
         normalAttackObj.GetComponent<PlayerAttack>().SetProperties(playerData.attack, 0.1f, PlayerAttack.AttackKind.PHYSICS, this, 10);
-        // アニメーションを再生する
-        SetTrigger("NormalAttack1");
     }
 
     /// <summary>
@@ -71,7 +61,7 @@ public class Archer : PlayerChar {
     public override bool UseSkill(int skillNumber, SkillBase skill)
     {
         // 消費SPを超えているか、他の魔法を発動中ならば
-        if (skill.GetSp() > SP)
+        if (skill.GetSp() > SP && !attackFlag)
         {
             // スキルを発動できない
             return false;
@@ -144,6 +134,8 @@ public class Archer : PlayerChar {
         }
         // 攻撃したことにする
         Attack();
+        // 攻撃したフラグを立てる
+        attackFlag = true;
         // 魔法を発動できるのでtrueを返す
         return true;
     }

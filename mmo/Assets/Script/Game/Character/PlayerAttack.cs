@@ -70,6 +70,11 @@ public class PlayerAttack : MonoBehaviour {
         this.sp = sp;
     }
 
+    public void SetProperties(PlayerAttack playerAttack)
+    {
+        SetProperties(playerAttack.attack, playerAttack.damageRate, playerAttack.attackKind, playerAttack.parentPlayer, playerAttack.sp);
+    }
+
     /// <summary>
     /// 何かと衝突した時に呼ばれる関数
     /// </summary>

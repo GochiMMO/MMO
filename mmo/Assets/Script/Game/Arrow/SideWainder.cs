@@ -13,9 +13,11 @@ public class SideWainder : MonoBehaviour {
     [SerializeField, Tooltip("スピード")]
     float speed = 25f;
 
+    PlayerAttack playerAttack;
+
     // Use this for initialization
     void Start () {
-    
+        playerAttack = gameObject.GetComponent<PlayerAttack>();
     }
     
     // Update is called once per frame
@@ -35,5 +37,10 @@ public class SideWainder : MonoBehaviour {
         frontObj.SetShotVec(fowardVec);
         // 右方向に発射する
         rightObj.SetShotVec(fowardVec, angle);
+
+        // 攻撃力等を設定する
+        leftObj.gameObject.GetComponent<PlayerAttack>().SetProperties(playerAttack);
+        frontObj.gameObject.GetComponent<PlayerAttack>().SetProperties(playerAttack);
+        rightObj.gameObject.GetComponent<PlayerAttack>().SetProperties(playerAttack);
     }
 }

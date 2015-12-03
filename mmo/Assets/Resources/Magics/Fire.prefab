@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11479240}
   - 136: {fileID: 13683966}
   - 114: {fileID: 11432070}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fire
   m_TagString: Magic
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 4: {fileID: 422610}
   - 198: {fileID: 19896774}
   - 199: {fileID: 19974240}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 4: {fileID: 478650}
   - 198: {fileID: 19894644}
   - 199: {fileID: 19906084}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,10 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fb2d885e046524690bc9bb5f944a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sp: 0
   attack: 0
   col: {fileID: 0}
   damageRate: 0
   attackKind: 0
+  parentPlayer: {fileID: 0}
 --- !u!114 &11453672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2324,6 +2326,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: lifeSpan
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

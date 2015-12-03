@@ -86,12 +86,48 @@ public class SkillBase {
     public int GetSp() { return skillData.sp; }
     public int GetPoint() { return (skillData.point + skillData.difficult * skillData.lv); }
     public int GetDifficult() { return skillData.difficult; }
-    public float GetAttack() { return ( skillData.attack + skillData.bonus * skillData.lv ); }
-    public float GetDefence() { return skillData.defence; }
+    public float GetAttack() { return attack + bonus * level; }
+    public float GetDefence() { return defense + bonus * level; }
     public float GetCoolTime() { return skillData.cooltime; }
-    public float GetBonus() { return skillData.bonus; }
+    public float GetBonus() { return bonus * level; }
     public float GetEffectTime() { return ( skillData.effecttime + skillData.bonus * skillData.lv ); }
     public float GetCastTime() { return skillData.casttime; }
+
+    /// <summary>
+    /// 効果時間
+    /// </summary>
+    public float effectTime
+    {
+        private set { skillData.effecttime = value; }
+        get { return skillData.effecttime; }
+    }
+
+    /// <summary>
+    /// ボーナス
+    /// </summary>
+    public float bonus
+    {
+        private set { skillData.bonus = value; }
+        get { return skillData.bonus; }
+    }
+
+    /// <summary>
+    /// 攻撃力用プロパティ
+    /// </summary>
+    public float attack
+    {
+        private set { skillData.attack = value; }
+        get { return skillData.attack; }
+    }
+
+    /// <summary>
+    /// 防御力用プロパティ
+    /// </summary>
+    public float defense
+    {
+        private set { skillData.defence = value; }
+        get { return skillData.defence; }
+    }
 
     /// <summary>
     /// スキルのレベル

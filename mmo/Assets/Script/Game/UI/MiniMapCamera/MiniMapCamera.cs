@@ -18,8 +18,6 @@ public class MiniMapCamera : MonoBehaviour {
 
     new private Camera camera;
 
-    bool changeFlag = false;
-
     // Use this for initialization
     void Start () {
         // カメラスクリプトを取得する
@@ -45,6 +43,8 @@ public class MiniMapCamera : MonoBehaviour {
             arrow.transform.Translate(gameObject.transform.position.x - arrow.transform.position.x, player.transform.position.y - cameraY - yDistance, gameObject.transform.position.z - arrow.transform.position.z, Space.World);
             // 矢印オブジェクトを回転させる
             arrow.transform.rotation = player.transform.rotation;
+            // 回転を合わせる
+            arrow.transform.Rotate(Vector3.up, 180f);
         }
     }
 
@@ -55,8 +55,6 @@ public class MiniMapCamera : MonoBehaviour {
     /// <returns>反復子</returns>
     IEnumerator ChangeFieldOfView(float value)
     {
-        // 変えてるフラグを立てる
-        changeFlag = true;
         // 開始時刻を記録する
         float startTime = Time.time;
         // 1秒間繰り返す

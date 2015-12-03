@@ -216,6 +216,7 @@
      <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
      <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
      <Compile Include="Assets\Script\GUI\Skill\ScrollOnMouseCheck.cs" />
+     <Compile Include="Assets\Script\Game\Arrow\SideWainder.cs" />
      <Compile Include="Assets\Script\Game\Character\Archer.cs" />
      <Compile Include="Assets\Script\Game\Character\Haight.cs" />
      <Compile Include="Assets\Script\Game\Character\Monk.cs" />

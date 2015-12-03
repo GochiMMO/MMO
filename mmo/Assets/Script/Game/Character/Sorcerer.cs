@@ -242,7 +242,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力を取得する
         float magicAttack = playerData.magicAttack;
         // 攻撃力に掛ける倍率を計算する
-        float magicAttackRate = fireSkill.GetAttack() + fireSkill.GetBonus();
+        float magicAttackRate = fireSkill.attack + fireSkill.GetBonus();
         // ファイアの攻撃力を設定する
         fireAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // ファイアは魔法なので、種類を魔法にする
@@ -268,7 +268,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 魔法の倍率の計算
-        float magicAttackRate = burnSkill.GetAttack() + burnSkill.GetBonus();
+        float magicAttackRate = burnSkill.attack + burnSkill.GetBonus();
         // 攻撃力の設定
         burnAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -291,7 +291,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 倍率の設定
-        float magicAttackRate = flareSkill.GetAttack() + flareSkill.GetBonus();
+        float magicAttackRate = flareSkill.attack + flareSkill.GetBonus();
         // 攻撃力の設定
         flareAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -314,7 +314,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 倍率の設定
-        float magicAttackRate = thunderSkill.GetAttack() + thunderSkill.GetBonus();
+        float magicAttackRate = thunderSkill.attack + thunderSkill.GetBonus();
         // 攻撃力の設定
         thunderAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -339,7 +339,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 倍率の設定
-        float magicAttackRate = shockSkill.GetAttack() + shockSkill.GetBonus();
+        float magicAttackRate = shockSkill.attack + shockSkill.GetBonus();
         // 攻撃力の設定
         shockAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -362,7 +362,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 倍率の設定
-        float magicAttackRate = thunderVoltSkill.GetAttack() + thunderVoltSkill.GetBonus();
+        float magicAttackRate = thunderVoltSkill.attack + thunderVoltSkill.GetBonus();
         // 攻撃力の設定
         thunderVoltAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -385,7 +385,7 @@ public class Sorcerer : PlayerChar {
         // 基礎攻撃力の設定
         float magicAttack = playerData.magicAttack;
         // 倍率の設定
-        float magicAttackRate = meteoSkill.GetAttack() + meteoSkill.GetBonus();
+        float magicAttackRate = meteoSkill.attack + meteoSkill.GetBonus();
         // 攻撃力の設定
         meteoAttack.attack = (int)((magicAttack + magicAttack * magicAttackRate) * intBuff);
         // 自分を設定する
@@ -421,7 +421,7 @@ public class Sorcerer : PlayerChar {
         if (player)
         {
             // 回復量を計算する
-            int healHP = (int)((float)playerChar.GetPlayerData().MaxHP * (regeneSkill.GetBonus() + regeneSkill.GetAttack()));
+            int healHP = (int)((float)playerChar.GetPlayerData().MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
             // 効果時間を計算する
             float skillTime = 20 + regeneSkill.GetLv() * 5;
             // 回復する時間を計算する
@@ -431,7 +431,7 @@ public class Sorcerer : PlayerChar {
         }
         else{
             // 回復量を計算する
-            int healHP = (int)((float)playerData.MaxHP * (regeneSkill.GetBonus() + regeneSkill.GetAttack()));
+            int healHP = (int)((float)playerData.MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
             // 効果時間を計算する
             float skillTime = 20 + regeneSkill.GetLv() * 5;
             // 回復する時間を計算する
@@ -476,7 +476,7 @@ public class Sorcerer : PlayerChar {
             // そのプレイヤーの場所に回復エフェクトを表示させる
             PhotonNetwork.Instantiate("Magics/HealEffect", player.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
             // 回復させるHPの量を計算する
-            int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.GetAttack()));
+            int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.attack));
             // そのプレイヤーのHPを回復させる
             gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, recoverHP);
         }
@@ -485,7 +485,7 @@ public class Sorcerer : PlayerChar {
             // 自分の位置に回復エフェクトを表示させる
             PhotonNetwork.Instantiate("Magics/HealEffect", gameObject.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
             // 自分のHPを回復する
-            Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.GetAttack())));
+            Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.attack)));
         }
     }
 

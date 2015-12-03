@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 449206}
   - 198: {fileID: 19832156}
   - 199: {fileID: 19929274}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Center_Flare_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 425474}
   - 114: {fileID: 11445376}
   - 114: {fileID: 11491864}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealEffect
   m_TagString: Magic
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 421206}
   - 198: {fileID: 19815662}
   - 199: {fileID: 19910112}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stamp_Lightbeam_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 440320}
   - 198: {fileID: 19829066}
   - 199: {fileID: 19910302}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dots_snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - 4: {fileID: 418196}
   - 198: {fileID: 19820120}
   - 199: {fileID: 19950142}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stamp_Lightbeam_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 483354}
   - 198: {fileID: 19837694}
   - 199: {fileID: 19911296}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_Recover_hold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - 4: {fileID: 439442}
   - 198: {fileID: 19862452}
   - 199: {fileID: 19973354}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle_standard_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - 4: {fileID: 450116}
   - 198: {fileID: 19854264}
   - 199: {fileID: 19983656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dots_White_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7674,6 +7674,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Magic
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

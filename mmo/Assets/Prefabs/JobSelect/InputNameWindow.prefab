@@ -153,14 +153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b4fa6c186a06549be05b811a46e1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 22328760}
 --- !u!114 &11409572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 38e2d114d11b4dc4c850e7b918c79f69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d14dba34616df4b41bf1294c9a1083ec, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -363,7 +363,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_SelectionColor: {r: .65882355, g: .807843149, b: 1, a: .752941191}
-  m_Text: "\u3061\u3093\u3071\u3093"
+  m_Text: 
   m_CaretBlinkRate: .850000024
 --- !u!114 &11446310
 MonoBehaviour:
@@ -454,7 +454,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u3061\u3093\u3071\u3093"
+  m_Text: 
 --- !u!114 &11470948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -565,8 +565,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: -195, y: -128}
+  m_AnchoredPosition: {x: -1, y: -1}
+  m_SizeDelta: {x: -122, y: -82}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22432712
 RectTransform:
@@ -602,8 +602,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -77, y: -225}
-  m_SizeDelta: {x: 744, y: 194}
+  m_AnchoredPosition: {x: -77, y: -220.300003}
+  m_SizeDelta: {x: 744, y: 170.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22439438
 RectTransform:
@@ -636,8 +636,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: .999937057, y: 1}
-  m_SizeDelta: {x: -195, y: -128}
+  m_AnchoredPosition: {x: -.874911308, y: -2}
+  m_SizeDelta: {x: -122, y: -82}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22494150
 RectTransform:

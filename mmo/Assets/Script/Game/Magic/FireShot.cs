@@ -36,22 +36,33 @@ public class FireShot : Photon.MonoBehaviour {
     /// <param name="direction">方向</param>
     public void SetShotVec(Vector3 direction)
     {
-        
         if (!pv || !photonTransformView)
         {
             Start();
         }
+        this.transform.forward = direction;
         moveVec = direction * speed;
         moveVec.y = 0;
-        //if (pv.isMine)
+    }
+
+    /// <summary>
+    /// 発射する方向を設定する関数
+    /// </summary>
+    /// <param name="direction">方向</param>
+    public void SetShotVec(Vector3 direction, float rotateAngle)
+    {
+        if (!pv || !photonTransformView)
         {
-            // photonTransformView.SetSynchronizedValues(speed: moveVec, turnSpeed: 0);
+            Start();
         }
-        //shotFlag = true;
+        this.transform.forward = direction;
+        moveVec = direction * speed;
+        moveVec.y = 0;
+        transform.Rotate(Vector3.up, rotateAngle);
     }
 
     // Update is called once per frame
     void Update () {
-        this.transform.Translate(moveVec * Time.deltaTime, Space.World);
+        this.transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
     }
 }

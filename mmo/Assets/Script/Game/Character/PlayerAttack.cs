@@ -5,6 +5,7 @@ using System.Collections;
 /// プレイヤーの攻撃コンポーネント
 /// </summary>
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(PhotonView))]
 public class PlayerAttack : MonoBehaviour {
     /// <summary>
     /// プレイヤーの攻撃の種類
@@ -85,7 +86,7 @@ public class PlayerAttack : MonoBehaviour {
         if (col.tag == "Enemy")
         {
             // SPを加算する
-            parentPlayer.SP += sp;
+            // parentPlayer.SP += sp;
         }
     }
 

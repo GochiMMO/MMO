@@ -9,30 +9,29 @@ public class LvText : MonoBehaviour
     [SerializeField, Tooltip("スキルのID")]
     int skillId;
 
-    SkillBase skill;
-
     int oldSkillLv;
-    Text text;
 
     void TextPreview()
     {
+        SkillBase skill = SkillControl.skills[skillId];
+
         // スキルｌｖが０の場合
         if (skill.level == 0)
         {
-            text.text = ("-");
+            this.transform.GetComponent<Text>().text = ("-");
         }
         // スキルｌｖが０ではない場合
         else
         {
             oldSkillLv = skill.GetLv();
 
-            text.text = skill.GetLv().ToString();
+            this.transform.Find("Text").GetComponent<Text>().text = skill.GetLv().ToString();
             
             // 現在のスキルレベルとoldSkillLvの中身が違った場合
             if (skill.GetLv() != oldSkillLv)
             {
                 // 再度スキルｌｖを表示しなおす？
-                text.text = skill.GetLv().ToString();
+                this.transform.Find("Text").GetComponent<Text>().text = skill.GetLv().ToString();
             }
     
         }
@@ -41,10 +40,6 @@ public class LvText : MonoBehaviour
 
     void Start()
     {
-        // 表示するスキルのデータクラスを取得する
-        skill = SkillControl.skills[skillId];
-        // テキストを表示するコンポーネントを取得する
-        text = gameObject.GetComponent<Text>();
     }
 
     void Update()

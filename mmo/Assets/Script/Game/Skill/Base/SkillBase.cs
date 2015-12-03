@@ -164,7 +164,6 @@ public static class SkillControl
         job = PlayerStatus.playerData.job;
         // プレイヤーのジョブ番号からスキルを引っ張ってくる
         var skill_data = Resources.Load<Entity_Job>("Skill/SkillData").sheets[job].list;
-
         // スキルの数だけ繰り返す
         for (int i = 0; i < skill_data.Count; i++)
         {

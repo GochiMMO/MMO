@@ -6,10 +6,15 @@ public class NowPoint : MonoBehaviour {
 
     public static PlayerData playerData;  // プレイヤーデータ 
     private int now_skillpoint ;    // 現在所持スキルポイント
-	
-    void Start () {
+
+    void Set()
+    {
         // 初期化
         this.now_skillpoint = playerData.skillPoint;
+    }
+
+    void Start () {
+        Set();
 	}
 	
 	void Update () {

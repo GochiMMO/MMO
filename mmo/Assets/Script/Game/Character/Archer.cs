@@ -7,23 +7,9 @@ public class Archer : PlayerChar {
     /// </summary>
     System.Action useSkill;
 
+    bool attackFlag = false;
     
-    protected override void Attack()
-    {
-        base.Attack();
-    }
-
     protected override void Damage()
-    {
-
-    }
-
-    protected override void Attacking()
-    {
-
-    }
-
-    protected override void Dead()
     {
 
     }
@@ -36,6 +22,20 @@ public class Archer : PlayerChar {
     protected override void Revive()
     {
 
+    }
+
+    /// <summary>
+    /// 攻撃アニメーションが終了した瞬間の処理
+    /// </summary>
+    public override void EndAttackAnimation()
+    {
+        base.EndAttackAnimation();
+        // 攻撃しているフラグをオフにする
+        attackFlag = false;
+        // 攻撃する
+        useSkill();
+        // 攻撃をnullに設定する
+        useSkill = () => { };
     }
 
     /// <summary>
@@ -235,7 +235,7 @@ public class Archer : PlayerChar {
         // 攻撃力を計算する
         attack = (int)((attack + attack * attackRate) * intBuff);
         // マジックアローの攻撃力等を設定する
-        magicArrowAttack.SetProperties(attack, 0.1f, PlayerAttack.AttackKind.PHYSICS, this);
+        magicArrowAttack.SetProperties(attack, 0.1f, PlayerAttack.AttackKind.MAGIC, this);
         // 攻撃を放つ
         magicArrowObj.GetComponent<FireShot>().SetShotVec(transform.forward);
     }

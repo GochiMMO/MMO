@@ -235,7 +235,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// <summary>
     /// 移動速度
     /// </summary>
-    protected float moveSpeed { private set; get; }
+    protected float moveSpeed = 7f;
     /// <summary>
     /// 移動ベクトル
     /// </summary>
@@ -439,15 +439,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
         anim = gameObject.GetComponent<Animator>();
         if (photonView.isMine)
         {
+            // 次に必要な経験値を計算し、格納する
+            nextExp = PlayerStatus.nextLevelExp;
             // プレイヤーのステータスを取得する
             playerData = PlayerStatus.playerData;
-            
-            // 移動速度を設定する
-            moveSpeed = 10f;
             // バフの値を初期化する
             strBuff = intBuff = defBuff = mndBuff = 1f;
             // 回転スピードを変更する
-            rotateSpeed = 3f;
+            rotateSpeed = 5f;
             // プレイヤーの攻撃コンポーネントを取得する
             playerAttacks = GetComponentsInChildren<PlayerAttack>();
             // パーティーシステムを取得する

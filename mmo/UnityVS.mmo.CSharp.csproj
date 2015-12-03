@@ -248,7 +248,7 @@
     <Compile Include="Assets\Script\Data\Job.cs" />
     <Compile Include="Assets\Script\Data\Jobs.cs" />
     <Compile Include="Assets\Script\Data\PlayerStates.cs" />
-    <Compile Include="Assets\Script\GUI\Skill\HelpWindow.cs" />
+    <Compile Include="Assets\Script\GUI\Skill\MoveSkills.cs" />
     <Compile Include="Assets\Script\GUI\Skill\NowPoint.cs" />
     <Compile Include="Assets\Script\GUI\Skill\OverLapPoint.cs" />
     <Compile Include="Assets\Script\GUI\Skill\SKillTable.cs" />
@@ -282,6 +282,7 @@
     <Compile Include="Assets\Script\Game\Magic\SpawnFlare.cs" />
     <Compile Include="Assets\Script\Game\Skill\Base\SkillBase.cs" />
     <Compile Include="Assets\Script\Game\Skill\Text\LvText.cs" />
+    <Compile Include="Assets\Script\Game\Skill\Text\SkillName.cs" />
     <Compile Include="Assets\Script\Game\Skill\Text\SkillText.cs" />
     <Compile Include="Assets\Script\Game\System\CameraRaycast.cs" />
     <Compile Include="Assets\Script\Game\System\CreateDamageBillboard.cs" />

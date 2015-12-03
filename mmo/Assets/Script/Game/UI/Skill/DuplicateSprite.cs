@@ -64,13 +64,20 @@ public class DuplicateSprite : MonoBehaviour {
                     // その画像の上にマウスの座標があるなら
                     if (col.OverlapPoint(Input.mousePosition))
                     {
+                        // スキルのIDを取得する
+                        int skillID = transform.parent.GetComponent<OverLapPoint>().SkillCanvas.GetComponent<SkillText>().SkillID;
+                        // スキルのレベルが0以下ならば
+                        if (SkillControl.GetSkill(skillID).level <= 0)
+                        {
+                            return;
+                        }
                         GameObject obj = GameObject.Instantiate(this.gameObject);    // 自分を複製する
                         obj.AddComponent<MoveSprite>();     // 移動用スクリプトをアタッチする
                         obj.GetComponent<DuplicateSprite>().enabled = false;    // 複製用スクリプトをオフにする
                         obj.AddComponent<RemoveSprite>().enabled = false;       // 削除用スクリプトをアタッチし、オフにする
                         //obj.transform.SetParent(this.transform.parent); // 親を付ける
                         obj.transform.SetParent(mainCanvas.transform);  // 親を付ける
-                        obj.GetComponent<UseSkill>().skillID = transform.parent.GetComponent<OverLapPoint>().SkillCanvas.GetComponent<SkillText>().SkillID;
+                        obj.GetComponent<UseSkill>().skillID = skillID;
                         obj.transform.localScale = new Vector3(1f, 1f, 1f);
                         SetSkillIcon.moveImage = obj;
                     }

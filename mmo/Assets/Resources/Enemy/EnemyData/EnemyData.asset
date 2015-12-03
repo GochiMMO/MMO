@@ -32,75 +32,96 @@ MonoBehaviour:
       MAtkRate: 25
       MDefRate: 15
       BaseExp: 100
-      ExpRate: 10
+      ExpRate: 150
       DamageRate: .300000012
       Exp: 100
   - name: Bee
     list:
     - Name: "\u30D3\u30FC"
-      HP: 2500
+      HP: 400
       Attack: 150
       Defense: 10
       MagicAttack: 200
       MagicDefense: 10
-      MoveSpeed: 8
-      TrackingSpeed: 8
+      MoveSpeed: 3
+      TrackingSpeed: 5
       ActionInterval: 1
       FieldOfView: 200
       ViewDistance: 10
       ActionDistance: 6
-      HpRate: 30
+      HpRate: 50
       AttackRate: 20
       DefenseRate: 20
       MAtkRate: 25
       MDefRate: 15
-      BaseExp: 100
-      ExpRate: 10
+      BaseExp: 300
+      ExpRate: 200
       DamageRate: .200000003
       Exp: 100
   - name: Cokatris
     list:
     - Name: "\u30B3\u30AB\u30C8\u30EA\u30B9"
-      HP: 3000
-      Attack: 150
+      HP: 800
+      Attack: 50
       Defense: 200
       MagicAttack: 0
-      MagicDefense: 50
+      MagicDefense: 150
       MoveSpeed: 2
       TrackingSpeed: 3
       ActionInterval: 2
       FieldOfView: 260
       ViewDistance: 8
       ActionDistance: 5
-      HpRate: 30
+      HpRate: 100
       AttackRate: 20
-      DefenseRate: 20
+      DefenseRate: 50
       MAtkRate: 25
-      MDefRate: 15
-      BaseExp: 100
-      ExpRate: 10
+      MDefRate: 35
+      BaseExp: 300
+      ExpRate: 80
       DamageRate: .100000001
       Exp: 100
   - name: Rat
     list:
     - Name: "\u30E9\u30C3\u30C8"
-      HP: 1000
-      Attack: 100
-      Defense: 100
-      MagicAttack: 100
-      MagicDefense: 100
+      HP: 150
+      Attack: 250
+      Defense: 200
+      MagicAttack: 300
+      MagicDefense: 200
       MoveSpeed: 1
       TrackingSpeed: 5
       ActionInterval: 5
       FieldOfView: 120
       ViewDistance: 12
-      ActionDistance: 1
-      HpRate: 30
-      AttackRate: 20
-      DefenseRate: 20
-      MAtkRate: 25
-      MDefRate: 15
-      BaseExp: 100
-      ExpRate: 10
+      ActionDistance: 2
+      HpRate: 10
+      AttackRate: 100
+      DefenseRate: 50
+      MAtkRate: 125
+      MDefRate: 50
+      BaseExp: 150
+      ExpRate: 150
       DamageRate: .200000003
       Exp: 100
+    - Name: 
+      HP: 0
+      Attack: 0
+      Defense: 0
+      MagicAttack: 0
+      MagicDefense: 0
+      MoveSpeed: 0
+      TrackingSpeed: 0
+      ActionInterval: 0
+      FieldOfView: 0
+      ViewDistance: 0
+      ActionDistance: 0
+      HpRate: 0
+      AttackRate: 0
+      DefenseRate: 0
+      MAtkRate: 0
+      MDefRate: 0
+      BaseExp: 0
+      ExpRate: 0
+      DamageRate: 0
+      Exp: 0

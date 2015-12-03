@@ -415,30 +415,33 @@ public class Sorcerer : PlayerChar {
     {
         // リジェネのスキルを取得する
         SkillBase regeneSkill = SkillControl.GetSkill("リジェネ");
-        // プレイヤーのスクリプトを取得する
-        PlayerChar playerChar = player.GetComponent<PlayerChar>();
-        // playerがプレイヤーならば
         if (player)
         {
-            // 回復量を計算する
-            int healHP = (int)((float)playerChar.GetPlayerData().MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
-            // 効果時間を計算する
-            float skillTime = 20 + regeneSkill.GetLv() * 5;
-            // 回復する時間を計算する
-            float healTime = 5f - regeneSkill.GetLv() * 0.2f;
-            // リジェネを発動させる
-            photonView.RPC("GenerationRegeneration", player.GetPhotonView().owner, healHP, skillTime, healTime);
+            // プレイヤーのスクリプトを取得する
+            PlayerChar playerChar = player.GetComponent<PlayerChar>();
+            // playerがプレイヤーならば
+            if (player)
+            {
+                // 回復量を計算する
+                int healHP = (int)((float)playerChar.GetPlayerData().MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
+                // 効果時間を計算する
+                float skillTime = 20 + regeneSkill.GetLv() * 5;
+                // 回復する時間を計算する
+                float healTime = 5f - regeneSkill.GetLv() * 0.2f;
+                // リジェネを発動させる
+                photonView.RPC("GenerationRegeneration", player.GetPhotonView().owner, healHP, skillTime, healTime);
+                return;
+            }
         }
-        else{
-            // 回復量を計算する
-            int healHP = (int)((float)playerData.MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
-            // 効果時間を計算する
-            float skillTime = 20 + regeneSkill.GetLv() * 5;
-            // 回復する時間を計算する
-            float healTime = 5f - regeneSkill.GetLv() * 0.5f;
-            // リジェネを発動する
-            GenerationRegeneration(healHP, skillTime, healTime);
-        }
+        // 回復量を計算する
+        int healHp = (int)((float)playerData.MaxHP * (regeneSkill.GetBonus() + regeneSkill.attack));
+        // 効果時間を計算する
+        float skillTimer = 20 + regeneSkill.level * 5;
+        // 回復する時間を計算する
+        float healTimer = 5f - regeneSkill.level * 0.5f;
+        // リジェネを発動する
+        GenerationRegeneration(healHp, skillTimer, healTimer);
+
     }
 
     /// <summary>
@@ -466,51 +469,53 @@ public class Sorcerer : PlayerChar {
     /// <param name="player">回復させるプレイヤーオブジェクト</param>
     private void Heal(GameObject player)
     {
-        // プレイヤーの情報を取得する
-        PlayerChar playerChar = player.GetComponent<PlayerChar>();
         // ヒールのスキルを取得する
         SkillBase healSkill = SkillControl.GetSkill("ヒール");
-        // プレイヤーが取得できれば
-        if (playerChar)
+        // プレイヤーが存在すれば
+        if (player)
         {
-            // そのプレイヤーの場所に回復エフェクトを表示させる
-            PhotonNetwork.Instantiate("Magics/HealEffect", player.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
-            // 回復させるHPの量を計算する
-            int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.attack));
-            // そのプレイヤーのHPを回復させる
-            gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, recoverHP);
+            // プレイヤーの情報を取得する
+            PlayerChar playerChar = player.GetComponent<PlayerChar>();
+            // プレイヤーが取得できれば
+            if (playerChar)
+            {
+                // そのプレイヤーの場所に回復エフェクトを表示させる
+                PhotonNetwork.Instantiate("Magics/HealEffect", player.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
+                // 回復させるHPの量を計算する
+                int recoverHP = (int)((float)playerChar.GetPlayerData().MaxHP * (healSkill.GetBonus() + healSkill.attack));
+                // そのプレイヤーのHPを回復させる
+                gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, recoverHP);
+                // 処理が完了したので抜ける
+                return;
+            }
         }
-        else
-        {
-            // 自分の位置に回復エフェクトを表示させる
-            PhotonNetwork.Instantiate("Magics/HealEffect", gameObject.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
-            // 自分のHPを回復する
-            Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.attack)));
-        }
+        // 自分の位置に回復エフェクトを表示させる
+        PhotonNetwork.Instantiate("Magics/HealEffect", gameObject.transform.position + Vector3.up * 1f, Quaternion.identity, 0);
+        // 自分のHPを回復する
+        Recover((int)((float)playerData.MaxHP * (healSkill.GetBonus() + healSkill.attack)));
     }
-
     /// <summary>
     /// プレイヤーを全回復させる関数
     /// </summary>
     /// <param name="player">回復させる対象</param>
     private void Venediction(GameObject player)
     {
-        // プレイヤーの情報をゲットする
-        PlayerChar playerChar = player.GetComponent<PlayerChar>();
-        // プレイヤーが取得できれば
-        if (playerChar)
+        if (player)
         {
-            // 他の誰かのHPを回復させる
-            gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, playerChar.GetPlayerData().MaxHP);
+            // プレイヤーの情報をゲットする
+            PlayerChar playerChar = player.GetComponent<PlayerChar>();
+            // プレイヤーが取得できれば
+            if (playerChar)
+            {
+                // 他の誰かのHPを回復させる
+                gameObject.GetPhotonView().RPC("Recover", player.GetPhotonView().owner, playerChar.GetPlayerData().MaxHP);
+                // 処理が完了したので抜ける
+                return;
+            }
         }
-        // 情報が取得できなければ
-        else
-        {
-            // 自分のHPを回復させる
-            Recover(playerData.MaxHP);
-        }
+        // 自分のHPを回復させる
+        Recover(playerData.MaxHP);
     }
-
     /// <summary>
     /// 通常攻撃を行う
     /// </summary>

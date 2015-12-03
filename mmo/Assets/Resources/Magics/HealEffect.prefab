@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014a42d2de7b93d478a1d5183080f7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpan: 2
+  lifeSpan: 1
   usePhotonNetwork: 1
 --- !u!198 &19815662
 ParticleSystem:
@@ -7678,6 +7678,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifeSpan
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

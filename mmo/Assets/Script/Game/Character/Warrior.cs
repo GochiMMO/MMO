@@ -92,10 +92,6 @@ public class Warrior : PlayerChar {
         base.EndAttackAnimation();
         // 攻撃しているフラグをオフにする
         attackFlag = false;
-        // 攻撃する
-        useSkill();
-        // 攻撃をnullに設定する
-        useSkill = () => { };
     }
 
     /// <summary>
@@ -106,13 +102,17 @@ public class Warrior : PlayerChar {
         if (!attackFlag)
         {
             // ダメージ計算式
-            int damage = playerData.attack + (int)(playerData.attack);
+            int damage = playerData.attack;
             // スキルごとのダメージを設定する
-            SetAttack(damage);
+            SetAttack(damage, -1, 0.1f, 10);
             // 攻撃してるフラグをオンにする
             attackFlag = true;
+            // 攻撃オブジェクトを使えるようにする
+            EnablePlayerAttack();
             // アニメーションを再生する
             SetTrigger("NormalAttack1");
+            // 攻撃を行う
+            Attack();
         }
     }
 

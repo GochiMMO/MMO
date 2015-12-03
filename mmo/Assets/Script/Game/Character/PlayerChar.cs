@@ -664,7 +664,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 攻撃力を設定する(物理)
     /// </summary>
     /// <param name="attackNumber">攻撃コンポーネントの番号</param>
-    virtual protected void SetAttack(int attack, int attackNumber = -1, float damageRate = 0.1f)
+    virtual protected void SetAttack(int attack, int attackNumber = -1, float damageRate = 0.1f, int SP)
     {
         // 攻撃コンポーネントの番号が指定されていない時
         if (attackNumber == -1)
@@ -673,14 +673,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃の各種パラメータを設定する
-                playerAttacks[i].SetProperties(attack, damageRate, PlayerAttack.AttackKind.PHYSICS, this);
+                playerAttacks[i].SetProperties(attack, damageRate, PlayerAttack.AttackKind.PHYSICS, this, SP);
             }
         }
         // 攻撃コンポーネントの番号に指定があった場合、範囲をチェックしその範囲内であったとき
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 攻撃の各種パラメータを設定する
-            playerAttacks[attackNumber].SetProperties(attack, damageRate, PlayerAttack.AttackKind.PHYSICS, this);
+            playerAttacks[attackNumber].SetProperties(attack, damageRate, PlayerAttack.AttackKind.PHYSICS, this, SP);
         }
     }
 
@@ -688,7 +688,7 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 攻撃力を設定する(魔法)
     /// </summary>
     /// <param name="attackNumber">攻撃コンポーネントの番号</param>
-    virtual protected void SetMagicAttack(int attack, int attackNumber = -1, float damageRate = 0.1f)
+    virtual protected void SetMagicAttack(int attack, int attackNumber = -1, float damageRate = 0.1f, int SP)
     {
         // 攻撃コンポーネントの番号が指定されていない時
         if (attackNumber == -1)
@@ -697,14 +697,14 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
             for (int i = 0; i < playerAttacks.Length; i++)
             {
                 // 攻撃の各種パラメータを設定する
-                playerAttacks[i].SetProperties(attack, damageRate, PlayerAttack.AttackKind.MAGIC, this);
+                playerAttacks[i].SetProperties(attack, damageRate, PlayerAttack.AttackKind.MAGIC, this, SP);
             }
         }
         // 攻撃コンポーネントの番号に指定があった場合、範囲をチェックしその範囲内であったとき
         else if (attackNumber >= 0 && attackNumber < playerAttacks.Length)
         {
             // 攻撃の各種パラメータを設定する
-            playerAttacks[attackNumber].SetProperties(attack, damageRate, PlayerAttack.AttackKind.MAGIC, this);
+            playerAttacks[attackNumber].SetProperties(attack, damageRate, PlayerAttack.AttackKind.MAGIC, this, SP);
         }
     }
 

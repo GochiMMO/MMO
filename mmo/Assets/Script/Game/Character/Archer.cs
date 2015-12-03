@@ -36,6 +36,8 @@ public class Archer : PlayerChar {
             attackFlag = true;
             // アニメーションを再生する
             SetTrigger("NormalAttack1");
+            // 攻撃中にする
+            Attack();
         }
     }
 

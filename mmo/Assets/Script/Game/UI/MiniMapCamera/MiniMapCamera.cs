@@ -16,6 +16,8 @@ public class MiniMapCamera : MonoBehaviour {
     // 離すY軸距離
     float yDistance = -1f;
 
+    bool firstSetFlag = true;
+
     new private Camera camera;
 
     // Use this for initialization
@@ -34,7 +36,7 @@ public class MiniMapCamera : MonoBehaviour {
             if (yDistance == -1f)
             {
                 // Y軸距離を計算する
-                yDistance = player.transform.position.y - gameObject.transform.position.y;
+                yDistance = 0f - gameObject.transform.position.y;
             }
             float cameraY = gameObject.transform.position.y;
 

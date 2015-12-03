@@ -3279,7 +3279,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -3357,7 +3357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -3596,7 +3596,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -4389,7 +4389,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -4441,7 +4441,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -4699,7 +4699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -4770,6 +4770,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e52c83e8e98bb4fa920aa9c5e374c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    Lv: 0
+    job: 0
+    nowExp: 0
+    characterNumber: 0
+    name: 
+    HP: 0
+    MaxHP: 0
+    SP: 0
+    MaxSP: 0
+    attack: 0
+    defense: 0
+    magicAttack: 0
+    magicDefence: 0
+    str: 0
+    vit: 0
+    mnd: 0
+    intelligence: 0
+    skillPoint: 0
+    statusPoint: 0
+    logoutScene: 0
+    x: 0
+    y: 0
+    z: 0
+    skillLevel: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &11427922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5315,7 +5340,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -5402,7 +5427,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -5475,7 +5500,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -6412,7 +6437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -6540,7 +6565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -6616,7 +6641,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -7346,7 +7371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -7863,7 +7888,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -8252,7 +8277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -8334,7 +8359,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22447224}
   m_Direction: 2
   m_Value: 1
-  m_Size: .500929296
+  m_Size: .500929415
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8391,7 +8416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:
@@ -8753,7 +8778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11494292}
         m_MethodName: PushPlusButton
         m_Mode: 3
         m_Arguments:

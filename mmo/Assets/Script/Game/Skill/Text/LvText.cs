@@ -25,13 +25,13 @@ public class LvText : MonoBehaviour
         {
             oldSkillLv = skill.GetLv();
 
-            this.transform.Find("Text").GetComponent<Text>().text = skill.GetLv().ToString();
+            this.transform.GetComponent<Text>().text = skill.GetLv().ToString();
             
             // 現在のスキルレベルとoldSkillLvの中身が違った場合
             if (skill.GetLv() != oldSkillLv)
             {
                 // 再度スキルｌｖを表示しなおす？
-                this.transform.Find("Text").GetComponent<Text>().text = skill.GetLv().ToString();
+                this.transform.GetComponent<Text>().text = skill.GetLv().ToString();
             }
     
         }
@@ -40,6 +40,7 @@ public class LvText : MonoBehaviour
 
     void Start()
     {
+     
     }
 
     void Update()

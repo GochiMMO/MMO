@@ -8,17 +8,12 @@ public class Warrior : PlayerChar {
 
     public override bool UseSkill(int skillNumber, SkillBase skill)
     {
-        // デバッグ用
-        Debug.Log("Call UseSkil");
         
         if (skill.GetSp() > SP || isUseSkills)
         {
-            Debug.Log("Skill Cancel");
-            // スキル使用させない
             return false;
         }
 
-        Debug.Log("Spend SP");
         // SPを消費させる
         SP -= skill.GetSp();
 
@@ -29,7 +24,7 @@ public class Warrior : PlayerChar {
         switch (skillNumber)
         {
             case 0:
-                    // 挑発
+                    this.Prov();
                     break;
             case 1:
                     this.Berserk();
@@ -83,20 +78,32 @@ public class Warrior : PlayerChar {
     }
 
     /// <summary>
+    /// 挑発 (攻撃力上昇系)
+    /// </summary>
+    public void Prov()
+    {
+        SkillBase prov = SkillControl.GetSkill("挑発");
+
+        // 再生させるアニメーションを指定する
+        anim.SetTrigger("Buffs");
+        this.Hate = (int)prov.GetAttack();
+        // スキルフラグをfalseにしておく
+        this.EndSkillFlag();
+    }
+
+    /// <summary>
     /// バーサク (攻撃力上昇系)
     /// </summary>
     public void Berserk()
     {
         SkillBase berserk = SkillControl.GetSkill("バーサク");
 
-        Debug.Log("バーサク");
         // 再生させるアニメーションを指定する
         anim.SetTrigger("Buffs");
         // 攻撃力アップ
         StartCoroutine(StrBuff(berserk.GetAttack(), berserk.GetEffectTime()));
         // 防御力ダウン
         StartCoroutine(DefBuff(berserk.GetDefence(), berserk.GetEffectTime()));
-        Debug.Log(playerData.attack);
         // スキルフラグをfalseにしておく
         this.EndSkillFlag();
     }
@@ -143,7 +150,7 @@ public class Warrior : PlayerChar {
         // 再生させるアニメーションを指定する
         anim.SetTrigger("Buffs");
         // 物理防御力アップ
-        StartCoroutine(DefBuff(defender.GetAttack(), defender.GetEffectTime()));
+        StartCoroutine(DefBuff(defender.GetDefence(), defender.GetEffectTime()));
         // スキルフラグをfalseにしておく
         this.EndSkillFlag();
     }
@@ -158,7 +165,7 @@ public class Warrior : PlayerChar {
         // 再生させるアニメーションを指定する
         anim.SetTrigger("Buffs");
         // 物理防御力アップ
-        StartCoroutine(DefBuff(lampart.GetAttack(), lampart.GetEffectTime()));
+        StartCoroutine(DefBuff(lampart.GetDefence(), lampart.GetEffectTime()));
         // スキルフラグをfalseにしておく
         this.EndSkillFlag();
     }
@@ -173,9 +180,9 @@ public class Warrior : PlayerChar {
         // 再生させるアニメーションを指定する
         anim.SetTrigger("Sentinel");
         // 物理防御力アップ
-        StartCoroutine(DefBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
+        StartCoroutine(DefBuff(sentinel.GetDefence(), sentinel.GetEffectTime()));
         // 魔法防御力アップ
-        StartCoroutine(MndBuff(sentinel.GetAttack(), sentinel.GetEffectTime()));
+        StartCoroutine(MndBuff(sentinel.GetDefence(), sentinel.GetEffectTime()));
         // スキルフラグをfalseにしておく
         this.EndSkillFlag();
     }

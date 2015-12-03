@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class NowPoint : MonoBehaviour {
 
-    public static PlayerData playerData;  // プレイヤーデータ 
+    public PlayerData data;  // プレイヤーデータ 
     private int now_skillpoint ;    // 現在所持スキルポイント
 
     void Set()
     {
+        this.data = PlayerStatus.playerData;        
         // 初期化
-        this.now_skillpoint = playerData.skillPoint;
+        this.now_skillpoint = data.skillPoint;
     }
 
     void Start () {
@@ -21,10 +22,10 @@ public class NowPoint : MonoBehaviour {
         //　テキストの表示
         this.GetComponent<Text>().text = now_skillpoint.ToString();
         // 現在のスキルポイントとプレイヤーの持っているポイントが異なれば
-        if (this.now_skillpoint != playerData.skillPoint)
+        if (this.now_skillpoint != data.skillPoint)
         {
             // ポイントを入れなおす
-            this.now_skillpoint = playerData.skillPoint;
+            this.now_skillpoint = data.skillPoint;
         }
     }
 

@@ -793,7 +793,6 @@ abstract public class PlayerChar : Photon.MonoBehaviour {
     /// 通常攻撃
     /// </summary>
     virtual protected void NormalAttack() {
-        Debug.Log("Player do a normal attack");
     }
 
     /// <summary>

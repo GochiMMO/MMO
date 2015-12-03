@@ -412,6 +412,8 @@ abstract public class EnemyData : Photon.MonoBehaviour {
                         // そのコライダーを出したプレイヤーに経験値を加算させる
                         playerAttack.parentPlayer.AddExp(exp);
                     }
+                    // SPを加算する
+                    playerAttack.parentPlayer.SP += playerAttack.sp;
                     // ダメージを表示させる、減算させるなどの処理を行う
                     GetComponent<PhotonView>().RPC("DrawDamage", PhotonTargets.All, damage);
                     // 攻撃を食らった時の処理を行う

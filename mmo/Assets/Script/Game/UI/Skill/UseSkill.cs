@@ -32,7 +32,6 @@ public class UseSkill : MonoBehaviour {
                     // クールタイムの発生
                     SetSkillIcon.GenerationSkillCoolTime(skillID);
                     skillCoolTimeFlag = true;
-                    Debug.Log("スキルクールタイムセット");
                 }
             }
         }

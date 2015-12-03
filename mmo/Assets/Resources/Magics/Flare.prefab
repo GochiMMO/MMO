@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 460254}
   - 198: {fileID: 19860050}
   - 199: {fileID: 19998498}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flagments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11476356}
   - 136: {fileID: 13658600}
   - 114: {fileID: 11450430}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Magic
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 446352}
   - 198: {fileID: 19859900}
   - 199: {fileID: 19916898}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eternal Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 456492}
   - 198: {fileID: 19865364}
   - 199: {fileID: 19959954}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ray1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - 4: {fileID: 480706}
   - 198: {fileID: 19852596}
   - 199: {fileID: 19905268}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Explode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - 4: {fileID: 412302}
   - 198: {fileID: 19833310}
   - 199: {fileID: 19954616}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - 4: {fileID: 494530}
   - 198: {fileID: 19848864}
   - 199: {fileID: 19963012}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ring1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - 4: {fileID: 498286}
   - 198: {fileID: 19838908}
   - 199: {fileID: 19937660}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - 4: {fileID: 444362}
   - 198: {fileID: 19853232}
   - 199: {fileID: 19929554}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Big Bang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - 4: {fileID: 411870}
   - 198: {fileID: 19816132}
   - 199: {fileID: 19960052}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ray2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9812,6 +9812,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Radius
       value: 4.632658
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

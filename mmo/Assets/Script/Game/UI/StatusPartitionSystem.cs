@@ -6,8 +6,14 @@ public class StatusPartitionSystem : MonoBehaviour {
     GameObject texts;
     [SerializeField, Tooltip("スキルポイントを表示しておくテキスト")]
     Text statusText;
+    [SerializeField, Tooltip("HPとSPを表示するテキスト")]
+    Text[] hpAndSPText;
+    [SerializeField, Tooltip("HPとSPのゲージ(Image)")]
+    Image[] hpAndSPBar;
 
     Text[] statusPartitionTexts;    //ステータスを表示するテキスト
+    // ステータスを表示するテキスト
+    Text[] realStatusText = new Text[4];
 
     int[] statusPoint;      //ステータスを表示させておくテキスト
     int restStatusPoint;    //残りステータスポイント
@@ -21,22 +27,34 @@ public class StatusPartitionSystem : MonoBehaviour {
     int addSP;
 
     // Use this for initialization
-    void Start () {
-        statusPartitionTexts = new Text[4];     
+    void Start()
+    {
+        statusPartitionTexts = new Text[4];
         statusPoint = new int[4];       //メモリ領域を確保
 
-        //ステータスポイントを表示させるテキストを格納する
+        // ステータスポイントを表示させるテキストを格納する
         for (int i = 0; i < 4; i++)
         {
+            // ステータスポイントを表示するテキストを1ずつ格納する
             statusPartitionTexts[i] = texts.transform.GetChild(i).gameObject.GetComponent<Text>();
         }
+        // 攻撃力等のステータスを表示するテキストを格納する
+        for (int i = 4; i < 8; i++)
+        {
+            realStatusText[i - 4] = texts.transform.GetChild(i).gameObject.GetComponent<Text>();
+        }
 
-        //それぞれ格納しておく
+        // それぞれ格納する
         statusPoint[0] = PlayerStatus.playerData.str;
         statusPoint[1] = PlayerStatus.playerData.vit;
         statusPoint[2] = PlayerStatus.playerData.intelligence;
         statusPoint[3] = PlayerStatus.playerData.mnd;
+
+        // 残りステータスポイントを格納する
         restStatusPoint = PlayerStatus.playerData.statusPoint;
+
+        // ステータスを表示させる
+        UpdateAddStatus();
     }
     
     // Update is called once per frame
@@ -44,23 +62,32 @@ public class StatusPartitionSystem : MonoBehaviour {
         // 表示処理
         for (int i = 0; i < 4; i++)
         {
+            // テキストを表示する
             statusPartitionTexts[i].text = statusPoint[i].ToString();
         }
+        // 残りステータスポイントを表示する
         statusText.text = restStatusPoint.ToString();
+        // HPとSPのゲージを計算する
+        UpdateBars();
     }
 
     /// <summary>
-    /// Push a plus button method of status point.
+    /// プラスボタンを押した時の処理
     /// </summary>
     /// <param name="statusNumber">Kind of status number.</param>
     public void PushPlusButton(int statusNumber)
     {
         if (restStatusPoint > 0)    //ステータスポイントが余っていたら
         {
-            statusPoint[statusNumber]++;    //ステータスを増やす
-            restStatusPoint--;              //残りステータスポイントを減らす
+            // ステータスを増やす
+            statusPoint[statusNumber]++;
+            // 残りステータスポイントを減らす
+            restStatusPoint--;              
+            // 残りステータスポイントを表示するテキストを赤色にする
             statusText.color = Color.red;
+            // 色を緑色にする
             statusPartitionTexts[statusNumber].color = Color.green;
+            // ステータスを更新する
             UpdateAddStatus();
         }
     }
@@ -104,6 +131,29 @@ public class StatusPartitionSystem : MonoBehaviour {
             addMagicAttack += (int)(statusPoint[i] * status_up.MagicAttack) - (int)(changeStatus * status_up.MagicAttack);
             addMagicDefense += (int)(statusPoint[i] * status_up.MagicDefense) - (int)(changeStatus * status_up.MagicDefense);
         }
+        // HPのテキストを表示する
+        hpAndSPText[0].text = addHP == 0 ? PlayerStatus.playerData.HP.ToString() + " / " + PlayerStatus.playerData.MaxHP : PlayerStatus.playerData.HP.ToString() + " / " + "<color=green>" + (PlayerStatus.playerData.MaxHP + addHP).ToString() + "</color>";
+        // SPのテキストを表示する
+        hpAndSPText[1].text = addSP == 0 ? PlayerStatus.playerData.SP.ToString() + " / " + PlayerStatus.playerData.MaxSP : PlayerStatus.playerData.SP.ToString() + " / " + "<color=green>" + (PlayerStatus.playerData.MaxSP + addSP).ToString() + "</color>";
+        // 攻撃力のテキストを表示する
+        realStatusText[0].text = addAttack == 0 ? PlayerStatus.playerData.attack.ToString() : "<color=green>" + (PlayerStatus.playerData.attack + addAttack).ToString() + "</color>";
+        // 防御力のテキストを表示する
+        realStatusText[1].text = addDefense == 0 ? PlayerStatus.playerData.defense.ToString() : "<color=green>" + (PlayerStatus.playerData.defense + addDefense).ToString() + "</color>";
+        // 魔法攻撃力のテキストを表示する
+        realStatusText[2].text = addMagicAttack == 0 ? PlayerStatus.playerData.magicAttack.ToString() : "<color=green>" + (PlayerStatus.playerData.magicAttack + addMagicAttack).ToString() + "</color>";
+        // 魔法防御力のテキストを表示する
+        realStatusText[3].text = addMagicDefense == 0 ? PlayerStatus.playerData.magicDefence.ToString() : "<color=green>" + (PlayerStatus.playerData.magicDefence + addMagicDefense).ToString() + "</color>";
+    }
+
+    /// <summary>
+    /// HPとSPのゲージの長さを計算する関数
+    /// </summary>
+    void UpdateBars()
+    {
+        // HPバーの長さを計算する
+        hpAndSPBar[0].fillAmount = (float)PlayerStatus.playerData.HP / (float)PlayerStatus.playerData.MaxHP;
+        // SPバーの長さを計算する
+        hpAndSPBar[1].fillAmount = (float)PlayerStatus.playerData.SP / (float)PlayerStatus.playerData.MaxSP;
     }
 
     /// <summary>
@@ -144,13 +194,13 @@ public class StatusPartitionSystem : MonoBehaviour {
                 if (statusPoint[statusNumber] == playerStatusPoint)
                 {
                     // テキストの色を黒に戻す
-                    statusPartitionTexts[statusNumber].color = Color.black;
+                    statusPartitionTexts[statusNumber].color = Color.white;
                 }
                 // 残りのポイントが降る前と同じならば
                 if (restStatusPoint == PlayerStatus.playerData.statusPoint)
                 {
                     // テキストの色を黒に戻す
-                    statusText.color = Color.black;
+                    statusText.color = Color.white;
                 }
             }
 
@@ -182,10 +232,10 @@ public class StatusPartitionSystem : MonoBehaviour {
         foreach (var status in statusPartitionTexts)
         {
             // それぞれのテキストの色を黒に変更する
-            status.color = Color.black;
+            status.color = Color.white;
         }
         // テキストの色を黒に変更する
-        statusText.color = Color.black;
+        statusText.color = Color.white;
 
         // ステータスの再計算を行う
         UpdateAddStatus();
@@ -205,10 +255,10 @@ public class StatusPartitionSystem : MonoBehaviour {
         restStatusPoint = PlayerStatus.playerData.statusPoint;
         foreach (var status in statusPartitionTexts)
         {
-            status.color = Color.black;
+            status.color = Color.white;
         }
 
-        statusText.color = Color.black;
+        statusText.color = Color.white;
 
         // ステータスの再計算を行う
         UpdateAddStatus();

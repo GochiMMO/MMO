@@ -11,6 +11,8 @@ public class SelectJob : MonoBehaviour {
 
     // 出すモデルのインスタンス
     GameObject model;
+    // アニメーションコンポーネントを取得する
+    Animator anim;
 
     public static bool windowVisibleFlag = false;
     BoxCollider2D col;
@@ -41,13 +43,13 @@ public class SelectJob : MonoBehaviour {
         // モデルの位置を変更する
         model.transform.position = col.bounds.center + Vector3.back * 5f - Vector3.up * (col.bounds.center.y - col.bounds.min.y);
         // モデルのスケーリングを行う
-        model.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+        model.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
         // 回転させる
         model.transform.Rotate(Vector3.up, 180f);
         // モデルの物理演算等をオフにする
         model.GetComponent<Rigidbody>().isKinematic = true;
         // アニメーションコンポーネントを取得する
-        Animator anim = model.GetComponent<Animator>();
+        anim = model.GetComponent<Animator>();
         // ジョブによってアニメーションを付ける
         switch (jobNumber)
         {
@@ -79,6 +81,11 @@ public class SelectJob : MonoBehaviour {
         if (col.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) && !windowVisibleFlag)  //マウスカーソルが乗ってるとき
         {
             //ここにモデルのアニメーションを書く(職業毎のアニメーションをさせる為)
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            {
+                // 攻撃アニメーションを再生する
+                anim.SetTrigger("NormalAttack1");
+            }
 
             //クリックされたとき
             if (Input.GetMouseButtonDown(0))

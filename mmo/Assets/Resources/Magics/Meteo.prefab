@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11441046}
   - 136: {fileID: 13639292}
   - 114: {fileID: 11433064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Meteo
   m_TagString: Magic
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 436146}
   - 198: {fileID: 19817390}
   - 199: {fileID: 19952350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ExplosionSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 495158}
   - 198: {fileID: 19815904}
   - 199: {fileID: 19963450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - 198: {fileID: 19870834}
   - 199: {fileID: 19973830}
   - 114: {fileID: 11472840}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - 4: {fileID: 426708}
   - 198: {fileID: 19874682}
   - 199: {fileID: 19953494}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SmokeTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - 4: {fileID: 447940}
   - 198: {fileID: 19877636}
   - 199: {fileID: 19998314}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flagments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - 4: {fileID: 472524}
   - 198: {fileID: 19874214}
   - 199: {fileID: 19955584}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - 4: {fileID: 498752}
   - 198: {fileID: 19897122}
   - 199: {fileID: 19934934}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,10 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fb2d885e046524690bc9bb5f944a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sp: 0
   attack: 0
   col: {fileID: 0}
   damageRate: 0
   attackKind: 0
+  parentPlayer: {fileID: 0}
 --- !u!114 &11441046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7411,7 +7413,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114758}

@@ -505,6 +505,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 405096}
+  - 136: {fileID: 13601328}
+  - 114: {fileID: 11421994}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -2392,6 +2394,23 @@ MonoBehaviour:
     type: 2}
   monkAnimationController: {fileID: 9100000, guid: f9982756105e2484187dab8c9390ea20,
     type: 2}
+--- !u!114 &11421994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fb2d885e046524690bc9bb5f944a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sp: 0
+  attack: 0
+  col: {fileID: 0}
+  damageRate: .100000001
+  attackKind: 0
+  parentPlayer: {fileID: 0}
 --- !u!114 &11432682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2479,6 +2498,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3131a5609a986c4c8146c7583aeeb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &13601328
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 6.01000023
+  m_Direction: 1
+  m_Center: {x: 5.53999996, y: 2.92000008, z: 0}
 --- !u!137 &13785254
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

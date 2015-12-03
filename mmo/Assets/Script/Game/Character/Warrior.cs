@@ -78,6 +78,45 @@ public class Warrior : PlayerChar {
     }
 
     /// <summary>
+    /// 使うスキルを格納する変数
+    /// </summary>
+    System.Action useSkill;
+
+    bool attackFlag = false;
+
+    /// <summary>
+    /// 攻撃アニメーションが終了した瞬間の処理
+    /// </summary>
+    public override void EndAttackAnimation()
+    {
+        base.EndAttackAnimation();
+        // 攻撃しているフラグをオフにする
+        attackFlag = false;
+        // 攻撃する
+        useSkill();
+        // 攻撃をnullに設定する
+        useSkill = () => { };
+    }
+
+    /// <summary>
+    /// 通常攻撃をする
+    /// </summary>
+    protected override void NormalAttack()
+    {
+        if (!attackFlag)
+        {
+            // ダメージ計算式
+            int damage = playerData.attack + (int)(playerData.attack);
+            // スキルごとのダメージを設定する
+            SetAttack(damage);
+            // 攻撃してるフラグをオンにする
+            attackFlag = true;
+            // アニメーションを再生する
+            SetTrigger("NormalAttack1");
+        }
+    }
+
+    /// <summary>
     /// 挑発 (攻撃力上昇系)
     /// </summary>
     public void Prov()
@@ -85,7 +124,7 @@ public class Warrior : PlayerChar {
         SkillBase prov = SkillControl.GetSkill("挑発");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buffs");
+        SetTrigger("Buffs");
         this.Hate = (int)prov.GetAttack();
         // スキルフラグをfalseにしておく
         this.EndSkillFlag();
@@ -99,7 +138,7 @@ public class Warrior : PlayerChar {
         SkillBase berserk = SkillControl.GetSkill("バーサク");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buffs");
+        SetTrigger("Buffs");
         // 攻撃力アップ
         StartCoroutine(StrBuff(berserk.GetAttack(), berserk.GetEffectTime()));
         // 防御力ダウン
@@ -116,7 +155,7 @@ public class Warrior : PlayerChar {
         SkillBase warcry = SkillControl.GetSkill("ウォークライ");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buffs");
+        SetTrigger("Buffs");
         // 攻撃力アップ
         StartCoroutine(StrBuff(warcry.GetAttack(), warcry.GetEffectTime()));
         // スキルフラグをfalseにしておく
@@ -131,7 +170,7 @@ public class Warrior : PlayerChar {
         SkillBase bloodrage = SkillControl.GetSkill("ブラッドレイジ");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("BloodRage");
+        SetTrigger("BloodRage");
         // 攻撃力アップ
         StartCoroutine(StrBuff(bloodrage.GetAttack(), bloodrage.GetEffectTime()));
         // 防御力ダウン
@@ -148,7 +187,7 @@ public class Warrior : PlayerChar {
         SkillBase defender = SkillControl.GetSkill("ディフェンダー");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buffs");
+        SetTrigger("Buffs");
         // 物理防御力アップ
         StartCoroutine(DefBuff(defender.GetDefence(), defender.GetEffectTime()));
         // スキルフラグをfalseにしておく
@@ -163,7 +202,7 @@ public class Warrior : PlayerChar {
         SkillBase lampart = SkillControl.GetSkill("ランパート");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Buffs");
+        SetTrigger("Buffs");
         // 物理防御力アップ
         StartCoroutine(DefBuff(lampart.GetDefence(), lampart.GetEffectTime()));
         // スキルフラグをfalseにしておく
@@ -178,7 +217,7 @@ public class Warrior : PlayerChar {
         SkillBase sentinel = SkillControl.GetSkill("センチネル");
 
         // 再生させるアニメーションを指定する
-        anim.SetTrigger("Sentinel");
+        SetTrigger("Sentinel");
         // 物理防御力アップ
         StartCoroutine(DefBuff(sentinel.GetDefence(), sentinel.GetEffectTime()));
         // 魔法防御力アップ
@@ -199,8 +238,10 @@ public class Warrior : PlayerChar {
       
             // スキルごとのダメージを設定する
             SetAttack(damage);
+            //
+            this.EnablePlayerAttack();
             // 再生させるアニメーションを指定する
-            anim.SetTrigger("FastBlade");
+            SetTrigger("FastBlade");
             // アタック中に切り替える
             Attack();
     }
@@ -351,6 +392,10 @@ public class Warrior : PlayerChar {
         Attack();
     }
 
+    protected override void EnablePlayerAttack(int attackNumber = -1)
+    {
+        base.EnablePlayerAttack(attackNumber);
+    }
     /// <summary>
     /// スキルを使用した時
     /// </summary>
@@ -403,14 +448,6 @@ public class Warrior : PlayerChar {
 
     }
 
-    /// <summary>
-    /// 詠唱が終了したモーションが終了したら呼び出される
-    /// </summary>
-    public override void EndAttackAnimation()
-    {
-        // 基礎クラスの処理を行う
-        base.EndAttackAnimation();
-    }
 
     protected override void EndOfAttack()
     {

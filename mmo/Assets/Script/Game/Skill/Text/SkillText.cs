@@ -128,9 +128,9 @@ public class SkillText : MonoBehaviour
         {
             // バフスキルの未来予知の表記をさせる クポ
             transform.Find(text_Array[5]).GetComponent<Text>().text = skill.GetName();
-            transform.Find(text_Array[6]).GetComponent<Text>().text = (skill.GetLv() + 1).ToString();
-            transform.Find(text_Array[7]).GetComponent<Text>().text = skill.GetCoolTime().ToString("0.0") + (" s");
-            transform.Find(text_Array[8]).GetComponent<Text>().text = skill.GetEffectTime().ToString("0.0") + (" s");
+            transform.Find(text_Array[6]).GetComponent<Text>().text = next_lv.ToString();
+            transform.Find(text_Array[7]).GetComponent<Text>().text = skill.GetCoolTime().ToString();
+            transform.Find(text_Array[8]).GetComponent<Text>().text = next_atk.ToString("P0");
             transform.Find(text_Array[9]).GetComponent<Text>().text = skill.GetPoint().ToString();
             transform.Find(text_Array[10]).GetComponent<Text>().text = skill.GetSp().ToString();
         }

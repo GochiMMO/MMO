@@ -373,53 +373,53 @@ MonoBehaviour:
       name: "\u30D5\u30A1\u30A4\u30A2"
       lv: 0
       difficult: 1
-      attack: 0
+      attack: .200000003
       defens: 0
       sp: 10
       cooltime: .5
       casttime: .5
       effect: 0
       point: 2
-      bonus: 0
+      bonus: .0199999996
       type: 3
     - id: 1
       name: "\u30D0\u30FC\u30F3"
       lv: 0
       difficult: 2
-      attack: .100000001
+      attack: .300000012
       defens: 0
       sp: 20
       cooltime: 1
       casttime: 1
       effect: 0
       point: 2
-      bonus: 0
+      bonus: .0399999991
       type: 3
     - id: 2
       name: "\u30D5\u30EC\u30A2"
       lv: 0
       difficult: 3
-      attack: .150000006
+      attack: .5
       defens: 0
       sp: 40
       cooltime: 2
       casttime: 2
       effect: 0
       point: 4
-      bonus: 0
+      bonus: .0500000007
       type: 3
     - id: 3
       name: "\u30E1\u30C6\u30AA"
       lv: 0
       difficult: 4
-      attack: .200000003
+      attack: .5
       defens: 0
       sp: 60
       cooltime: 4
       casttime: 4
       effect: 0
       point: 6
-      bonus: 0
+      bonus: .100000001
       type: 3
     - id: 4
       name: "\u30D6\u30EA\u30B6\u30C9"
@@ -575,7 +575,7 @@ MonoBehaviour:
       casttime: 0
       effect: 0
       point: 2
-      bonus: 0
+      bonus: .0199999996
       type: 1
     - id: 16
       name: "\u30EC\u30A4\u30BA"

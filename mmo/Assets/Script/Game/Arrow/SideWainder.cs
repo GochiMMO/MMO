@@ -10,8 +10,6 @@ public class SideWainder : MonoBehaviour {
     FireShot rightObj;
     [SerializeField, Tooltip("左右に広がる角度")]
     float angle = 40f;
-    [SerializeField, Tooltip("スピード")]
-    float speed = 25f;
 
     PlayerAttack playerAttack;
 

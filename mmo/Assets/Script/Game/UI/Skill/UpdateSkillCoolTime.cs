@@ -150,7 +150,6 @@ public class UpdateSkillCoolTime : MonoBehaviour {
 
     void Initialization()
     {
-        Debug.Log("Call instantiate");
         // パラメータの初期化
         angle = 0f;
         // 回転を元に戻す
